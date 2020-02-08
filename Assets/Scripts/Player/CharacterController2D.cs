@@ -17,7 +17,7 @@ public class CharacterController2D : MonoBehaviour
 
     [SerializeField, Tooltip("Max height the character will jump regardless of gravity")]
     float jumpHeight = 4;
-    
+
     [SerializeField, Range(0, 1f), Tooltip("Deceleration applied when character is wall riding")]
     float wallDeceleration = 0.8f;
 
@@ -38,7 +38,7 @@ public class CharacterController2D : MonoBehaviour
     private bool wallRiding;
 
     private void Awake()
-    {      
+    {
         boxCollider = GetComponent<BoxCollider2D>();
     }
 
@@ -106,6 +106,7 @@ public class CharacterController2D : MonoBehaviour
                 {
                     grounded = true;
                 }
+
                 // If we intersect an object beneath us, set grounded to true. 
                 if (Vector2.Angle(colliderDistance.normal, Vector2.up) == 90 && moveInput != 0)
                 {
