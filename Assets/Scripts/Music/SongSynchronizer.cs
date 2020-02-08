@@ -117,7 +117,7 @@ public class SongSynchronizer : MonoBehaviour
 
     void DoOnStep()
     {
-        Debug.Log($"{_measure}/{songInfo.signature.numerator} ({Sources.Melody.time}s)");
+        // Debug.Log($"{_measure}/{songInfo.signature.numerator} ({Sources.Melody.time}s)");
 
         this.OnStep(this);
 

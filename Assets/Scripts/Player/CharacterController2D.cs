@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(BoxCollider2D)), ExecuteInEditMode()]
 public class CharacterController2D : MonoBehaviour
 {
     [SerializeField, Tooltip("Max speed, in units per second, that the character moves.")]
@@ -22,9 +22,17 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField, Range(0, 1f), Tooltip("Deceleration applied when character is wall riding")]
     float wallDeceleration = 0.8f;
 
+    [Space(), Header("Checks")] public bool DrawDebugRays = true;
+    [Range(0.1f, 1f)] public float WallsRayLength = 0.6f;
+    public Transform LeftWallCheck;
+    public Transform RightWallCheck;
+    public LayerMask WallsLayerMask;
+
     [Space(), Header("Events")] public UnityEvent OnJump;
 
     private BoxCollider2D boxCollider;
+
+    private const float WALLS_RAY_LENGTH = 1.3f;
 
     private Vector2 velocity;
 
@@ -45,6 +53,13 @@ public class CharacterController2D : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
     }
 
+    private void Jump()
+    {
+        // Calculate the velocity required to achieve the target jump height.
+        velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
+        OnJump?.Invoke();
+    }
+    
     private void Update()
     {
         // Use GetAxisRaw to ensure our input is either 0, 1 or -1.
@@ -56,11 +71,28 @@ public class CharacterController2D : MonoBehaviour
 
             if (Input.GetButtonDown("Jump"))
             {
-                // Calculate the velocity required to achieve the target jump height.
-                velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
-                OnJump?.Invoke();
+                Jump();
             }
         }
+        else if (
+            !grounded &&
+            moveInput != 0
+        )
+        {
+            if (Physics2D.Raycast(LeftWallCheck.position, Vector2.left, WallsRayLength, WallsLayerMask).collider !=
+                null && Input.GetButtonDown("Jump"))
+            {
+                Jump();
+            }
+
+            if (Physics2D.Raycast(RightWallCheck.position, Vector2.right, WallsRayLength, WallsLayerMask)
+                                 .collider != null && Input.GetButtonDown("Jump"))
+            {
+                Jump();
+            }
+
+        }
+
 
         if (wallRiding && !grounded)
         {
@@ -110,7 +142,7 @@ public class CharacterController2D : MonoBehaviour
                 {
                     grounded = true;
                 }
-                
+
                 // If we intersect an object above us, we push down the play. 
                 if (Vector2.Angle(colliderDistance.normal, Vector2.up) == 180 && !grounded)
                 {
@@ -123,6 +155,12 @@ public class CharacterController2D : MonoBehaviour
                     wallRiding = true;
                 }
             }
+        }
+
+        if (DrawDebugRays)
+        {
+            Debug.DrawRay(LeftWallCheck.position, Vector3.left * WallsRayLength, Color.magenta);
+            Debug.DrawRay(RightWallCheck.position, Vector3.right * WallsRayLength, Color.magenta);
         }
     }
 }
