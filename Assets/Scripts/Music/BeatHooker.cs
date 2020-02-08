@@ -12,7 +12,8 @@ public class BeatHooker : MonoBehaviour
         [ConditionalField("AllSong", true)] public float From;
         [ConditionalField("AllSong", true)] public float To;
 
-        [Space()] [Header("Events")] public UnityEvent OnStep;
+        [Space()] [Header("Events")]
+        public UnityEvent OnStep;
         public UnityEvent OnEveryTwoStep;
         public UnityEvent OnFirstAndThirdStep;
         public UnityEvent OnHalfBeat;

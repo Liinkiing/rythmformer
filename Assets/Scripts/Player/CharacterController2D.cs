@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class CharacterController2D : MonoBehaviour
@@ -20,6 +21,8 @@ public class CharacterController2D : MonoBehaviour
 
     [SerializeField, Range(0, 1f), Tooltip("Deceleration applied when character is wall riding")]
     float wallDeceleration = 0.8f;
+
+    [Space(), Header("Events")] public UnityEvent OnJump;
 
     private BoxCollider2D boxCollider;
 
@@ -55,6 +58,7 @@ public class CharacterController2D : MonoBehaviour
             {
                 // Calculate the velocity required to achieve the target jump height.
                 velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
+                OnJump?.Invoke();
             }
         }
 
@@ -106,8 +110,14 @@ public class CharacterController2D : MonoBehaviour
                 {
                     grounded = true;
                 }
+                
+                // If we intersect an object above us, we push down the play. 
+                if (Vector2.Angle(colliderDistance.normal, Vector2.up) == 180 && !grounded)
+                {
+                    velocity.y += (Physics2D.gravity.y * 10f) * Time.deltaTime;
+                }
 
-                // If we intersect an object beneath us, set grounded to true. 
+                // If we intersect an object in our sides, we are wall riding. 
                 if (Vector2.Angle(colliderDistance.normal, Vector2.up) == 90 && moveInput != 0)
                 {
                     wallRiding = true;
