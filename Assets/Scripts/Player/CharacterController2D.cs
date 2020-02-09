@@ -1,166 +1,179 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
-[RequireComponent(typeof(BoxCollider2D)), ExecuteInEditMode()]
+[RequireComponent(typeof(BoxCollider2D))]
 public class CharacterController2D : MonoBehaviour
+
 {
-    [SerializeField, Tooltip("Max speed, in units per second, that the character moves.")]
-    float speed = 9;
+    #region Fields
+
+    [Header("Movements"), SerializeField, Tooltip("Max speed, in units per second, that the character moves.")]
+    private float speed = 9;
 
     [SerializeField, Tooltip("Acceleration while grounded.")]
-    float walkAcceleration = 75;
+    private float walkAcceleration = 75;
 
     [SerializeField, Tooltip("Acceleration while in the air.")]
-    float airAcceleration = 30;
+    private float airAcceleration = 30;
 
     [SerializeField, Tooltip("Deceleration applied when character is grounded and not attempting to move.")]
-    float groundDeceleration = 70;
+    private float groundDeceleration = 70;
 
     [SerializeField, Tooltip("Max height the character will jump regardless of gravity")]
-    float jumpHeight = 4;
+    private float jumpHeight = 4;
 
     [SerializeField, Range(0, 1f), Tooltip("Deceleration applied when character is wall riding")]
-    float wallDeceleration = 0.8f;
+    private float wallDeceleration = 0.8f;
 
-    [Space(), Header("Checks")] public bool DrawDebugRays = true;
-    [Range(0.1f, 1f)] public float WallsRayLength = 0.6f;
-    public Transform LeftWallCheck;
-    public Transform RightWallCheck;
-    public LayerMask WallsLayerMask;
-    
-    private float dashTime;
-    private bool isDashing;
-    public float dashDuration;
-    public float dashSpeed;
-    public float dashAcceleration;
+    [Space(), Header("Dash")] [SerializeField]
+    private float dashDuration = 0.15f;
+
+    [SerializeField] private float dashSpeed = 60f;
+    [SerializeField] private float dashAcceleration = 500f;
+
+    [Space(), Header("Checks")] [SerializeField]
+    private bool drawDebugRays = true;
+
+    [SerializeField, Range(0.1f, 3f)] private float wallsRayLength = 0.6f;
+    [SerializeField] private Transform leftWallCheck;
+    [SerializeField] private Transform rightWallCheck;
+    [SerializeField] private LayerMask wallsLayerMask;
 
     [Space(), Header("Events")] public UnityEvent OnJump;
 
-    private BoxCollider2D boxCollider;
+    private const float WallsRayLength = 1.3f;
 
-    private const float WALLS_RAY_LENGTH = 1.3f;
+    private BoxCollider2D _boxCollider;
+    private float _dashTime;
+    private bool _isDashing;
+    private PlayerInput _input;
+    private Vector2 _velocity;
+    private bool _grounded;
+    private bool _wallRiding;
 
-    private Vector2 velocity;
+    #endregion
 
-    /// <summary>
-    /// Set to true when the character intersects a collider beneath
-    /// them in the previous frame.
-    /// </summary>
-    private bool grounded;
-
-    /// <summary>
-    /// Set to true when the character intersects a collider (a wall)
-    /// in his left or right
-    /// </summary>
-    private bool wallRiding;
+    #region Unity Events
 
     private void Awake()
     {
-        boxCollider = GetComponent<BoxCollider2D>();
-        dashTime = dashDuration;
-        isDashing = false;
+        _boxCollider = GetComponent<BoxCollider2D>();
+        _dashTime = dashDuration;
+        _isDashing = false;
+        _input = new PlayerInput();
     }
 
-    private void Jump()
+    private void OnEnable()
     {
-        // Calculate the velocity required to achieve the target jump height.
-        velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
-        OnJump?.Invoke();
+        _input?.Enable();
     }
-    
-    void DashController(float direction)
+
+    private void OnDisable()
     {
-        if (dashTime <= 0 && isDashing)
-        {
-            dashTime = dashDuration;
-            velocity = Vector2.zero;
-            isDashing = false;
-        }
-
-        if (isDashing)
-        {
-            dashTime -= Time.deltaTime;
-        }
-
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            isDashing = true;
-            velocity.x = Mathf.MoveTowards(velocity.x, dashSpeed * Mathf.Sign(direction), dashAcceleration);
-            velocity.y = 0;
-        }
+        _input?.Disable();
     }
-    
+
     private void Update()
     {
-        // Use GetAxisRaw to ensure our input is either 0, 1 or -1.
-        float moveInput = Input.GetAxisRaw("Horizontal");
+        float moveInput = _input.Player.Move.ReadValue<Vector2>().x;
 
-        DashController(moveInput);
+        HandleJump();
+        HandleWallJump(moveInput);
+        HandleDash(moveInput);
+        HandleMovement(moveInput);
+    }
 
-        if (grounded)
+    private void HandleWallJump(float direction)
+    {
+        if (_grounded || direction == 0) return;
+        if (Physics2D.Raycast(leftWallCheck.position, Vector2.left, WallsRayLength, wallsLayerMask).collider !=
+            null && _input.Player.Jump.triggered)
         {
-            velocity.y = 0;
+            Jump();
+        }
+            
+        if (Physics2D.Raycast(rightWallCheck.position, Vector2.right, WallsRayLength, wallsLayerMask)
+                .collider != null && _input.Player.Jump.triggered)
+        {
+            Jump();
+        }
+    }
 
-            if (Input.GetButtonDown("Jump"))
+    private void HandleJump()
+    {
+        if (_grounded)
+        {
+            _velocity.y = 0;
+            if (_input.Player.Jump.triggered)
             {
                 Jump();
             }
         }
-        else if (
-            !grounded &&
-            moveInput != 0
-        )
-        {
-            if (Physics2D.Raycast(LeftWallCheck.position, Vector2.left, WallsRayLength, WallsLayerMask).collider !=
-                null && Input.GetButtonDown("Jump"))
-            {
-                Jump();
-            }
+    }
 
-            if (Physics2D.Raycast(RightWallCheck.position, Vector2.right, WallsRayLength, WallsLayerMask)
-                                 .collider != null && Input.GetButtonDown("Jump"))
-            {
-                Jump();
-            }
-        }
-        if (wallRiding && !grounded)
+    private void HandleDash(float direction)
+    {
+        if (_dashTime <= 0 && _isDashing)
         {
-            velocity.y *= wallDeceleration;
+            _dashTime = dashDuration;
+            _velocity = Vector2.zero;
+            _isDashing = false;
         }
 
-        var multiplier = wallRiding ? 10 : 1;
-        float acceleration = (grounded || wallRiding) ? walkAcceleration * multiplier : airAcceleration;
-        float deceleration = grounded ? groundDeceleration : 0;
+        if (_isDashing)
+        {
+            _dashTime -= Time.deltaTime;
+        }
+
+        if (_input.Player.Dash.triggered)
+        {
+            Dash(direction);
+        }
+    }
+
+    private void HandleMovement(float moveInput)
+    {
+        if (_wallRiding && !_grounded)
+        {
+            _velocity.y *= wallDeceleration;
+        }
+
+        var multiplier = _wallRiding ? 10 : 1;
+        var acceleration = (_grounded || _wallRiding) ? walkAcceleration * multiplier : airAcceleration;
+        var deceleration = _grounded ? groundDeceleration : 0;
 
         if (moveInput != 0)
         {
-            velocity.x = Mathf.MoveTowards(velocity.x, speed * moveInput, acceleration * Time.deltaTime);
+            _velocity.x = Mathf.MoveTowards(_velocity.x, speed * moveInput, acceleration * Time.deltaTime);
         }
         else
         {
-            velocity.x = Mathf.MoveTowards(velocity.x, 0, deceleration * Time.deltaTime);
+            _velocity.x = Mathf.MoveTowards(_velocity.x, 0, deceleration * Time.deltaTime);
         }
 
-        if (!isDashing)
+        if (!_isDashing)
         {
-            velocity.y += Physics2D.gravity.y * Time.deltaTime;    
+            _velocity.y += Physics2D.gravity.y * Time.deltaTime;
         }
 
-        transform.Translate(velocity * Time.deltaTime);
+        transform.Translate(_velocity * Time.deltaTime);
 
-        grounded = false;
-        wallRiding = false;
+        _grounded = false;
+        _wallRiding = false;
 
         // Retrieve all colliders we have intersected after velocity has been applied.
-        Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position, boxCollider.size, 0);
+        Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position, _boxCollider.size, 0);
 
         foreach (Collider2D hit in hits)
         {
             // Ignore our own collider.
-            if (hit == boxCollider)
+            if (hit == _boxCollider)
                 continue;
 
-            ColliderDistance2D colliderDistance = hit.Distance(boxCollider);
+            ColliderDistance2D colliderDistance = hit.Distance(_boxCollider);
 
             // Ensure that we are still overlapping this collider.
             // The overlap may no longer exist due to another intersected collider
@@ -170,29 +183,49 @@ public class CharacterController2D : MonoBehaviour
                 transform.Translate(colliderDistance.pointA - colliderDistance.pointB);
 
                 // If we intersect an object beneath us, set grounded to true. 
-                if (Vector2.Angle(colliderDistance.normal, Vector2.up) < 90 && velocity.y < 0)
+                if (Vector2.Angle(colliderDistance.normal, Vector2.up) < 90 && _velocity.y < 0)
                 {
-                    grounded = true;
+                    _grounded = true;
                 }
 
                 // If we intersect an object above us, we push down the play. 
-                if (Vector2.Angle(colliderDistance.normal, Vector2.up) == 180 && !grounded)
+                if (Vector2.Angle(colliderDistance.normal, Vector2.up) == 180 && !_grounded)
                 {
-                    velocity.y += (Physics2D.gravity.y * 10f) * Time.deltaTime;
+                    _velocity.y += (Physics2D.gravity.y * 10f) * Time.deltaTime;
                 }
 
                 // If we intersect an object in our sides, we are wall riding. 
                 if (Vector2.Angle(colliderDistance.normal, Vector2.up) == 90 && moveInput != 0)
                 {
-                    wallRiding = true;
+                    _wallRiding = true;
                 }
             }
         }
 
-        if (DrawDebugRays)
+        if (drawDebugRays)
         {
-            Debug.DrawRay(LeftWallCheck.position, Vector3.left * WallsRayLength, Color.magenta);
-            Debug.DrawRay(RightWallCheck.position, Vector3.right * WallsRayLength, Color.magenta);
+            Debug.DrawRay(leftWallCheck.position, Vector3.left * wallsRayLength, Color.magenta);
+            Debug.DrawRay(rightWallCheck.position, Vector3.right * wallsRayLength, Color.magenta);
         }
     }
+
+    #endregion
+
+    #region Methods
+
+    private void Jump()
+    {
+        // Calculate the velocity required to achieve the target jump height.
+        _velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
+        OnJump?.Invoke();
+    }
+
+    private void Dash(float direction)
+    {
+        _isDashing = true;
+        _velocity.x = Mathf.MoveTowards(_velocity.x, dashSpeed * Mathf.Sign(direction), dashAcceleration);
+        _velocity.y = 0;
+    }
+
+    #endregion
 }
