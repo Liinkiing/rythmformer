@@ -1,3 +1,5 @@
+#pragma warning disable 0649
+
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,8 +14,7 @@ public class BeatHooker : MonoBehaviour
         [ConditionalField("AllSong", true)] public float From;
         [ConditionalField("AllSong", true)] public float To;
 
-        [Space()] [Header("Events")]
-        public UnityEvent OnStep;
+        [Space()] [Header("Events")] public UnityEvent OnStep;
         public UnityEvent OnEveryTwoStep;
         public UnityEvent OnFirstAndThirdStep;
         public UnityEvent OnHalfBeat;
@@ -86,25 +87,35 @@ public class BeatHooker : MonoBehaviour
 
     private void Start()
     {
-        foreach (var handler in _handlers)
+        var synchronizer = FindObjectOfType<SongSynchronizer>();
+        if (synchronizer != null)
         {
-            FindObjectOfType<SongSynchronizer>().Step += handler.Value[BeatEvents.Step];
-            FindObjectOfType<SongSynchronizer>().EveryTwoStep += handler.Value[BeatEvents.EveryTwoStep];
-            FindObjectOfType<SongSynchronizer>().FirstAndThirdStep += handler.Value[BeatEvents.FirstAndThirdStep];
-            FindObjectOfType<SongSynchronizer>().HalfBeat += handler.Value[BeatEvents.HalfBeat];
-            FindObjectOfType<SongSynchronizer>().Beat += handler.Value[BeatEvents.Beat];
+            foreach (var handler in _handlers)
+            {
+                synchronizer.Step += handler.Value[BeatEvents.Step];
+                synchronizer.EveryTwoStep += handler.Value[BeatEvents.EveryTwoStep];
+                synchronizer.FirstAndThirdStep += handler.Value[BeatEvents.FirstAndThirdStep];
+                synchronizer.HalfBeat += handler.Value[BeatEvents.HalfBeat];
+                synchronizer.Beat += handler.Value[BeatEvents.Beat];
+            }
         }
     }
 
     private void OnDestroy()
     {
-        foreach (var handler in _handlers)
+        var synchronizer = FindObjectOfType<SongSynchronizer>();
+        if (synchronizer != null)
         {
-            FindObjectOfType<SongSynchronizer>().Step -= handler.Value[BeatEvents.Step];
-            FindObjectOfType<SongSynchronizer>().EveryTwoStep -= handler.Value[BeatEvents.EveryTwoStep];
-            FindObjectOfType<SongSynchronizer>().FirstAndThirdStep -= handler.Value[BeatEvents.FirstAndThirdStep];
-            FindObjectOfType<SongSynchronizer>().HalfBeat -= handler.Value[BeatEvents.HalfBeat];
-            FindObjectOfType<SongSynchronizer>().Beat -= handler.Value[BeatEvents.Beat];
+            {
+                foreach (var handler in _handlers)
+                {
+                    synchronizer.Step -= handler.Value[BeatEvents.Step];
+                    synchronizer.EveryTwoStep -= handler.Value[BeatEvents.EveryTwoStep];
+                    synchronizer.FirstAndThirdStep -= handler.Value[BeatEvents.FirstAndThirdStep];
+                    synchronizer.HalfBeat -= handler.Value[BeatEvents.HalfBeat];
+                    synchronizer.Beat -= handler.Value[BeatEvents.Beat];
+                }
+            }
         }
     }
 }
