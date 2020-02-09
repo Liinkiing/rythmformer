@@ -246,7 +246,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4738642859323635690}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.20515777, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1033728522081107408}
@@ -300,11 +300,15 @@ MonoBehaviour:
   jumpHeight: 4
   wallDeceleration: 0.8
   DrawDebugRays: 1
+  WallsRayLength: 0.795
   LeftWallCheck: {fileID: 6305144039226606819}
   RightWallCheck: {fileID: 4800326651393294273}
   WallsLayerMask:
     serializedVersion: 2
     m_Bits: 512
+  dashDuration: 0.15
+  dashSpeed: 60
+  dashAcceleration: 500
   OnJump:
     m_PersistentCalls:
       m_Calls:

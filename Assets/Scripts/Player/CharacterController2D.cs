@@ -27,6 +27,12 @@ public class CharacterController2D : MonoBehaviour
     public Transform LeftWallCheck;
     public Transform RightWallCheck;
     public LayerMask WallsLayerMask;
+    
+    private float dashTime;
+    private bool isDashing;
+    public float dashDuration;
+    public float dashSpeed;
+    public float dashAcceleration;
 
     [Space(), Header("Events")] public UnityEvent OnJump;
 
@@ -51,6 +57,8 @@ public class CharacterController2D : MonoBehaviour
     private void Awake()
     {
         boxCollider = GetComponent<BoxCollider2D>();
+        dashTime = dashDuration;
+        isDashing = false;
     }
 
     private void Jump()
@@ -60,10 +68,34 @@ public class CharacterController2D : MonoBehaviour
         OnJump?.Invoke();
     }
     
+    void DashController(float direction)
+    {
+        if (dashTime <= 0 && isDashing)
+        {
+            dashTime = dashDuration;
+            velocity = Vector2.zero;
+            isDashing = false;
+        }
+
+        if (isDashing)
+        {
+            dashTime -= Time.deltaTime;
+        }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            isDashing = true;
+            velocity.x = Mathf.MoveTowards(velocity.x, dashSpeed * Mathf.Sign(direction), dashAcceleration);
+            velocity.y = 0;
+        }
+    }
+    
     private void Update()
     {
         // Use GetAxisRaw to ensure our input is either 0, 1 or -1.
         float moveInput = Input.GetAxisRaw("Horizontal");
+
+        DashController(moveInput);
 
         if (grounded)
         {
@@ -90,10 +122,7 @@ public class CharacterController2D : MonoBehaviour
             {
                 Jump();
             }
-
         }
-
-
         if (wallRiding && !grounded)
         {
             velocity.y *= wallDeceleration;
@@ -112,7 +141,10 @@ public class CharacterController2D : MonoBehaviour
             velocity.x = Mathf.MoveTowards(velocity.x, 0, deceleration * Time.deltaTime);
         }
 
-        velocity.y += Physics2D.gravity.y * Time.deltaTime;
+        if (!isDashing)
+        {
+            velocity.y += Physics2D.gravity.y * Time.deltaTime;    
+        }
 
         transform.Translate(velocity * Time.deltaTime);
 
