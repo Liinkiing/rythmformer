@@ -303,7 +303,7 @@ MonoBehaviour:
   dashSpeed: 60
   dashAcceleration: 500
   drawDebugRays: 1
-  wallsRayLength: 1.6
+  wallsRayLength: 1
   leftWallCheck: {fileID: 6305144039226606819}
   rightWallCheck: {fileID: 4800326651393294273}
   wallsLayerMask:
@@ -391,8 +391,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 396963491
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6f46270d943e63a458e2fb17388252a5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
