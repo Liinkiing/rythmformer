@@ -1,6 +1,6 @@
 ﻿#pragma warning disable 0649
 
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Rythmformer;
@@ -9,11 +9,31 @@ using UnityEngine.Events;
 
 public class SongSynchronizer : MonoBehaviour
 {
+    public enum EventState
+    {
+        Start,
+        End
+    }
+
+    private struct ThresholdState
+    {
+        public bool Start;
+        public bool End;
+    }
+
+    public float Threshold = 0.05f;
     public event Action<SongSynchronizer, EventArgs> Step;
+    public event Action<SongSynchronizer, EventState> StepThresholded;
     public event Action<SongSynchronizer, EventArgs> EveryTwoStep;
+    public event Action<SongSynchronizer, EventState> EveryTwoStepThresholded;
     public event Action<SongSynchronizer, EventArgs> FirstAndThirdStep;
+    public event Action<SongSynchronizer, EventState> FirstAndThirdStepThresholded;
     public event Action<SongSynchronizer, EventArgs> HalfBeat;
+    public event Action<SongSynchronizer, EventState> HalfBeatThresholded;
     public event Action<SongSynchronizer, EventArgs> Beat;
+    public event Action<SongSynchronizer, EventState> BeatThresholded;
+
+    private ThresholdState _thresholdState = new ThresholdState() {Start = false, End = false};
 
     [Serializable]
     private struct TimeSignature
@@ -36,7 +56,7 @@ public class SongSynchronizer : MonoBehaviour
         public AudioSource Drums;
         public AudioSource Melody;
     }
-    
+
     [Serializable]
     private struct SongStems
     {
@@ -65,8 +85,10 @@ public class SongSynchronizer : MonoBehaviour
     private bool _ticked = false;
     private int _beats = 1;
     private int _measure = 1;
-    
-    [Space, Header("Options")] [SerializeField] private float _offset = 0.05f;
+
+    [Space, Header("Options")] [SerializeField]
+    private float _offset = 0.05f;
+
     [SerializeField] private bool _runInBackground = true;
 
     void Start()
@@ -78,7 +100,7 @@ public class SongSynchronizer : MonoBehaviour
         Sources.Bass.clip = stems.Bass;
         Sources.Melody.clip = stems.Melody;
         Sources.Drums.clip = stems.Drums;
-        
+
         Sources.Bass.PlayScheduled(startTick);
         Sources.Melody.PlayScheduled(startTick);
         Sources.Drums.PlayScheduled(startTick);
@@ -98,11 +120,35 @@ public class SongSynchronizer : MonoBehaviour
 
     void LateUpdate()
     {
+        // Debug.Log(_nextTick);
+        // Debug.Log(AudioSettings.dspTime);
         if (!_ticked && _nextTick >= AudioSettings.dspTime)
         {
             _ticked = true;
-            this.DoOnStep();
+            DoOnStep();
+            if (!_thresholdState.Start)
+            {
+                _thresholdState.Start = true;
+                DoOnStepThresholded(EventState.Start);
+            }
         }
+
+        // if (!_thresholdState.Start && (_nextTick + 0 >= AudioSettings.dspTime) )
+        // {
+        //     _thresholdState.Start = true;
+        //     DoOnStepThresholded(EventState.Start);
+        // }
+
+        // if (_nextTick - Threshold <= AudioSettings.dspTime - Threshold && !_thresholdState.End)
+        // {
+        //     _thresholdState.End = true;
+        //     DoOnStepThresholded(EventState.End);
+        // }
+        // else if (_nextTick + Threshold >= AudioSettings.dspTime + Threshold && !_thresholdState.Start)
+        // {
+        //     _thresholdState.Start = true;
+        //     DoOnStepThresholded(EventState.Start);
+        // }
     }
 
     void FixedUpdate()
@@ -114,14 +160,48 @@ public class SongSynchronizer : MonoBehaviour
         {
             _ticked = false;
             _nextTick += timePerTick;
+            _thresholdState.Start = false;
+            _thresholdState.End = false;
+        }
+    }
+
+    private void DoOnStepThresholded(EventState state)
+    {
+        // Debug.Log(_measure);
+        OnStepThresholded(this, state);
+
+        if (_measure == 1)
+        {
+            Debug.Log($"OUI BONSOIR TU PEUX {(state == EventState.End ? "PLUS " : "")}SAUTER EN BEAT");
+            OnBeatThresholded(this, state);
+        }
+
+        if (_measure % 2 == 0)
+        {
+            OnEveryTwoStepThresholded(this, state);
+        }
+
+        if (_measure == 1 || _measure == 3)
+        {
+            OnFirstAndThirdStepThresholded(this, state);
+        }
+
+        if (_measure == (songInfo.signature.numerator / 2) + 1)
+        {
+            OnHalfBeatThresholded(this, state);
+        }
+
+        if (_measure == (songInfo.signature.numerator / 2) + 1)
+        {
+            OnFirstAndThirdStepThresholded(this, state);
         }
     }
 
     void DoOnStep()
     {
-        // Debug.Log($"{_measure}/{songInfo.signature.numerator} ({Sources.Melody.time}s)");
+        Debug.Log($"{_measure}/{songInfo.signature.numerator} ({Sources.Melody.time}s)");
 
-        this.OnStep(this);
+        OnStep(this);
 
         if (playMetronome)
         {
@@ -131,20 +211,22 @@ public class SongSynchronizer : MonoBehaviour
 
         if (_measure == 1)
         {
-            this.OnBeat(this);
+            OnBeat(this);
         }
+
         if (_measure % 2 == 0)
         {
-            this.OnEveryTwoStep(this);
+            OnEveryTwoStep(this);
         }
 
         if (_measure == 1 || _measure == 3)
         {
-            this.OnFirstAndThirdStep(this);
+            OnFirstAndThirdStep(this);
         }
+
         if (_measure == (songInfo.signature.numerator / 2) + 1)
         {
-            this.OnHalfBeat(this);
+            OnHalfBeat(this);
         }
 
         if (_measure % songInfo.signature.numerator == 0)
@@ -180,5 +262,30 @@ public class SongSynchronizer : MonoBehaviour
     protected virtual void OnFirstAndThirdStep(SongSynchronizer sender)
     {
         FirstAndThirdStep?.Invoke(sender, EventArgs.Empty);
+    }
+
+    protected virtual void OnStepThresholded(SongSynchronizer sender, EventState state)
+    {
+        StepThresholded?.Invoke(sender, state);
+    }
+
+    protected virtual void OnHalfBeatThresholded(SongSynchronizer sender, EventState state)
+    {
+        HalfBeatThresholded?.Invoke(sender, state);
+    }
+
+    protected virtual void OnBeatThresholded(SongSynchronizer sender, EventState state)
+    {
+        BeatThresholded?.Invoke(sender, state);
+    }
+
+    protected virtual void OnEveryTwoStepThresholded(SongSynchronizer sender, EventState state)
+    {
+        EveryTwoStepThresholded?.Invoke(sender, state);
+    }
+
+    protected virtual void OnFirstAndThirdStepThresholded(SongSynchronizer sender, EventState state)
+    {
+        FirstAndThirdStepThresholded?.Invoke(sender, state);
     }
 }

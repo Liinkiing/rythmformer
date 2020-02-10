@@ -1681,7 +1681,7 @@ PrefabInstance:
     - target: {fileID: 3600690296673013303, guid: 48a848133ecde1444b787205e569db84,
         type: 3}
       propertyPath: playMetronome
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3600690296673013303, guid: 48a848133ecde1444b787205e569db84,
         type: 3}
@@ -1692,6 +1692,11 @@ PrefabInstance:
         type: 3}
       propertyPath: songInfo.bpm
       value: 152
+      objectReference: {fileID: 0}
+    - target: {fileID: 3600690296673013303, guid: 48a848133ecde1444b787205e569db84,
+        type: 3}
+      propertyPath: Threshold
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3600690296673013320, guid: 48a848133ecde1444b787205e569db84,
         type: 3}
@@ -1752,6 +1757,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SongSynchronizer
+      objectReference: {fileID: 0}
+    - target: {fileID: 3600690296673013321, guid: 48a848133ecde1444b787205e569db84,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7658371659201157189, guid: 48a848133ecde1444b787205e569db84,
         type: 3}

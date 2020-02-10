@@ -23,7 +23,7 @@ public class BeatHooker : MonoBehaviour
 
     [SerializeField] private List<SongPart> SongParts;
 
-    private enum BeatEvents
+    public enum BeatEvents
     {
         Step,
         EveryTwoStep,

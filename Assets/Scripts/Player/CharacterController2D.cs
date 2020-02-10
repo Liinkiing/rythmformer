@@ -6,8 +6,13 @@ using UnityEngine.Serialization;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class CharacterController2D : MonoBehaviour
-
 {
+    private struct PlayerFlags
+    {
+        public bool CanJump;
+        public bool CanDash;
+    }
+
     #region Fields
 
     [Header("Movements"), SerializeField, Tooltip("Max speed, in units per second, that the character moves.")]
@@ -44,6 +49,9 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private Transform rightWallCheck;
     [SerializeField] private LayerMask wallsLayerMask;
 
+    [FormerlySerializedAs("RestrictsJumpOn")] [Space(), Header("Action restrictions")]
+    public BeatHooker.BeatEvents restrictsJumpOn;
+
     [Space(), Header("Events")] public UnityEvent OnJump;
 
     private const float WallsRayLength = 1.3f;
@@ -55,6 +63,8 @@ public class CharacterController2D : MonoBehaviour
     private Vector2 _velocity;
     private bool _grounded;
     private bool _wallRiding;
+    private PlayerFlags _flags = new PlayerFlags() {CanDash = false, CanJump = false};
+    private SongSynchronizer _synchronizer;
     private Rigidbody2D _rigidbody;
     private Vector3 _upVect;
     private bool _jumping;
@@ -67,20 +77,28 @@ public class CharacterController2D : MonoBehaviour
     private void Awake()
     {
         _boxCollider = GetComponent<BoxCollider2D>();
+        _synchronizer = FindObjectOfType<SongSynchronizer>();
         _dashTime = dashDuration;
         _dashing = false;
-        _input = new PlayerInput();
         _rigidbody = GetComponent<Rigidbody2D>();
+        _input = new PlayerInput();
+        if (!_synchronizer)
+        {
+            throw new Exception(
+                "Could not get SongSynchronizer. Make sure you are using the `SongSynchronizer` prefab in your scene and it is enabled.");
+        }
     }
 
     private void OnEnable()
     {
         _input?.Enable();
+        _synchronizer.BeatThresholded += OnBeatThresholded;
     }
 
     private void OnDisable()
     {
         _input?.Disable();
+        _synchronizer.BeatThresholded -= OnBeatThresholded;
     }
 
     private void Update()
@@ -255,17 +273,40 @@ public class CharacterController2D : MonoBehaviour
 
     private void Jump()
     {
+        if (!_flags.CanJump) return;
         _jumping = true;
         // Calculate the velocity required to achieve the target jump height.
         _velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
         OnJump?.Invoke();
+        _flags.CanJump = false;
     }
 
     private void Dash(Vector2 moveInput)
     {
+        if (!_flags.CanDash) return;
         _dashing = true;
-        _velocity.x = Mathf.MoveTowards(_velocity.x, dashSpeed * _direction, dashAcceleration);
-        _velocity.y = Mathf.MoveTowards(_velocity.y, dashSpeed * Mathf.RoundToInt(moveInput.y), dashAcceleration);;
+        _velocity.x = Mathf.MoveTowards(_velocity.x, dashSpeed * Mathf.Sign(_direction), dashAcceleration);
+        _velocity.y = 0;
+        _flags.CanDash = false;
+    }
+
+    #endregion
+
+    #region Events
+
+    private void OnBeatThresholded(SongSynchronizer sender, SongSynchronizer.EventState state)
+    {
+        switch (state)
+        {
+            case SongSynchronizer.EventState.Start:
+                _flags.CanJump = true;
+                _flags.CanDash = true;
+                break;
+            case SongSynchronizer.EventState.End:
+                _flags.CanJump = false;
+                _flags.CanDash = false;
+                break;
+        }
     }
 
     #endregion
