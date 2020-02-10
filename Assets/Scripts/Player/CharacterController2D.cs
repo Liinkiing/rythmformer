@@ -176,7 +176,6 @@ public class CharacterController2D : MonoBehaviour
             {
                 _upVect = raycastGround.normal;
             }
-            
         }
 
         if (_grounded && !_isJumping)
