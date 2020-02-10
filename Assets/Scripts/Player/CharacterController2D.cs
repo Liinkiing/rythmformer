@@ -55,6 +55,9 @@ public class CharacterController2D : MonoBehaviour
     private Vector2 _velocity;
     private bool _grounded;
     private bool _wallRiding;
+    private Rigidbody2D _rigidbody;
+    private Vector3 _upVect;
+    private bool _isJumping;
 
     #endregion
 
@@ -66,6 +69,7 @@ public class CharacterController2D : MonoBehaviour
         _dashTime = dashDuration;
         _isDashing = false;
         _input = new PlayerInput();
+        _rigidbody = GetComponent<Rigidbody2D>();
     }
 
     private void OnEnable()
@@ -161,6 +165,25 @@ public class CharacterController2D : MonoBehaviour
             _velocity.y += Physics2D.gravity.y * Time.deltaTime;
         }
 
+        var raycastGround = Physics2D.Raycast(_rigidbody.position, -Vector2.up, _boxCollider.size.y, wallsLayerMask);
+
+        if (raycastGround)
+        {
+            var slopeAngle = Vector2.Angle(raycastGround.normal, Vector2.up);
+
+            // We handle sticky physics for slope smaller than 45 deg 
+            if (slopeAngle < 45)
+            {
+                _upVect = raycastGround.normal;
+            }
+            
+        }
+
+        if (_grounded && !_isJumping)
+        {
+            _velocity = Vector3.Cross(_upVect, Vector3.forward) * (moveInput * speed);
+        }
+        
         transform.Translate(_velocity * Time.deltaTime);
 
         _grounded = false;
@@ -187,6 +210,7 @@ public class CharacterController2D : MonoBehaviour
                 // If we intersect an object beneath us, set grounded to true. 
                 if (Vector2.Angle(colliderDistance.normal, Vector2.up) < 90 && _velocity.y < 0)
                 {
+                    _isJumping = false;
                     _grounded = true;
                 }
 
@@ -199,6 +223,7 @@ public class CharacterController2D : MonoBehaviour
                 // If we intersect an object in our sides, we are wall riding. 
                 if (Vector2.Angle(colliderDistance.normal, Vector2.up) == 90 && moveInput != 0)
                 {
+                    _isJumping = false;
                     _wallRiding = true;
                 }
             }
@@ -217,6 +242,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void Jump()
     {
+        _isJumping = true;
         // Calculate the velocity required to achieve the target jump height.
         _velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
         OnJump?.Invoke();
