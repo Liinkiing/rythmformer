@@ -50,14 +50,14 @@ public class CharacterController2D : MonoBehaviour
 
     private BoxCollider2D _boxCollider;
     private float _dashTime;
-    private bool _isDashing;
+    private bool _dashing;
     private PlayerInput _input;
     private Vector2 _velocity;
     private bool _grounded;
     private bool _wallRiding;
     private Rigidbody2D _rigidbody;
     private Vector3 _upVect;
-    private bool _isJumping;
+    private bool _jumping;
 
     #endregion
 
@@ -67,7 +67,7 @@ public class CharacterController2D : MonoBehaviour
     {
         _boxCollider = GetComponent<BoxCollider2D>();
         _dashTime = dashDuration;
-        _isDashing = false;
+        _dashing = false;
         _input = new PlayerInput();
         _rigidbody = GetComponent<Rigidbody2D>();
     }
@@ -122,14 +122,14 @@ public class CharacterController2D : MonoBehaviour
 
     private void HandleDash(float direction)
     {
-        if (_dashTime <= 0 && _isDashing)
+        if (_dashTime <= 0 && _dashing)
         {
             _dashTime = dashDuration;
             _velocity = Vector2.zero;
-            _isDashing = false;
+            _dashing = false;
         }
 
-        if (_isDashing)
+        if (_dashing)
         {
             _dashTime -= Time.deltaTime;
         }
@@ -160,7 +160,7 @@ public class CharacterController2D : MonoBehaviour
             _velocity.x = Mathf.MoveTowards(_velocity.x, 0, deceleration * Time.deltaTime);
         }
 
-        if (!_isDashing)
+        if (!_dashing)
         {
             _velocity.y += Physics2D.gravity.y * Time.deltaTime;
         }
@@ -178,7 +178,7 @@ public class CharacterController2D : MonoBehaviour
             }
         }
 
-        if (_grounded && !_isJumping)
+        if (_grounded && !_jumping)
         {
             _velocity = Vector3.Cross(_upVect, Vector3.forward) * (moveInput * speed);
         }
@@ -209,7 +209,7 @@ public class CharacterController2D : MonoBehaviour
                 // If we intersect an object beneath us, set grounded to true. 
                 if (Vector2.Angle(colliderDistance.normal, Vector2.up) < 90 && _velocity.y < 0)
                 {
-                    _isJumping = false;
+                    _jumping = false;
                     _grounded = true;
                 }
 
@@ -222,7 +222,7 @@ public class CharacterController2D : MonoBehaviour
                 // If we intersect an object in our sides, we are wall riding. 
                 if (Vector2.Angle(colliderDistance.normal, Vector2.up) == 90 && moveInput != 0)
                 {
-                    _isJumping = false;
+                    _jumping = false;
                     _wallRiding = true;
                 }
             }
@@ -241,7 +241,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void Jump()
     {
-        _isJumping = true;
+        _jumping = true;
         // Calculate the velocity required to achieve the target jump height.
         _velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
         OnJump?.Invoke();
@@ -249,7 +249,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void Dash(float direction)
     {
-        _isDashing = true;
+        _dashing = true;
         _velocity.x = Mathf.MoveTowards(_velocity.x, dashSpeed * Mathf.Sign(direction), dashAcceleration);
         _velocity.y = 0;
     }
