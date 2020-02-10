@@ -298,12 +298,12 @@ MonoBehaviour:
   airAcceleration: 30
   groundDeceleration: 120
   jumpHeight: 4
-  wallDeceleration: 0.8
   dashDuration: 0.15
   dashSpeed: 60
   dashAcceleration: 500
   drawDebugRays: 1
-  wallsRayLength: 1
+  wallsRayLength: 0.5
+  wallDeceleration: 0.8
   leftWallCheck: {fileID: 6305144039226606819}
   rightWallCheck: {fileID: 4800326651393294273}
   wallsLayerMask:

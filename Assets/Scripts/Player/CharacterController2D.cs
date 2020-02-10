@@ -25,19 +25,21 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField, Tooltip("Max height the character will jump regardless of gravity")]
     private float jumpHeight = 4;
 
-    [SerializeField, Range(0, 1f), Tooltip("Deceleration applied when character is wall riding")]
-    private float wallDeceleration = 0.8f;
-
     [Space(), Header("Dash")] [SerializeField]
     private float dashDuration = 0.15f;
 
     [SerializeField] private float dashSpeed = 60f;
     [SerializeField] private float dashAcceleration = 500f;
 
-    [Space(), Header("Checks")] [SerializeField]
+    [Space(), Header("Wall Riding")] [SerializeField]
     private bool drawDebugRays = true;
 
     [SerializeField, Range(0.1f, 3f)] private float wallsRayLength = 0.6f;
+
+    [SerializeField, Range(0, 1f), Tooltip("Deceleration applied when character is wall riding")]
+    private float wallDeceleration = 0.8f;
+
+
     [SerializeField] private Transform leftWallCheck;
     [SerializeField] private Transform rightWallCheck;
     [SerializeField] private LayerMask wallsLayerMask;
@@ -94,7 +96,7 @@ public class CharacterController2D : MonoBehaviour
         {
             Jump();
         }
-            
+
         if (Physics2D.Raycast(rightWallCheck.position, Vector2.right, WallsRayLength, wallsLayerMask)
                 .collider != null && _input.Player.Jump.triggered)
         {
