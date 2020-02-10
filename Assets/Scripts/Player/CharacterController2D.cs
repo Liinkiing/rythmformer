@@ -172,7 +172,7 @@ public class CharacterController2D : MonoBehaviour
         foreach (Collider2D hit in hits)
         {
             // Ignore our own collider.
-            if (hit == _boxCollider)
+            if (hit == _boxCollider || hit.isTrigger)
                 continue;
 
             ColliderDistance2D colliderDistance = hit.Distance(_boxCollider);
