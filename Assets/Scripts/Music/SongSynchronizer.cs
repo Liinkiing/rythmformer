@@ -38,48 +38,19 @@ public class SongSynchronizer : MonoBehaviour
     public event Action<SongSynchronizer, EventState> BeatThresholded;
 
     [Serializable]
-    private struct TimeSignature
-    {
-        public int numerator;
-        public int denominator;
-    }
-
-    [Serializable]
-    private struct SongInformations
-    {
-        public TimeSignature signature;
-        public float bpm;
-    }
-
-    [Serializable]
     public struct AudioSources
     {
         public AudioSource Bass;
         public AudioSource Drums;
         public AudioSource Melody;
     }
-
-    [Serializable]
-    private struct SongStems
-    {
-        public AudioClip Bass;
-        public AudioClip Drums;
-        public AudioClip Melody;
-    }
-
-    [SerializeField] private SongInformations songInfo = new SongInformations()
-    {
-        bpm = 130,
-        signature = new TimeSignature() {denominator = 4, numerator = 4}
-    };
+    
+    [Space, SerializeField] private Song _song;
 
     [Space, Header("Audio sources")] [SerializeField]
     public AudioSources Sources;
 
     [SerializeField] private bool playMetronome;
-
-    [Space, Header("Audio clips")] [SerializeField]
-    private SongStems stems;
 
     [SerializeField] private AudioClip metronome;
 
@@ -93,20 +64,29 @@ public class SongSynchronizer : MonoBehaviour
     private float _offset = 0.05f;
 
     [SerializeField] private bool _runInBackground = true;
-
+    
     void Start()
     {
         var startTick = AudioSettings.dspTime + 1f;
 
-        _nextTick = startTick + ((60.0 / songInfo.bpm) / 4);
-        // Sources = GetComponent<AudioSource>();
-        Sources.Bass.clip = stems.Bass;
-        Sources.Melody.clip = stems.Melody;
-        Sources.Drums.clip = stems.Drums;
+        _nextTick = startTick + ((60.0 / _song.Informations.bpm) / 4);
 
-        Sources.Bass.PlayScheduled(startTick);
-        Sources.Melody.PlayScheduled(startTick);
-        Sources.Drums.PlayScheduled(startTick);
+        if (_song.Stems.All != null)
+        {
+            Sources.Melody.clip = _song.Stems.All;
+            
+            Sources.Melody.PlayScheduled(startTick);
+        }
+        else
+        {
+            Sources.Bass.clip = _song.Stems.Bass;
+            Sources.Melody.clip = _song.Stems.Melody;
+            Sources.Drums.clip = _song.Stems.Drums;
+            
+            Sources.Bass.PlayScheduled(startTick);
+            Sources.Melody.PlayScheduled(startTick);
+            Sources.Drums.PlayScheduled(startTick);
+        }
     }
 
     private void OnApplicationPause(bool pauseStatus)
@@ -132,7 +112,7 @@ public class SongSynchronizer : MonoBehaviour
 
     void FixedUpdate()
     {
-        double timePerTick = (60.0f / songInfo.bpm) / 4;
+        double timePerTick = (60.0f / _song.Informations.bpm) / 4;
         double dspTime = AudioSettings.dspTime;
         while (dspTime >= _nextTick)
         {
@@ -143,7 +123,7 @@ public class SongSynchronizer : MonoBehaviour
 
     void DoOnFourthStep()
     {
-        var totalQuarters = songInfo.signature.numerator * 4;
+        var totalQuarters = _song.Informations.signature.numerator * 4;
         if (_quarters % totalQuarters == 0)
         {
             _quarters = 0;
@@ -249,12 +229,12 @@ public class SongSynchronizer : MonoBehaviour
             OnFirstAndThirdStep(this);
         }
 
-        if (_measure == (songInfo.signature.numerator / 2) + 1)
+        if (_measure == (_song.Informations.signature.numerator / 2) + 1)
         {
             OnHalfBeat(this);
         }
 
-        if (_measure % songInfo.signature.numerator == 0)
+        if (_measure % _song.Informations.signature.numerator == 0)
         {
             _measure = 1;
         }

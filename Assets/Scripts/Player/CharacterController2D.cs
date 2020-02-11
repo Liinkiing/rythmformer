@@ -67,6 +67,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private SongSynchronizer.ThresholdBeatEvents restrictsDashOn;
 
     [Space(), Header("Events")] public UnityEvent OnJump;
+    public UnityEvent OnDash;
 
     private const float WallsRayLength = 1.3f;
 
@@ -398,6 +399,7 @@ public class CharacterController2D : MonoBehaviour
     private void Dash(Vector2 moveInput)
     {
         if (!_flags.CanDash) return;
+        OnDash?.Invoke();
         Debug.Log(Enum.GetName(typeof(SongSynchronizer.EventScore), _scoreState.DashScore));
         _dashing = true;
         _velocity.x = Mathf.MoveTowards(_velocity.x, dashSpeed * Mathf.Sign(_direction), dashAcceleration);
