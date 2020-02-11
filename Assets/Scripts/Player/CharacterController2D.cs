@@ -83,6 +83,7 @@ public class CharacterController2D : MonoBehaviour
     private Vector3 _upVect;
     private bool _jumping;
     private int _direction = 1;
+    private readonly Collider2D[] _hitsBuffer = new Collider2D[16];
 
     private ScoreState _scoreState = new ScoreState(dashScore: SongSynchronizer.EventScore.Ok,
         jumpScore: SongSynchronizer.EventScore.Ok);
@@ -246,15 +247,15 @@ public class CharacterController2D : MonoBehaviour
         _wallRiding = false;
 
         // Retrieve all colliders we have intersected after velocity has been applied.
-        Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position, _boxCollider.size, 0);
+        var count = Physics2D.OverlapBoxNonAlloc(transform.position, _boxCollider.size, 0, _hitsBuffer);
 
-        foreach (Collider2D hit in hits)
+        for (var i = 0; i < count; i++)
         {
             // Ignore our own collider.
-            if (hit == _boxCollider || hit.isTrigger)
+            if (_hitsBuffer[i] == _boxCollider || _hitsBuffer[i].isTrigger)
                 continue;
 
-            ColliderDistance2D colliderDistance = hit.Distance(_boxCollider);
+            ColliderDistance2D colliderDistance = _hitsBuffer[i].Distance(_boxCollider);
 
             // Ensure that we are still overlapping this collider.
             // The overlap may no longer exist due to another intersected collider
