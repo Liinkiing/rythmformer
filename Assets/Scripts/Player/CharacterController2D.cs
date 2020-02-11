@@ -167,10 +167,10 @@ public class CharacterController2D : MonoBehaviour
 
         var raycastGround = Physics2D.Raycast(_rigidbody.position, -Vector2.up, _boxCollider.size.y, wallsLayerMask);
 
+        var slopeAngle = Vector2.Angle(raycastGround.normal, Vector2.up);
+        
         if (raycastGround)
         {
-            var slopeAngle = Vector2.Angle(raycastGround.normal, Vector2.up);
-
             // We handle sticky physics for slope smaller than 45 deg 
             if (slopeAngle < 45)
             {
@@ -178,7 +178,9 @@ public class CharacterController2D : MonoBehaviour
             }
         }
 
-        if (_grounded && !_jumping && !_dashing)
+        // Sticky physic is only use if the player is grounded and not on flat ground
+        // because it cause grounded check issue otherwise
+        if (_grounded && !_jumping && !_dashing && slopeAngle > 0)
         {
             _velocity = Vector3.Cross(_upVect, Vector3.forward) * (moveInput * speed);
         }
