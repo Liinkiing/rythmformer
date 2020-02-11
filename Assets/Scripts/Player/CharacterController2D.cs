@@ -178,7 +178,7 @@ public class CharacterController2D : MonoBehaviour
             }
         }
 
-        if (_grounded && !_jumping)
+        if (_grounded && !_jumping && !_dashing)
         {
             _velocity = Vector3.Cross(_upVect, Vector3.forward) * (moveInput * speed);
         }
