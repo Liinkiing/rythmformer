@@ -94,8 +94,7 @@ public class CharacterController2D : MonoBehaviour
 #if UNITY_EDITOR
     private void OnValidate()
     {
-        RemoveThresholdedBeatEvents();
-        AddThresholdedBeatEvents();
+        ResetThresholdBeatEvents();
     }
 #endif
 
@@ -342,6 +341,12 @@ public class CharacterController2D : MonoBehaviour
         _synchronizer.BeatThresholded -= OnTresholdedJump;
     }
 
+    private void ResetThresholdBeatEvents()
+    {
+        RemoveThresholdedBeatEvents();
+        AddThresholdedBeatEvents();
+    }
+
     private void OnTresholdedJump(SongSynchronizer sender, SongSynchronizer.EventState state)
     {
         switch (state)
@@ -397,6 +402,21 @@ public class CharacterController2D : MonoBehaviour
         _velocity.x = Mathf.MoveTowards(_velocity.x, dashSpeed * Mathf.Sign(_direction), dashAcceleration);
         _velocity.y = 0;
         _flags.CanDash = false;
+    }
+
+    #endregion
+
+    #region Public Methods
+
+    public void ChangeJumpTresholdBeat(SongSynchronizer.ThresholdBeatEvents restrictOn)
+    {
+        restrictsJumpOn = restrictOn;
+        ResetThresholdBeatEvents();
+    }
+    public void ChangeDashTresholdBeat(SongSynchronizer.ThresholdBeatEvents restrictOn)
+    {
+        restrictsDashOn = restrictOn;
+        ResetThresholdBeatEvents();
     }
 
     #endregion
