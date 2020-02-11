@@ -14,7 +14,8 @@ public class BeatHooker : MonoBehaviour
         [ConditionalField("AllSong", true)] public float From;
         [ConditionalField("AllSong", true)] public float To;
 
-        [Space()] [Header("Events")] public UnityEvent OnStep;
+        [Space()] [Header("Events")] public UnityEvent OnHalfStep;
+        public UnityEvent OnStep;
         public UnityEvent OnEveryTwoStep;
         public UnityEvent OnFirstAndThirdStep;
         public UnityEvent OnHalfBeat;
@@ -25,6 +26,7 @@ public class BeatHooker : MonoBehaviour
 
     public enum BeatEvents
     {
+        HalfStep,
         Step,
         EveryTwoStep,
         FirstAndThirdStep,
@@ -41,6 +43,14 @@ public class BeatHooker : MonoBehaviour
         {
             _handlers.Add(part, new Dictionary<BeatEvents, Action<SongSynchronizer, EventArgs>>()
             {
+                [BeatEvents.HalfStep] = (manager, args) =>
+                {
+                    if (part.AllSong ||
+                        (manager.Sources.Melody.time >= part.From && manager.Sources.Melody.time <= part.To))
+                    {
+                        part.OnHalfStep.Invoke();
+                    }
+                },
                 [BeatEvents.Step] = (manager, args) =>
                 {
                     if (part.AllSong ||
@@ -92,6 +102,7 @@ public class BeatHooker : MonoBehaviour
         {
             foreach (var handler in _handlers)
             {
+                synchronizer.HalfStep += handler.Value[BeatEvents.HalfStep];
                 synchronizer.Step += handler.Value[BeatEvents.Step];
                 synchronizer.EveryTwoStep += handler.Value[BeatEvents.EveryTwoStep];
                 synchronizer.FirstAndThirdStep += handler.Value[BeatEvents.FirstAndThirdStep];
@@ -109,6 +120,7 @@ public class BeatHooker : MonoBehaviour
             {
                 foreach (var handler in _handlers)
                 {
+                    synchronizer.HalfStep -= handler.Value[BeatEvents.HalfStep];
                     synchronizer.Step -= handler.Value[BeatEvents.Step];
                     synchronizer.EveryTwoStep -= handler.Value[BeatEvents.EveryTwoStep];
                     synchronizer.FirstAndThirdStep -= handler.Value[BeatEvents.FirstAndThirdStep];

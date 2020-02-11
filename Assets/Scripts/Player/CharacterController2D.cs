@@ -1,16 +1,28 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class CharacterController2D : MonoBehaviour
 {
+    [Serializable]
     private struct PlayerFlags
     {
         public bool CanJump;
         public bool CanDash;
+    }
+
+    [Serializable]
+    private struct ScoreState
+    {
+        public SongSynchronizer.EventScore DashScore;
+        public SongSynchronizer.EventScore JumpScore;
+
+        public ScoreState(SongSynchronizer.EventScore dashScore, SongSynchronizer.EventScore jumpScore)
+        {
+            DashScore = dashScore;
+            JumpScore = jumpScore;
+        }
     }
 
     #region Fields
@@ -49,8 +61,10 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private Transform rightWallCheck;
     [SerializeField] private LayerMask wallsLayerMask;
 
-    [FormerlySerializedAs("RestrictsJumpOn")] [Space(), Header("Action restrictions")]
-    public BeatHooker.BeatEvents restrictsJumpOn;
+    [Space(), Header("Action restrictions")] [SerializeField]
+    private SongSynchronizer.ThresholdBeatEvents restrictsJumpOn;
+
+    [SerializeField] private SongSynchronizer.ThresholdBeatEvents restrictsDashOn;
 
     [Space(), Header("Events")] public UnityEvent OnJump;
 
@@ -63,16 +77,27 @@ public class CharacterController2D : MonoBehaviour
     private Vector2 _velocity;
     private bool _grounded;
     private bool _wallRiding;
-    private PlayerFlags _flags = new PlayerFlags() {CanDash = false, CanJump = false};
+    private PlayerFlags _flags;
     private SongSynchronizer _synchronizer;
     private Rigidbody2D _rigidbody;
     private Vector3 _upVect;
     private bool _jumping;
     private int _direction = 1;
 
+    private ScoreState _scoreState = new ScoreState(dashScore: SongSynchronizer.EventScore.Ok,
+        jumpScore: SongSynchronizer.EventScore.Ok);
+
     #endregion
 
     #region Unity Events
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        RemoveThresholdedBeatEvents();
+        AddThresholdedBeatEvents();
+    }
+#endif
 
     private void Awake()
     {
@@ -85,20 +110,21 @@ public class CharacterController2D : MonoBehaviour
         if (!_synchronizer)
         {
             throw new Exception(
-                "Could not get SongSynchronizer. Make sure you are using the `SongSynchronizer` prefab in your scene and it is enabled.");
+                "Could not get SongSynchronizer. Make sure you are using the `SongSynchronizer` " +
+                "prefab in your scene and it is enabled.");
         }
     }
 
     private void OnEnable()
     {
         _input?.Enable();
-        _synchronizer.BeatThresholded += OnBeatThresholded;
+        AddThresholdedBeatEvents();
     }
 
     private void OnDisable()
     {
         _input?.Disable();
-        _synchronizer.BeatThresholded -= OnBeatThresholded;
+        RemoveThresholdedBeatEvents();
     }
 
     private void Update()
@@ -271,10 +297,92 @@ public class CharacterController2D : MonoBehaviour
 
     #region Methods
 
+    private void AddThresholdedBeatEvents()
+    {
+        if (_synchronizer == null) return;
+        switch (restrictsJumpOn)
+        {
+            case SongSynchronizer.ThresholdBeatEvents.Step:
+                _synchronizer.StepThresholded += OnTresholdedJump;
+                break;
+            case SongSynchronizer.ThresholdBeatEvents.HalfBeat:
+                _synchronizer.HalfBeatThresholded += OnTresholdedJump;
+                break;
+            case SongSynchronizer.ThresholdBeatEvents.Beat:
+                _synchronizer.BeatThresholded += OnTresholdedJump;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+
+        switch (restrictsDashOn)
+        {
+            case SongSynchronizer.ThresholdBeatEvents.Step:
+                _synchronizer.StepThresholded += OnTresholdedDash;
+                break;
+            case SongSynchronizer.ThresholdBeatEvents.HalfBeat:
+                _synchronizer.HalfBeatThresholded += OnTresholdedDash;
+                break;
+            case SongSynchronizer.ThresholdBeatEvents.Beat:
+                _synchronizer.BeatThresholded += OnTresholdedDash;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
+
+    private void RemoveThresholdedBeatEvents()
+    {
+        if (_synchronizer == null) return;
+        _synchronizer.StepThresholded -= OnTresholdedDash;
+        _synchronizer.HalfBeatThresholded -= OnTresholdedDash;
+        _synchronizer.BeatThresholded -= OnTresholdedDash;
+        _synchronizer.StepThresholded -= OnTresholdedJump;
+        _synchronizer.HalfBeatThresholded -= OnTresholdedJump;
+        _synchronizer.BeatThresholded -= OnTresholdedJump;
+    }
+
+    private void OnTresholdedJump(SongSynchronizer sender, SongSynchronizer.EventState state)
+    {
+        switch (state)
+        {
+            case SongSynchronizer.EventState.Start:
+                _flags.CanJump = true;
+                _scoreState.JumpScore = SongSynchronizer.EventScore.Ok;
+                break;
+            case SongSynchronizer.EventState.Mid:
+                _scoreState.JumpScore = SongSynchronizer.EventScore.Perfect;
+                break;
+            case SongSynchronizer.EventState.End:
+                _flags.CanJump = false;
+                _scoreState.JumpScore = SongSynchronizer.EventScore.Ok;
+                break;
+        }
+    }
+
+    private void OnTresholdedDash(SongSynchronizer sender, SongSynchronizer.EventState state)
+    {
+        switch (state)
+        {
+            case SongSynchronizer.EventState.Start:
+                _flags.CanDash = true;
+                _scoreState.DashScore = SongSynchronizer.EventScore.Ok;
+                break;
+            case SongSynchronizer.EventState.Mid:
+                _scoreState.DashScore = SongSynchronizer.EventScore.Perfect;
+                break;
+            case SongSynchronizer.EventState.End:
+                _flags.CanDash = false;
+                _scoreState.DashScore = SongSynchronizer.EventScore.Ok;
+                break;
+        }
+    }
+
     private void Jump()
     {
         if (!_flags.CanJump) return;
         _jumping = true;
+        Debug.Log(Enum.GetName(typeof(SongSynchronizer.EventScore), _scoreState.JumpScore));
         // Calculate the velocity required to achieve the target jump height.
         _velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
         OnJump?.Invoke();
@@ -284,29 +392,11 @@ public class CharacterController2D : MonoBehaviour
     private void Dash(Vector2 moveInput)
     {
         if (!_flags.CanDash) return;
+        Debug.Log(Enum.GetName(typeof(SongSynchronizer.EventScore), _scoreState.DashScore));
         _dashing = true;
         _velocity.x = Mathf.MoveTowards(_velocity.x, dashSpeed * Mathf.Sign(_direction), dashAcceleration);
         _velocity.y = 0;
         _flags.CanDash = false;
-    }
-
-    #endregion
-
-    #region Events
-
-    private void OnBeatThresholded(SongSynchronizer sender, SongSynchronizer.EventState state)
-    {
-        switch (state)
-        {
-            case SongSynchronizer.EventState.Start:
-                _flags.CanJump = true;
-                _flags.CanDash = true;
-                break;
-            case SongSynchronizer.EventState.End:
-                _flags.CanJump = false;
-                _flags.CanDash = false;
-                break;
-        }
     }
 
     #endregion
