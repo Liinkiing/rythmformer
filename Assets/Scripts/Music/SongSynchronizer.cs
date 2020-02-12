@@ -3,6 +3,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class SongSynchronizer : MonoBehaviour
 {
@@ -60,8 +61,8 @@ public class SongSynchronizer : MonoBehaviour
     private int _measure = 1;
     private int _quarters = 0;
 
-    [Space, Header("Options")] [SerializeField]
-    private float _offset = 0.05f;
+    [FormerlySerializedAs("_offset")] [Space, Header("Options")] [SerializeField]
+    private float offset = 0.05f;
 
     [SerializeField] private bool _runInBackground = true;
     
@@ -114,7 +115,7 @@ public class SongSynchronizer : MonoBehaviour
     {
         double timePerTick = (60.0f / _song.Informations.bpm) / 4;
         double dspTime = AudioSettings.dspTime;
-        while (dspTime >= _nextTick)
+        while (dspTime >= _nextTick + offset)
         {
             _ticked = false;
             _nextTick += timePerTick;
@@ -136,7 +137,7 @@ public class SongSynchronizer : MonoBehaviour
 
         if (_quarters % 4 == 0)
         {
-            StartCoroutine(DoOnStep(_offset));
+            DoOnStep();
         }
 
         if (_quarters == 0)
@@ -203,9 +204,8 @@ public class SongSynchronizer : MonoBehaviour
         _quarters += 1;
     }
 
-    private IEnumerator DoOnStep(float delay)
+    private void DoOnStep()
     {
-        yield return new WaitForSeconds(Mathf.Abs(delay));
         OnStep(this);
 
         if (playMetronome)
