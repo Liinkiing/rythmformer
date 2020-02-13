@@ -18,7 +18,7 @@ MonoBehaviour:
       denominator: 4
     bpm: 152
   Stems:
-    Bass: {fileID: 8300000, guid: 8f834af9a0af7cc44aafd702399567f5, type: 3}
-    Drums: {fileID: 8300000, guid: 4674367de26df0440834df0c6675dcb6, type: 3}
-    Melody: {fileID: 8300000, guid: b7e670a5eb2e97f49a9470aaae91fce8, type: 3}
+    Bass: {fileID: 8300000, guid: 0b514f1e66af40043a25c53f00f1fe42, type: 3}
+    Drums: {fileID: 8300000, guid: 33056c00432de524789ccf2999d6a1c8, type: 3}
+    Melody: {fileID: 8300000, guid: 49717d64a09846344be3f7c4f92a071f, type: 3}
     All: {fileID: 0}
