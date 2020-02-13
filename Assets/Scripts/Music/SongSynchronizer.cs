@@ -151,8 +151,6 @@ public class SongSynchronizer : MonoBehaviour
             OnHalfBeatThresholded(this, EventState.End);
         }
 
-        /* TODO: Simplify this, pls some math expert I'm sure we can found something
-        that works in fewer lines */
         switch (_quarters)
         {
             case 3:
