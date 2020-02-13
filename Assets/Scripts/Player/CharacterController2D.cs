@@ -1,13 +1,30 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class CharacterController2D : MonoBehaviour
-
 {
+    [Serializable]
+    private struct PlayerFlags
+    {
+        public bool CanJump;
+        public bool CanDash;
+    }
+
+    [Serializable]
+    private struct ScoreState
+    {
+        public SongSynchronizer.EventScore DashScore;
+        public SongSynchronizer.EventScore JumpScore;
+
+        public ScoreState(SongSynchronizer.EventScore dashScore, SongSynchronizer.EventScore jumpScore)
+        {
+            DashScore = dashScore;
+            JumpScore = jumpScore;
+        }
+    }
+
     #region Fields
 
     [Header("Movements"), SerializeField, Tooltip("Max speed, in units per second, that the character moves.")]
@@ -44,7 +61,13 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private Transform rightWallCheck;
     [SerializeField] private LayerMask wallsLayerMask;
 
+    [Space(), Header("Action restrictions")] [SerializeField]
+    private SongSynchronizer.ThresholdBeatEvents restrictsJumpOn;
+
+    [SerializeField] private SongSynchronizer.ThresholdBeatEvents restrictsDashOn;
+
     [Space(), Header("Events")] public UnityEvent OnJump;
+    public UnityEvent OnDash;
 
     private const float WallsRayLength = 1.3f;
 
@@ -55,32 +78,54 @@ public class CharacterController2D : MonoBehaviour
     private Vector2 _velocity;
     private bool _grounded;
     private bool _wallRiding;
+    private PlayerFlags _flags;
+    private SongSynchronizer _synchronizer;
     private Rigidbody2D _rigidbody;
     private Vector3 _upVect;
     private bool _jumping;
     private int _direction = 1;
+    private readonly Collider2D[] _hitsBuffer = new Collider2D[16];
+
+    private ScoreState _scoreState = new ScoreState(dashScore: SongSynchronizer.EventScore.Ok,
+        jumpScore: SongSynchronizer.EventScore.Ok);
 
     #endregion
 
     #region Unity Events
 
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        ResetThresholdBeatEvents();
+    }
+#endif
+
     private void Awake()
     {
         _boxCollider = GetComponent<BoxCollider2D>();
+        _synchronizer = FindObjectOfType<SongSynchronizer>();
         _dashTime = dashDuration;
         _dashing = false;
-        _input = new PlayerInput();
         _rigidbody = GetComponent<Rigidbody2D>();
+        _input = new PlayerInput();
+        if (!_synchronizer)
+        {
+            throw new Exception(
+                "Could not get SongSynchronizer. Make sure you are using the `SongSynchronizer` " +
+                "prefab in your scene and it is enabled.");
+        }
     }
 
     private void OnEnable()
     {
         _input?.Enable();
+        AddThresholdedBeatEvents();
     }
 
     private void OnDisable()
     {
         _input?.Disable();
+        RemoveThresholdedBeatEvents();
     }
 
     private void Update()
@@ -203,15 +248,15 @@ public class CharacterController2D : MonoBehaviour
         _wallRiding = false;
 
         // Retrieve all colliders we have intersected after velocity has been applied.
-        Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position, _boxCollider.size, 0);
+        var count = Physics2D.OverlapBoxNonAlloc(transform.position, _boxCollider.size, 0, _hitsBuffer);
 
-        foreach (Collider2D hit in hits)
+        for (var i = 0; i < count; i++)
         {
             // Ignore our own collider.
-            if (hit == _boxCollider || hit.isTrigger)
+            if (_hitsBuffer[i] == _boxCollider || _hitsBuffer[i].isTrigger)
                 continue;
 
-            ColliderDistance2D colliderDistance = hit.Distance(_boxCollider);
+            ColliderDistance2D colliderDistance = _hitsBuffer[i].Distance(_boxCollider);
 
             // Ensure that we are still overlapping this collider.
             // The overlap may no longer exist due to another intersected collider
@@ -253,19 +298,128 @@ public class CharacterController2D : MonoBehaviour
 
     #region Methods
 
+    private void AddThresholdedBeatEvents()
+    {
+        if (_synchronizer == null) return;
+        switch (restrictsJumpOn)
+        {
+            case SongSynchronizer.ThresholdBeatEvents.Step:
+                _synchronizer.StepThresholded += OnTresholdedJump;
+                break;
+            case SongSynchronizer.ThresholdBeatEvents.HalfBeat:
+                _synchronizer.HalfBeatThresholded += OnTresholdedJump;
+                break;
+            case SongSynchronizer.ThresholdBeatEvents.Beat:
+                _synchronizer.BeatThresholded += OnTresholdedJump;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+
+        switch (restrictsDashOn)
+        {
+            case SongSynchronizer.ThresholdBeatEvents.Step:
+                _synchronizer.StepThresholded += OnTresholdedDash;
+                break;
+            case SongSynchronizer.ThresholdBeatEvents.HalfBeat:
+                _synchronizer.HalfBeatThresholded += OnTresholdedDash;
+                break;
+            case SongSynchronizer.ThresholdBeatEvents.Beat:
+                _synchronizer.BeatThresholded += OnTresholdedDash;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
+
+    private void RemoveThresholdedBeatEvents()
+    {
+        if (_synchronizer == null) return;
+        _synchronizer.StepThresholded -= OnTresholdedDash;
+        _synchronizer.HalfBeatThresholded -= OnTresholdedDash;
+        _synchronizer.BeatThresholded -= OnTresholdedDash;
+        _synchronizer.StepThresholded -= OnTresholdedJump;
+        _synchronizer.HalfBeatThresholded -= OnTresholdedJump;
+        _synchronizer.BeatThresholded -= OnTresholdedJump;
+    }
+
+    private void ResetThresholdBeatEvents()
+    {
+        RemoveThresholdedBeatEvents();
+        AddThresholdedBeatEvents();
+    }
+
+    private void OnTresholdedJump(SongSynchronizer sender, SongSynchronizer.EventState state)
+    {
+        switch (state)
+        {
+            case SongSynchronizer.EventState.Start:
+                _flags.CanJump = true;
+                _scoreState.JumpScore = SongSynchronizer.EventScore.Ok;
+                break;
+            case SongSynchronizer.EventState.Mid:
+                _scoreState.JumpScore = SongSynchronizer.EventScore.Perfect;
+                break;
+            case SongSynchronizer.EventState.End:
+                _flags.CanJump = false;
+                _scoreState.JumpScore = SongSynchronizer.EventScore.Ok;
+                break;
+        }
+    }
+
+    private void OnTresholdedDash(SongSynchronizer sender, SongSynchronizer.EventState state)
+    {
+        switch (state)
+        {
+            case SongSynchronizer.EventState.Start:
+                _flags.CanDash = true;
+                _scoreState.DashScore = SongSynchronizer.EventScore.Ok;
+                break;
+            case SongSynchronizer.EventState.Mid:
+                _scoreState.DashScore = SongSynchronizer.EventScore.Perfect;
+                break;
+            case SongSynchronizer.EventState.End:
+                _flags.CanDash = false;
+                _scoreState.DashScore = SongSynchronizer.EventScore.Ok;
+                break;
+        }
+    }
+
     private void Jump()
     {
+        if (!_flags.CanJump) return;
         _jumping = true;
+        Debug.Log(Enum.GetName(typeof(SongSynchronizer.EventScore), _scoreState.JumpScore));
         // Calculate the velocity required to achieve the target jump height.
         _velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
         OnJump?.Invoke();
+        _flags.CanJump = false;
     }
 
     private void Dash(Vector2 moveInput)
     {
+        if (!_flags.CanDash) return;
+        OnDash?.Invoke();
+        Debug.Log(Enum.GetName(typeof(SongSynchronizer.EventScore), _scoreState.DashScore));
         _dashing = true;
-        _velocity.x = Mathf.MoveTowards(_velocity.x, dashSpeed * _direction, dashAcceleration);
-        _velocity.y = Mathf.MoveTowards(_velocity.y, dashSpeed * Mathf.RoundToInt(moveInput.y), dashAcceleration);;
+        _velocity.x = Mathf.MoveTowards(_velocity.x, dashSpeed * Mathf.Sign(_direction), dashAcceleration);
+        _velocity.y = 0;
+        _flags.CanDash = false;
+    }
+
+    #endregion
+
+    #region Public Methods
+
+    public void ChangeJumpTresholdBeat(SongSynchronizer.ThresholdBeatEvents restrictOn)
+    {
+        restrictsJumpOn = restrictOn;
+        ResetThresholdBeatEvents();
+    }
+    public void ChangeDashTresholdBeat(SongSynchronizer.ThresholdBeatEvents restrictOn)
+    {
+        restrictsDashOn = restrictOn;
+        ResetThresholdBeatEvents();
     }
 
     #endregion

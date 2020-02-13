@@ -1,33 +1,42 @@
 ﻿#pragma warning disable 0649
 
-﻿using System;
+using System;
 using System.Collections;
-using System.Collections.Generic;
-using Rythmformer;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class SongSynchronizer : MonoBehaviour
 {
+    public enum EventState
+    {
+        Start,
+        Mid,
+        End
+    }
+
+    public enum ThresholdBeatEvents
+    {
+        Step,
+        HalfBeat,
+        Beat
+    }
+    
+    public enum EventScore
+    {
+        Ok,
+        Perfect
+    }
+
+    public event Action<SongSynchronizer, EventArgs> FourthStep;
+    public event Action<SongSynchronizer, EventArgs> HalfStep;
     public event Action<SongSynchronizer, EventArgs> Step;
     public event Action<SongSynchronizer, EventArgs> EveryTwoStep;
     public event Action<SongSynchronizer, EventArgs> FirstAndThirdStep;
     public event Action<SongSynchronizer, EventArgs> HalfBeat;
     public event Action<SongSynchronizer, EventArgs> Beat;
-
-    [Serializable]
-    private struct TimeSignature
-    {
-        public int numerator;
-        public int denominator;
-    }
-
-    [Serializable]
-    private struct SongInformations
-    {
-        public TimeSignature signature;
-        public float bpm;
-    }
+    public event Action<SongSynchronizer, EventState> StepThresholded;
+    public event Action<SongSynchronizer, EventState> HalfBeatThresholded;
+    public event Action<SongSynchronizer, EventState> BeatThresholded;
 
     [Serializable]
     public struct AudioSources
@@ -37,27 +46,12 @@ public class SongSynchronizer : MonoBehaviour
         public AudioSource Melody;
     }
     
-    [Serializable]
-    private struct SongStems
-    {
-        public AudioClip Bass;
-        public AudioClip Drums;
-        public AudioClip Melody;
-    }
-
-    [SerializeField] private SongInformations songInfo = new SongInformations()
-    {
-        bpm = 130,
-        signature = new TimeSignature() {denominator = 4, numerator = 4}
-    };
+    [Space, SerializeField] private Song _song;
 
     [Space, Header("Audio sources")] [SerializeField]
     public AudioSources Sources;
 
     [SerializeField] private bool playMetronome;
-
-    [Space, Header("Audio clips")] [SerializeField]
-    private SongStems stems;
 
     [SerializeField] private AudioClip metronome;
 
@@ -65,23 +59,35 @@ public class SongSynchronizer : MonoBehaviour
     private bool _ticked = false;
     private int _beats = 1;
     private int _measure = 1;
-    
-    [Space, Header("Options")] [SerializeField] private float _offset = 0.05f;
-    [SerializeField] private bool _runInBackground = true;
+    private int _quarters = 0;
 
+    [FormerlySerializedAs("_offset")] [Space, Header("Options")] [SerializeField]
+    private float offset = 0.05f;
+
+    [SerializeField] private bool _runInBackground = true;
+    
     void Start()
     {
-        var startTick = AudioSettings.dspTime;
+        var startTick = AudioSettings.dspTime + 1f;
 
-        _nextTick = startTick + (60.0 / songInfo.bpm);
-        // Sources = GetComponent<AudioSource>();
-        Sources.Bass.clip = stems.Bass;
-        Sources.Melody.clip = stems.Melody;
-        Sources.Drums.clip = stems.Drums;
-        
-        Sources.Bass.PlayScheduled(startTick);
-        Sources.Melody.PlayScheduled(startTick);
-        Sources.Drums.PlayScheduled(startTick);
+        _nextTick = startTick + ((60.0 / _song.Informations.bpm) / 4);
+
+        if (_song.Stems.All != null)
+        {
+            Sources.Melody.clip = _song.Stems.All;
+            
+            Sources.Melody.PlayScheduled(startTick);
+        }
+        else
+        {
+            Sources.Bass.clip = _song.Stems.Bass;
+            Sources.Melody.clip = _song.Stems.Melody;
+            Sources.Drums.clip = _song.Stems.Drums;
+            
+            Sources.Bass.PlayScheduled(startTick);
+            Sources.Melody.PlayScheduled(startTick);
+            Sources.Drums.PlayScheduled(startTick);
+        }
     }
 
     private void OnApplicationPause(bool pauseStatus)
@@ -101,27 +107,104 @@ public class SongSynchronizer : MonoBehaviour
         if (!_ticked && _nextTick >= AudioSettings.dspTime)
         {
             _ticked = true;
-            this.DoOnStep();
+            DoOnFourthStep();
         }
     }
 
     void FixedUpdate()
     {
-        double timePerTick = 60.0f / songInfo.bpm;
+        double timePerTick = (60.0f / _song.Informations.bpm) / 4;
         double dspTime = AudioSettings.dspTime;
-        // Debug.Log($"dspTime: {dspTime}, nextTick: {_nextTick}");
-        while ((dspTime + _offset) >= _nextTick)
+        while (dspTime >= _nextTick + offset)
         {
             _ticked = false;
             _nextTick += timePerTick;
         }
     }
 
-    void DoOnStep()
+    void DoOnFourthStep()
     {
-        // Debug.Log($"{_measure}/{songInfo.signature.numerator} ({Sources.Melody.time}s)");
+        var totalQuarters = _song.Informations.signature.numerator * 4;
+        if (_quarters % totalQuarters == 0)
+        {
+            _quarters = 0;
+        }
 
-        this.OnStep(this);
+        if (_quarters % 2 == 0)
+        {
+            OnHalfStep(this);
+        }
+
+        if (_quarters % 4 == 0)
+        {
+            DoOnStep();
+        }
+
+        if (_quarters == 0)
+        {
+            OnBeatThresholded(this, EventState.Mid);
+            OnHalfBeatThresholded(this, EventState.Mid);
+        }
+        else if (_quarters == 1)
+        {
+            OnBeatThresholded(this, EventState.End);
+            OnHalfBeatThresholded(this, EventState.End);
+        }
+
+        switch (_quarters)
+        {
+            case 3:
+            case 7:
+            case 11:
+            case 15:
+                OnStepThresholded(this, EventState.Start);
+                break;
+            case 0:
+            case 4:
+            case 8:
+            case 12:
+            case 16:
+                OnStepThresholded(this, EventState.Mid);
+                break;
+            case 1:
+            case 5:
+            case 9:
+            case 13:
+                OnStepThresholded(this, EventState.End);
+                break;
+        }
+
+        if (_quarters == totalQuarters / 2 - 1)
+        {
+            OnHalfBeatThresholded(this, EventState.Start);
+        }
+        else if (_quarters == totalQuarters / 2)
+        {
+            OnHalfBeatThresholded(this, EventState.Mid);
+        }
+        else if (_quarters == totalQuarters / 2 + 1)
+        {
+            OnHalfBeatThresholded(this, EventState.End);
+        }
+
+        if (_quarters == totalQuarters - 1)
+        {
+            OnBeatThresholded(this, EventState.Start);
+            OnHalfBeatThresholded(this, EventState.Start);
+        }
+        else if (_quarters == totalQuarters)
+        {
+            OnBeatThresholded(this, EventState.Mid);
+            OnHalfBeatThresholded(this, EventState.Mid);
+        }
+
+        OnFourthStep(this);
+        _quarters += 1;
+    }
+
+    private void DoOnStep()
+    {
+        OnStep(this);
 
         if (playMetronome)
         {
@@ -131,23 +214,25 @@ public class SongSynchronizer : MonoBehaviour
 
         if (_measure == 1)
         {
-            this.OnBeat(this);
+            OnBeat(this);
         }
+
         if (_measure % 2 == 0)
         {
-            this.OnEveryTwoStep(this);
+            OnEveryTwoStep(this);
         }
 
         if (_measure == 1 || _measure == 3)
         {
-            this.OnFirstAndThirdStep(this);
-        }
-        if (_measure == (songInfo.signature.numerator / 2) + 1)
-        {
-            this.OnHalfBeat(this);
+            OnFirstAndThirdStep(this);
         }
 
-        if (_measure % songInfo.signature.numerator == 0)
+        if (_measure == (_song.Informations.signature.numerator / 2) + 1)
+        {
+            OnHalfBeat(this);
+        }
+
+        if (_measure % _song.Informations.signature.numerator == 0)
         {
             _measure = 1;
         }
@@ -155,6 +240,16 @@ public class SongSynchronizer : MonoBehaviour
         {
             _measure += 1;
         }
+    }
+
+    protected virtual void OnFourthStep(SongSynchronizer sender)
+    {
+        FourthStep?.Invoke(sender, EventArgs.Empty);
+    }
+
+    protected virtual void OnHalfStep(SongSynchronizer sender)
+    {
+        HalfStep?.Invoke(sender, EventArgs.Empty);
     }
 
     protected virtual void OnStep(SongSynchronizer sender)
@@ -180,5 +275,20 @@ public class SongSynchronizer : MonoBehaviour
     protected virtual void OnFirstAndThirdStep(SongSynchronizer sender)
     {
         FirstAndThirdStep?.Invoke(sender, EventArgs.Empty);
+    }
+
+    protected virtual void OnStepThresholded(SongSynchronizer sender, EventState state)
+    {
+        StepThresholded?.Invoke(sender, state);
+    }
+
+    protected virtual void OnBeatThresholded(SongSynchronizer sender, EventState state)
+    {
+        BeatThresholded?.Invoke(sender, state);
+    }
+
+    protected virtual void OnHalfBeatThresholded(SongSynchronizer sender, EventState state)
+    {
+        HalfBeatThresholded?.Invoke(sender, state);
     }
 }

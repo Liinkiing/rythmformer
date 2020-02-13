@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e961d394040d5c84ab58960546931980, type: 3}
+  m_Name: KSHMR - Strange Lands
+  m_EditorClassIdentifier: 
+  Informations:
+    signature:
+      numerator: 4
+      denominator: 4
+    bpm: 152
+  Stems:
+    Bass: {fileID: 8300000, guid: 0b514f1e66af40043a25c53f00f1fe42, type: 3}
+    Drums: {fileID: 8300000, guid: 33056c00432de524789ccf2999d6a1c8, type: 3}
+    Melody: {fileID: 8300000, guid: 49717d64a09846344be3f7c4f92a071f, type: 3}
+    All: {fileID: 0}

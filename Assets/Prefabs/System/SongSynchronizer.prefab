@@ -172,22 +172,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 935553b7d9864aad994261adc4c3baea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  songInfo:
-    signature:
-      numerator: 4
-      denominator: 4
-    bpm: 130
+  _song: {fileID: 0}
   Sources:
     Bass: {fileID: 2540025905982091196}
     Drums: {fileID: 2751074908575761791}
     Melody: {fileID: 7658371659201157189}
   playMetronome: 0
-  stems:
-    Bass: {fileID: 0}
-    Drums: {fileID: 0}
-    Melody: {fileID: 0}
   metronome: {fileID: 8300000, guid: 0aad2cc00ad35df499473b9ef315832a, type: 3}
-  _offset: 0
+  offset: 0
   _runInBackground: 1
 --- !u!1 &4401996090062410421
 GameObject:
