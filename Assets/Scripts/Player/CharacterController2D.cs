@@ -58,6 +58,7 @@ public class CharacterController2D : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private Vector3 _upVect;
     private bool _jumping;
+    private int _direction = 1;
 
     #endregion
 
@@ -84,12 +85,20 @@ public class CharacterController2D : MonoBehaviour
 
     private void Update()
     {
-        float moveInput = _input.Player.Move.ReadValue<Vector2>().x;
+        Vector2 moveInput = _input.Player.Move.ReadValue<Vector2>();
+
+        if (moveInput.x < 0)
+        {
+            _direction = -1;
+        } else if (moveInput.x > 0)
+        {
+            _direction = 1;
+        }
 
         HandleJump();
-        HandleWallJump(moveInput);
+        HandleWallJump(moveInput.x);
         HandleDash(moveInput);
-        HandleMovement(moveInput);
+        HandleMovement(moveInput.x);
     }
 
     private void HandleWallJump(float direction)
@@ -120,7 +129,7 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    private void HandleDash(float direction)
+    private void HandleDash(Vector2 moveInput)
     {
         if (_dashTime <= 0 && _dashing)
         {
@@ -133,10 +142,13 @@ public class CharacterController2D : MonoBehaviour
         {
             _dashTime -= Time.deltaTime;
         }
+        
+        // disable dash if the player want to dash vertically
+        var isDashAllowed = (moveInput.y != 0 && moveInput.x == 0) ? false : true;
 
-        if (_input.Player.Dash.triggered)
+        if (_input.Player.Dash.triggered && isDashAllowed )
         {
-            Dash(direction);
+            Dash(moveInput);
         }
     }
 
@@ -167,10 +179,10 @@ public class CharacterController2D : MonoBehaviour
 
         var raycastGround = Physics2D.Raycast(_rigidbody.position, -Vector2.up, _boxCollider.size.y, wallsLayerMask);
 
+        var slopeAngle = Vector2.Angle(raycastGround.normal, Vector2.up);
+        
         if (raycastGround)
         {
-            var slopeAngle = Vector2.Angle(raycastGround.normal, Vector2.up);
-
             // We handle sticky physics for slope smaller than 45 deg 
             if (slopeAngle < 45)
             {
@@ -178,7 +190,9 @@ public class CharacterController2D : MonoBehaviour
             }
         }
 
-        if (_grounded && !_jumping)
+        // Sticky physic is only use if the player is grounded and not on flat ground
+        // because it cause grounded check issue otherwise
+        if (_grounded && !_jumping && !_dashing && slopeAngle > 0)
         {
             _velocity = Vector3.Cross(_upVect, Vector3.forward) * (moveInput * speed);
         }
@@ -247,11 +261,11 @@ public class CharacterController2D : MonoBehaviour
         OnJump?.Invoke();
     }
 
-    private void Dash(float direction)
+    private void Dash(Vector2 moveInput)
     {
         _dashing = true;
-        _velocity.x = Mathf.MoveTowards(_velocity.x, dashSpeed * Mathf.Sign(direction), dashAcceleration);
-        _velocity.y = 0;
+        _velocity.x = Mathf.MoveTowards(_velocity.x, dashSpeed * _direction, dashAcceleration);
+        _velocity.y = Mathf.MoveTowards(_velocity.y, dashSpeed * Mathf.RoundToInt(moveInput.y), dashAcceleration);;
     }
 
     #endregion
