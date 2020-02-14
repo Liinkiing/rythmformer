@@ -20,7 +20,7 @@ public class SongSynchronizer : MonoBehaviour
         HalfBeat,
         Beat
     }
-    
+
     public enum EventScore
     {
         Ok,
@@ -45,7 +45,7 @@ public class SongSynchronizer : MonoBehaviour
         public AudioSource Drums;
         public AudioSource Melody;
     }
-    
+
     [Space, SerializeField] private Song _song;
 
     [Space, Header("Audio sources")] [SerializeField]
@@ -54,71 +54,77 @@ public class SongSynchronizer : MonoBehaviour
     [SerializeField] private bool playMetronome;
 
     [SerializeField] private AudioClip metronome;
-
-    private double _nextTick = 0.0F; // The next tick in dspTime
-    private bool _ticked = false;
-    private int _beats = 1;
-    private int _measure = 1;
-    private int _quarters = 0;
-
-    [FormerlySerializedAs("_offset")] [Space, Header("Options")] [SerializeField]
-    private float offset = 0.05f;
-
-    [SerializeField] private bool _runInBackground = true;
     
+    [Space, Header("Options"), Tooltip("Used to PlayScheduled the song to be on the exact dspTime and to avoid unpredictable behaviours")]
+    [SerializeField] private float delay = 2f;
+
+    private bool _ticked;
+    private double _secondsElapsed;
+    private double _startTick;
+    private float _secondsPerTicks;
+    private int _songPosInTicks;
+    private int _tick;
+    private int _measure;
+    private int _quarters;
+
+    [SerializeField] private bool runInBackground = true;
+
     void Start()
     {
-        var startTick = AudioSettings.dspTime + 1f;
-
-        _nextTick = startTick + ((60.0 / _song.Informations.bpm) / 4);
+        _startTick = AudioSettings.dspTime + delay;
+        _secondsPerTicks = (60 / _song.Informations.bpm) / 4;
 
         if (_song.Stems.All != null)
         {
             Sources.Melody.clip = _song.Stems.All;
-            
-            Sources.Melody.PlayScheduled(startTick);
+
+            Sources.Melody.PlayScheduled(_startTick);
         }
         else
         {
             Sources.Bass.clip = _song.Stems.Bass;
             Sources.Melody.clip = _song.Stems.Melody;
             Sources.Drums.clip = _song.Stems.Drums;
-            
-            Sources.Bass.PlayScheduled(startTick);
-            Sources.Melody.PlayScheduled(startTick);
-            Sources.Drums.PlayScheduled(startTick);
+
+            Sources.Bass.PlayScheduled(_startTick);
+            Sources.Melody.PlayScheduled(_startTick);
+            Sources.Drums.PlayScheduled(_startTick);
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        _secondsElapsed = AudioSettings.dspTime - _startTick;
+        _songPosInTicks = (int) (_secondsElapsed / _secondsPerTicks);
+        if (_songPosInTicks <= _tick)
+        {
+            _ticked = false;
+        }
+        else if (_tick - _songPosInTicks <= 0)
+        {
+            _ticked = false;
         }
     }
 
     private void OnApplicationPause(bool pauseStatus)
     {
-        if (_runInBackground) return;
+        if (runInBackground) return;
         AudioListener.pause = pauseStatus;
     }
 
     private void OnApplicationFocus(bool hasFocus)
     {
-        if (_runInBackground) return;
+        if (runInBackground) return;
         AudioListener.pause = !hasFocus;
     }
 
     void LateUpdate()
     {
-        if (!_ticked && _nextTick >= AudioSettings.dspTime)
+        if (!_ticked && _songPosInTicks >= _tick)
         {
             _ticked = true;
+            _tick++;
             DoOnFourthStep();
-        }
-    }
-
-    void FixedUpdate()
-    {
-        double timePerTick = (60.0f / _song.Informations.bpm) / 4;
-        double dspTime = AudioSettings.dspTime;
-        while (dspTime >= _nextTick + offset)
-        {
-            _ticked = false;
-            _nextTick += timePerTick;
         }
     }
 
@@ -208,7 +214,7 @@ public class SongSynchronizer : MonoBehaviour
 
         if (playMetronome)
         {
-            MusicManager.instance.Sources.SFX.pitch = _measure == 1 ? 2 : 1;
+            MusicManager.instance.Sources.SFX.pitch = ((_tick - 1) / 4) % _song.Informations.signature.numerator == 0 ? 2 : 1;
             MusicManager.instance.Sources.SFX.PlayOneShot(metronome);
         }
 
