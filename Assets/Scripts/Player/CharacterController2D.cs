@@ -1,10 +1,18 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class CharacterController2D : MonoBehaviour
 {
+    [Serializable]
+    public enum PlayerActions
+    {
+        Jump,
+        Dash
+    }
+
     [Serializable]
     private struct PlayerFlags
     {
@@ -135,7 +143,8 @@ public class CharacterController2D : MonoBehaviour
         if (moveInput.x < 0)
         {
             _direction = -1;
-        } else if (moveInput.x > 0)
+        }
+        else if (moveInput.x > 0)
         {
             _direction = 1;
         }
@@ -187,11 +196,11 @@ public class CharacterController2D : MonoBehaviour
         {
             _dashTime -= Time.deltaTime;
         }
-        
+
         // disable dash if the player want to dash vertically
         var isDashAllowed = (moveInput.y != 0 && moveInput.x == 0) ? false : true;
 
-        if (_input.Player.Dash.triggered && isDashAllowed )
+        if (_input.Player.Dash.triggered && isDashAllowed)
         {
             Dash(moveInput);
         }
@@ -225,7 +234,7 @@ public class CharacterController2D : MonoBehaviour
         var raycastGround = Physics2D.Raycast(_rigidbody.position, -Vector2.up, _boxCollider.size.y, wallsLayerMask);
 
         var slopeAngle = Vector2.Angle(raycastGround.normal, Vector2.up);
-        
+
         if (raycastGround)
         {
             // We handle sticky physics for slope smaller than 45 deg 
@@ -241,7 +250,7 @@ public class CharacterController2D : MonoBehaviour
         {
             _velocity = Vector3.Cross(_upVect, Vector3.forward) * (moveInput * speed);
         }
-        
+
         transform.Translate(_velocity * Time.deltaTime);
 
         _grounded = false;
@@ -293,6 +302,18 @@ public class CharacterController2D : MonoBehaviour
             Debug.DrawRay(rightWallCheck.position, Vector3.right * wallsRayLength, Color.magenta);
         }
     }
+
+    #endregion
+
+    #region Events
+
+    public struct OnActionEventArgs
+    {
+        public SongSynchronizer.EventScore Score;
+        public PlayerActions Move;
+    }
+
+    public event Action<CharacterController2D, OnActionEventArgs> ActionPerformed;
 
     #endregion
 
@@ -387,9 +408,14 @@ public class CharacterController2D : MonoBehaviour
 
     private void Jump()
     {
-        if (!_flags.CanJump) return;
+        if (!_flags.CanJump)
+        {
+            OnActionPerformed(this,
+                new OnActionEventArgs() {Move = PlayerActions.Jump, Score = SongSynchronizer.EventScore.Failed});
+            return;
+        }
+        OnActionPerformed(this, new OnActionEventArgs() {Move = PlayerActions.Jump, Score = _scoreState.JumpScore});
         _jumping = true;
-        Debug.Log(Enum.GetName(typeof(SongSynchronizer.EventScore), _scoreState.JumpScore));
         // Calculate the velocity required to achieve the target jump height.
         _velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
         OnJump?.Invoke();
@@ -398,9 +424,14 @@ public class CharacterController2D : MonoBehaviour
 
     private void Dash(Vector2 moveInput)
     {
-        if (!_flags.CanDash) return;
+        if (!_flags.CanDash)
+        {
+            OnActionPerformed(this,
+                new OnActionEventArgs() {Move = PlayerActions.Dash, Score = SongSynchronizer.EventScore.Failed});
+            return;
+        }
+        OnActionPerformed(this, new OnActionEventArgs() {Move = PlayerActions.Dash, Score = _scoreState.DashScore});
         OnDash?.Invoke();
-        Debug.Log(Enum.GetName(typeof(SongSynchronizer.EventScore), _scoreState.DashScore));
         _dashing = true;
         _velocity.x = Mathf.MoveTowards(_velocity.x, dashSpeed * Mathf.Sign(_direction), dashAcceleration);
         _velocity.y = 0;
@@ -416,6 +447,7 @@ public class CharacterController2D : MonoBehaviour
         restrictsJumpOn = restrictOn;
         ResetThresholdBeatEvents();
     }
+
     public void ChangeDashTresholdBeat(SongSynchronizer.ThresholdBeatEvents restrictOn)
     {
         restrictsDashOn = restrictOn;
@@ -423,4 +455,9 @@ public class CharacterController2D : MonoBehaviour
     }
 
     #endregion
+
+    protected virtual void OnActionPerformed(CharacterController2D sender, OnActionEventArgs action)
+    {
+        ActionPerformed?.Invoke(sender, action);
+    }
 }
