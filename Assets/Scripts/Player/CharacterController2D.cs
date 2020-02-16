@@ -81,6 +81,7 @@ public class CharacterController2D : MonoBehaviour
 
     private BoxCollider2D _boxCollider;
     private float _dashTime;
+    private bool _jumpRelease;
     private bool _dashing;
     private PlayerInput _input;
     private Vector2 _velocity;
@@ -127,6 +128,17 @@ public class CharacterController2D : MonoBehaviour
     private void OnEnable()
     {
         _input?.Enable();
+        if (_input != null)
+        {
+            _input.Player.Jump.canceled += ctx =>
+            {
+                if (!_grounded)
+                {
+                    _jumpRelease = true;
+                }
+            };
+        }
+
         AddThresholdedBeatEvents();
     }
 
@@ -173,6 +185,16 @@ public class CharacterController2D : MonoBehaviour
 
     private void HandleJump()
     {
+        if (_jumpRelease)
+        {
+            if (_velocity.y > 0)
+            {
+                ReduceJumpMotion();
+            }
+
+            _jumpRelease = false;
+        }
+
         if (_grounded)
         {
             _velocity.y = 0;
@@ -181,6 +203,11 @@ public class CharacterController2D : MonoBehaviour
                 Jump();
             }
         }
+    }
+
+    private void ReduceJumpMotion()
+    {
+        _velocity.y *= 0.5f;
     }
 
     private void HandleDash(Vector2 moveInput)
@@ -414,6 +441,7 @@ public class CharacterController2D : MonoBehaviour
                 new OnActionEventArgs() {Move = PlayerActions.Jump, Score = SongSynchronizer.EventScore.Failed});
             return;
         }
+
         OnActionPerformed(this, new OnActionEventArgs() {Move = PlayerActions.Jump, Score = _scoreState.JumpScore});
         _jumping = true;
         // Calculate the velocity required to achieve the target jump height.
@@ -430,6 +458,7 @@ public class CharacterController2D : MonoBehaviour
                 new OnActionEventArgs() {Move = PlayerActions.Dash, Score = SongSynchronizer.EventScore.Failed});
             return;
         }
+
         OnActionPerformed(this, new OnActionEventArgs() {Move = PlayerActions.Dash, Score = _scoreState.DashScore});
         OnDash?.Invoke();
         _dashing = true;
