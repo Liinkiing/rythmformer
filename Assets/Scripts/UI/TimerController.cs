@@ -7,11 +7,9 @@ using UnityEngine;
 public class TimerController : MonoBehaviour
 {
     #region Fields
-    
     private TextMeshProUGUI _UITimer;
     private float _timeElapsed;
     #endregion
-    
     void Awake()
     {
         _timeElapsed = 0;
@@ -20,7 +18,6 @@ public class TimerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _timeElapsed = Time.fixedTime;
-        _UITimer.SetText("Time : " + _timeElapsed.ToString("0.000"));
+        _UITimer.SetText("Time : " + Time.timeSinceLevelLoad.ToString("0.000"));
     }
 }
