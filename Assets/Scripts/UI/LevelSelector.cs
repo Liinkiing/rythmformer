@@ -16,23 +16,8 @@ public class LevelSelector : MonoBehaviour
         _input = new PlayerInput();
     }
 
-    private void Update()
-    {
-        if (_input.Player.Menu.triggered)
-        {
-            print("test");
-            LoadMenu();
-        }
-    }
-
     public void Select(string levelName)
     {
         SceneManager.LoadScene(levelName, LoadSceneMode.Single);
-    }
-
-    public void LoadMenu()
-    {
-        print("Yolo");
-        SceneManager.LoadScene("LevelSelector", LoadSceneMode.Additive);
     }
 }

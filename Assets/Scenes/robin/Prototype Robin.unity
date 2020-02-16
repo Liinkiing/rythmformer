@@ -292,6 +292,56 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1861784102040681358, guid: 8390b5fc7d470ed45a0998c3a9731d21,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1861784102040681358, guid: 8390b5fc7d470ed45a0998c3a9731d21,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1861784102040681358, guid: 8390b5fc7d470ed45a0998c3a9731d21,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1861784102040681358, guid: 8390b5fc7d470ed45a0998c3a9731d21,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1861784102040681358, guid: 8390b5fc7d470ed45a0998c3a9731d21,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1861784102040681358, guid: 8390b5fc7d470ed45a0998c3a9731d21,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1861784102040681358, guid: 8390b5fc7d470ed45a0998c3a9731d21,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1861784102040681358, guid: 8390b5fc7d470ed45a0998c3a9731d21,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1861784102040681358, guid: 8390b5fc7d470ed45a0998c3a9731d21,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1877047303205852963, guid: 8390b5fc7d470ed45a0998c3a9731d21,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerCanvas
+      objectReference: {fileID: 0}
     - target: {fileID: 4738642859323635689, guid: 8390b5fc7d470ed45a0998c3a9731d21,
         type: 3}
       propertyPath: m_LocalPosition.x
