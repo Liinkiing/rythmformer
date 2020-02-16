@@ -433,8 +433,8 @@ public class CharacterController2D : MonoBehaviour
         OnActionPerformed(this, new OnActionEventArgs() {Move = PlayerActions.Dash, Score = _scoreState.DashScore});
         OnDash?.Invoke();
         _dashing = true;
-        _velocity.x = Mathf.MoveTowards(_velocity.x, dashSpeed * Mathf.Sign(_direction), dashAcceleration);
-        _velocity.y = 0;
+        _velocity.x = Mathf.MoveTowards(_velocity.x, dashSpeed * _direction, dashAcceleration);
+        _velocity.y = Mathf.MoveTowards(_velocity.y, dashSpeed * Mathf.RoundToInt(moveInput.y), dashAcceleration);
         _flags.CanDash = false;
     }
 
