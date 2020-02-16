@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/robin/LevelSelector.unity
+    path: Assets/Scenes/Main/LevelSelector.unity
     guid: b60bad62e529e43ed8e534dd9589e3c1
   - enabled: 1
     path: Assets/Scenes/Omar/Prototype Omar.unity
