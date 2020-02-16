@@ -9,11 +9,17 @@ public class ScoreController : MonoBehaviour
     [SerializeField] private CharacterController2D player;
     [SerializeField] private TextMeshProUGUI uiScore;
     
+    private Color32 _green = new Color32(102,187,106, 255);
+    private Color32 _yellow = new Color32(198, 255, 0, 255);
+    private Color32 _red = new Color32(216, 67, 21, 255);
+    private Transform textReference;
+
     #endregion
 
     private void Awake()
     {
-        player.ActionPerformed += PlayerOnActionPerformed; 
+        player.ActionPerformed += PlayerOnActionPerformed;
+        textReference = GameObject.Find("TextScore").transform;
     }
 
     private void OnDestroy()
@@ -23,14 +29,25 @@ public class ScoreController : MonoBehaviour
 
     private void PlayerOnActionPerformed(CharacterController2D sender, CharacterController2D.OnActionEventArgs action)
     {
-        uiScore.SetText(action.Score.ToString());
-        uiScore.enabled = true;
-        StartCoroutine(DoDisableScore());
-    }
+        TextMeshProUGUI text = Instantiate(uiScore, textReference.position, textReference.transform.rotation);
+        text.enabled = false;
+        text.transform.SetParent(transform);
+        text.transform.localScale = new Vector3(1,1,1);
 
-    IEnumerator DoDisableScore()
-    {
-        yield return new WaitForSeconds(1);
-        uiScore.enabled = false;
+        switch (action.Score)
+        {
+            case SongSynchronizer.EventScore.Perfect:
+                text.faceColor = _green;
+                break;
+            case SongSynchronizer.EventScore.Ok:
+                text.faceColor = _yellow;
+                break;
+            case SongSynchronizer.EventScore.Failed:
+                text.faceColor = _red;
+                break;
+        }
+
+        text.SetText(action.Score.ToString());
+        text.enabled = true;
     }
 }
