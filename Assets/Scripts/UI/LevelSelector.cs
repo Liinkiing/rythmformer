@@ -1,19 +1,33 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
+[Serializable]
 public class LevelSelector : MonoBehaviour
 {
     
     #region Fields
-    private PlayerInput _input;
+    [SerializeField] private string[] _Levels;
+    [SerializeField] private GameObject _ButtonPrefab;
+    private GameObject _ButtonWrapper;
+     
     #endregion
 
     private void Awake()
     {
-        _input = new PlayerInput();
+        _ButtonWrapper = GameObject.Find("Content");
+
+        foreach (var LEVEL in _Levels)
+        {
+            GameObject button = Instantiate(_ButtonPrefab, _ButtonWrapper.transform.position, _ButtonWrapper.transform.rotation);
+            button.transform.SetParent(_ButtonWrapper.transform);
+            button.GetComponentInChildren<TextMeshProUGUI>().text = LEVEL;
+            button.GetComponent<Button>().onClick.AddListener(delegate { Select(LEVEL); });
+        }
     }
 
     public void Select(string levelName)
