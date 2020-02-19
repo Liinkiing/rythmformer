@@ -8,8 +8,8 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoSingleton<UIManager>
 {
+    [SerializeField] private GameObject SceneTransition;
     private PlayerInput _input;
-    private AsyncOperation _menuScene;
 
     void Awake()
     {
@@ -33,6 +33,6 @@ public class UIManager : MonoSingleton<UIManager>
 
     private void MenuOnperformed(InputAction.CallbackContext obj)
     {
-        _menuScene = SceneManager.LoadSceneAsync("LevelSelector", LoadSceneMode.Single);
+        StartCoroutine(SceneTransition.GetComponent<SceneLoader>().LoadLevel("LevelSelector"));
     }
 }
