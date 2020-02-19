@@ -1,10 +1,18 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class CharacterController2D : MonoBehaviour
 {
+    [Serializable]
+    public enum PlayerActions
+    {
+        Jump,
+        Dash
+    }
+
     [Serializable]
     private struct PlayerFlags
     {
@@ -139,7 +147,8 @@ public class CharacterController2D : MonoBehaviour
         if (moveInput.x < 0)
         {
             _direction = -1;
-        } else if (moveInput.x > 0)
+        }
+        else if (moveInput.x > 0)
         {
             _direction = 1;
         } else
@@ -258,7 +267,7 @@ public class CharacterController2D : MonoBehaviour
         var raycastGround = Physics2D.Raycast(_rigidbody.position, -Vector2.up, _boxCollider.size.y, wallsLayerMask);
 
         var slopeAngle = Vector2.Angle(raycastGround.normal, Vector2.up);
-        
+
         if (raycastGround)
         {
             // We handle sticky physics for slope smaller than 45 deg 
@@ -274,7 +283,7 @@ public class CharacterController2D : MonoBehaviour
         {
             _velocity = Vector3.Cross(_upVect, Vector3.forward) * (moveInput * speed);
         }
-        
+
         transform.Translate(_velocity * Time.deltaTime);
 
         _grounded = false;
@@ -327,6 +336,18 @@ public class CharacterController2D : MonoBehaviour
             Debug.DrawRay(groundCheck.position, Vector2.down * surfaceRayLength, Color.magenta);
         }
     }
+
+    #endregion
+
+    #region Events
+
+    public struct OnActionEventArgs
+    {
+        public SongSynchronizer.EventScore Score;
+        public PlayerActions Move;
+    }
+
+    public event Action<CharacterController2D, OnActionEventArgs> ActionPerformed;
 
     #endregion
 
@@ -385,8 +406,14 @@ public class CharacterController2D : MonoBehaviour
 
     private void Jump()
     {
+        if (!_flags.CanJump)
+        {
+            OnActionPerformed(this,
+                new OnActionEventArgs() {Move = PlayerActions.Jump, Score = SongSynchronizer.EventScore.Failed});
+            return;
+        }
+        OnActionPerformed(this, new OnActionEventArgs() {Move = PlayerActions.Jump, Score = _scoreState.JumpScore});
         _jumping = true;
-        Debug.Log(Enum.GetName(typeof(SongSynchronizer.EventScore), _scoreState.Score));
         // Calculate the velocity required to achieve the target jump height.
         
         _velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
@@ -400,10 +427,9 @@ public class CharacterController2D : MonoBehaviour
     private void Dash()
     {
         OnDash?.Invoke();
-        Debug.Log(Enum.GetName(typeof(SongSynchronizer.EventScore), _scoreState.Score));
         _dashing = true;
-        _velocity.x = Mathf.MoveTowards(_velocity.x, dashSpeed * Mathf.Sign(_direction), dashAcceleration);
-        _velocity.y = 0;
+        _velocity.x = Mathf.MoveTowards(_velocity.x, dashSpeed * _direction, dashAcceleration);
+        _velocity.y = Mathf.MoveTowards(_velocity.y, dashSpeed * Mathf.RoundToInt(moveInput.y), dashAcceleration);
         _flags.CanDash = false;
     }
 
@@ -418,4 +444,9 @@ public class CharacterController2D : MonoBehaviour
     }
 
     #endregion
+
+    protected virtual void OnActionPerformed(CharacterController2D sender, OnActionEventArgs action)
+    {
+        ActionPerformed?.Invoke(sender, action);
+    }
 }
