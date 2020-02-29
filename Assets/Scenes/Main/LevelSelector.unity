@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -357,7 +357,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2060932586}
   m_HandleRect: {fileID: 2060932585}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -606,7 +606,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1084288537
@@ -785,7 +785,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000030517578, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1278593903
@@ -915,8 +915,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Levels:
-  - {fileID: 102900000, guid: 2b616a033679b174aabaa3f72c189f00, type: 3}
-  - {fileID: 102900000, guid: 21731142e41a444e69f7597f1e7a4e24, type: 3}
+  - sceneAsset: {fileID: 102900000, guid: 2b616a033679b174aabaa3f72c189f00, type: 3}
+    scenePath: Scenes/Omar/Prototype Omar
+  - sceneAsset: {fileID: 102900000, guid: 21731142e41a444e69f7597f1e7a4e24, type: 3}
+    scenePath: Scenes/robin/Prototype Robin
   _ButtonPrefab: {fileID: 4140436637614645671, guid: 994ace1707eb34b8ab734a1881d2c03e,
     type: 3}
 --- !u!1 &1620667953
