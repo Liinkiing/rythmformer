@@ -20,6 +20,9 @@ jobs:
           - StandaloneWindows64
           - StandaloneOSX
     steps:
+      - uses: rokroskar/workflow-run-cleanup-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/checkout@v2
         with:
           lfs: true
