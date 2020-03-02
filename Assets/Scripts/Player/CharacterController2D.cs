@@ -41,6 +41,8 @@ public class CharacterController2D : MonoBehaviour
     }
 
     #region Fields
+    
+    [SerializeField] private ParticleSystem TrailPS;
 
     [Header("Movements"), SerializeField, Tooltip("Max speed, in units per second, that the character moves.")]
     private float speed = 9;
