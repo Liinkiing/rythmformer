@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -16,21 +18,25 @@ public class CharacterController2D : MonoBehaviour
     [Serializable]
     private struct PlayerFlags
     {
-        public bool CanJump;
         public bool CanDash;
+        public bool ActionAvailable;
     }
 
     [Serializable]
     private struct ScoreState
     {
-        public SongSynchronizer.EventScore DashScore;
-        public SongSynchronizer.EventScore JumpScore;
-
-        public ScoreState(SongSynchronizer.EventScore dashScore, SongSynchronizer.EventScore jumpScore)
+        public SongSynchronizer.EventScore Score;
+       
+        public ScoreState(SongSynchronizer.EventScore score)
         {
-            DashScore = dashScore;
-            JumpScore = jumpScore;
+            Score = score;
         }
+    }
+    
+    [Serializable]
+    private struct Ray {
+        [SerializeField] public Transform start;
+        [SerializeField] public Vector2 direction;
     }
 
     #region Fields
@@ -49,6 +55,15 @@ public class CharacterController2D : MonoBehaviour
 
     [SerializeField, Tooltip("Max height the character will jump regardless of gravity")]
     private float jumpHeight = 4;
+    
+    [SerializeField, Tooltip("Horizontal speed on wall jump")]
+    private float wallJumpSpeed = 12;
+  
+    [SerializeField, Tooltip("Time given to give direction after Dash")]
+    private float dashBuffer = 0.1f;
+
+    [SerializeField, Range(0, 2f), Tooltip("Horizontal to Vertical speed transformation speed modifier")]
+    private float horizontalSpeedTransfer = 0.5f;
 
     [Space(), Header("Dash")] [SerializeField]
     private float dashDuration = 0.15f;
@@ -59,25 +74,22 @@ public class CharacterController2D : MonoBehaviour
     [Space(), Header("Wall Riding")] [SerializeField]
     private bool drawDebugRays = true;
 
-    [SerializeField, Range(0.1f, 3f)] private float wallsRayLength = 0.6f;
+    [SerializeField, Range(0.1f, 3f)] private float surfaceRayLength = 0.6f;
 
     [SerializeField, Range(0, 1f), Tooltip("Deceleration applied when character is wall riding")]
     private float wallDeceleration = 0.8f;
 
-
-    [SerializeField] private Transform leftWallCheck;
-    [SerializeField] private Transform rightWallCheck;
+    [SerializeField] private List<Ray> leftWallCheck;
+    [SerializeField] private List<Ray> rightWallCheck;
+    [SerializeField] private List<Ray> groundCheck;
     [SerializeField] private LayerMask wallsLayerMask;
 
-    [Space(), Header("Action restrictions")] [SerializeField]
-    private SongSynchronizer.ThresholdBeatEvents restrictsJumpOn;
+    [Space(), Header("Action restrictions")]
+    [SerializeField] private SongSynchronizer.ThresholdBeatEvents restrictActionOn;
 
-    [SerializeField] private SongSynchronizer.ThresholdBeatEvents restrictsDashOn;
-
-    [Space(), Header("Events")] public UnityEvent OnJump;
+    [Space(), Header("Events")]
+    public UnityEvent OnJump;
     public UnityEvent OnDash;
-
-    private const float WallsRayLength = 1.3f;
 
     private BoxCollider2D _boxCollider;
     private float _dashTime;
@@ -90,12 +102,13 @@ public class CharacterController2D : MonoBehaviour
     private SongSynchronizer _synchronizer;
     private Rigidbody2D _rigidbody;
     private Vector3 _upVect;
-    private bool _jumping;
     private int _direction = 1;
+    private int _wall;
+    private bool _groundBuffer;
+    private float _dashBuffer;
     private readonly Collider2D[] _hitsBuffer = new Collider2D[16];
 
-    private ScoreState _scoreState = new ScoreState(dashScore: SongSynchronizer.EventScore.Ok,
-        jumpScore: SongSynchronizer.EventScore.Ok);
+    private ScoreState _scoreState = new ScoreState(score: SongSynchronizer.EventScore.Ok);
 
     #endregion
 
@@ -147,77 +160,120 @@ public class CharacterController2D : MonoBehaviour
         else if (moveInput.x > 0)
         {
             _direction = 1;
+        } else
+        {
+            _direction = 0;
         }
 
-        HandleJump();
-        HandleWallJump(moveInput.x);
-        HandleDash(moveInput);
+        SurfaceDetection();
         HandleMovement(moveInput.x);
+        HandleRythmAction(moveInput);
+        ResolveDash();
+        ResolveTimeBuffers(moveInput);
     }
 
-    private void HandleWallJump(float direction)
+    private void SurfaceDetection()
     {
-        if (_grounded || direction == 0) return;
-        if (Physics2D.Raycast(leftWallCheck.position, Vector2.left, WallsRayLength, wallsLayerMask).collider !=
-            null && _input.Player.Jump.triggered)
+        if (leftWallCheck.Any(ray => null != Physics2D.Raycast(ray.start.position, ray.direction, surfaceRayLength, wallsLayerMask).collider))
         {
-            Jump();
+            _wall = 1;
+            _flags.CanDash = true;
         }
-
-        if (Physics2D.Raycast(rightWallCheck.position, Vector2.right, WallsRayLength, wallsLayerMask)
-                .collider != null && _input.Player.Jump.triggered)
+        else if (rightWallCheck.Any(ray => null != Physics2D.Raycast(ray.start.position, ray.direction, surfaceRayLength, wallsLayerMask).collider))
         {
-            Jump();
+            _wall = -1;
+            _flags.CanDash = true;
+        }
+        else
+        {
+            _wall = 0;
+        }
+        if (groundCheck.Any(ray => null != Physics2D.Raycast(ray.start.position, ray.direction, surfaceRayLength, wallsLayerMask).collider))
+        {
+            _groundBuffer = true;
+            _flags.CanDash = true;
+        } else
+        {
+            _groundBuffer = false;
         }
     }
 
-    private void HandleJump()
+    private void HandleRythmAction(Vector2 moveInput)
     {
-        if (_grounded)
+        if (!_flags.ActionAvailable)
         {
-            _velocity.y = 0;
-            if (_input.Player.Jump.triggered)
+            if (_input.Player.Jump.triggered || _input.Player.Dash.triggered)
             {
+                var action = _input.Player.Jump.triggered ? PlayerActions.Jump : PlayerActions.Dash;
+                OnActionPerformed(this, new OnActionEventArgs() {Move = action, Score = SongSynchronizer.EventScore.Failed});
+            }
+            return;
+        }
+        if (_input.Player.Jump.triggered)
+        {
+            _flags.ActionAvailable = false;
+            if (_groundBuffer || _wall != 0 || !_groundBuffer && _wall == 0 && _flags.CanDash)
+            {
+                if (!_groundBuffer && _wall == 0 && _flags.CanDash)
+                {
+                    _flags.CanDash = false;
+                }
                 Jump();
+            }
+        }
+        else if (_input.Player.Dash.triggered && _flags.CanDash)
+        {
+            _flags.ActionAvailable = false;
+            if (Mathf.Abs(moveInput.x) > 0)
+            {
+                Dash(moveInput);
+            } else
+            {
+                _dashBuffer = dashBuffer;
+            }
+        }
+    }
+    private void ResolveDash()
+    {
+        if (_dashing)
+        {
+            if (_dashTime <= 0)
+            {
+                _dashTime = dashDuration;
+                _velocity = Vector2.zero;
+                _dashing = false;
+            } else
+            {
+                _dashTime -= Time.deltaTime;
             }
         }
     }
 
-    private void HandleDash(Vector2 moveInput)
+    private void ResolveTimeBuffers(Vector2 moveInput)
     {
-        if (_dashTime <= 0 && _dashing)
+        if (_dashBuffer > 0)
         {
-            _dashTime = dashDuration;
-            _velocity = Vector2.zero;
-            _dashing = false;
-        }
-
-        if (_dashing)
-        {
-            _dashTime -= Time.deltaTime;
-        }
-
-        // disable dash if the player want to dash vertically
-        var isDashAllowed = (moveInput.y != 0 && moveInput.x == 0) ? false : true;
-
-        if (_input.Player.Dash.triggered && isDashAllowed)
-        {
-            Dash(moveInput);
+            if (Mathf.Abs(moveInput.x) > 0)
+            {
+                _dashBuffer = 0;
+                Dash(moveInput);
+                return;
+            }
+            _dashBuffer -= Time.deltaTime;
         }
     }
 
     private void HandleMovement(float moveInput)
     {
-        if (_wallRiding && !_grounded)
+        if (_wallRiding && !_grounded && _velocity.y < 0)
         {
             _velocity.y *= wallDeceleration;
         }
 
-        var multiplier = _wallRiding ? 10 : 1;
-        var acceleration = (_grounded || _wallRiding) ? walkAcceleration * multiplier : airAcceleration;
+        var acceleration = _grounded || _wallRiding ? walkAcceleration : airAcceleration;
         var deceleration = _grounded ? groundDeceleration : 0;
 
-        if (moveInput != 0)
+        if (Mathf.Abs(moveInput) > 0)
         {
             _velocity.x = Mathf.MoveTowards(_velocity.x, speed * moveInput, acceleration * Time.deltaTime);
         }
@@ -226,7 +282,7 @@ public class CharacterController2D : MonoBehaviour
             _velocity.x = Mathf.MoveTowards(_velocity.x, 0, deceleration * Time.deltaTime);
         }
 
-        if (!_dashing)
+        if (!_dashing && !_grounded)
         {
             _velocity.y += Physics2D.gravity.y * Time.deltaTime;
         }
@@ -246,19 +302,20 @@ public class CharacterController2D : MonoBehaviour
 
         // Sticky physic is only use if the player is grounded and not on flat ground
         // because it cause grounded check issue otherwise
-        if (_grounded && !_jumping && !_dashing && slopeAngle > 0)
+        if (_grounded && !_dashing && slopeAngle > 0)
         {
             _velocity = Vector3.Cross(_upVect, Vector3.forward) * (moveInput * speed);
         }
 
         transform.Translate(_velocity * Time.deltaTime);
 
-        _grounded = false;
-        _wallRiding = false;
-
         // Retrieve all colliders we have intersected after velocity has been applied.
         var count = Physics2D.OverlapBoxNonAlloc(transform.position, _boxCollider.size, 0, _hitsBuffer);
-
+        if (count == 1)
+        {
+            _grounded = false;
+            _wallRiding = false;
+        }
         for (var i = 0; i < count; i++)
         {
             // Ignore our own collider.
@@ -275,31 +332,44 @@ public class CharacterController2D : MonoBehaviour
                 transform.Translate(colliderDistance.pointA - colliderDistance.pointB);
 
                 // If we intersect an object beneath us, set grounded to true. 
-                if (Vector2.Angle(colliderDistance.normal, Vector2.up) < 90 && _velocity.y < 0)
+                if (Vector2.Angle(colliderDistance.normal, Vector2.up) < 90)
                 {
-                    _jumping = false;
                     _grounded = true;
+                    _velocity.y = 0;
                 }
 
                 // If we intersect an object above us, we push down the play. 
                 if (Vector2.Angle(colliderDistance.normal, Vector2.up) == 180 && !_grounded)
                 {
-                    _velocity.y += (Physics2D.gravity.y * 10f) * Time.deltaTime;
+                    _velocity.y += Physics2D.gravity.y * 10f * Time.deltaTime;
                 }
 
                 // If we intersect an object in our sides, we are wall riding. 
-                if (Vector2.Angle(colliderDistance.normal, Vector2.up) == 90 && moveInput != 0)
+                if (Vector2.Angle(colliderDistance.normal, Vector2.up) == 90 && !_grounded)
                 {
-                    _jumping = false;
+                    if (Math.Abs(_velocity.x) > 0 && _velocity.y > 0 && !_wallRiding)
+                    {
+                        _velocity.y *= (1 + Mathf.Abs(_velocity.x) * horizontalSpeedTransfer);
+                    }
+                    _velocity.x = 0;
                     _wallRiding = true;
+                } else
+                {
+                    _wallRiding = false;
                 }
             }
         }
 
         if (drawDebugRays)
         {
-            Debug.DrawRay(leftWallCheck.position, Vector3.left * wallsRayLength, Color.magenta);
-            Debug.DrawRay(rightWallCheck.position, Vector3.right * wallsRayLength, Color.magenta);
+            var rayLists = new List<List<Ray>> {leftWallCheck, rightWallCheck, groundCheck};
+            foreach (var rayList in rayLists)
+            {
+                foreach (var ray in rayList)
+                {
+                    Debug.DrawRay(ray.start.position, ray.direction * surfaceRayLength, Color.magenta);
+                }
+            }
         }
     }
 
@@ -322,31 +392,16 @@ public class CharacterController2D : MonoBehaviour
     private void AddThresholdedBeatEvents()
     {
         if (_synchronizer == null) return;
-        switch (restrictsJumpOn)
+        switch (restrictActionOn)
         {
             case SongSynchronizer.ThresholdBeatEvents.Step:
-                _synchronizer.StepThresholded += OnTresholdedJump;
+                _synchronizer.StepThresholded += OnTresholdedAction;
                 break;
             case SongSynchronizer.ThresholdBeatEvents.HalfBeat:
-                _synchronizer.HalfBeatThresholded += OnTresholdedJump;
+                _synchronizer.HalfBeatThresholded += OnTresholdedAction;
                 break;
             case SongSynchronizer.ThresholdBeatEvents.Beat:
-                _synchronizer.BeatThresholded += OnTresholdedJump;
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
-
-        switch (restrictsDashOn)
-        {
-            case SongSynchronizer.ThresholdBeatEvents.Step:
-                _synchronizer.StepThresholded += OnTresholdedDash;
-                break;
-            case SongSynchronizer.ThresholdBeatEvents.HalfBeat:
-                _synchronizer.HalfBeatThresholded += OnTresholdedDash;
-                break;
-            case SongSynchronizer.ThresholdBeatEvents.Beat:
-                _synchronizer.BeatThresholded += OnTresholdedDash;
+                _synchronizer.BeatThresholded += OnTresholdedAction;
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -356,12 +411,9 @@ public class CharacterController2D : MonoBehaviour
     private void RemoveThresholdedBeatEvents()
     {
         if (_synchronizer == null) return;
-        _synchronizer.StepThresholded -= OnTresholdedDash;
-        _synchronizer.HalfBeatThresholded -= OnTresholdedDash;
-        _synchronizer.BeatThresholded -= OnTresholdedDash;
-        _synchronizer.StepThresholded -= OnTresholdedJump;
-        _synchronizer.HalfBeatThresholded -= OnTresholdedJump;
-        _synchronizer.BeatThresholded -= OnTresholdedJump;
+        _synchronizer.StepThresholded -= OnTresholdedAction;
+        _synchronizer.HalfBeatThresholded -= OnTresholdedAction;
+        _synchronizer.BeatThresholded -= OnTresholdedAction;
     }
 
     private void ResetThresholdBeatEvents()
@@ -370,71 +422,44 @@ public class CharacterController2D : MonoBehaviour
         AddThresholdedBeatEvents();
     }
 
-    private void OnTresholdedJump(SongSynchronizer sender, SongSynchronizer.EventState state)
+    private void OnTresholdedAction(SongSynchronizer sender, SongSynchronizer.EventState state)
     {
         switch (state)
         {
             case SongSynchronizer.EventState.Start:
-                _flags.CanJump = true;
-                _scoreState.JumpScore = SongSynchronizer.EventScore.Ok;
+                _flags.ActionAvailable = true;
+                _scoreState.Score = SongSynchronizer.EventScore.Ok;
                 break;
             case SongSynchronizer.EventState.Mid:
-                _scoreState.JumpScore = SongSynchronizer.EventScore.Perfect;
+                _scoreState.Score = SongSynchronizer.EventScore.Perfect;
                 break;
             case SongSynchronizer.EventState.End:
-                _flags.CanJump = false;
-                _scoreState.JumpScore = SongSynchronizer.EventScore.Ok;
-                break;
-        }
-    }
-
-    private void OnTresholdedDash(SongSynchronizer sender, SongSynchronizer.EventState state)
-    {
-        switch (state)
-        {
-            case SongSynchronizer.EventState.Start:
-                _flags.CanDash = true;
-                _scoreState.DashScore = SongSynchronizer.EventScore.Ok;
-                break;
-            case SongSynchronizer.EventState.Mid:
-                _scoreState.DashScore = SongSynchronizer.EventScore.Perfect;
-                break;
-            case SongSynchronizer.EventState.End:
-                _flags.CanDash = false;
-                _scoreState.DashScore = SongSynchronizer.EventScore.Ok;
+                _flags.ActionAvailable = false;
+                _scoreState.Score = SongSynchronizer.EventScore.Ok;
                 break;
         }
     }
 
     private void Jump()
     {
-        if (!_flags.CanJump)
-        {
-            OnActionPerformed(this,
-                new OnActionEventArgs() {Move = PlayerActions.Jump, Score = SongSynchronizer.EventScore.Failed});
-            return;
-        }
-        OnActionPerformed(this, new OnActionEventArgs() {Move = PlayerActions.Jump, Score = _scoreState.JumpScore});
-        _jumping = true;
+        OnActionPerformed(this, new OnActionEventArgs() {Move = PlayerActions.Jump, Score = _scoreState.Score});
         // Calculate the velocity required to achieve the target jump height.
+        
         _velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
+        if (_wall != 0 && !_grounded)
+        {
+            _velocity.x = _wall * wallJumpSpeed;
+        }
+        _grounded = false;
         OnJump?.Invoke();
-        _flags.CanJump = false;
     }
 
     private void Dash(Vector2 moveInput)
     {
-        if (!_flags.CanDash)
-        {
-            OnActionPerformed(this,
-                new OnActionEventArgs() {Move = PlayerActions.Dash, Score = SongSynchronizer.EventScore.Failed});
-            return;
-        }
-        OnActionPerformed(this, new OnActionEventArgs() {Move = PlayerActions.Dash, Score = _scoreState.DashScore});
+        OnActionPerformed(this, new OnActionEventArgs() {Move = PlayerActions.Dash, Score = _scoreState.Score});
         OnDash?.Invoke();
         _dashing = true;
         _velocity.x = Mathf.MoveTowards(_velocity.x, dashSpeed * _direction, dashAcceleration);
-        _velocity.y = Mathf.MoveTowards(_velocity.y, dashSpeed * Mathf.RoundToInt(moveInput.y), dashAcceleration);
         _flags.CanDash = false;
     }
 
@@ -442,15 +467,9 @@ public class CharacterController2D : MonoBehaviour
 
     #region Public Methods
 
-    public void ChangeJumpTresholdBeat(SongSynchronizer.ThresholdBeatEvents restrictOn)
+    public void ChangeActionTresholdBeat(SongSynchronizer.ThresholdBeatEvents restrictOn)
     {
-        restrictsJumpOn = restrictOn;
-        ResetThresholdBeatEvents();
-    }
-
-    public void ChangeDashTresholdBeat(SongSynchronizer.ThresholdBeatEvents restrictOn)
-    {
-        restrictsDashOn = restrictOn;
+        restrictActionOn = restrictOn;
         ResetThresholdBeatEvents();
     }
 
