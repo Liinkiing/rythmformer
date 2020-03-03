@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -9861,6 +9861,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 16722521658261400, guid: 7f205dbd79c2c487aad6da7209b702b2,
+        type: 3}
+      propertyPath: _SceneTransition
+      value: 
+      objectReference: {fileID: 1974127890}
     - target: {fileID: 821780753071024138, guid: 7f205dbd79c2c487aad6da7209b702b2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10046,6 +10051,12 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1 &1358835509 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2416703022941799620, guid: 7f205dbd79c2c487aad6da7209b702b2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1196518650}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1411978299
 GameObject:
   m_ObjectHideFlags: 0
@@ -18090,6 +18101,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1644818260}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1974127890 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8429572014462008262, guid: 7f205dbd79c2c487aad6da7209b702b2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1196518650}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1990686659
 GameObject:
   m_ObjectHideFlags: 0
@@ -18502,6 +18519,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5272078974633606229, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      propertyPath: SceneTransition
+      value: 
+      objectReference: {fileID: 1358835509}
     - target: {fileID: 6466353568207802020, guid: a3e4a899474da4d21b6ab8f097036ec4,
         type: 3}
       propertyPath: m_LocalPosition.z
