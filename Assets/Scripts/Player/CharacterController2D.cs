@@ -354,18 +354,14 @@ public class CharacterController2D : MonoBehaviour
 
         // Retrieve all colliders we have intersected after velocity has been applied.
         var count = Physics2D.OverlapBoxNonAlloc(transform.position, _boxCollider.size, 0, _hitsBuffer);
-        if (count == 1)
-        {
-            _grounded = false;
-            _wallRiding = false;
-        }
 
+        var isAirborn = true;
         for (var i = 0; i < count; i++)
         {
             // Ignore our own collider.
-            if (_hitsBuffer[i] == _boxCollider || _hitsBuffer[i].isTrigger)
-                continue;
-
+            if (_hitsBuffer[i] == _boxCollider || _hitsBuffer[i].isTrigger) continue;
+            isAirborn = false;
+                
             ColliderDistance2D colliderDistance = _hitsBuffer[i].Distance(_boxCollider);
 
             // Ensure that we are still overlapping this collider.
@@ -404,6 +400,11 @@ public class CharacterController2D : MonoBehaviour
                     _wallRiding = false;
                 }
             }
+        }
+        if (isAirborn)
+        {
+            _grounded = false;
+            _wallRiding = false;
         }
 
         if (drawDebugRays)
