@@ -474,13 +474,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8575e11658741cd4a8ce7376a6a15478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 9
+  speed: 15
   walkAcceleration: 260
-  airAcceleration: 30
+  airAcceleration: 100
   groundDeceleration: 120
   jumpHeight: 4
   wallJumpSpeed: 12
-  jumpBuffer: 0.15
+  jumpBuffer: 0.1
   dashBuffer: 0.15
   horizontalSpeedTransfer: 0.03
   dashDuration: 0.15
@@ -488,7 +488,7 @@ MonoBehaviour:
   dashAcceleration: 500
   drawDebugRays: 1
   surfaceRayLength: 0.35
-  wallDeceleration: 0.89
+  wallDeceleration: 0.93
   leftWallCheck:
   - start: {fileID: 6305144039226606819}
     direction: {x: -1, y: 0}

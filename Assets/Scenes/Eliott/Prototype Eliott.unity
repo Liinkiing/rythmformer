@@ -18173,43 +18173,18 @@ PrefabInstance:
       objectReference: {fileID: 4738642857769414300}
     - target: {fileID: 476714754079885257, guid: 8390b5fc7d470ed45a0998c3a9731d21,
         type: 3}
-      propertyPath: restrictActionOn
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 476714754079885257, guid: 8390b5fc7d470ed45a0998c3a9731d21,
-        type: 3}
-      propertyPath: surfaceRayLength
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 476714754079885257, guid: 8390b5fc7d470ed45a0998c3a9731d21,
-        type: 3}
-      propertyPath: wallDeceleration
-      value: 0.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 476714754079885257, guid: 8390b5fc7d470ed45a0998c3a9731d21,
-        type: 3}
-      propertyPath: wallJumpSpeed
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 476714754079885257, guid: 8390b5fc7d470ed45a0998c3a9731d21,
-        type: 3}
-      propertyPath: jumpBuffer
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 476714754079885257, guid: 8390b5fc7d470ed45a0998c3a9731d21,
-        type: 3}
-      propertyPath: horizontalSpeedTransfer
-      value: 0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 476714754079885257, guid: 8390b5fc7d470ed45a0998c3a9731d21,
-        type: 3}
       propertyPath: leftWallCheck
       value: 
       objectReference: {fileID: 1281742078}
+    - target: {fileID: 476714754079885257, guid: 8390b5fc7d470ed45a0998c3a9731d21,
+        type: 3}
+      propertyPath: dashSpeed
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 698011890207274620, guid: 8390b5fc7d470ed45a0998c3a9731d21,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 860241260251556298, guid: 8390b5fc7d470ed45a0998c3a9731d21,
         type: 3}
@@ -18239,7 +18214,7 @@ PrefabInstance:
     - target: {fileID: 4067242708218233514, guid: 8390b5fc7d470ed45a0998c3a9731d21,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4738642859323635689, guid: 8390b5fc7d470ed45a0998c3a9731d21,
         type: 3}
@@ -18329,7 +18304,7 @@ PrefabInstance:
     - target: {fileID: 7189094063486643779, guid: 8390b5fc7d470ed45a0998c3a9731d21,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8104880732038184775, guid: 8390b5fc7d470ed45a0998c3a9731d21,
         type: 3}

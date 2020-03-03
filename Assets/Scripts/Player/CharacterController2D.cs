@@ -58,10 +58,7 @@ public class CharacterController2D : MonoBehaviour
     
     [SerializeField, Tooltip("Horizontal speed on wall jump")]
     private float wallJumpSpeed = 12;
-    
-    [SerializeField, Tooltip("Time given to give direction after wall Jump")]
-    private float jumpBuffer = 0.1f;
-    
+  
     [SerializeField, Tooltip("Time given to give direction after Dash")]
     private float dashBuffer = 0.1f;
 
@@ -108,7 +105,6 @@ public class CharacterController2D : MonoBehaviour
     private int _direction = 1;
     private int _wall;
     private bool _groundBuffer;
-    private float _jumpBuffer;
     private float _dashBuffer;
     private readonly Collider2D[] _hitsBuffer = new Collider2D[16];
 
@@ -213,15 +209,16 @@ public class CharacterController2D : MonoBehaviour
             }
             return;
         }
-        if (_input.Player.Jump.triggered && (_groundBuffer || _wall != 0))
+        if (_input.Player.Jump.triggered)
         {
             _flags.ActionAvailable = false;
-            if ((_groundBuffer && _wall == 0) || (moveInput.x > 0 && _wall > 0) || (moveInput.x < 0 && _wall < 0))
+            if (_groundBuffer || _wall != 0 || !_groundBuffer && _wall == 0 && _flags.CanDash)
             {
+                if (!_groundBuffer && _wall == 0 && _flags.CanDash)
+                {
+                    _flags.CanDash = false;
+                }
                 Jump();
-            } else
-            {
-                _jumpBuffer = jumpBuffer;
             }
         }
         else if (_input.Player.Dash.triggered && _flags.CanDash)
@@ -254,17 +251,6 @@ public class CharacterController2D : MonoBehaviour
 
     private void ResolveTimeBuffers(Vector2 moveInput)
     {
-        if (_jumpBuffer > 0)
-        {
-            if ((moveInput.x > 0 && _wall > 0) || (moveInput.x < 0 && _wall < 0))
-            {
-                _jumpBuffer = 0;
-                Jump();
-                return;
-            }
-            _jumpBuffer -= Time.deltaTime;
-        }
-
         if (_dashBuffer > 0)
         {
             if (Mathf.Abs(moveInput.x) > 0)
@@ -279,7 +265,6 @@ public class CharacterController2D : MonoBehaviour
 
     private void HandleMovement(float moveInput)
     {
-        // TODO: check for velocity Y stacking up ?
         if (_wallRiding && !_grounded && _velocity.y < 0)
         {
             _velocity.y *= wallDeceleration;
@@ -475,7 +460,6 @@ public class CharacterController2D : MonoBehaviour
         OnDash?.Invoke();
         _dashing = true;
         _velocity.x = Mathf.MoveTowards(_velocity.x, dashSpeed * _direction, dashAcceleration);
-        _velocity.y = Mathf.MoveTowards(_velocity.y, dashSpeed * Mathf.RoundToInt(moveInput.y), dashAcceleration);
         _flags.CanDash = false;
     }
 
