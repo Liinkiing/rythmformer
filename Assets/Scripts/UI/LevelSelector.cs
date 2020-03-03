@@ -14,8 +14,9 @@ public class LevelSelector : MonoBehaviour
     #region Fields
     [SerializeField] private SceneField[] _Levels;
     [SerializeField] private GameObject _ButtonPrefab;
+    [SerializeField] private GameObject SceneTransition;
     private GameObject _ButtonWrapper;
-     
+
     #endregion
 
     private void Awake()
@@ -27,12 +28,7 @@ public class LevelSelector : MonoBehaviour
             GameObject button = Instantiate(_ButtonPrefab, _ButtonWrapper.transform.position, _ButtonWrapper.transform.rotation);
             button.transform.SetParent(_ButtonWrapper.transform);
             button.GetComponentInChildren<TextMeshProUGUI>().text = LEVEL.SceneName;
-            button.GetComponent<Button>().onClick.AddListener(delegate { Select(LEVEL.ScenePath); });
+            button.GetComponent<Button>().onClick.AddListener(delegate{StartCoroutine(SceneTransition.GetComponent<SceneLoader>().LoadLevel(LEVEL.ScenePath));});
         }
-    }
-
-    public void Select(string levelName)
-    {
-        SceneManager.LoadScene(levelName, LoadSceneMode.Single);
     }
 }
