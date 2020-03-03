@@ -395,11 +395,6 @@ public class CharacterController2D : MonoBehaviour
                 }
             }
         }
-
-        Color yellow = new Color(243,210,99, Mathf.Abs(_velocity.x) > speed ? 1 : 0);
-        ParticleSystem.MainModule trailPSmain = _trailPS.main;
-    
-        trailPSmain.startColor = yellow;
     }
 
     #endregion
@@ -496,6 +491,7 @@ public class CharacterController2D : MonoBehaviour
         _dashing = true;
         _velocity.x = Mathf.MoveTowards(_velocity.x, dashSpeed * _direction, dashAcceleration);
         _flags.CanDash = false;
+        _trailPS.Play();
     }
 
     #endregion
