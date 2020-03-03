@@ -105,7 +105,6 @@ public class CharacterController2D : MonoBehaviour
     private SongSynchronizer _synchronizer;
     private Rigidbody2D _rigidbody;
     private Vector3 _upVect;
-    private bool _jumping;
     private int _direction = 1;
     private int _wall;
     private bool _groundBuffer;
@@ -217,8 +216,9 @@ public class CharacterController2D : MonoBehaviour
         if (_input.Player.Jump.triggered && (_groundBuffer || _wall != 0))
         {
             _flags.ActionAvailable = false;
-            if (_groundBuffer || moveInput.x > 0 && _wall > 0 || moveInput.x < 0 && _wall < 0)
+            if (_groundBuffer || (moveInput.x > 0 && _wall > 0) || (moveInput.x < 0 && _wall < 0))
             {
+                Debug.Log("jump");
                 Jump();
             } else
             {
@@ -257,7 +257,7 @@ public class CharacterController2D : MonoBehaviour
     {
         if (_jumpBuffer > 0)
         {
-            if (moveInput.x > 0 && _wall > 0 || moveInput.x < 0 && _wall < 0)
+            if ((moveInput.x > 0 && _wall > 0) || (moveInput.x < 0 && _wall < 0))
             {
                 _jumpBuffer = 0;
                 Jump();
@@ -318,7 +318,7 @@ public class CharacterController2D : MonoBehaviour
 
         // Sticky physic is only use if the player is grounded and not on flat ground
         // because it cause grounded check issue otherwise
-        if (_grounded && !_jumping && !_dashing && slopeAngle > 0)
+        if (_grounded && !_dashing && slopeAngle > 0)
         {
             _velocity = Vector3.Cross(_upVect, Vector3.forward) * (moveInput * speed);
         }
@@ -350,7 +350,6 @@ public class CharacterController2D : MonoBehaviour
                 // If we intersect an object beneath us, set grounded to true. 
                 if (Vector2.Angle(colliderDistance.normal, Vector2.up) < 90)
                 {
-                    _jumping = false;
                     _grounded = true;
                     _velocity.y = 0;
                 }
@@ -362,14 +361,13 @@ public class CharacterController2D : MonoBehaviour
                 }
 
                 // If we intersect an object in our sides, we are wall riding. 
-                if (Vector2.Angle(colliderDistance.normal, Vector2.up) == 90)
+                if (Vector2.Angle(colliderDistance.normal, Vector2.up) == 90 && !_grounded)
                 {
-                    _jumping = false;
                     if (Math.Abs(_velocity.x) > 0 && _velocity.y > 0 && !_wallRiding)
                     {
                         _velocity.y *= (1 + Mathf.Abs(_velocity.x) * horizontalSpeedTransfer);
-                        _velocity.x = 0;
                     }
+                    _velocity.x = 0;
                     _wallRiding = true;
                 } else
                 {
@@ -461,7 +459,7 @@ public class CharacterController2D : MonoBehaviour
     private void Jump()
     {
         OnActionPerformed(this, new OnActionEventArgs() {Move = PlayerActions.Jump, Score = _scoreState.Score});
-        _jumping = true;
+        _grounded = false;
         // Calculate the velocity required to achieve the target jump height.
         
         _velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
