@@ -216,9 +216,8 @@ public class CharacterController2D : MonoBehaviour
         if (_input.Player.Jump.triggered && (_groundBuffer || _wall != 0))
         {
             _flags.ActionAvailable = false;
-            if (_groundBuffer || (moveInput.x > 0 && _wall > 0) || (moveInput.x < 0 && _wall < 0))
+            if ((_groundBuffer && _wall == 0) || (moveInput.x > 0 && _wall > 0) || (moveInput.x < 0 && _wall < 0))
             {
-                Debug.Log("jump");
                 Jump();
             } else
             {
@@ -459,7 +458,6 @@ public class CharacterController2D : MonoBehaviour
     private void Jump()
     {
         OnActionPerformed(this, new OnActionEventArgs() {Move = PlayerActions.Jump, Score = _scoreState.Score});
-        _grounded = false;
         // Calculate the velocity required to achieve the target jump height.
         
         _velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
@@ -467,6 +465,7 @@ public class CharacterController2D : MonoBehaviour
         {
             _velocity.x = _wall * wallJumpSpeed;
         }
+        _grounded = false;
         OnJump?.Invoke();
     }
 
