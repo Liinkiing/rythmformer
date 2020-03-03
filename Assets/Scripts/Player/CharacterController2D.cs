@@ -41,8 +41,6 @@ public class CharacterController2D : MonoBehaviour
     }
 
     #region Fields
-    
-    [SerializeField] private ParticleSystem TrailPS;
 
     [Header("Movements"), SerializeField, Tooltip("Max speed, in units per second, that the character moves.")]
     private float speed = 9;
@@ -119,6 +117,7 @@ public class CharacterController2D : MonoBehaviour
     private readonly Collider2D[] _hitsBuffer = new Collider2D[16];
 
     private ScoreState _scoreState = new ScoreState(score: SongSynchronizer.EventScore.Ok);
+    private ParticleSystem _trailPS;
 
     #endregion
 
@@ -145,6 +144,8 @@ public class CharacterController2D : MonoBehaviour
                 "Could not get SongSynchronizer. Make sure you are using the `SongSynchronizer` " +
                 "prefab in your scene and it is enabled.");
         }
+        
+        _trailPS = GetComponent<ParticleSystem>();
     }
 
     private void OnEnable()
@@ -391,6 +392,11 @@ public class CharacterController2D : MonoBehaviour
                 }
             }
         }
+
+        Color yellow = new Color(243,210,99, Mathf.Abs(_velocity.x) > speed ? 1 : 0);
+        ParticleSystem.MainModule trailPSmain = _trailPS.main;
+    
+        trailPSmain.startColor = yellow;
     }
 
     #endregion
