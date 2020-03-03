@@ -117,7 +117,8 @@ public class CharacterController2D : MonoBehaviour
     private readonly Collider2D[] _hitsBuffer = new Collider2D[16];
 
     private ScoreState _scoreState = new ScoreState(score: SongSynchronizer.EventScore.Ok);
-    private ParticleSystem _trailPS;
+    [SerializeField] private ParticleSystem _trailPS;
+    [SerializeField] private ParticleSystem _dustPS;
 
     #endregion
 
@@ -145,7 +146,7 @@ public class CharacterController2D : MonoBehaviour
                 "prefab in your scene and it is enabled.");
         }
         
-        _trailPS = GetComponent<ParticleSystem>();
+        /*_trailPS = GetComponent<ParticleSystem>();*/
     }
 
     private void OnEnable()
@@ -473,6 +474,7 @@ public class CharacterController2D : MonoBehaviour
         }
         _grounded = false;
         OnJump?.Invoke();
+        _dustPS.Play();
     }
 
     private void Dash(Vector2 moveInput)
