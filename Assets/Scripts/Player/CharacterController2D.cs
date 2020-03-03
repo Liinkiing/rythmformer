@@ -78,6 +78,13 @@ public class CharacterController2D : MonoBehaviour
 
     [SerializeField, Range(0, 1f), Tooltip("Deceleration applied when character is wall riding")]
     private float wallDeceleration = 0.8f;
+    
+    [Space(), Header("Speed incrementation")]
+    [SerializeField, Tooltip("Number of times maximum speed can increase")]
+    private int numberOfSteps = 1;
+    
+    [SerializeField, Tooltip("Maximum additional speed to gain by performing rythm actions")]
+    private float maxAdditionalSpeed = 5;
 
     [SerializeField] private List<Ray> leftWallCheck;
     [SerializeField] private List<Ray> rightWallCheck;
@@ -106,6 +113,7 @@ public class CharacterController2D : MonoBehaviour
     private int _wall;
     private bool _groundBuffer;
     private float _dashBuffer;
+    private int _additionalSpeed;
     private readonly Collider2D[] _hitsBuffer = new Collider2D[16];
 
     private ScoreState _scoreState = new ScoreState(score: SongSynchronizer.EventScore.Ok);
@@ -168,7 +176,7 @@ public class CharacterController2D : MonoBehaviour
         SurfaceDetection();
         HandleMovement(moveInput.x);
         HandleRythmAction(moveInput);
-        ResolveDash();
+        ResolveDash(moveInput.x);
         ResolveTimeBuffers(moveInput);
     }
 
@@ -206,9 +214,11 @@ public class CharacterController2D : MonoBehaviour
             {
                 var action = _input.Player.Jump.triggered ? PlayerActions.Jump : PlayerActions.Dash;
                 OnActionPerformed(this, new OnActionEventArgs() {Move = action, Score = SongSynchronizer.EventScore.Failed});
+                _additionalSpeed = 0;
             }
             return;
         }
+        
         if (_input.Player.Jump.triggered)
         {
             _flags.ActionAvailable = false;
@@ -219,6 +229,7 @@ public class CharacterController2D : MonoBehaviour
                     _flags.CanDash = false;
                 }
                 Jump();
+                if (_additionalSpeed < numberOfSteps) _additionalSpeed++;
             }
         }
         else if (_input.Player.Dash.triggered && _flags.CanDash)
@@ -227,20 +238,22 @@ public class CharacterController2D : MonoBehaviour
             if (Mathf.Abs(moveInput.x) > 0)
             {
                 Dash(moveInput);
+                if (_additionalSpeed < numberOfSteps) _additionalSpeed++;
             } else
             {
                 _dashBuffer = dashBuffer;
             }
         }
     }
-    private void ResolveDash()
+    private void ResolveDash(float moveInput)
     {
         if (_dashing)
         {
             if (_dashTime <= 0)
             {
                 _dashTime = dashDuration;
-                _velocity = Vector2.zero;
+                _velocity.y = 0;
+                _velocity.x = (speed + _additionalSpeed * maxAdditionalSpeed / numberOfSteps) * moveInput;
                 _dashing = false;
             } else
             {
@@ -257,6 +270,7 @@ public class CharacterController2D : MonoBehaviour
             {
                 _dashBuffer = 0;
                 Dash(moveInput);
+                if (_additionalSpeed < numberOfSteps) _additionalSpeed++;
                 return;
             }
             _dashBuffer -= Time.deltaTime;
@@ -275,7 +289,7 @@ public class CharacterController2D : MonoBehaviour
 
         if (Mathf.Abs(moveInput) > 0)
         {
-            _velocity.x = Mathf.MoveTowards(_velocity.x, speed * moveInput, acceleration * Time.deltaTime);
+            _velocity.x = Mathf.MoveTowards(_velocity.x, (speed + _additionalSpeed * maxAdditionalSpeed / numberOfSteps) * moveInput, acceleration * Time.deltaTime);
         }
         else
         {
@@ -436,6 +450,7 @@ public class CharacterController2D : MonoBehaviour
                 _scoreState.Score = SongSynchronizer.EventScore.Perfect;
                 break;
             case SongSynchronizer.EventState.End:
+                if (_flags.ActionAvailable && _additionalSpeed > 0) _additionalSpeed--;
                 _flags.ActionAvailable = false;
                 _scoreState.Score = SongSynchronizer.EventScore.Ok;
                 break;
