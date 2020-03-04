@@ -237,7 +237,8 @@ public class CharacterController2D : MonoBehaviour
             {
                 var action = _input.Player.Jump.triggered ? PlayerActions.Jump : PlayerActions.Dash;
                 OnActionPerformed(this, new OnActionEventArgs() {Move = action, Score = SongSynchronizer.EventScore.Failed});
-                _additionalSpeed = 0;
+                _additionalSpeed -= numberOfSteps / 2;
+                if (_additionalSpeed < 0) _additionalSpeed = 0;
             }
 
             return;
@@ -337,7 +338,7 @@ public class CharacterController2D : MonoBehaviour
 
         if (!_dashing && !_grounded)
         {
-            _velocity.y += Physics2D.gravity.y * Time.deltaTime;
+            _velocity.y += Physics2D.gravity.y * 1.5f * Time.deltaTime;
         }
 
         var raycastGround = Physics2D.Raycast(_rigidbody.position, -Vector2.up, _boxCollider.size.y, wallsLayerMask);
@@ -499,7 +500,6 @@ public class CharacterController2D : MonoBehaviour
                 _scoreState.Score = SongSynchronizer.EventScore.Perfect;
                 break;
             case SongSynchronizer.EventState.End:
-                if (_flags.ActionAvailable && _additionalSpeed > 0) _additionalSpeed--;
                 _flags.ActionAvailable = false;
                 _scoreState.Score = SongSynchronizer.EventScore.Ok;
                 break;
