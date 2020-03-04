@@ -317,6 +317,12 @@ PrefabInstance:
       propertyPath: OnJump.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 476714754079885257, guid: 8390b5fc7d470ed45a0998c3a9731d21,
+        type: 3}
+      propertyPath: _leavesPS
+      value: 
+      objectReference: {fileID: 7803966192286137928, guid: 9ac54f970e1654a6b922ed3c097b6e6c,
+        type: 3}
     - target: {fileID: 1861784102040681358, guid: 8390b5fc7d470ed45a0998c3a9731d21,
         type: 3}
       propertyPath: m_Enabled
@@ -366,6 +372,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 2179222084987472169, guid: 8390b5fc7d470ed45a0998c3a9731d21,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4738642859323635689, guid: 8390b5fc7d470ed45a0998c3a9731d21,
         type: 3}
@@ -505,7 +516,7 @@ MonoBehaviour:
   m_Follow: {fileID: 544395480}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 18.39
+    OrthographicSize: 9
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -10051,7 +10062,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 18.39
+  orthographic size: 9
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -18009,10 +18020,20 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2540025905982091196, guid: 48a848133ecde1444b787205e569db84,
+        type: 3}
+      propertyPath: Mute
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2751074908575761791, guid: 48a848133ecde1444b787205e569db84,
         type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2751074908575761791, guid: 48a848133ecde1444b787205e569db84,
+        type: 3}
+      propertyPath: Mute
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3600690296673013303, guid: 48a848133ecde1444b787205e569db84,
         type: 3}
@@ -18139,6 +18160,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7658371659201157189, guid: 48a848133ecde1444b787205e569db84,
+        type: 3}
+      propertyPath: Mute
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48a848133ecde1444b787205e569db84, type: 3}
