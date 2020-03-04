@@ -5246,7 +5246,7 @@ MonoBehaviour:
   drawDebugRays: 1
   surfaceRayLength: 0.35
   wallDeceleration: 0.93
-  numberOfSteps: 6
+  numberOfSteps: 4
   maxAdditionalSpeed: 16
   leftWallCheck:
   - start: {fileID: 6305144039226606819}
