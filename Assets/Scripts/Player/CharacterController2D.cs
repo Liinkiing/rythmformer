@@ -19,6 +19,7 @@ public class CharacterController2D : MonoBehaviour
     private struct PlayerFlags
     {
         public bool CanDash;
+        public bool CanJump;
         public bool ActionAvailable;
     }
 
@@ -69,7 +70,6 @@ public class CharacterController2D : MonoBehaviour
     private float dashDuration = 0.15f;
 
     [SerializeField] private float dashSpeed = 60f;
-    [SerializeField] private float dashAcceleration = 500f;
 
     [Space(), Header("Wall Riding")] [SerializeField]
     private bool drawDebugRays = true;
@@ -186,11 +186,13 @@ public class CharacterController2D : MonoBehaviour
         {
             _wall = 1;
             _flags.CanDash = true;
+            _flags.CanJump = true;
         }
         else if (rightWallCheck.Any(ray => null != Physics2D.Raycast(ray.start.position, ray.direction, surfaceRayLength, wallsLayerMask).collider))
         {
             _wall = -1;
             _flags.CanDash = true;
+            _flags.CanJump = true;
         }
         else
         {
@@ -200,6 +202,7 @@ public class CharacterController2D : MonoBehaviour
         {
             _groundBuffer = true;
             _flags.CanDash = true;
+            _flags.CanJump = true;
         } else
         {
             _groundBuffer = false;
@@ -223,11 +226,11 @@ public class CharacterController2D : MonoBehaviour
         if (_input.Player.Jump.triggered)
         {
             _flags.ActionAvailable = false;
-            if (_groundBuffer || _wall != 0 || !_groundBuffer && _wall == 0 && _flags.CanDash)
+            if (_groundBuffer || _wall != 0 || !_groundBuffer && _wall == 0 && _flags.CanJump)
             {
-                if (!_groundBuffer && _wall == 0 && _flags.CanDash)
+                if (!_groundBuffer && _wall == 0 && _flags.CanJump)
                 {
-                    _flags.CanDash = false;
+                    _flags.CanJump = false;
                 }
                 Jump();
                 if (_additionalSpeed < numberOfSteps) _additionalSpeed++;
@@ -253,8 +256,6 @@ public class CharacterController2D : MonoBehaviour
             if (_dashTime <= 0)
             {
                 _dashTime = dashDuration;
-                _velocity.y = 0;
-                _velocity.x = (speed + _additionalSpeed * maxAdditionalSpeed / numberOfSteps) * moveInput;
                 _dashing = false;
             } else
             {
@@ -476,7 +477,8 @@ public class CharacterController2D : MonoBehaviour
         OnActionPerformed(this, new OnActionEventArgs() {Move = PlayerActions.Dash, Score = _scoreState.Score});
         OnDash?.Invoke();
         _dashing = true;
-        _velocity.x = Mathf.MoveTowards(_velocity.x, dashSpeed * _direction, dashAcceleration);
+        _velocity.x = (dashSpeed + speed + _additionalSpeed * maxAdditionalSpeed / numberOfSteps) * moveInput.x;
+        _velocity.y = 0;
         _flags.CanDash = false;
     }
 
