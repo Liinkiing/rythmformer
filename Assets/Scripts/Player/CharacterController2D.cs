@@ -297,8 +297,43 @@ public class CharacterController2D : MonoBehaviour
 
         if (_grounded && moveInput != 0)
         {
+            
+            /*float normal = Mathf.InverseLerp(0, 24, _velocity.x);
+            var test = _leaves.emission.rateOverTime;
+            float yolo = Mathf.Round(Mathf.Lerp(10, 90, normal));
+            test.constant = yolo;
+            
+            Debug.Log(yolo);*/
+            /*Debug.Log(_leaves.emission.rateOverTime.constant);*/
+            _leaves.Stop();
             if (!_leaves.isEmitting)
             {
+                var main = _leaves.main;
+                
+                /*float normal = Mathf.InverseLerp(0, 24, _velocity.x);*/
+                /*var yolo = _leaves.emission.rateOverTime;
+                yolo = Mathf.Lerp(10, 30, normal);*/
+                
+                /*test.startSpeed = Mathf.Lerp(5, 30, normal);*/
+                /*Debug.Log(main.startSpeed);*/
+                /*test.startSpeed = 5/6;*/
+
+                /*0 / 3*/
+                /*var leavesVelocityOverLifetime = _leaves.velocityOverLifetime;
+                leavesVelocityOverLifetime.x = Mathf.Lerp(0, 20, normal);*/
+                
+                float normal = Mathf.InverseLerp(0, 24, _velocity.x);
+                var test = _leaves.emission;
+                float yolo = Mathf.Round(Mathf.Lerp(10, 90, normal));
+                test.rateOverTime = yolo;
+            
+                Debug.Log(yolo);
+                
+                var leavesShape = _leaves.shape.rotation;
+                leavesShape.y = Mathf.Lerp(0, 90, normal);;
+
+
+
                 _leaves.Play();    
             }
         }
@@ -465,13 +500,16 @@ public class CharacterController2D : MonoBehaviour
             case SongSynchronizer.EventState.Start:
                 _flags.ActionAvailable = true;
                 _scoreState.Score = SongSynchronizer.EventScore.Ok;
+                /*_leaves.Stop();*/
                 break;
             case SongSynchronizer.EventState.Mid:
                 _scoreState.Score = SongSynchronizer.EventScore.Perfect;
+                /*_leaves.Stop();*/
                 break;
             case SongSynchronizer.EventState.End:
                 _flags.ActionAvailable = false;
                 _scoreState.Score = SongSynchronizer.EventScore.Ok;
+                /*_leaves.Stop();*/
                 break;
         }
     }
@@ -480,6 +518,7 @@ public class CharacterController2D : MonoBehaviour
     {
         OnActionPerformed(this, new OnActionEventArgs() {Move = PlayerActions.Jump, Score = _scoreState.Score});
         // Calculate the velocity required to achieve the target jump height.
+        /*_leaves.Stop();*/
         
         _velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
         if (_wall != 0 && !_grounded)
