@@ -97,6 +97,7 @@ public class SongSynchronizer : MonoBehaviour
     {
         _secondsElapsed = AudioSettings.dspTime - _startTick;
         _songPosInTicks = (int) (_secondsElapsed / _secondsPerTicks);
+        Debug.Log($"ELAPSED: {_secondsElapsed}, POSINTICK: {_songPosInTicks}");
         if (_songPosInTicks <= _tick)
         {
             _ticked = false;
@@ -104,6 +105,23 @@ public class SongSynchronizer : MonoBehaviour
         else if (_tick - _songPosInTicks <= 0)
         {
             _ticked = false;
+        }
+    }
+
+    public void ResetSync()
+    {
+        _startTick = AudioSettings.dspTime;
+        _tick = 0;
+        _ticked = false;
+        if (_song.Stems.All != null)
+        {
+            Sources.Melody.timeSamples = 0;
+        }
+        else
+        {
+            Sources.Bass.timeSamples = 0;
+            Sources.Melody.timeSamples = 0;
+            Sources.Drums.timeSamples = 0;
         }
     }
 

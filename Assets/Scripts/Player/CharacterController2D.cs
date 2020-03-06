@@ -129,12 +129,18 @@ public class CharacterController2D : MonoBehaviour
         _dashing = false;
         _rigidbody = GetComponent<Rigidbody2D>();
         _input = new PlayerInput();
+        _input.Player.Reset.performed += OnResetPerformedHandler;
         if (!_synchronizer)
         {
             throw new Exception(
                 "Could not get SongSynchronizer. Make sure you are using the `SongSynchronizer` " +
                 "prefab in your scene and it is enabled.");
         }
+    }
+
+    private void OnDestroy()
+    {
+        _input.Player.Reset.performed -= OnResetPerformedHandler;
     }
 
     private void OnEnable()
@@ -384,10 +390,17 @@ public class CharacterController2D : MonoBehaviour
     }
 
     public event Action<CharacterController2D, OnActionEventArgs> ActionPerformed;
+    public UnityEvent OnResetPerformed;
 
     #endregion
 
     #region Methods
+
+    private void OnResetPerformedHandler(InputAction.CallbackContext context)
+    {
+        Debug.Log("RESET");
+        OnResetPerformed?.Invoke();
+    }
 
     private void AddThresholdedBeatEvents()
     {
