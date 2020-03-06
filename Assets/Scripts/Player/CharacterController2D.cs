@@ -296,12 +296,28 @@ public class CharacterController2D : MonoBehaviour
         var acceleration = _grounded || _wallRiding ? walkAcceleration : airAcceleration;
         var deceleration = _grounded ? groundDeceleration : 0;
 
+        //TODO: Move VFX to a dedicated script
+        // Footstep VFX
         if (_grounded && moveInput != 0)
         {
             if (!_leaves.isEmitting)
             {
                 ParticleSystem.EmissionModule leavesPsEmission = _leaves.emission;
-                leavesPsEmission.rateOverTime = Mathf.Abs(_velocity.x) < speed ? 10 : Mathf.Abs(_velocity.x).Remap(speed, 24, 10, 90);
+                ParticleSystem.ShapeModule leavesPsShape = _leaves.shape;
+                ParticleSystem.MainModule main = _leaves.main;
+                
+                float absoluteVelocity = Mathf.Abs(_velocity.x);
+             
+                // Change leaves amount depending on player velocity
+                leavesPsEmission.rateOverTime =  absoluteVelocity < speed ? 10 : absoluteVelocity.Remap(speed, 24, 10, 20);
+                
+                // Change leaves rotation emitter depending on player velocity
+                float leavesPsComputedRotationY = absoluteVelocity < speed ? 0 : absoluteVelocity.Remap(speed, 24, 0, 70); 
+                leavesPsShape.rotation = new Vector3(0f, leavesPsComputedRotationY * Mathf.Sign(_velocity.x), 0f);
+
+                // Change leaves speed depending on player velocity
+                main.startSpeed = absoluteVelocity < speed ? 0 : absoluteVelocity.Remap(speed, 24, 3, 6);
+
                 _leaves.Play();    
             }
         }
@@ -463,6 +479,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void OnTresholdedAction(SongSynchronizer sender, SongSynchronizer.EventState state)
     {
+        // We stop ParticleSystem to reset the emitting one with new properties
         _leaves.Stop();
         switch (state)
         {
