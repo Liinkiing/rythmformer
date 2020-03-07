@@ -10,6 +10,6 @@ public class LevelManager : MonoBehaviour
     public void ResetLevel()
     {
         player.transform.position = playerSpawn.position;
-        songSynchronizer.ResetSync();
+        songSynchronizer.ResetSong();
     }
 }

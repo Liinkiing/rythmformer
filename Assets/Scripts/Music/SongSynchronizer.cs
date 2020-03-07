@@ -107,7 +107,7 @@ public class SongSynchronizer : MonoBehaviour
         }
     }
 
-    public void ResetSync()
+    public void ResetSong()
     {
         _startTick = AudioSettings.dspTime;
         _tick = 0;
