@@ -67,8 +67,24 @@ public class SongSynchronizer : MonoBehaviour
     private int _tick;
     private int _measure;
     private int _quarters;
-
+    private LevelManager _levelManager;
+    
     [SerializeField] private bool runInBackground = true;
+
+    private void Awake()
+    {
+        _levelManager = Utils.FindObjectOfTypeOrThrow<LevelManager>();
+    }
+
+    private void OnEnable()
+    {
+        _levelManager?.OnLevelReset.AddListener(ResetSong);
+    }
+
+    private void OnDisable()
+    {
+        _levelManager?.OnLevelReset.RemoveListener(ResetSong);
+    }
 
     void Start()
     {
