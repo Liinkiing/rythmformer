@@ -26,15 +26,16 @@ public class CharacterController2D : MonoBehaviour
     private struct ScoreState
     {
         public SongSynchronizer.EventScore Score;
-       
+
         public ScoreState(SongSynchronizer.EventScore score)
         {
             Score = score;
         }
     }
-    
+
     [Serializable]
-    private struct Ray {
+    private struct Ray
+    {
         [SerializeField] public Transform start;
         [SerializeField] public Vector2 direction;
     }
@@ -55,10 +56,10 @@ public class CharacterController2D : MonoBehaviour
 
     [SerializeField, Tooltip("Max height the character will jump regardless of gravity")]
     private float jumpHeight = 4;
-    
+
     [SerializeField, Tooltip("Horizontal speed on wall jump")]
     private float wallJumpSpeed = 12;
-  
+
     [SerializeField, Tooltip("Time given to give direction after Dash")]
     private float dashBuffer = 0.1f;
 
@@ -84,11 +85,10 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private List<Ray> groundCheck;
     [SerializeField] private LayerMask wallsLayerMask;
 
-    [Space(), Header("Action restrictions")]
-    [SerializeField] private SongSynchronizer.ThresholdBeatEvents restrictActionOn;
+    [Space(), Header("Action restrictions")] [SerializeField]
+    private SongSynchronizer.ThresholdBeatEvents restrictActionOn;
 
-    [Space(), Header("Events")]
-    public UnityEvent OnJump;
+    [Space(), Header("Events")] public UnityEvent OnJump;
     public UnityEvent OnDash;
 
     private BoxCollider2D _boxCollider;
@@ -107,6 +107,8 @@ public class CharacterController2D : MonoBehaviour
     private bool _groundBuffer;
     private float _dashBuffer;
     private readonly Collider2D[] _hitsBuffer = new Collider2D[16];
+    private LevelManager _levelManager;
+    private Vector3 _initialPosition = Vector3.zero;
 
     private ScoreState _scoreState = new ScoreState(score: SongSynchronizer.EventScore.Ok);
 
@@ -124,28 +126,31 @@ public class CharacterController2D : MonoBehaviour
     private void Awake()
     {
         _boxCollider = GetComponent<BoxCollider2D>();
-        _synchronizer = FindObjectOfType<SongSynchronizer>();
+        _synchronizer = Utils.FindObjectOfTypeOrThrow<SongSynchronizer>();
         _dashTime = dashDuration;
         _dashing = false;
         _rigidbody = GetComponent<Rigidbody2D>();
         _input = new PlayerInput();
-        if (!_synchronizer)
-        {
-            throw new Exception(
-                "Could not get SongSynchronizer. Make sure you are using the `SongSynchronizer` " +
-                "prefab in your scene and it is enabled.");
-        }
+        _levelManager = Utils.FindObjectOfTypeOrThrow<LevelManager>();
+    }
+
+    private void Start()
+    {
+        _initialPosition = transform.position;
     }
 
     private void OnEnable()
     {
         _input?.Enable();
+        _levelManager?.OnLevelReset.AddListener(OnLevelReset);
         AddThresholdedBeatEvents();
     }
+
 
     private void OnDisable()
     {
         _input?.Disable();
+        _levelManager?.OnLevelReset.RemoveListener(OnLevelReset);
         RemoveThresholdedBeatEvents();
     }
 
@@ -160,7 +165,8 @@ public class CharacterController2D : MonoBehaviour
         else if (moveInput.x > 0)
         {
             _direction = 1;
-        } else
+        }
+        else
         {
             _direction = 0;
         }
@@ -174,12 +180,14 @@ public class CharacterController2D : MonoBehaviour
 
     private void SurfaceDetection()
     {
-        if (leftWallCheck.Any(ray => null != Physics2D.Raycast(ray.start.position, ray.direction, surfaceRayLength, wallsLayerMask).collider))
+        if (leftWallCheck.Any(ray =>
+            null != Physics2D.Raycast(ray.start.position, ray.direction, surfaceRayLength, wallsLayerMask).collider))
         {
             _wall = 1;
             _flags.CanDash = true;
         }
-        else if (rightWallCheck.Any(ray => null != Physics2D.Raycast(ray.start.position, ray.direction, surfaceRayLength, wallsLayerMask).collider))
+        else if (rightWallCheck.Any(ray =>
+            null != Physics2D.Raycast(ray.start.position, ray.direction, surfaceRayLength, wallsLayerMask).collider))
         {
             _wall = -1;
             _flags.CanDash = true;
@@ -188,11 +196,14 @@ public class CharacterController2D : MonoBehaviour
         {
             _wall = 0;
         }
-        if (groundCheck.Any(ray => null != Physics2D.Raycast(ray.start.position, ray.direction, surfaceRayLength, wallsLayerMask).collider))
+
+        if (groundCheck.Any(ray =>
+            null != Physics2D.Raycast(ray.start.position, ray.direction, surfaceRayLength, wallsLayerMask).collider))
         {
             _groundBuffer = true;
             _flags.CanDash = true;
-        } else
+        }
+        else
         {
             _groundBuffer = false;
         }
@@ -205,10 +216,13 @@ public class CharacterController2D : MonoBehaviour
             if (_input.Player.Jump.triggered || _input.Player.Dash.triggered)
             {
                 var action = _input.Player.Jump.triggered ? PlayerActions.Jump : PlayerActions.Dash;
-                OnActionPerformed(this, new OnActionEventArgs() {Move = action, Score = SongSynchronizer.EventScore.Failed});
+                OnActionPerformed(this,
+                    new OnActionEventArgs() {Move = action, Score = SongSynchronizer.EventScore.Failed});
             }
+
             return;
         }
+
         if (_input.Player.Jump.triggered)
         {
             _flags.ActionAvailable = false;
@@ -218,6 +232,7 @@ public class CharacterController2D : MonoBehaviour
                 {
                     _flags.CanDash = false;
                 }
+
                 Jump();
             }
         }
@@ -227,12 +242,14 @@ public class CharacterController2D : MonoBehaviour
             if (Mathf.Abs(moveInput.x) > 0)
             {
                 Dash(moveInput);
-            } else
+            }
+            else
             {
                 _dashBuffer = dashBuffer;
             }
         }
     }
+
     private void ResolveDash()
     {
         if (_dashing)
@@ -242,7 +259,8 @@ public class CharacterController2D : MonoBehaviour
                 _dashTime = dashDuration;
                 _velocity = Vector2.zero;
                 _dashing = false;
-            } else
+            }
+            else
             {
                 _dashTime -= Time.deltaTime;
             }
@@ -259,6 +277,7 @@ public class CharacterController2D : MonoBehaviour
                 Dash(moveInput);
                 return;
             }
+
             _dashBuffer -= Time.deltaTime;
         }
     }
@@ -316,6 +335,7 @@ public class CharacterController2D : MonoBehaviour
             _grounded = false;
             _wallRiding = false;
         }
+
         for (var i = 0; i < count; i++)
         {
             // Ignore our own collider.
@@ -351,9 +371,11 @@ public class CharacterController2D : MonoBehaviour
                     {
                         _velocity.y *= (1 + Mathf.Abs(_velocity.x) * horizontalSpeedTransfer);
                     }
+
                     _velocity.x = 0;
                     _wallRiding = true;
-                } else
+                }
+                else
                 {
                     _wallRiding = false;
                 }
@@ -384,6 +406,11 @@ public class CharacterController2D : MonoBehaviour
     }
 
     public event Action<CharacterController2D, OnActionEventArgs> ActionPerformed;
+
+    private void OnLevelReset()
+    {
+        transform.position = _initialPosition;
+    }
 
     #endregion
 
@@ -444,12 +471,13 @@ public class CharacterController2D : MonoBehaviour
     {
         OnActionPerformed(this, new OnActionEventArgs() {Move = PlayerActions.Jump, Score = _scoreState.Score});
         // Calculate the velocity required to achieve the target jump height.
-        
+
         _velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
         if (_wall != 0 && !_grounded)
         {
             _velocity.x = _wall * wallJumpSpeed;
         }
+
         _grounded = false;
         OnJump?.Invoke();
     }

@@ -57,7 +57,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""id"": ""618146dd-3f6e-44c4-bdd2-26b20f03665b"",
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""NormalizeVector2"",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
@@ -68,7 +68,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""id"": ""7b7d8eee-69c4-4456-9535-d41344cf6824"",
                     ""path"": ""<Joystick>/stick"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""NormalizeVector2"",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
@@ -196,6 +196,44 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Global"",
+            ""id"": ""3857bbd1-bc19-4bb6-9b21-b8efb92056c6"",
+            ""actions"": [
+                {
+                    ""name"": ""Reset"",
+                    ""type"": ""Button"",
+                    ""id"": ""508054bf-1e25-44d6-b22c-05b45a4f353a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""102731d8-6198-4e6f-9a19-585eb9d5a016"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""96308357-e01d-4310-98cb-8b34e11a5fe9"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -229,6 +267,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_Menu = m_Player.FindAction("Menu", throwIfNotFound: true);
+        // Global
+        m_Global = asset.FindActionMap("Global", throwIfNotFound: true);
+        m_Global_Reset = m_Global.FindAction("Reset", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -331,6 +372,39 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // Global
+    private readonly InputActionMap m_Global;
+    private IGlobalActions m_GlobalActionsCallbackInterface;
+    private readonly InputAction m_Global_Reset;
+    public struct GlobalActions
+    {
+        private @PlayerInput m_Wrapper;
+        public GlobalActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Reset => m_Wrapper.m_Global_Reset;
+        public InputActionMap Get() { return m_Wrapper.m_Global; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GlobalActions set) { return set.Get(); }
+        public void SetCallbacks(IGlobalActions instance)
+        {
+            if (m_Wrapper.m_GlobalActionsCallbackInterface != null)
+            {
+                @Reset.started -= m_Wrapper.m_GlobalActionsCallbackInterface.OnReset;
+                @Reset.performed -= m_Wrapper.m_GlobalActionsCallbackInterface.OnReset;
+                @Reset.canceled -= m_Wrapper.m_GlobalActionsCallbackInterface.OnReset;
+            }
+            m_Wrapper.m_GlobalActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Reset.started += instance.OnReset;
+                @Reset.performed += instance.OnReset;
+                @Reset.canceled += instance.OnReset;
+            }
+        }
+    }
+    public GlobalActions @Global => new GlobalActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -355,5 +429,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
+    }
+    public interface IGlobalActions
+    {
+        void OnReset(InputAction.CallbackContext context);
     }
 }

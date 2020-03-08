@@ -67,8 +67,24 @@ public class SongSynchronizer : MonoBehaviour
     private int _tick;
     private int _measure;
     private int _quarters;
-
+    private LevelManager _levelManager;
+    
     [SerializeField] private bool runInBackground = true;
+
+    private void Awake()
+    {
+        _levelManager = Utils.FindObjectOfTypeOrThrow<LevelManager>();
+    }
+
+    private void OnEnable()
+    {
+        _levelManager?.OnLevelReset.AddListener(ResetSong);
+    }
+
+    private void OnDisable()
+    {
+        _levelManager?.OnLevelReset.RemoveListener(ResetSong);
+    }
 
     void Start()
     {
@@ -104,6 +120,25 @@ public class SongSynchronizer : MonoBehaviour
         else if (_tick - _songPosInTicks <= 0)
         {
             _ticked = false;
+        }
+    }
+
+    public void ResetSong()
+    {
+        _startTick = AudioSettings.dspTime;
+        _tick = 0;
+        _measure = 0;
+        _quarters = 0;
+        _ticked = false;
+        if (_song.Stems.All != null)
+        {
+            Sources.Melody.timeSamples = 0;
+        }
+        else
+        {
+            Sources.Bass.timeSamples = 0;
+            Sources.Melody.timeSamples = 0;
+            Sources.Drums.timeSamples = 0;
         }
     }
 

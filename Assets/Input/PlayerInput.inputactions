@@ -44,7 +44,7 @@
                     "id": "618146dd-3f6e-44c4-bdd2-26b20f03665b",
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "NormalizeVector2",
                     "groups": "Gamepad",
                     "action": "Move",
                     "isComposite": false,
@@ -55,7 +55,7 @@
                     "id": "7b7d8eee-69c4-4456-9535-d41344cf6824",
                     "path": "<Joystick>/stick",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "NormalizeVector2",
                     "groups": "Gamepad",
                     "action": "Move",
                     "isComposite": false,
@@ -179,6 +179,44 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Global",
+            "id": "3857bbd1-bc19-4bb6-9b21-b8efb92056c6",
+            "actions": [
+                {
+                    "name": "Reset",
+                    "type": "Button",
+                    "id": "508054bf-1e25-44d6-b22c-05b45a4f353a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "102731d8-6198-4e6f-9a19-585eb9d5a016",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Reset",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "96308357-e01d-4310-98cb-8b34e11a5fe9",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Reset",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
