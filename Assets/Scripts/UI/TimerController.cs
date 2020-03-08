@@ -39,6 +39,6 @@ public class TimerController : MonoBehaviour
     private void Update()
     {
         _timeElapsed += Time.deltaTime;
-        _UITimer.SetText("Time : " + _timeElapsed.ToString("0.000"));
+        _UITimer.SetText($"Time : {_timeElapsed:0.000}");
     }
 }
