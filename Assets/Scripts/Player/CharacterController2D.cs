@@ -296,19 +296,25 @@ public class CharacterController2D : MonoBehaviour
 
         var acceleration = _grounded || _wallRiding ? walkAcceleration : airAcceleration;
         var deceleration = _grounded ? groundDeceleration : 0;
-        
-        if (Mathf.Abs(moveInput) > 0)
+
+        if (_grounded && moveInput != 0)
         {
             if (!_leaves.isEmitting)
             {
                 _leaves.Play();    
             }
-            
-            _velocity.x = Mathf.MoveTowards(_velocity.x, speed * moveInput, acceleration * Time.deltaTime);
         }
         else
         {
             _leaves.Stop();
+        }
+
+        if (Mathf.Abs(moveInput) > 0)
+        {
+            _velocity.x = Mathf.MoveTowards(_velocity.x, speed * moveInput, acceleration * Time.deltaTime);
+        }
+        else
+        {
             _velocity.x = Mathf.MoveTowards(_velocity.x, 0, deceleration * Time.deltaTime);
         }
 

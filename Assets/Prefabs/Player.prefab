@@ -442,13 +442,13 @@ ParticleSystem:
         m_RotationOrder: 4
     startColor:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       minColor: {r: 1, g: 1, b: 1, a: 1}
       maxColor: {r: 0.2509804, g: 0.88235295, b: 0.16862746, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 1, b: 1, a: 1}
+        key0: {r: 0, g: 0.54901963, b: 0, a: 1}
+        key1: {r: 0.58431375, g: 0.83137256, b: 0, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -476,8 +476,8 @@ ParticleSystem:
         m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 1, b: 1, a: 1}
+        key0: {r: 0.26666668, g: 0.38431373, b: 0, a: 1}
+        key1: {r: 0.38431373, g: 0.56078434, b: 0, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -5241,7 +5241,6 @@ MonoBehaviour:
   horizontalSpeedTransfer: 0.03
   dashDuration: 0.15
   dashSpeed: 30
-  dashAcceleration: 500
   drawDebugRays: 1
   surfaceRayLength: 0.35
   wallDeceleration: 0.93
