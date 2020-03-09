@@ -114,7 +114,7 @@ public class CharacterController2D : MonoBehaviour
     private ScoreState _scoreState = new ScoreState(score: SongSynchronizer.EventScore.Ok);
     [SerializeField] private ParticleSystem _trailPS;
     [SerializeField] private ParticleSystem _dustPS;
-    [SerializeField] private ParticleSystem _leavesPS;
+    [SerializeField] private ParticleSystem _leaves;
 
     #endregion
 
@@ -287,14 +287,6 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    public IEnumerator DestroyPrefab(ParticleSystem PS, float timeToWait)
-    {
-        Debug.Log(timeToWait);
-        yield return new WaitForSeconds(timeToWait);
-        Debug.Log("test");
-        Destroy(PS);
-    }
-
     private void HandleMovement(float moveInput)
     {
         if (_wallRiding && !_grounded && _velocity.y < 0)
@@ -307,10 +299,16 @@ public class CharacterController2D : MonoBehaviour
         
         if (Mathf.Abs(moveInput) > 0)
         {
+            if (!_leaves.isEmitting)
+            {
+                _leaves.Play();    
+            }
+            
             _velocity.x = Mathf.MoveTowards(_velocity.x, speed * moveInput, acceleration * Time.deltaTime);
         }
         else
         {
+            _leaves.Stop();
             _velocity.x = Mathf.MoveTowards(_velocity.x, 0, deceleration * Time.deltaTime);
         }
 
@@ -493,8 +491,6 @@ public class CharacterController2D : MonoBehaviour
 
         _grounded = false;
         OnJump?.Invoke();
-        /*_dustPS.Play();*/
-        _leavesPS.Play();
     }
 
     private void Dash(Vector2 moveInput)
