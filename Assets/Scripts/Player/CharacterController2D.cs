@@ -111,7 +111,8 @@ public class CharacterController2D : MonoBehaviour
     private Vector3 _initialPosition = Vector3.zero;
 
     private ScoreState _scoreState = new ScoreState(score: SongSynchronizer.EventScore.Ok);
-    private ParticleSystem _trailPS;
+    [SerializeField] private ParticleSystem _trailPS;
+    [SerializeField] private ParticleSystem _dustPS;
 
     #endregion
 
@@ -482,6 +483,7 @@ public class CharacterController2D : MonoBehaviour
 
         _grounded = false;
         OnJump?.Invoke();
+        _dustPS.Play();
     }
 
     private void Dash(Vector2 moveInput)
