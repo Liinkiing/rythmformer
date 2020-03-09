@@ -144,7 +144,6 @@ public class CharacterController2D : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _input = new PlayerInput();
         _levelManager = Utils.FindObjectOfTypeOrThrow<LevelManager>();
-        _trailPS = GetComponent<ParticleSystem>();
     }
 
     private void Start()
@@ -295,46 +294,6 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    private void HandleFootstepVFX(FootstepFX selectedFootstepVfx)
-    {
-        if (selectedFootstepVfx == FootstepFX.Leaves && !_leaves.isEmitting)
-        {
-            ParticleSystem.EmissionModule leavesPsEmission = _leaves.emission;
-            ParticleSystem.ShapeModule leavesPsShape = _leaves.shape;
-            ParticleSystem.MainModule main = _leaves.main;
-                
-            float absoluteVelocity = Mathf.Abs(_velocity.x);
-             
-            // Change leaves amount depending on player velocity
-            leavesPsEmission.rateOverTime =  absoluteVelocity < speed ? 10 : absoluteVelocity.Remap(speed, 24, 10, 20);
-                
-            // Change leaves rotation emitter depending on player velocity
-            float leavesPsComputedRotationY = absoluteVelocity < speed ? 0 : absoluteVelocity.Remap(speed, 24, 0, 70); 
-            leavesPsShape.rotation = new Vector3(0f, leavesPsComputedRotationY * Mathf.Sign(_velocity.x), 0f);
-
-            // Change leaves speed depending on player velocity
-            main.startSpeed = absoluteVelocity < speed ? 0 : absoluteVelocity.Remap(speed, 24, 3, 6);
-
-            _leaves.Play();    
-        } else if (selectedFootstepVfx == FootstepFX.Dust && !_dustPS.isEmitting)
-        {
-            /*ParticleSystem.EmissionModule dustPsEmission = _dustPS.emission;
-            ParticleSystem.ShapeModule dustPsShape = _dustPS.shape;
-            ParticleSystem.MainModule main = _dustPS.main;
-                
-            float absoluteVelocity = Mathf.Abs(_velocity.x);
-            
-            dustPsEmission.rateOverTime =  absoluteVelocity < speed ? 10 : absoluteVelocity.Remap(speed, 24, 10, 20);
-            
-            float dustPsComputedRotationY = absoluteVelocity < speed ? 0 : absoluteVelocity.Remap(speed, 24, 0, 70); 
-            dustPsShape.rotation = new Vector3(0f, dustPsComputedRotationY * Mathf.Sign(_velocity.x), 0f);
-            
-            main.startSpeed = absoluteVelocity < speed ? 0 : absoluteVelocity.Remap(speed, 24, 3, 6);*/
-
-            _dustPS.Play();    
-        }
-    }
-
     private void HandleMovement(float moveInput)
     {
         if (_wallRiding && !_grounded && _velocity.y < 0)
@@ -349,7 +308,7 @@ public class CharacterController2D : MonoBehaviour
         // Footstep VFX
         if (_grounded && moveInput != 0)
         {
-            HandleFootstepVFX(selectedFootstepFx);
+            HandleFootstepVfx(selectedFootstepFx);
         }
         else
         {
@@ -575,4 +534,36 @@ public class CharacterController2D : MonoBehaviour
     {
         ActionPerformed?.Invoke(sender, action);
     }
+    
+    #region VFX
+    private void HandleFootstepVfx(FootstepFX selectedFootstepVfx)
+    {
+        if (selectedFootstepVfx == FootstepFX.Leaves && !_leaves.isEmitting)
+        {
+            ParticleSystem.EmissionModule leavesPsEmission = _leaves.emission;
+            ParticleSystem.ShapeModule leavesPsShape = _leaves.shape;
+            ParticleSystem.MainModule main = _leaves.main;
+                    
+            float absoluteVelocity = Mathf.Abs(_velocity.x);
+                 
+            // Change leaves amount depending on player velocity
+            leavesPsEmission.rateOverTime =  absoluteVelocity < speed ? 10 : absoluteVelocity.Remap(speed, 24, 10, 20);
+                    
+            // Change leaves rotation emitter depending on player velocity
+            float leavesPsComputedRotationY = absoluteVelocity < speed ? 0 : absoluteVelocity.Remap(speed, 24, 0, 70); 
+            leavesPsShape.rotation = new Vector3(0f, leavesPsComputedRotationY * Mathf.Sign(_velocity.x), 0f);
+    
+            // Change leaves speed depending on player velocity
+            main.startSpeed = absoluteVelocity < speed ? 0 : absoluteVelocity.Remap(speed, 24, 3, 6);
+    
+            _leaves.Play();    
+        } else if (selectedFootstepVfx == FootstepFX.Dust && !_dustPS.isEmitting)
+        {
+            ParticleSystem.ShapeModule dustPsShape = _dustPS.shape;
+            dustPsShape.rotation = new Vector3(0f,  Mathf.Sign(_velocity.x) * -70, 0f);
+                
+            _dustPS.Play();    
+        }
+    }
+    #endregion
 }
