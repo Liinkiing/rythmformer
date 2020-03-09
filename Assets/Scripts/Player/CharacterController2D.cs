@@ -41,8 +41,6 @@ public class CharacterController2D : MonoBehaviour
     }
 
     #region Fields
-    
-    [SerializeField] private ParticleSystem TrailPS;
 
     [Header("Movements"), SerializeField, Tooltip("Max speed, in units per second, that the character moves.")]
     private float speed = 9;
@@ -113,6 +111,7 @@ public class CharacterController2D : MonoBehaviour
     private Vector3 _initialPosition = Vector3.zero;
 
     private ScoreState _scoreState = new ScoreState(score: SongSynchronizer.EventScore.Ok);
+    private ParticleSystem _trailPS;
 
     #endregion
 
@@ -134,6 +133,7 @@ public class CharacterController2D : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _input = new PlayerInput();
         _levelManager = Utils.FindObjectOfTypeOrThrow<LevelManager>();
+        _trailPS = GetComponent<ParticleSystem>();
     }
 
     private void Start()
@@ -395,6 +395,11 @@ public class CharacterController2D : MonoBehaviour
                 }
             }
         }
+
+        Color yellow = new Color(243,210,99, Mathf.Abs(_velocity.x) > speed ? 1 : 0);
+        ParticleSystem.MainModule trailPSmain = _trailPS.main;
+    
+        trailPSmain.startColor = yellow;
     }
 
     #endregion
