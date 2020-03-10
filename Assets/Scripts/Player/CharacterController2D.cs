@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Rythmformer;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -111,6 +113,16 @@ public class CharacterController2D : MonoBehaviour
     private Vector3 _initialPosition = Vector3.zero;
 
     private ScoreState _scoreState = new ScoreState(score: SongSynchronizer.EventScore.Ok);
+    [SerializeField] private ParticleSystem _trailPS;
+    [SerializeField] private ParticleSystem _dustPS;
+    [SerializeField] private ParticleSystem _leaves;
+    public enum FootstepFX
+    {
+        Dust,
+        Leaves
+    }
+
+    public FootstepFX selectedFootstepFx;
 
     #endregion
 
@@ -292,6 +304,18 @@ public class CharacterController2D : MonoBehaviour
         var acceleration = _grounded || _wallRiding ? walkAcceleration : airAcceleration;
         var deceleration = _grounded ? groundDeceleration : 0;
 
+        //TODO: Move VFX to a dedicated script
+        // Footstep VFX
+        if (_grounded && moveInput != 0)
+        {
+            HandleFootstepVfx(selectedFootstepFx);
+        }
+        else
+        {
+            _leaves.Stop();
+            _dustPS.Stop();
+        }
+
         if (Mathf.Abs(moveInput) > 0)
         {
             _velocity.x = Mathf.MoveTowards(_velocity.x, speed * moveInput, acceleration * Time.deltaTime);
@@ -398,7 +422,7 @@ public class CharacterController2D : MonoBehaviour
     #endregion
 
     #region Events
-
+    
     public struct OnActionEventArgs
     {
         public SongSynchronizer.EventScore Score;
@@ -451,6 +475,9 @@ public class CharacterController2D : MonoBehaviour
 
     private void OnTresholdedAction(SongSynchronizer sender, SongSynchronizer.EventState state)
     {
+        // We stop ParticleSystem to reset the emitting one with new properties
+        _leaves.Stop();
+        _dustPS.Stop();
         switch (state)
         {
             case SongSynchronizer.EventState.Start:
@@ -471,7 +498,6 @@ public class CharacterController2D : MonoBehaviour
     {
         OnActionPerformed(this, new OnActionEventArgs() {Move = PlayerActions.Jump, Score = _scoreState.Score});
         // Calculate the velocity required to achieve the target jump height.
-
         _velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
         if (_wall != 0 && !_grounded)
         {
@@ -489,6 +515,7 @@ public class CharacterController2D : MonoBehaviour
         _dashing = true;
         _velocity.x = Mathf.MoveTowards(_velocity.x, dashSpeed * _direction, dashAcceleration);
         _flags.CanDash = false;
+        _trailPS.Play();
     }
 
     #endregion
@@ -507,4 +534,36 @@ public class CharacterController2D : MonoBehaviour
     {
         ActionPerformed?.Invoke(sender, action);
     }
+    
+    #region VFX
+    private void HandleFootstepVfx(FootstepFX selectedFootstepVfx)
+    {
+        if (selectedFootstepVfx == FootstepFX.Leaves && !_leaves.isEmitting)
+        {
+            ParticleSystem.EmissionModule leavesPsEmission = _leaves.emission;
+            ParticleSystem.ShapeModule leavesPsShape = _leaves.shape;
+            ParticleSystem.MainModule main = _leaves.main;
+                    
+            float absoluteVelocity = Mathf.Abs(_velocity.x);
+                 
+            // Change leaves amount depending on player velocity
+            leavesPsEmission.rateOverTime =  absoluteVelocity < speed ? 10 : absoluteVelocity.Remap(speed, 24, 10, 20);
+                    
+            // Change leaves rotation emitter depending on player velocity
+            float leavesPsComputedRotationY = absoluteVelocity < speed ? 0 : absoluteVelocity.Remap(speed, 24, 0, 70); 
+            leavesPsShape.rotation = new Vector3(0f, leavesPsComputedRotationY * Mathf.Sign(_velocity.x), 0f);
+    
+            // Change leaves speed depending on player velocity
+            main.startSpeed = absoluteVelocity < speed ? 0 : absoluteVelocity.Remap(speed, 24, 3, 6);
+    
+            _leaves.Play();    
+        } else if (selectedFootstepVfx == FootstepFX.Dust && !_dustPS.isEmitting)
+        {
+            ParticleSystem.ShapeModule dustPsShape = _dustPS.shape;
+            dustPsShape.rotation = new Vector3(0f,  Mathf.Sign(_velocity.x) * -70, 0f);
+                
+            _dustPS.Play();    
+        }
+    }
+    #endregion
 }
