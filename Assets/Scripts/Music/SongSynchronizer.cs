@@ -47,7 +47,7 @@ public class SongSynchronizer : MonoBehaviour
         public AudioSource Melody;
     }
 
-    [Space, SerializeField] private Song _song;
+    [Space, SerializeField] public Song song;
 
     [Space, Header("Audio sources")] [SerializeField]
     public AudioSources Sources;
@@ -89,19 +89,19 @@ public class SongSynchronizer : MonoBehaviour
     void Start()
     {
         _startTick = AudioSettings.dspTime + delay;
-        _secondsPerTicks = (60 / _song.Informations.bpm) / 4;
+        _secondsPerTicks = (60 / song.Informations.bpm) / 4;
 
-        if (_song.Stems.All != null)
+        if (song.Stems.All != null)
         {
-            Sources.Melody.clip = _song.Stems.All;
+            Sources.Melody.clip = song.Stems.All;
 
             Sources.Melody.PlayScheduled(_startTick);
         }
         else
         {
-            Sources.Bass.clip = _song.Stems.Bass;
-            Sources.Melody.clip = _song.Stems.Melody;
-            Sources.Drums.clip = _song.Stems.Drums;
+            Sources.Bass.clip = song.Stems.Bass;
+            Sources.Melody.clip = song.Stems.Melody;
+            Sources.Drums.clip = song.Stems.Drums;
 
             Sources.Bass.PlayScheduled(_startTick);
             Sources.Melody.PlayScheduled(_startTick);
@@ -130,7 +130,7 @@ public class SongSynchronizer : MonoBehaviour
         _measure = 0;
         _quarters = 0;
         _ticked = false;
-        if (_song.Stems.All != null)
+        if (song.Stems.All != null)
         {
             Sources.Melody.timeSamples = 0;
         }
@@ -166,7 +166,7 @@ public class SongSynchronizer : MonoBehaviour
 
     void DoOnFourthStep()
     {
-        var totalQuarters = _song.Informations.signature.numerator * 4;
+        var totalQuarters = song.Informations.signature.numerator * 4;
         if (_quarters % totalQuarters == 0)
         {
             _quarters = 0;
@@ -250,7 +250,7 @@ public class SongSynchronizer : MonoBehaviour
 
         if (playMetronome)
         {
-            MusicManager.instance.Sources.SFX.pitch = ((_tick - 1) / 4) % _song.Informations.signature.numerator == 0 ? 2 : 1;
+            MusicManager.instance.Sources.SFX.pitch = ((_tick - 1) / 4) % song.Informations.signature.numerator == 0 ? 2 : 1;
             MusicManager.instance.Sources.SFX.PlayOneShot(metronome);
         }
 
@@ -269,12 +269,12 @@ public class SongSynchronizer : MonoBehaviour
             OnFirstAndThirdStep(this);
         }
 
-        if (_measure == (_song.Informations.signature.numerator / 2) + 1)
+        if (_measure == (song.Informations.signature.numerator / 2) + 1)
         {
             OnHalfBeat(this);
         }
 
-        if (_measure % _song.Informations.signature.numerator == 0)
+        if (_measure % song.Informations.signature.numerator == 0)
         {
             _measure = 1;
         }

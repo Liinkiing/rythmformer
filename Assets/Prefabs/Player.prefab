@@ -5442,6 +5442,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3733018713391002118}
   - component: {fileID: 8427388044176235170}
+  - component: {fileID: 3454661663670146362}
   m_Layer: 8
   m_Name: Art
   m_TagString: Untagged
@@ -5513,6 +5514,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3454661663670146362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5145372190482029009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 311592108e35f43ae8a6d7488509cd88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pulseEffectMaterial: {fileID: 2100000, guid: 24e4307b20de6b945a6c5b5438d574b5,
+    type: 2}
 --- !u!1 &5607986270570177213
 GameObject:
   m_ObjectHideFlags: 0
