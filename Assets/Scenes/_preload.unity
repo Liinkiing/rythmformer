@@ -172,6 +172,76 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -343343927089040311, guid: fa17d9e286a0d4c6db85df4acc12f900,
+        type: 3}
+      propertyPath: Levels.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -343343927089040311, guid: fa17d9e286a0d4c6db85df4acc12f900,
+        type: 3}
+      propertyPath: Levels.Array.data[0].Scene
+      value: Prototype Omar
+      objectReference: {fileID: 0}
+    - target: {fileID: -343343927089040311, guid: fa17d9e286a0d4c6db85df4acc12f900,
+        type: 3}
+      propertyPath: Levels.Array.data[1].Scene
+      value: Prototype Robin
+      objectReference: {fileID: 0}
+    - target: {fileID: -343343927089040311, guid: fa17d9e286a0d4c6db85df4acc12f900,
+        type: 3}
+      propertyPath: Levels.Array.data[1].World
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -343343927089040311, guid: fa17d9e286a0d4c6db85df4acc12f900,
+        type: 3}
+      propertyPath: Levels.Array.data[1].Level
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -343343927089040311, guid: fa17d9e286a0d4c6db85df4acc12f900,
+        type: 3}
+      propertyPath: Levels.Array.data[2].World
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -343343927089040311, guid: fa17d9e286a0d4c6db85df4acc12f900,
+        type: 3}
+      propertyPath: Levels.Array.data[2].Level
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -343343927089040311, guid: fa17d9e286a0d4c6db85df4acc12f900,
+        type: 3}
+      propertyPath: Levels.Array.data[2].Scene
+      value: Prototype Robin
+      objectReference: {fileID: 0}
+    - target: {fileID: -343343927089040311, guid: fa17d9e286a0d4c6db85df4acc12f900,
+        type: 3}
+      propertyPath: Levels.Array.data[3].World
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -343343927089040311, guid: fa17d9e286a0d4c6db85df4acc12f900,
+        type: 3}
+      propertyPath: Levels.Array.data[3].Level
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -343343927089040311, guid: fa17d9e286a0d4c6db85df4acc12f900,
+        type: 3}
+      propertyPath: Levels.Array.data[3].Scene
+      value: Prototype Robin
+      objectReference: {fileID: 0}
+    - target: {fileID: -343343927089040311, guid: fa17d9e286a0d4c6db85df4acc12f900,
+        type: 3}
+      propertyPath: Levels.Array.data[4].World
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -343343927089040311, guid: fa17d9e286a0d4c6db85df4acc12f900,
+        type: 3}
+      propertyPath: Levels.Array.data[4].Level
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -343343927089040311, guid: fa17d9e286a0d4c6db85df4acc12f900,
+        type: 3}
+      propertyPath: Levels.Array.data[4].Scene
+      value: Prototype Omar
+      objectReference: {fileID: 0}
     - target: {fileID: 4369307536219692084, guid: fa17d9e286a0d4c6db85df4acc12f900,
         type: 3}
       propertyPath: m_LocalPosition.x

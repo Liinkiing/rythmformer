@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using NaughtyAttributes;
 using Rythmformer;
@@ -98,6 +100,24 @@ public class GameManager : MonoSingleton<GameManager>
 
     #endregion
 
+    #region Public Structures
+
+    [Serializable]
+    public struct LevelData
+    {
+        public World World;
+        public Level Level;
+        [Scene] public string Scene;
+    }
+
+    #endregion
+    
+    #region Public Fields
+
+    [Space, Header("General")]
+    public List<LevelData> Levels;
+
+    #endregion
     public override void Init()
     {
         Debug.Log("[INIT] GameManager");

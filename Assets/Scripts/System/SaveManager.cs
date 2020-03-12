@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using NaughtyAttributes;
@@ -10,13 +11,17 @@ using UnityEngine;
 
 public class SaveManager : MonoSingleton<SaveManager>
 {
+    public event Action<SaveData> GameLoaded;
+    public event Action<SaveData> GameSaved;
+
     [SerializeField] private string filename = "save.dat";
     private string _path;
     private SaveData _save;
 
     public SaveData Data
     {
-        get {
+        get
+        {
             if (_save == null)
             {
                 Load();
@@ -47,6 +52,7 @@ public class SaveManager : MonoSingleton<SaveManager>
         {
             bf.Serialize(file, json);
             Debug.Log("Saved game data to : " + _path);
+            GameSaved?.Invoke(_save);
         }
         catch (SerializationException e)
         {
@@ -75,7 +81,7 @@ public class SaveManager : MonoSingleton<SaveManager>
             if (file.Length == 0)
             {
                 file.Close();
-                _save = new SaveData();
+                _save = CreateSaveData();
                 Save();
             }
             else
@@ -84,6 +90,7 @@ public class SaveManager : MonoSingleton<SaveManager>
             }
 
             Debug.Log($"Successfully loaded savefile ({_path})");
+            GameLoaded?.Invoke(_save);
         }
         finally
         {
@@ -104,6 +111,18 @@ public class SaveManager : MonoSingleton<SaveManager>
         }
 
         _save = new SaveData();
+    }
+
+    private SaveData CreateSaveData()
+    {
+        var save = new SaveData {LevelProgression = new Dictionary<World, Dictionary<Level, bool>>()};
+        foreach (var entry in GameManager.instance.Levels.GroupBy(levelData => levelData.World)
+            .ToDictionary(p => p.Key, p => p.ToDictionary(data => data.Level, data => false)))
+        {
+            save.LevelProgression.Add(entry.Key, entry.Value);
+        }
+
+        return save;
     }
 
 #if UNITY_EDITOR
