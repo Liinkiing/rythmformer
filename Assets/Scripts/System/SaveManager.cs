@@ -14,16 +14,27 @@ public class SaveManager : MonoSingleton<SaveManager>
     private string _path;
     private SaveData _save;
 
-    public SaveData Data => _save;
+    public SaveData Data
+    {
+        get {
+            if (_save == null)
+            {
+                Load();
+            }
+
+            return _save;
+        }
+    }
 
     public override void Init()
     {
         _path = $"{Application.persistentDataPath}/{filename}";
-        Debug.Log(_path);
+        Load();
     }
 
     public void Save()
     {
+        _path = $"{Application.persistentDataPath}/{filename}";
         if (!File.Exists(_path))
         {
             File.WriteAllText(_path, "");
@@ -50,6 +61,7 @@ public class SaveManager : MonoSingleton<SaveManager>
 
     public void Load()
     {
+        _path = $"{Application.persistentDataPath}/{filename}";
         if (!File.Exists(_path))
         {
             Debug.LogWarning("No savefile found. Creating a new one");
