@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,16 +8,30 @@ public class ParallaxBackground : MonoBehaviour
 {
     public ParallaxCamera parallaxCamera;
     List<ParallaxLayer> parallaxLayers = new List<ParallaxLayer>();
-  
-    void Start()
+
+    private void Awake()
     {
         if (parallaxCamera == null)
-            parallaxCamera = Camera.main.GetComponent<ParallaxCamera>();
-        if (parallaxCamera != null)
-            parallaxCamera.onCameraTranslate += Move;
+            parallaxCamera = Camera.main.GetComponent<ParallaxCamera>();   
+    }
+
+    void Start()
+    {
         SetLayers();
     }
-  
+
+    private void OnEnable()
+    {
+        if (parallaxCamera != null)
+            parallaxCamera.onCameraTranslate += Move;
+    }
+
+    private void OnDisable()
+    {
+        if (parallaxCamera != null)
+            parallaxCamera.onCameraTranslate -= Move;
+    }
+
     void SetLayers()
     {
         parallaxLayers.Clear();
