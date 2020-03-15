@@ -3,8 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class LoadingSceneIntegration
 {
-#if UNITY_EDITOR
     public static int otherScene = -2;
+#if UNITY_EDITOR
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void InitLoadingScene()
