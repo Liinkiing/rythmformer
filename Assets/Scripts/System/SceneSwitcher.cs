@@ -7,10 +7,15 @@ using UnityEngine.SceneManagement;
 
 public class SceneSwitcher : MonoBehaviour
 {
-    [SerializeField, Scene] private string loadScene;
-
-    private void Start()
+    
+#if UNITY_EDITOR 
+    private void Awake()
     {
-        SceneManager.LoadScene(loadScene);
+
+        if (LoadingSceneIntegration.otherScene > 0)
+        {
+            SceneManager.LoadScene(LoadingSceneIntegration.otherScene);
+        }
     }
+#endif
 }
