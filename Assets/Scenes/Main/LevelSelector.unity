@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -920,11 +920,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d87db04022e6431e996204bea8b0aff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Levels:
-  - sceneAsset: {fileID: 102900000, guid: 2b616a033679b174aabaa3f72c189f00, type: 3}
-    scenePath: Scenes/Omar/Prototype Omar
-  - sceneAsset: {fileID: 102900000, guid: 21731142e41a444e69f7597f1e7a4e24, type: 3}
-    scenePath: Scenes/robin/Prototype Robin
   _ButtonPrefab: {fileID: 4140436637614645671, guid: 994ace1707eb34b8ab734a1881d2c03e,
     type: 3}
   SceneTransition: {fileID: 1036799140}

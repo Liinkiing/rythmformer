@@ -65,7 +65,7 @@ namespace Rythmformer
             }
             else if (m_Instance != this)
             {
-                Debug.LogError("Another instance of " + GetType() + " is already exist! Destroying self...");
+                Debug.LogWarning("Another instance of " + GetType() + " is already exist! Destroying self...");
                 DestroyImmediate(this);
                 return;
             }

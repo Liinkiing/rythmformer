@@ -21,6 +21,11 @@ public class LevelSelector : MonoBehaviour
         SaveManager.instance.GameSaved += OnGameSaved;
     }
 
+    private void OnDisable()
+    {
+        SaveManager.instance.GameSaved -= OnGameSaved;
+    }
+
     private void OnGameSaved(SaveData save)
     {
         RefreshButtons();
@@ -30,6 +35,10 @@ public class LevelSelector : MonoBehaviour
     {
         _ButtonWrapper = GameObject.Find("Content");
         _levelButtons = new List<GameObject>();
+    }
+
+    private void Start()
+    {
         foreach (var levelData in GameManager.instance.Levels)
         {
             var button = CreateButton($"{levelData.World} - {levelData.Level.ToString()}");
