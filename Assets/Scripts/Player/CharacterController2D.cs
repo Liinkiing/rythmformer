@@ -6,10 +6,12 @@ using Rythmformer;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using Random = System.Random;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class CharacterController2D : MonoBehaviour
 {
+
     [Serializable]
     public enum PlayerActions
     {
@@ -68,7 +70,10 @@ public class CharacterController2D : MonoBehaviour
 
     [SerializeField, Range(0, 2f), Tooltip("Horizontal to Vertical speed transformation speed modifier")]
     private float horizontalSpeedTransfer = 0.5f;
-
+    
+    [SerializeField, Range(0.1f, 1f)]
+    private float slopeThreshold = 0.2f;
+    
     [Space(), Header("Dash")] [SerializeField]
     private float dashDuration = 0.15f;
 
@@ -104,7 +109,7 @@ public class CharacterController2D : MonoBehaviour
     [Space(), Header("Variables")]
     [SerializeField] private Transform art;
 
-    private BoxCollider2D _boxCollider;
+    private CapsuleCollider2D _boxCollider;
     private Vector3 _initialLocalScale;
     private float _dashTime;
     private bool _dashing;
@@ -157,7 +162,7 @@ public class CharacterController2D : MonoBehaviour
     {
         _initialLocalScale = art.localScale;
         _artAnimator = art.GetComponent<Animator>();
-        _boxCollider = GetComponent<BoxCollider2D>();
+        _boxCollider = GetComponent<CapsuleCollider2D>();
         _synchronizer = Utils.FindObjectOfTypeOrThrow<SongSynchronizer>();
         _dashTime = dashDuration;
         _dashing = false;
@@ -396,7 +401,9 @@ public class CharacterController2D : MonoBehaviour
         transform.Translate(_velocity * Time.deltaTime);
 
         // Retrieve all colliders we have intersected after velocity has been applied.
-        var count = Physics2D.OverlapBoxNonAlloc(transform.position, _boxCollider.size, 0, _hitsBuffer);
+        var count = Physics2D.OverlapCapsuleNonAlloc(
+                _boxCollider.transform.position, _boxCollider.size, _boxCollider.direction, 0, _hitsBuffer
+            );
 
         var isAirborn = true;
         for (var i = 0; i < count; i++)
@@ -406,10 +413,11 @@ public class CharacterController2D : MonoBehaviour
             isAirborn = false;
                 
             ColliderDistance2D colliderDistance = _hitsBuffer[i].Distance(_boxCollider);
-
+            Debug.Log(_hitsBuffer[i].name);
             // Ensure that we are still overlapping this collider.
             // The overlap may no longer exist due to another intersected collider
             // pushing us out of this one.
+
             if (colliderDistance.isOverlapped)
             {
                 transform.Translate(colliderDistance.pointA - colliderDistance.pointB);
@@ -424,7 +432,8 @@ public class CharacterController2D : MonoBehaviour
                 // If we intersect an object above us, we push down the play. 
                 if (Vector2.Angle(colliderDistance.normal, Vector2.up) == 180 && !_grounded)
                 {
-                    _velocity.y += Physics2D.gravity.y * 10f * Time.deltaTime;
+                    Debug.Log("FRMO TOP");
+                    _velocity.y = 0f;
                 }
 
                 // If we intersect an object in our sides, we are wall riding. 
@@ -441,6 +450,13 @@ public class CharacterController2D : MonoBehaviour
                 else
                 {
                     _wallRiding = false;
+                }
+            }
+            else
+            {
+                if (colliderDistance.distance > 0 && colliderDistance.distance <= slopeThreshold)
+                {
+                    _grounded = false;
                 }
             }
         }
