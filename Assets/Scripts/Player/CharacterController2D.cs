@@ -11,7 +11,6 @@ using Random = System.Random;
 [RequireComponent(typeof(BoxCollider2D))]
 public class CharacterController2D : MonoBehaviour
 {
-
     [Serializable]
     public enum PlayerActions
     {
@@ -70,10 +69,7 @@ public class CharacterController2D : MonoBehaviour
 
     [SerializeField, Range(0, 2f), Tooltip("Horizontal to Vertical speed transformation speed modifier")]
     private float horizontalSpeedTransfer = 0.5f;
-    
-    [SerializeField, Range(0.1f, 1f)]
-    private float slopeThreshold = 0.2f;
-    
+
     [Space(), Header("Dash")] [SerializeField]
     private float dashDuration = 0.15f;
 
@@ -87,11 +83,10 @@ public class CharacterController2D : MonoBehaviour
 
     [SerializeField, Range(0, 1f), Tooltip("Deceleration applied when character is wall riding")]
     private float wallDeceleration = 0.8f;
-    
-    [Space(), Header("Speed incrementation")]
-    [SerializeField, Tooltip("Number of times maximum speed can increase")]
+
+    [Space(), Header("Speed incrementation")] [SerializeField, Tooltip("Number of times maximum speed can increase")]
     private int numberOfSteps = 1;
-    
+
     [SerializeField, Tooltip("Maximum additional speed to gain by performing rythm actions")]
     private float maxAdditionalSpeed = 5;
 
@@ -106,8 +101,8 @@ public class CharacterController2D : MonoBehaviour
     [Space(), Header("Events")] public UnityEvent OnJump;
     public UnityEvent OnDash;
 
-    [Space(), Header("Variables")]
-    [SerializeField] private Transform art;
+    [Space(), Header("Variables")] [SerializeField]
+    private Transform art;
 
     private CapsuleCollider2D _boxCollider;
     private Vector3 _initialLocalScale;
@@ -131,11 +126,12 @@ public class CharacterController2D : MonoBehaviour
     private LevelManager _levelManager;
     private Vector3 _initialPosition = Vector3.zero;
     private Animator _artAnimator;
-    
+
     private ScoreState _scoreState = new ScoreState(score: SongSynchronizer.EventScore.Ok);
     [SerializeField] private ParticleSystem _trailPS;
     [SerializeField] private ParticleSystem _dustPS;
     [SerializeField] private ParticleSystem _leaves;
+
     public enum FootstepFX
     {
         Dust,
@@ -243,8 +239,8 @@ public class CharacterController2D : MonoBehaviour
         desiredScale.x *= -1;
         if (desiredScale != art.transform.localScale)
         {
-            
         }
+
         if (!_isFlipped)
         {
             _isFlipped = true;
@@ -292,17 +288,17 @@ public class CharacterController2D : MonoBehaviour
             if (_input.Player.Jump.triggered || _input.Player.Dash.triggered)
             {
                 var action = _input.Player.Jump.triggered ? PlayerActions.Jump : PlayerActions.Dash;
-                OnActionPerformed(this, new OnActionEventArgs() {Move = action, Score = SongSynchronizer.EventScore.Failed});
+                OnActionPerformed(this,
+                    new OnActionEventArgs() {Move = action, Score = SongSynchronizer.EventScore.Failed});
                 _additionalSpeed -= numberOfSteps / 2;
                 if (_additionalSpeed < 0) _additionalSpeed = 0;
             }
 
             return;
         }
-        
+
         if (_input.Player.Jump.triggered)
         {
-            Debug.Log("JUMP TRIGGERED");
             _flags.ActionAvailable = false;
             if (_groundBuffer || _wall != 0 || !_groundBuffer && _wall == 0 && _flags.CanJump)
             {
@@ -322,12 +318,14 @@ public class CharacterController2D : MonoBehaviour
             {
                 Dash(moveInput);
                 if (_additionalSpeed < numberOfSteps) _additionalSpeed++;
-            } else
+            }
+            else
             {
                 _dashBuffer = dashBuffer;
             }
         }
     }
+
     private void ResolveDash(float moveInput)
     {
         if (_dashing)
@@ -386,7 +384,9 @@ public class CharacterController2D : MonoBehaviour
 
         if (Mathf.Abs(moveInput) > 0)
         {
-            _velocity.x = Mathf.MoveTowards(_velocity.x, (speed + _additionalSpeed * maxAdditionalSpeed / numberOfSteps) * moveInput, acceleration * Time.deltaTime);
+            _velocity.x = Mathf.MoveTowards(_velocity.x,
+                (speed + _additionalSpeed * maxAdditionalSpeed / numberOfSteps) * moveInput,
+                acceleration * Time.deltaTime);
         }
         else
         {
@@ -402,18 +402,18 @@ public class CharacterController2D : MonoBehaviour
 
         // Retrieve all colliders we have intersected after velocity has been applied.
         var count = Physics2D.OverlapCapsuleNonAlloc(
-                _boxCollider.transform.position, _boxCollider.size, _boxCollider.direction, 0, _hitsBuffer
-            );
-
+            new Vector2(transform.position.x + _boxCollider.offset.x, transform.position.y + _boxCollider.offset.y),
+            _boxCollider.size, _boxCollider.direction, 0, _hitsBuffer
+        );
+        
         var isAirborn = true;
         for (var i = 0; i < count; i++)
         {
             // Ignore our own collider.
             if (_hitsBuffer[i] == _boxCollider || _hitsBuffer[i].isTrigger) continue;
             isAirborn = false;
-                
+
             ColliderDistance2D colliderDistance = _hitsBuffer[i].Distance(_boxCollider);
-            Debug.Log(_hitsBuffer[i].name);
             // Ensure that we are still overlapping this collider.
             // The overlap may no longer exist due to another intersected collider
             // pushing us out of this one.
@@ -432,8 +432,7 @@ public class CharacterController2D : MonoBehaviour
                 // If we intersect an object above us, we push down the play. 
                 if (Vector2.Angle(colliderDistance.normal, Vector2.up) == 180 && !_grounded)
                 {
-                    Debug.Log("FRMO TOP");
-                    _velocity.y = 0f;
+                    _velocity.y += Physics2D.gravity.y * 10f * Time.deltaTime;
                 }
 
                 // If we intersect an object in our sides, we are wall riding. 
@@ -452,20 +451,14 @@ public class CharacterController2D : MonoBehaviour
                     _wallRiding = false;
                 }
             }
-            else
-            {
-                if (colliderDistance.distance > 0 && colliderDistance.distance <= slopeThreshold)
-                {
-                    _grounded = false;
-                }
-            }
         }
+
         if (isAirborn)
         {
             _grounded = false;
             _wallRiding = false;
         }
-        
+
 
         if (drawDebugRays)
         {
@@ -483,7 +476,7 @@ public class CharacterController2D : MonoBehaviour
     #endregion
 
     #region Events
-    
+
     public struct OnActionEventArgs
     {
         public SongSynchronizer.EventScore Score;
@@ -576,7 +569,8 @@ public class CharacterController2D : MonoBehaviour
         OnDash?.Invoke();
         _dashing = true;
         _velocity.y = 0;
-        _velocity.x = Mathf.MoveTowards(_velocity.x, (dashSpeed + _additionalSpeed * maxAdditionalSpeed / numberOfSteps) * moveInput.x, dashAcceleration);
+        _velocity.x = Mathf.MoveTowards(_velocity.x,
+            (dashSpeed + _additionalSpeed * maxAdditionalSpeed / numberOfSteps) * moveInput.x, dashAcceleration);
         _flags.CanDash = false;
         /*_trailPS.Play();*/
     }
@@ -597,8 +591,9 @@ public class CharacterController2D : MonoBehaviour
     {
         ActionPerformed?.Invoke(sender, action);
     }
-    
+
     #region VFX
+
     private void HandleFootstepVfx(FootstepFX selectedFootstepVfx)
     {
         if (selectedFootstepVfx == FootstepFX.Leaves && !_leaves.isEmitting)
@@ -606,27 +601,29 @@ public class CharacterController2D : MonoBehaviour
             ParticleSystem.EmissionModule leavesPsEmission = _leaves.emission;
             ParticleSystem.ShapeModule leavesPsShape = _leaves.shape;
             ParticleSystem.MainModule main = _leaves.main;
-                    
+
             float absoluteVelocity = Mathf.Abs(_velocity.x);
-                 
+
             // Change leaves amount depending on player velocity
-            leavesPsEmission.rateOverTime =  absoluteVelocity < speed ? 10 : absoluteVelocity.Remap(speed, 24, 10, 20);
-                    
+            leavesPsEmission.rateOverTime = absoluteVelocity < speed ? 10 : absoluteVelocity.Remap(speed, 24, 10, 20);
+
             // Change leaves rotation emitter depending on player velocity
-            float leavesPsComputedRotationY = absoluteVelocity < speed ? 0 : absoluteVelocity.Remap(speed, 24, 0, 70); 
+            float leavesPsComputedRotationY = absoluteVelocity < speed ? 0 : absoluteVelocity.Remap(speed, 24, 0, 70);
             leavesPsShape.rotation = new Vector3(0f, leavesPsComputedRotationY * Mathf.Sign(_velocity.x), 0f);
-    
+
             // Change leaves speed depending on player velocity
             main.startSpeed = absoluteVelocity < speed ? 0 : absoluteVelocity.Remap(speed, 24, 3, 6);
-    
-            _leaves.Play();    
-        } else if (selectedFootstepVfx == FootstepFX.Dust && !_dustPS.isEmitting)
+
+            _leaves.Play();
+        }
+        else if (selectedFootstepVfx == FootstepFX.Dust && !_dustPS.isEmitting)
         {
             ParticleSystem.ShapeModule dustPsShape = _dustPS.shape;
-            dustPsShape.rotation = new Vector3(0f,  Mathf.Sign(_velocity.x) * -70, 0f);
-                
-            _dustPS.Play();    
+            dustPsShape.rotation = new Vector3(0f, Mathf.Sign(_velocity.x) * -70, 0f);
+
+            _dustPS.Play();
         }
     }
+
     #endregion
 }
