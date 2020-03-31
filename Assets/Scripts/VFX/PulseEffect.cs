@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class PulseEffect : MonoBehaviour
@@ -17,9 +18,29 @@ public class PulseEffect : MonoBehaviour
         _pulseDuration = 60f / _synchronizer.song.Informations.bpm;
     }
 
-    void FixedUpdate()
+    private void OnEnable()
     {
-        float pulseIntensity = Mathf.Lerp(1, 0, Time.fixedTime % _pulseDuration);
-        _pulseEffectMaterial.SetFloat(TintIntensity, pulseIntensity);
+        _synchronizer.StepThresholded += OnThresholdedAction;
+    }
+
+    private void OnDisable()
+    {
+        _synchronizer.StepThresholded -= OnThresholdedAction;
+    }
+
+    private void OnThresholdedAction(SongSynchronizer sender, SongSynchronizer.EventState state)
+    {
+        if (state == SongSynchronizer.EventState.Start)
+        {
+            Sequence pulseSequence = DOTween.Sequence();
+            pulseSequence.Append(_pulseEffectMaterial.DOFloat(0, TintIntensity, _pulseDuration));
+            pulseSequence.AppendCallback(ResetMaterial);
+            pulseSequence.Play();
+        }
+    }
+    
+    private void ResetMaterial()
+    {
+        _pulseEffectMaterial.SetFloat(TintIntensity, 1f);
     }
 }
