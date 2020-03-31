@@ -101,9 +101,14 @@ public class CharacterController2D : MonoBehaviour
     [Space(), Header("Events")] public UnityEvent OnJump;
     public UnityEvent OnDash;
 
+    [Space(), Header("Variables")]
+    [SerializeField] private Transform art;
+
     private BoxCollider2D _boxCollider;
+    private Vector3 _initialLocalScale;
     private float _dashTime;
     private bool _dashing;
+    private bool _isFlipped;
     private PlayerInput _input;
     private Vector2 _velocity;
     private bool _grounded;
@@ -120,7 +125,8 @@ public class CharacterController2D : MonoBehaviour
     private readonly Collider2D[] _hitsBuffer = new Collider2D[16];
     private LevelManager _levelManager;
     private Vector3 _initialPosition = Vector3.zero;
-
+    private Animator _artAnimator;
+    
     private ScoreState _scoreState = new ScoreState(score: SongSynchronizer.EventScore.Ok);
     [SerializeField] private ParticleSystem _trailPS;
     [SerializeField] private ParticleSystem _dustPS;
@@ -132,6 +138,8 @@ public class CharacterController2D : MonoBehaviour
     }
 
     public FootstepFX selectedFootstepFx;
+    private static readonly int JumpAnimatorTrigger = Animator.StringToHash("Jump");
+    private static readonly int GroundedAnimatorTrigger = Animator.StringToHash("Grounded");
 
     #endregion
 
@@ -146,6 +154,8 @@ public class CharacterController2D : MonoBehaviour
 
     private void Awake()
     {
+        _initialLocalScale = art.localScale;
+        _artAnimator = art.GetComponent<Animator>();
         _boxCollider = GetComponent<BoxCollider2D>();
         _synchronizer = Utils.FindObjectOfTypeOrThrow<SongSynchronizer>();
         _dashTime = dashDuration;
@@ -192,11 +202,40 @@ public class CharacterController2D : MonoBehaviour
             _direction = 0;
         }
 
+        UpdateScale(moveInput.x);
         SurfaceDetection();
         HandleMovement(moveInput.x);
         HandleRythmAction(moveInput);
         ResolveDash(moveInput.x);
         ResolveTimeBuffers(moveInput);
+    }
+
+    private void UpdateScale(float direction)
+    {
+        if (direction > 0 && _isFlipped)
+        {
+            _isFlipped = false;
+            art.localScale = _initialLocalScale;
+        }
+        else if (direction < 0 && !_isFlipped)
+        {
+            _isFlipped = true;
+            art.localScale = new Vector3(art.localScale.x * -1, art.localScale.y, art.localScale.z);
+        }
+    }
+
+    private void Flip()
+    {
+        var desiredScale = art.transform.localScale;
+        desiredScale.x *= -1;
+        if (desiredScale != art.transform.localScale)
+        {
+            
+        }
+        if (!_isFlipped)
+        {
+            _isFlipped = true;
+        }
     }
 
     private void SurfaceDetection()
@@ -250,6 +289,7 @@ public class CharacterController2D : MonoBehaviour
         
         if (_input.Player.Jump.triggered)
         {
+            Debug.Log("JUMP TRIGGERED");
             _flags.ActionAvailable = false;
             if (_groundBuffer || _wall != 0 || !_groundBuffer && _wall == 0 && _flags.CanJump)
             {
@@ -401,6 +441,8 @@ public class CharacterController2D : MonoBehaviour
             _grounded = false;
             _wallRiding = false;
         }
+        
+        _artAnimator.SetBool(GroundedAnimatorTrigger, _grounded);
 
         if (drawDebugRays)
         {
@@ -492,6 +534,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void Jump()
     {
+        _artAnimator.SetTrigger(JumpAnimatorTrigger);
         OnActionPerformed(this, new OnActionEventArgs() {Move = PlayerActions.Jump, Score = _scoreState.Score});
         // Calculate the velocity required to achieve the target jump height.
         _velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
