@@ -512,7 +512,7 @@ public class CharacterController2D : MonoBehaviour
         _velocity.y = 0;
         _velocity.x = Mathf.MoveTowards(_velocity.x, (dashSpeed + _additionalSpeed * maxAdditionalSpeed / numberOfSteps) * moveInput.x, dashAcceleration);
         _flags.CanDash = false;
-        _trailPS.Play();
+        /*_trailPS.Play();*/
     }
 
     #endregion
