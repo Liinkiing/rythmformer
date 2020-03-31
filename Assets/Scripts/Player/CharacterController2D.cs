@@ -21,6 +21,7 @@ public class CharacterController2D : MonoBehaviour
     private struct PlayerFlags
     {
         public bool CanDash;
+        public bool CanJump;
         public bool ActionAvailable;
     }
 
@@ -205,12 +206,14 @@ public class CharacterController2D : MonoBehaviour
         {
             _wall = 1;
             _flags.CanDash = true;
+            _flags.CanJump = true;
         }
         else if (rightWallCheck.Any(ray =>
             null != Physics2D.Raycast(ray.start.position, ray.direction, surfaceRayLength, wallsLayerMask).collider))
         {
             _wall = -1;
             _flags.CanDash = true;
+            _flags.CanJump = true;
         }
         else
         {
@@ -222,6 +225,7 @@ public class CharacterController2D : MonoBehaviour
         {
             _groundBuffer = true;
             _flags.CanDash = true;
+            _flags.CanJump = true;
         }
         else
         {
@@ -247,11 +251,11 @@ public class CharacterController2D : MonoBehaviour
         if (_input.Player.Jump.triggered)
         {
             _flags.ActionAvailable = false;
-            if (_groundBuffer || _wall != 0 || !_groundBuffer && _wall == 0 && _flags.CanDash)
+            if (_groundBuffer || _wall != 0 || !_groundBuffer && _wall == 0 && _flags.CanJump)
             {
-                if (!_groundBuffer && _wall == 0 && _flags.CanDash)
+                if (!_groundBuffer && _wall == 0 && _flags.CanJump)
                 {
-                    _flags.CanDash = false;
+                    _flags.CanJump = false;
                 }
 
                 Jump();
@@ -339,26 +343,6 @@ public class CharacterController2D : MonoBehaviour
         if (!_dashing && !_grounded)
         {
             _velocity.y += Physics2D.gravity.y * 1.5f * Time.deltaTime;
-        }
-
-        var raycastGround = Physics2D.Raycast(_rigidbody.position, -Vector2.up, _boxCollider.size.y, wallsLayerMask);
-
-        var slopeAngle = Vector2.Angle(raycastGround.normal, Vector2.up);
-
-        if (raycastGround)
-        {
-            // We handle sticky physics for slope smaller than 45 deg 
-            if (slopeAngle < 45)
-            {
-                _upVect = raycastGround.normal;
-            }
-        }
-
-        // Sticky physic is only use if the player is grounded and not on flat ground
-        // because it cause grounded check issue otherwise
-        if (_grounded && !_dashing && slopeAngle > 0)
-        {
-            _velocity = Vector3.Cross(_upVect, Vector3.forward) * (moveInput * speed);
         }
 
         transform.Translate(_velocity * Time.deltaTime);
@@ -525,7 +509,8 @@ public class CharacterController2D : MonoBehaviour
         OnActionPerformed(this, new OnActionEventArgs() {Move = PlayerActions.Dash, Score = _scoreState.Score});
         OnDash?.Invoke();
         _dashing = true;
-        _velocity.x = Mathf.MoveTowards(_velocity.x, dashSpeed * _direction, dashAcceleration);
+        _velocity.y = 0;
+        _velocity.x = Mathf.MoveTowards(_velocity.x, (dashSpeed + _additionalSpeed * maxAdditionalSpeed / numberOfSteps) * moveInput.x, dashAcceleration);
         _flags.CanDash = false;
         _trailPS.Play();
     }

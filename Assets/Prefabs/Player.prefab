@@ -5236,12 +5236,12 @@ MonoBehaviour:
   walkAcceleration: 260
   airAcceleration: 100
   groundDeceleration: 120
-  jumpHeight: 4
+  jumpHeight: 6
   wallJumpSpeed: 12
   dashBuffer: 0.15
   horizontalSpeedTransfer: 0.03
   dashDuration: 0.15
-  dashSpeed: 30
+  dashSpeed: 40
   dashAcceleration: 500
   drawDebugRays: 1
   surfaceRayLength: 0.35
