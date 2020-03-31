@@ -21,6 +21,7 @@ public class CharacterController2D : MonoBehaviour
     private struct PlayerFlags
     {
         public bool CanDash;
+        public bool CanJump;
         public bool ActionAvailable;
     }
 
@@ -81,6 +82,13 @@ public class CharacterController2D : MonoBehaviour
 
     [SerializeField, Range(0, 1f), Tooltip("Deceleration applied when character is wall riding")]
     private float wallDeceleration = 0.8f;
+    
+    [Space(), Header("Speed incrementation")]
+    [SerializeField, Tooltip("Number of times maximum speed can increase")]
+    private int numberOfSteps = 1;
+    
+    [SerializeField, Tooltip("Maximum additional speed to gain by performing rythm actions")]
+    private float maxAdditionalSpeed = 5;
 
     [SerializeField] private List<Ray> leftWallCheck;
     [SerializeField] private List<Ray> rightWallCheck;
@@ -108,6 +116,7 @@ public class CharacterController2D : MonoBehaviour
     private int _wall;
     private bool _groundBuffer;
     private float _dashBuffer;
+    private int _additionalSpeed;
     private readonly Collider2D[] _hitsBuffer = new Collider2D[16];
     private LevelManager _levelManager;
     private Vector3 _initialPosition = Vector3.zero;
@@ -186,7 +195,7 @@ public class CharacterController2D : MonoBehaviour
         SurfaceDetection();
         HandleMovement(moveInput.x);
         HandleRythmAction(moveInput);
-        ResolveDash();
+        ResolveDash(moveInput.x);
         ResolveTimeBuffers(moveInput);
     }
 
@@ -197,12 +206,14 @@ public class CharacterController2D : MonoBehaviour
         {
             _wall = 1;
             _flags.CanDash = true;
+            _flags.CanJump = true;
         }
         else if (rightWallCheck.Any(ray =>
             null != Physics2D.Raycast(ray.start.position, ray.direction, surfaceRayLength, wallsLayerMask).collider))
         {
             _wall = -1;
             _flags.CanDash = true;
+            _flags.CanJump = true;
         }
         else
         {
@@ -214,6 +225,7 @@ public class CharacterController2D : MonoBehaviour
         {
             _groundBuffer = true;
             _flags.CanDash = true;
+            _flags.CanJump = true;
         }
         else
         {
@@ -228,24 +240,26 @@ public class CharacterController2D : MonoBehaviour
             if (_input.Player.Jump.triggered || _input.Player.Dash.triggered)
             {
                 var action = _input.Player.Jump.triggered ? PlayerActions.Jump : PlayerActions.Dash;
-                OnActionPerformed(this,
-                    new OnActionEventArgs() {Move = action, Score = SongSynchronizer.EventScore.Failed});
+                OnActionPerformed(this, new OnActionEventArgs() {Move = action, Score = SongSynchronizer.EventScore.Failed});
+                _additionalSpeed -= numberOfSteps / 2;
+                if (_additionalSpeed < 0) _additionalSpeed = 0;
             }
 
             return;
         }
-
+        
         if (_input.Player.Jump.triggered)
         {
             _flags.ActionAvailable = false;
-            if (_groundBuffer || _wall != 0 || !_groundBuffer && _wall == 0 && _flags.CanDash)
+            if (_groundBuffer || _wall != 0 || !_groundBuffer && _wall == 0 && _flags.CanJump)
             {
-                if (!_groundBuffer && _wall == 0 && _flags.CanDash)
+                if (!_groundBuffer && _wall == 0 && _flags.CanJump)
                 {
-                    _flags.CanDash = false;
+                    _flags.CanJump = false;
                 }
 
                 Jump();
+                if (_additionalSpeed < numberOfSteps) _additionalSpeed++;
             }
         }
         else if (_input.Player.Dash.triggered && _flags.CanDash)
@@ -254,22 +268,22 @@ public class CharacterController2D : MonoBehaviour
             if (Mathf.Abs(moveInput.x) > 0)
             {
                 Dash(moveInput);
-            }
-            else
+                if (_additionalSpeed < numberOfSteps) _additionalSpeed++;
+            } else
             {
                 _dashBuffer = dashBuffer;
             }
         }
     }
-
-    private void ResolveDash()
+    private void ResolveDash(float moveInput)
     {
         if (_dashing)
         {
             if (_dashTime <= 0)
             {
                 _dashTime = dashDuration;
-                _velocity = Vector2.zero;
+                _velocity.y = 0;
+                _velocity.x = (speed + _additionalSpeed * maxAdditionalSpeed / numberOfSteps) * moveInput;
                 _dashing = false;
             }
             else
@@ -287,6 +301,7 @@ public class CharacterController2D : MonoBehaviour
             {
                 _dashBuffer = 0;
                 Dash(moveInput);
+                if (_additionalSpeed < numberOfSteps) _additionalSpeed++;
                 return;
             }
 
@@ -318,7 +333,7 @@ public class CharacterController2D : MonoBehaviour
 
         if (Mathf.Abs(moveInput) > 0)
         {
-            _velocity.x = Mathf.MoveTowards(_velocity.x, speed * moveInput, acceleration * Time.deltaTime);
+            _velocity.x = Mathf.MoveTowards(_velocity.x, (speed + _additionalSpeed * maxAdditionalSpeed / numberOfSteps) * moveInput, acceleration * Time.deltaTime);
         }
         else
         {
@@ -327,45 +342,21 @@ public class CharacterController2D : MonoBehaviour
 
         if (!_dashing && !_grounded)
         {
-            _velocity.y += Physics2D.gravity.y * Time.deltaTime;
-        }
-
-        var raycastGround = Physics2D.Raycast(_rigidbody.position, -Vector2.up, _boxCollider.size.y, wallsLayerMask);
-
-        var slopeAngle = Vector2.Angle(raycastGround.normal, Vector2.up);
-
-        if (raycastGround)
-        {
-            // We handle sticky physics for slope smaller than 45 deg 
-            if (slopeAngle < 45)
-            {
-                _upVect = raycastGround.normal;
-            }
-        }
-
-        // Sticky physic is only use if the player is grounded and not on flat ground
-        // because it cause grounded check issue otherwise
-        if (_grounded && !_dashing && slopeAngle > 0)
-        {
-            _velocity = Vector3.Cross(_upVect, Vector3.forward) * (moveInput * speed);
+            _velocity.y += Physics2D.gravity.y * 1.5f * Time.deltaTime;
         }
 
         transform.Translate(_velocity * Time.deltaTime);
 
         // Retrieve all colliders we have intersected after velocity has been applied.
         var count = Physics2D.OverlapBoxNonAlloc(transform.position, _boxCollider.size, 0, _hitsBuffer);
-        if (count == 1)
-        {
-            _grounded = false;
-            _wallRiding = false;
-        }
 
+        var isAirborn = true;
         for (var i = 0; i < count; i++)
         {
             // Ignore our own collider.
-            if (_hitsBuffer[i] == _boxCollider || _hitsBuffer[i].isTrigger)
-                continue;
-
+            if (_hitsBuffer[i] == _boxCollider || _hitsBuffer[i].isTrigger) continue;
+            isAirborn = false;
+                
             ColliderDistance2D colliderDistance = _hitsBuffer[i].Distance(_boxCollider);
 
             // Ensure that we are still overlapping this collider.
@@ -404,6 +395,11 @@ public class CharacterController2D : MonoBehaviour
                     _wallRiding = false;
                 }
             }
+        }
+        if (isAirborn)
+        {
+            _grounded = false;
+            _wallRiding = false;
         }
 
         if (drawDebugRays)
@@ -513,9 +509,10 @@ public class CharacterController2D : MonoBehaviour
         OnActionPerformed(this, new OnActionEventArgs() {Move = PlayerActions.Dash, Score = _scoreState.Score});
         OnDash?.Invoke();
         _dashing = true;
-        _velocity.x = Mathf.MoveTowards(_velocity.x, dashSpeed * _direction, dashAcceleration);
+        _velocity.y = 0;
+        _velocity.x = Mathf.MoveTowards(_velocity.x, (dashSpeed + _additionalSpeed * maxAdditionalSpeed / numberOfSteps) * moveInput.x, dashAcceleration);
         _flags.CanDash = false;
-        _trailPS.Play();
+        /*_trailPS.Play();*/
     }
 
     #endregion
