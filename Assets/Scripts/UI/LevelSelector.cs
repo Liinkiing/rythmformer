@@ -1,34 +1,81 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [Serializable]
 public class LevelSelector : MonoBehaviour
 {
-    
     #region Fields
-    [SerializeField] private SceneField[] _Levels;
+
     [SerializeField] private GameObject _ButtonPrefab;
     [SerializeField] private GameObject SceneTransition;
     private GameObject _ButtonWrapper;
+    private List<GameObject> _levelButtons;
 
     #endregion
+
+    private void OnEnable()
+    {
+        SaveManager.instance.GameSaved += OnGameSaved;
+    }
+
+    private void OnDisable()
+    {
+        SaveManager.instance.GameSaved -= OnGameSaved;
+    }
+
+    private void OnGameSaved(SaveData save)
+    {
+        RefreshButtons();
+    }
 
     private void Awake()
     {
         _ButtonWrapper = GameObject.Find("Content");
+        _levelButtons = new List<GameObject>();
+    }
 
-        foreach (var LEVEL in _Levels)
+    private void Start()
+    {
+        foreach (var levelData in GameManager.instance.Levels)
         {
-            GameObject button = Instantiate(_ButtonPrefab, _ButtonWrapper.transform.position, _ButtonWrapper.transform.rotation);
-            button.transform.SetParent(_ButtonWrapper.transform);
-            button.GetComponentInChildren<TextMeshProUGUI>().text = LEVEL.SceneName;
-            button.GetComponent<Button>().onClick.AddListener(delegate{StartCoroutine(SceneTransition.GetComponent<SceneLoader>().LoadLevel(LEVEL.ScenePath));});
+            var button = CreateButton($"{levelData.World} - {levelData.Level.ToString()}");
+            button.GetComponent<LevelButtonData>().FillFromLevelData(levelData);
+            button.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                StartCoroutine(SceneTransition.GetComponent<SceneLoader>().LoadLevel(levelData.Scene));
+            });
+            _levelButtons.Add(button);
+            RefreshButtons();
         }
+    }
+
+    private void OnDestroy()
+    {
+        _levelButtons.Clear();
+    }
+
+    private void RefreshButtons()
+    {
+        foreach (var go in _levelButtons)
+        {
+            var button = go.GetComponent<Button>();
+            var data = button.GetComponent<LevelButtonData>();
+            var hasUnlockedLevel = GameManager.instance.HasUnlockedLevel(data.World, data.Level);
+            button.interactable = hasUnlockedLevel;
+            button.GetComponent<CanvasGroup>().alpha =
+                hasUnlockedLevel ? 1f : 0.4f;
+        }
+    }
+
+    private GameObject CreateButton(string content)
+    {
+        var button = Instantiate(_ButtonPrefab, _ButtonWrapper.transform.position,
+            _ButtonWrapper.transform.rotation);
+        button.transform.SetParent(_ButtonWrapper.transform);
+        button.GetComponentInChildren<TextMeshProUGUI>().text = content;
+        return button;
     }
 }

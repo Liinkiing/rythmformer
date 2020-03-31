@@ -45,6 +45,7 @@ public class SongSynchronizer : MonoBehaviour
         public AudioSource Bass;
         public AudioSource Drums;
         public AudioSource Melody;
+        public AudioSource SFX;
     }
 
     [Space, SerializeField] public Song song;
@@ -250,8 +251,8 @@ public class SongSynchronizer : MonoBehaviour
 
         if (playMetronome)
         {
-            MusicManager.instance.Sources.SFX.pitch = ((_tick - 1) / 4) % song.Informations.signature.numerator == 0 ? 2 : 1;
-            MusicManager.instance.Sources.SFX.PlayOneShot(metronome);
+            Sources.SFX.pitch = ((_tick - 1) / 4) % song.Informations.signature.numerator == 0 ? 2 : 1;
+            Sources.SFX.PlayOneShot(metronome);
         }
 
         if (_measure == 1)
