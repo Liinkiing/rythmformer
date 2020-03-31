@@ -140,6 +140,7 @@ public class CharacterController2D : MonoBehaviour
     public FootstepFX selectedFootstepFx;
     private static readonly int JumpAnimatorTrigger = Animator.StringToHash("Jump");
     private static readonly int GroundedAnimatorTrigger = Animator.StringToHash("Grounded");
+    private static readonly int SpeedMultiplierFloat = Animator.StringToHash("SpeedMultiplier");
 
     #endregion
 
@@ -208,6 +209,13 @@ public class CharacterController2D : MonoBehaviour
         HandleRythmAction(moveInput);
         ResolveDash(moveInput.x);
         ResolveTimeBuffers(moveInput);
+        HandleAnimations();
+    }
+
+    private void HandleAnimations()
+    {
+        _artAnimator.SetBool(GroundedAnimatorTrigger, _grounded);
+        _artAnimator.SetFloat(SpeedMultiplierFloat, _additionalSpeed == 0 ? 1f : 1f + (_additionalSpeed * 0.15f));
     }
 
     private void UpdateScale(float direction)
@@ -442,7 +450,6 @@ public class CharacterController2D : MonoBehaviour
             _wallRiding = false;
         }
         
-        _artAnimator.SetBool(GroundedAnimatorTrigger, _grounded);
 
         if (drawDebugRays)
         {
