@@ -141,6 +141,16 @@ public class CharacterController2D : MonoBehaviour
         Leaves
     }
 
+    public Vector2 Velocity 
+    {
+        get { return _velocity; }
+        set { _velocity = value; }
+    }
+    public BoxCollider2D BoxCollider 
+    {
+        get { return _boxCollider; }
+    }
+
     public FootstepFX selectedFootstepFx;
     private static readonly int JumpAnimatorTrigger = Animator.StringToHash("Jump");
     private static readonly int GroundedAnimatorTrigger = Animator.StringToHash("Grounded");
