@@ -649,7 +649,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 396963491
   m_SortingLayer: 3
-  m_SortingOrder: 12
+  m_SortingOrder: 11
   m_Sprite: {fileID: -6503168793744202299, guid: 0592842f825f347788e935f55de2a25d,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6773,6 +6773,7 @@ GameObject:
   - component: {fileID: 8018688871446336653}
   - component: {fileID: 8018688871446336655}
   - component: {fileID: 8018688871446336654}
+  - component: {fileID: 1709355742}
   m_Layer: 0
   m_Name: Princess
   m_TagString: Untagged
@@ -6808,7 +6809,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8018688871446336755}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -6917,7 +6918,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8018688871446336755}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
@@ -6930,6 +6931,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!70 &1709355742
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8018688871446336755}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.12960911, y: 1.9438753}
+  m_Size: {x: 0.8998127, y: 3.680726}
+  m_Direction: 0
 --- !u!1 &8018688871462401056
 GameObject:
   m_ObjectHideFlags: 0
@@ -16985,7 +17002,7 @@ Transform:
   m_GameObject: {fileID: 8297088918422788643}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.5899999, y: 6.525, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: -1}
   m_Children: []
   m_Father: {fileID: 2071841634445141539}
   m_RootOrder: 9
@@ -17402,7 +17419,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 396963491
   m_SortingLayer: 3
-  m_SortingOrder: 11
+  m_SortingOrder: 12
   m_Sprite: {fileID: 2436619076970749347, guid: 0592842f825f347788e935f55de2a25d,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
