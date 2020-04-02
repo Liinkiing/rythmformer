@@ -13,6 +13,7 @@ public class Trap : MonoBehaviour {
     private Collider2D _hitbox;
     private bool _onTouch = true;
     private bool _onKick = true;
+    private bool _trapRecovery;
     private bool _recovering;
 
     public Collider2D Hitbox
@@ -35,6 +36,11 @@ public class Trap : MonoBehaviour {
         get => _onKick;
         set => _onKick = value;
     }
+    public bool TrapRecovery
+    {
+        get => _trapRecovery;
+        set => _trapRecovery = value;
+    }
 
     void Awake()
     {
@@ -52,12 +58,16 @@ public class Trap : MonoBehaviour {
 
     protected virtual void TrapAction()
     {
-        if (_onTouch && !_onKick) _recovering = true;
+        if (_onTouch && !_onKick && _trapRecovery) _recovering = true;
     }
     protected virtual void UpdateValues()
-    {
-        Debug.Log("no values to update for this trap type");
-    }
+    {}
+    protected virtual void StartHook()
+    {}
+    protected virtual void MidHook()
+    {}
+    protected virtual void EndHook()
+    {}
     
     private void AddThresholdedBeatEvents()
     {
@@ -96,8 +106,15 @@ public class Trap : MonoBehaviour {
     {
         switch (state)
         {
+            case SongSynchronizer.EventState.Start:
+                StartHook();
+                break;
             case SongSynchronizer.EventState.Mid:
+                MidHook();
                 if (!_onTouch && _onKick || _onTouch && _onKick && TrapTouched()) TrapAction();
+                break;
+            case SongSynchronizer.EventState.End:
+                EndHook();
                 break;
         }
     }
