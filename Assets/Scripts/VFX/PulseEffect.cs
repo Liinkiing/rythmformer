@@ -43,4 +43,9 @@ public class PulseEffect : MonoBehaviour
     {
         _pulseEffectMaterial.SetFloat(TintIntensity, 1f);
     }
+
+    private void OnApplicationQuit()
+    {
+        ResetMaterial();
+    }
 }
