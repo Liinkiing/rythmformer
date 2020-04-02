@@ -4,6 +4,7 @@
     "com.unity.2d.psdimporter": "2.1.0",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.2d.tilemap": "1.0.0",
+    "com.unity.2d.tilemap.extras": "https://github.com/Unity-Technologies/2d-extras.git#master",
     "com.unity.cinemachine": "2.5.0",
     "com.unity.collab-proxy": "1.2.16",
     "com.unity.ide.rider": "1.1.4",
@@ -51,6 +52,10 @@
     "com.dbrizov.naughtyattributes": {
       "revision": "upm",
       "hash": "b46e9e8fde10448accd59ecabd09fbe296ef62f7"
+    },
+    "com.unity.2d.tilemap.extras": {
+      "revision": "master",
+      "hash": "e9955e7528762a4ba6cd0471215e2c2135436ebe"
     }
   }
 }
