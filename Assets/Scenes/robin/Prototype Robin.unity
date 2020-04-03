@@ -315,7 +315,7 @@ Transform:
   m_Children:
   - {fileID: 803169013}
   m_Father: {fileID: 602576310}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &200087950
 MonoBehaviour:
@@ -329,8 +329,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed37857a95dc845e7b0c07c70e16ec11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.5
-  enableYParallax: 0
+  _parallaxFactor: 0.5
+  _enableYParallax: 0
 --- !u!1001 &214837109
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -466,7 +466,6 @@ GameObject:
   - component: {fileID: 311520344}
   - component: {fileID: 311520345}
   - component: {fileID: 311520346}
-  - component: {fileID: 311520347}
   m_Layer: 0
   m_Name: Sky
   m_TagString: Untagged
@@ -482,10 +481,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 311520342}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 602576310}
+  m_Father: {fileID: 1319141074}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &311520344
@@ -574,30 +573,16 @@ MonoBehaviour:
     rgba: 4289450749
   _gradientColorTopRed:
     serializedVersion: 2
-    rgba: 4288427007
+    rgba: 4288444670
   _gradientColorBottomRed:
     serializedVersion: 2
-    rgba: 4289845246
+    rgba: 4288541436
   _gradientColorTopBlue:
     serializedVersion: 2
     rgba: 4289211908
   _gradientColorBottomBlue:
     serializedVersion: 2
     rgba: 4293807691
---- !u!114 &311520347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 311520342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed37857a95dc845e7b0c07c70e16ec11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parallaxFactor: 1
-  enableYParallax: 1
 --- !u!4 &373887613 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5420478452534503980, guid: ccd71741a8c28d44aaf284ea15ac9eed,
@@ -823,7 +808,7 @@ Transform:
   - {fileID: 1885082600}
   - {fileID: 554297734}
   m_Father: {fileID: 602576310}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &544395479 stripped
 GameObject:
@@ -1026,7 +1011,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 311520343}
   - {fileID: 1411978300}
   - {fileID: 535449482}
   - {fileID: 200087949}
@@ -10124,7 +10108,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 4.46, y: 6.79, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children: [{fileID: 311520343}]
   m_Father: {fileID: 1990686660}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10386,7 +10370,7 @@ Transform:
   - {fileID: 1020629482}
   - {fileID: 760158987}
   m_Father: {fileID: 602576310}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1432692250
 PrefabInstance:
@@ -14068,7 +14052,7 @@ Transform:
   m_Children:
   - {fileID: 1325240625}
   m_Father: {fileID: 602576310}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1454063009
 MonoBehaviour:
@@ -14082,8 +14066,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed37857a95dc845e7b0c07c70e16ec11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: -0.1
-  enableYParallax: 0
+  _parallaxFactor: -0.2
+  _enableYParallax: 0
 --- !u!1 &1486586178
 GameObject:
   m_ObjectHideFlags: 0

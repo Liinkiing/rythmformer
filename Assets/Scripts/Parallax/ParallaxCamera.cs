@@ -7,21 +7,21 @@ public class ParallaxCamera : MonoBehaviour
 {
     public delegate void ParallaxCameraDelegate(Vector3 deltaMovement);
     public ParallaxCameraDelegate onCameraTranslate;
-    private Vector3 oldPosition;
-    void Start()
+    private Vector3 _oldPosition;
+    void Awake()
     {
-        oldPosition = transform.position;
+        _oldPosition = transform.position;
     }
     void Update()
     {
-        if (transform.position != oldPosition)
+        if (transform.position != _oldPosition)
         {
             if (onCameraTranslate != null)
             {
-                Vector3 delta = oldPosition - transform.position;
+                Vector3 delta = _oldPosition - transform.position;
                 onCameraTranslate(delta);
             }
-            oldPosition = transform.position;
+            _oldPosition = transform.position;
         }
     }
 }
