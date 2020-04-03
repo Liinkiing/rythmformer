@@ -69,6 +69,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - PixelSnap: 0
+    - Tint_intensity: 0.0025718808
     - Tint_intensity: 0.27039427
     - _BumpScale: 1
     - _ColorMask: 15
