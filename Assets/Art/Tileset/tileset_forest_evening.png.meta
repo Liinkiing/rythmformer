@@ -60,6 +60,24 @@ TextureImporter:
       213: 9174259002270851343
     second: tileset_forest_evening_18
   - first:
+      213: -4808763165870403996
+    second: tileset_forest_evening_19
+  - first:
+      213: 8868188987435606419
+    second: tileset_forest_evening_20
+  - first:
+      213: 7904793329543842051
+    second: tileset_forest_evening_21
+  - first:
+      213: -4814858427957806551
+    second: tileset_forest_evening_22
+  - first:
+      213: -1683168819143845327
+    second: tileset_forest_evening_23
+  - first:
+      213: -1081364590424825248
+    second: tileset_forest_evening_24
+  - first:
       213: -8031975124416038466
     second: tileset_forest_evening_0
   - first:
@@ -116,6 +134,24 @@ TextureImporter:
   - first:
       213: 2995750873438609580
     second: tileset_forest_evening_18
+  - first:
+      213: 3420226396616120455
+    second: tileset_forest_evening_19
+  - first:
+      213: 1682331949883409993
+    second: tileset_forest_evening_20
+  - first:
+      213: -3223915719051968525
+    second: tileset_forest_evening_21
+  - first:
+      213: 623759053675327948
+    second: tileset_forest_evening_22
+  - first:
+      213: -7740476677892855757
+    second: tileset_forest_evening_23
+  - first:
+      213: -8077778595469930580
+    second: tileset_forest_evening_24
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -161,7 +197,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 176
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 0
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -200,31 +236,10 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tileset_forest_evening_0
-      rect:
-        serializedVersion: 2
-        x: 176
-        y: 1408
-        width: 176
-        height: 176
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: eb97868fd21b88090800000000000000
-      internalID: -8031975124416038466
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: tileset_forest_evening_1
       rect:
         serializedVersion: 2
-        x: 352
+        x: 0
         y: 1408
         width: 176
         height: 176
@@ -245,7 +260,7 @@ TextureImporter:
       name: tileset_forest_evening_2
       rect:
         serializedVersion: 2
-        x: 530
+        x: 176
         y: 1408
         width: 176
         height: 176
@@ -253,16 +268,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: 69, y: 32}
-        - {x: 88, y: 78}
-        - {x: 74, y: 88}
-        - {x: -88, y: 88}
-        - {x: -88, y: -88}
-        - {x: 66, y: -88}
-        - {x: 67, y: -82}
-        - {x: 64, y: -61}
-        - {x: 67, y: -19}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: c87392fc0a10daeb0800000000000000
@@ -272,11 +278,32 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
+      name: tileset_forest_evening_3
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 1408
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a997fa499d35a450800000000000000
+      internalID: 6099348998940236196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
       name: tileset_forest_evening_4
       rect:
         serializedVersion: 2
-        x: 880
-        y: 1408
+        x: 528
+        y: 1412
         width: 176
         height: 176
       alignment: 0
@@ -296,7 +323,7 @@ TextureImporter:
       name: tileset_forest_evening_5
       rect:
         serializedVersion: 2
-        x: 1056
+        x: 704
         y: 1408
         width: 176
         height: 176
@@ -317,7 +344,7 @@ TextureImporter:
       name: tileset_forest_evening_6
       rect:
         serializedVersion: 2
-        x: 1232
+        x: 880
         y: 1408
         width: 176
         height: 176
@@ -338,8 +365,8 @@ TextureImporter:
       name: tileset_forest_evening_7
       rect:
         serializedVersion: 2
-        x: 176
-        y: 1232
+        x: 1056
+        y: 1408
         width: 176
         height: 176
       alignment: 0
@@ -359,8 +386,8 @@ TextureImporter:
       name: tileset_forest_evening_8
       rect:
         serializedVersion: 2
-        x: 352
-        y: 1232
+        x: 1232
+        y: 1408
         width: 176
         height: 176
       alignment: 0
@@ -380,7 +407,7 @@ TextureImporter:
       name: tileset_forest_evening_9
       rect:
         serializedVersion: 2
-        x: 528
+        x: 0
         y: 1232
         width: 176
         height: 176
@@ -401,7 +428,7 @@ TextureImporter:
       name: tileset_forest_evening_10
       rect:
         serializedVersion: 2
-        x: 880
+        x: 176
         y: 1232
         width: 176
         height: 176
@@ -422,7 +449,7 @@ TextureImporter:
       name: tileset_forest_evening_11
       rect:
         serializedVersion: 2
-        x: 1056
+        x: 352
         y: 1232
         width: 176
         height: 176
@@ -443,7 +470,7 @@ TextureImporter:
       name: tileset_forest_evening_12
       rect:
         serializedVersion: 2
-        x: 1232
+        x: 528
         y: 1232
         width: 176
         height: 176
@@ -464,7 +491,7 @@ TextureImporter:
       name: tileset_forest_evening_13
       rect:
         serializedVersion: 2
-        x: 1408
+        x: 704
         y: 1232
         width: 176
         height: 176
@@ -485,8 +512,8 @@ TextureImporter:
       name: tileset_forest_evening_14
       rect:
         serializedVersion: 2
-        x: 176
-        y: 1056
+        x: 880
+        y: 1232
         width: 176
         height: 176
       alignment: 0
@@ -506,8 +533,8 @@ TextureImporter:
       name: tileset_forest_evening_15
       rect:
         serializedVersion: 2
-        x: 352
-        y: 1056
+        x: 1056
+        y: 1232
         width: 176
         height: 176
       alignment: 0
@@ -527,8 +554,8 @@ TextureImporter:
       name: tileset_forest_evening_16
       rect:
         serializedVersion: 2
-        x: 528
-        y: 1056
+        x: 1228
+        y: 1232
         width: 176
         height: 176
       alignment: 0
@@ -548,8 +575,8 @@ TextureImporter:
       name: tileset_forest_evening_17
       rect:
         serializedVersion: 2
-        x: 880
-        y: 1056
+        x: 1408
+        y: 1232
         width: 176
         height: 176
       alignment: 0
@@ -561,6 +588,132 @@ TextureImporter:
       bones: []
       spriteID: 7100af1750d630780800000000000000
       internalID: -8718004583504674793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_forest_evening_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1056
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca0efd61c8b039920800000000000000
+      internalID: 2995750873438609580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_forest_evening_19
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 1056
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 788d7bd59c5177f20800000000000000
+      internalID: 3420226396616120455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_forest_evening_20
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 1056
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 946471bbef7d85710800000000000000
+      internalID: 1682331949883409993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_forest_evening_21
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 1056
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fffb1c0cb95243d0800000000000000
+      internalID: -3223915719051968525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_forest_evening_22
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 1056
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc170c3fd8908a800800000000000000
+      internalID: 623759053675327948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_forest_evening_23
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 1056
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3382006e87d449490800000000000000
+      internalID: -7740476677892855757
       vertices: []
       indices: 
       edges: []
