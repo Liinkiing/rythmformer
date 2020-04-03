@@ -6,10 +6,15 @@ using UnityEngine;
 public class ParallaxLayer : MonoBehaviour
 {
     public float parallaxFactor;
-    public void Move(float delta)
+    public bool enableYParallax;
+    public void Move(Vector3 delta)
     {
         Vector3 newPos = transform.localPosition;
-        newPos.x -= delta * parallaxFactor;
+        newPos.x -= delta.x * parallaxFactor;
+        if (enableYParallax)
+        {
+            newPos.y -= delta.y * parallaxFactor;
+        }
         transform.localPosition = newPos;
     }
 }

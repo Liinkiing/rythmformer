@@ -7,7 +7,7 @@ public class Scaler : MonoBehaviour
     // Start is called before the first frame update
     public bool KeepAspectRatio;
 
-    void Start()
+    void Awake()
     {
         var topRightCorner = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         var worldSpaceWidth = topRightCorner.x * 2;

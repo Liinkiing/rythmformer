@@ -41,6 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Sky
+    uniqueID: 3494191537
+    locked: 0
   - name: Farground
     uniqueID: 836031795
     locked: 0
