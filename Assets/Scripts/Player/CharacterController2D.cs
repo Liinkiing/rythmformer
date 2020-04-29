@@ -141,6 +141,7 @@ public class CharacterController2D : MonoBehaviour
     public FootstepFX selectedFootstepFx;
     private static readonly int JumpAnimatorTrigger = Animator.StringToHash("Jump");
     private static readonly int GroundedAnimatorTrigger = Animator.StringToHash("Grounded");
+    private static readonly int SpeedFloat = Animator.StringToHash("Speed");
     private static readonly int SpeedMultiplierFloat = Animator.StringToHash("SpeedMultiplier");
 
     #endregion
@@ -190,7 +191,6 @@ public class CharacterController2D : MonoBehaviour
     private void Update()
     {
         Vector2 moveInput = _input.Player.Move.ReadValue<Vector2>();
-
         if (moveInput.x < 0)
         {
             _direction = -1;
@@ -210,11 +210,12 @@ public class CharacterController2D : MonoBehaviour
         HandleRythmAction(moveInput);
         ResolveDash(moveInput.x);
         ResolveTimeBuffers(moveInput);
-        HandleAnimations();
+        HandleAnimations(Mathf.Abs(moveInput.x));
     }
 
-    private void HandleAnimations()
+    private void HandleAnimations(float xSpeed)
     {
+        _artAnimator.SetFloat(SpeedFloat, xSpeed);
         _artAnimator.SetBool(GroundedAnimatorTrigger, _grounded);
         _artAnimator.SetFloat(SpeedMultiplierFloat, _additionalSpeed == 0 ? 1f : 1f + (_additionalSpeed * 0.15f));
     }
@@ -232,21 +233,7 @@ public class CharacterController2D : MonoBehaviour
             art.localScale = new Vector3(art.localScale.x * -1, art.localScale.y, art.localScale.z);
         }
     }
-
-    private void Flip()
-    {
-        var desiredScale = art.transform.localScale;
-        desiredScale.x *= -1;
-        if (desiredScale != art.transform.localScale)
-        {
-        }
-
-        if (!_isFlipped)
-        {
-            _isFlipped = true;
-        }
-    }
-
+    
     private void SurfaceDetection()
     {
         if (leftWallCheck.Any(ray =>
