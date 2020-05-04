@@ -13,6 +13,7 @@ public class ParallaxBackground : MonoBehaviour
     {
         if (parallaxCamera == null)
             parallaxCamera = Camera.main.GetComponent<ParallaxCamera>();   
+        
     }
 
     void Start()
@@ -35,9 +36,11 @@ public class ParallaxBackground : MonoBehaviour
     void SetLayers()
     {
         _parallaxLayers.Clear();
-        for (int i = 0; i < transform.childCount; i++)
+        GameObject[] ParallaxLayers = GameObject.FindGameObjectsWithTag("parallaxLayer");
+
+        for (int i = 0; i < ParallaxLayers.Length; i++)
         {
-            ParallaxLayer layer = transform.GetChild(i).GetComponent<ParallaxLayer>();
+            ParallaxLayer layer = ParallaxLayers[i].GetComponent<ParallaxLayer>();
   
             if (layer != null)
             {

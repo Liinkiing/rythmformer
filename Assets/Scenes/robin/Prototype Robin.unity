@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -294,7 +294,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 200087949}
-  - component: {fileID: 200087950}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -317,20 +316,6 @@ Transform:
   m_Father: {fileID: 602576310}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &200087950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 200087948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed37857a95dc845e7b0c07c70e16ec11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _parallaxFactor: 0.5
-  _enableYParallax: 0
 --- !u!1001 &214837109
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1138,6 +1123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 803169013}
   - component: {fileID: 803169014}
+  - component: {fileID: 803169015}
   m_Layer: 0
   m_Name: smoke
   m_TagString: Untagged
@@ -1209,6 +1195,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &803169015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803169012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed37857a95dc845e7b0c07c70e16ec11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _parallaxFactor: 0.5
+  _enableYParallax: 0
 --- !u!1001 &838030799
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10250,6 +10250,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1325240625}
   - component: {fileID: 1325240626}
+  - component: {fileID: 1325240627}
   m_Layer: 0
   m_Name: smoke
   m_TagString: Untagged
@@ -10321,6 +10322,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1325240627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325240624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed37857a95dc845e7b0c07c70e16ec11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _parallaxFactor: -0.2
+  _enableYParallax: 0
 --- !u!1 &1358835509 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2416703022941799620, guid: 7f205dbd79c2c487aad6da7209b702b2,
@@ -14031,7 +14046,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1454063008}
-  - component: {fileID: 1454063009}
   m_Layer: 0
   m_Name: Foreground
   m_TagString: Untagged
@@ -14054,20 +14068,6 @@ Transform:
   m_Father: {fileID: 602576310}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1454063009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1454063007}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed37857a95dc845e7b0c07c70e16ec11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _parallaxFactor: -0.2
-  _enableYParallax: 0
 --- !u!1 &1486586178
 GameObject:
   m_ObjectHideFlags: 0
