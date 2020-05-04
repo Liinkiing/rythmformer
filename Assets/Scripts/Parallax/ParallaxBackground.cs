@@ -7,12 +7,13 @@ using UnityEngine;
 public class ParallaxBackground : MonoBehaviour
 {
     public ParallaxCamera parallaxCamera;
-    List<ParallaxLayer> parallaxLayers = new List<ParallaxLayer>();
+    private List<ParallaxLayer> _parallaxLayers = new List<ParallaxLayer>();
 
     private void Awake()
     {
         if (parallaxCamera == null)
             parallaxCamera = Camera.main.GetComponent<ParallaxCamera>();   
+        
     }
 
     void Start()
@@ -34,20 +35,22 @@ public class ParallaxBackground : MonoBehaviour
 
     void SetLayers()
     {
-        parallaxLayers.Clear();
-        for (int i = 0; i < transform.childCount; i++)
+        _parallaxLayers.Clear();
+        GameObject[] ParallaxLayers = GameObject.FindGameObjectsWithTag("parallaxLayer");
+
+        for (int i = 0; i < ParallaxLayers.Length; i++)
         {
-            ParallaxLayer layer = transform.GetChild(i).GetComponent<ParallaxLayer>();
+            ParallaxLayer layer = ParallaxLayers[i].GetComponent<ParallaxLayer>();
   
             if (layer != null)
             {
-                parallaxLayers.Add(layer);
+                _parallaxLayers.Add(layer);
             }
         }
     }
-    void Move(float delta)
+    void Move(Vector3 delta)
     {
-        foreach (ParallaxLayer layer in parallaxLayers)
+        foreach (ParallaxLayer layer in _parallaxLayers)
         {
             layer.Move(delta);
         }
