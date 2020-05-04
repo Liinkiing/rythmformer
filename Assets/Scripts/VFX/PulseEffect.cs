@@ -33,7 +33,7 @@ public class PulseEffect : MonoBehaviour
         if (state == SongSynchronizer.EventState.Start)
         {
             Sequence pulseSequence = DOTween.Sequence();
-            pulseSequence.Append(_pulseEffectMaterial.DOFloat(0, TintIntensity, _pulseDuration));
+            pulseSequence.Append(_pulseEffectMaterial.DOFloat(0.5f, TintIntensity, _pulseDuration));
             pulseSequence.AppendCallback(ResetMaterial);
             pulseSequence.Play();
         }
@@ -41,7 +41,7 @@ public class PulseEffect : MonoBehaviour
     
     private void ResetMaterial()
     {
-        _pulseEffectMaterial.SetFloat(TintIntensity, 1f);
+        _pulseEffectMaterial.SetFloat(TintIntensity, 1.5f);
     }
 
     private void OnApplicationQuit()

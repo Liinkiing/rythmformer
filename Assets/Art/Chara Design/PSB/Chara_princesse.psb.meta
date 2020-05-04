@@ -13989,4 +13989,7 @@ ScriptedImporter:
   textureAssetName: Chara_princesse Texture
   prefabAssetName: Chara_princesse Prefab
   spriteLibAssetName: Chara_princesse Sprite Lib
-  secondarySpriteTextures: []
+  secondarySpriteTextures:
+  - name: _Emission
+    texture: {fileID: -7071142832270637832, guid: 8553e957162e74f9f83accf576960d14,
+      type: 3}
