@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5fb881dea25a54acca9068191412c000
+guid: 224362e0a1086b3448626f9c88c4fcad
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -78,6 +78,12 @@ TextureImporter:
       213: -1081364590424825248
     second: tileset_forest_evening_24
   - first:
+      213: -8947944805326831118
+    second: tileset_forest_evening_25
+  - first:
+      213: 569534476669577719
+    second: tileset_forest_evening_26
+  - first:
       213: -8031975124416038466
     second: tileset_forest_evening_0
   - first:
@@ -152,6 +158,456 @@ TextureImporter:
   - first:
       213: -8077778595469930580
     second: tileset_forest_evening_24
+  - first:
+      213: 8291726779755293288
+    second: tileset_forest_evening_25
+  - first:
+      213: -1438132121483165408
+    second: tileset_forest_evening_26
+  - first:
+      213: -8710072982371285395
+    second: tileset_forest_evening_27
+  - first:
+      213: -3658156235656228887
+    second: tileset_forest_evening_28
+  - first:
+      213: -6249586717651394508
+    second: tileset_forest_evening_29
+  - first:
+      213: -3079572423087019595
+    second: tileset_forest_evening_30
+  - first:
+      213: 3701565414341604276
+    second: tileset_forest_evening_31
+  - first:
+      213: -9186639855925805128
+    second: tileset_forest_evening_32
+  - first:
+      213: 1239642375850244664
+    second: tileset_forest_evening_33
+  - first:
+      213: -5453353065712511327
+    second: tileset_forest_evening_34
+  - first:
+      213: 9197102955036065182
+    second: tileset_forest_evening_35
+  - first:
+      213: -3261754653432743354
+    second: tileset_forest_evening_36
+  - first:
+      213: -6665548872510580264
+    second: tileset_forest_evening_37
+  - first:
+      213: 2149808078004224872
+    second: tileset_forest_evening_38
+  - first:
+      213: 7197499050599870089
+    second: tileset_forest_evening_39
+  - first:
+      213: -5351703594666887887
+    second: tileset_forest_evening_40
+  - first:
+      213: -600878046173663541
+    second: tileset_forest_evening_41
+  - first:
+      213: 7629423796315559110
+    second: tileset_forest_evening_42
+  - first:
+      213: -8726463354033233460
+    second: tileset_forest_evening_43
+  - first:
+      213: -7074860927172081936
+    second: tileset_forest_evening_44
+  - first:
+      213: 6284603884879474340
+    second: tileset_forest_evening_45
+  - first:
+      213: -6661432174773896551
+    second: tileset_forest_evening_46
+  - first:
+      213: 1243638725996713943
+    second: tileset_forest_evening_47
+  - first:
+      213: -1914020108186648606
+    second: tileset_forest_evening_48
+  - first:
+      213: 5570258794278020716
+    second: tileset_forest_evening_49
+  - first:
+      213: 3168607360137231453
+    second: tileset_forest_evening_50
+  - first:
+      213: 1986207951718014148
+    second: tileset_forest_evening_51
+  - first:
+      213: -3557346037473952538
+    second: tileset_forest_evening_52
+  - first:
+      213: -2683205282292267569
+    second: tileset_forest_evening_53
+  - first:
+      213: 7379496699368166759
+    second: tileset_forest_evening_54
+  - first:
+      213: 7384931350709565971
+    second: tileset_forest_evening_55
+  - first:
+      213: 4358635784756480145
+    second: tileset_forest_evening_56
+  - first:
+      213: -627201213969993003
+    second: tileset_forest_evening_57
+  - first:
+      213: 5719542381310756269
+    second: tileset_forest_evening_58
+  - first:
+      213: 2469858753752509614
+    second: tileset_forest_evening_59
+  - first:
+      213: -7275908443563042539
+    second: tileset_forest_evening_60
+  - first:
+      213: 4278184488835118563
+    second: tileset_forest_evening_61
+  - first:
+      213: 4731954254976574528
+    second: tileset_forest_evening_62
+  - first:
+      213: -4023228920786838929
+    second: tileset_forest_evening_63
+  - first:
+      213: 7826171308883783163
+    second: tileset_forest_evening_64
+  - first:
+      213: 1635001779715333594
+    second: tileset_forest_evening_65
+  - first:
+      213: 8703584489044530475
+    second: tileset_forest_evening_66
+  - first:
+      213: -7983409736083481519
+    second: tileset_forest_evening_67
+  - first:
+      213: 8511374678511312763
+    second: tileset_forest_evening_68
+  - first:
+      213: 7860730603300745966
+    second: tileset_forest_evening_69
+  - first:
+      213: -4714479462143080487
+    second: tileset_forest_evening_70
+  - first:
+      213: 1964785923004872480
+    second: tileset_forest_evening_71
+  - first:
+      213: 2433909528382280226
+    second: tileset_forest_evening_72
+  - first:
+      213: 4641462918421501687
+    second: tileset_forest_evening_73
+  - first:
+      213: 4397808868391304338
+    second: tileset_forest_evening_74
+  - first:
+      213: 4422332745740553588
+    second: tileset_forest_evening_75
+  - first:
+      213: 3962640992673681831
+    second: tileset_forest_evening_76
+  - first:
+      213: 9012726899547029599
+    second: tileset_forest_evening_77
+  - first:
+      213: 7760028343473093575
+    second: tileset_forest_evening_78
+  - first:
+      213: 6836270847054867070
+    second: tileset_forest_evening_79
+  - first:
+      213: 9032689150832232909
+    second: tileset_forest_evening_80
+  - first:
+      213: 5293487144155231604
+    second: tileset_forest_evening_81
+  - first:
+      213: 4170636017452664261
+    second: tileset_forest_evening_82
+  - first:
+      213: 5090200246789239844
+    second: tileset_forest_evening_83
+  - first:
+      213: -132078898431629726
+    second: tileset_forest_evening_84
+  - first:
+      213: -6134131066245926031
+    second: tileset_forest_evening_85
+  - first:
+      213: 233273649418017298
+    second: tileset_forest_evening_86
+  - first:
+      213: 432389724643555056
+    second: tileset_forest_evening_87
+  - first:
+      213: 8314579005820013555
+    second: tileset_forest_evening_88
+  - first:
+      213: -1249951417600217127
+    second: tileset_forest_evening_89
+  - first:
+      213: -8425720061312350181
+    second: tileset_forest_evening_90
+  - first:
+      213: -1299122836672307014
+    second: tileset_forest_evening_91
+  - first:
+      213: -7806715818618774964
+    second: tileset_forest_evening_92
+  - first:
+      213: 8521057641074475054
+    second: tileset_forest_evening_93
+  - first:
+      213: -6986542798991248318
+    second: tileset_forest_evening_94
+  - first:
+      213: -7157334239535080319
+    second: tileset_forest_evening_95
+  - first:
+      213: 2059886156326555902
+    second: tileset_forest_evening_96
+  - first:
+      213: 7317455792439110748
+    second: tileset_forest_evening_97
+  - first:
+      213: -5957494305946972837
+    second: tileset_forest_evening_98
+  - first:
+      213: 2053447105837167521
+    second: tileset_forest_evening_99
+  - first:
+      213: 8627182319448686214
+    second: tileset_forest_evening_100
+  - first:
+      213: -3534586965362440367
+    second: tileset_forest_evening_101
+  - first:
+      213: 8152450346911679435
+    second: tileset_forest_evening_102
+  - first:
+      213: -2906236497358015034
+    second: tileset_forest_evening_103
+  - first:
+      213: 782653212852850919
+    second: tileset_forest_evening_104
+  - first:
+      213: 2889367356964029497
+    second: tileset_forest_evening_105
+  - first:
+      213: -2976469573044141992
+    second: tileset_forest_evening_106
+  - first:
+      213: 4758593709566558989
+    second: tileset_forest_evening_107
+  - first:
+      213: -8184889622907159068
+    second: tileset_forest_evening_108
+  - first:
+      213: -7412314059337561233
+    second: tileset_forest_evening_109
+  - first:
+      213: 739054233081111361
+    second: tileset_forest_evening_110
+  - first:
+      213: -6153422169619729882
+    second: tileset_forest_evening_111
+  - first:
+      213: -6509610870198926189
+    second: tileset_forest_evening_112
+  - first:
+      213: -8870962629584744084
+    second: tileset_forest_evening_113
+  - first:
+      213: 1110253813780771651
+    second: tileset_forest_evening_114
+  - first:
+      213: -4306389692390753886
+    second: tileset_forest_evening_115
+  - first:
+      213: -7527176227763603210
+    second: tileset_forest_evening_116
+  - first:
+      213: 2716932561159686943
+    second: tileset_forest_evening_117
+  - first:
+      213: 6053461320557614278
+    second: tileset_forest_evening_118
+  - first:
+      213: -1681928931049674460
+    second: tileset_forest_evening_119
+  - first:
+      213: -4562350960387527775
+    second: tileset_forest_evening_120
+  - first:
+      213: -6945954809059440503
+    second: tileset_forest_evening_121
+  - first:
+      213: -3769051334496126919
+    second: tileset_forest_evening_122
+  - first:
+      213: 6870024876370297874
+    second: tileset_forest_evening_123
+  - first:
+      213: 458578855598477559
+    second: tileset_forest_evening_124
+  - first:
+      213: -8515116016972986550
+    second: tileset_forest_evening_125
+  - first:
+      213: -6892816097797867782
+    second: tileset_forest_evening_126
+  - first:
+      213: 6260980614578077525
+    second: tileset_forest_evening_127
+  - first:
+      213: 7434731452148105256
+    second: tileset_forest_evening_128
+  - first:
+      213: -7569377284310211237
+    second: tileset_forest_evening_129
+  - first:
+      213: 1664651921832637596
+    second: tileset_forest_evening_130
+  - first:
+      213: 1851610025229090520
+    second: tileset_forest_evening_131
+  - first:
+      213: 7946081086910422819
+    second: tileset_forest_evening_132
+  - first:
+      213: -1136688756819809282
+    second: tileset_forest_evening_133
+  - first:
+      213: -4832489206628653950
+    second: tileset_forest_evening_134
+  - first:
+      213: -2923909234524989675
+    second: tileset_forest_evening_135
+  - first:
+      213: -4845581526266403633
+    second: tileset_forest_evening_136
+  - first:
+      213: -8759016449160720798
+    second: tileset_forest_evening_137
+  - first:
+      213: 719768018686204434
+    second: tileset_forest_evening_138
+  - first:
+      213: -814083061353563873
+    second: tileset_forest_evening_139
+  - first:
+      213: 997353823047821093
+    second: tileset_forest_evening_140
+  - first:
+      213: 2358339944529434875
+    second: tileset_forest_evening_141
+  - first:
+      213: -5965905945842644246
+    second: tileset_forest_evening_142
+  - first:
+      213: 3450274791249568345
+    second: tileset_forest_evening_143
+  - first:
+      213: -8281030625564496320
+    second: tileset_forest_evening_144
+  - first:
+      213: 3259171267419481734
+    second: tileset_forest_evening_145
+  - first:
+      213: -2082525366173668198
+    second: tileset_forest_evening_146
+  - first:
+      213: 6099916221451304732
+    second: tileset_forest_evening_147
+  - first:
+      213: -3032558881383237772
+    second: tileset_forest_evening_148
+  - first:
+      213: -8493533889416737490
+    second: tileset_forest_evening_149
+  - first:
+      213: -2193641956772023519
+    second: tileset_forest_evening_150
+  - first:
+      213: 7001788027648430753
+    second: tileset_forest_evening_151
+  - first:
+      213: -1268675056571706065
+    second: tileset_forest_evening_152
+  - first:
+      213: -2859657858114523172
+    second: tileset_forest_evening_153
+  - first:
+      213: -4350797095823249752
+    second: tileset_forest_evening_154
+  - first:
+      213: -3164468688592331683
+    second: tileset_forest_evening_155
+  - first:
+      213: -1015402749933407556
+    second: tileset_forest_evening_156
+  - first:
+      213: 2423163064500760148
+    second: tileset_forest_evening_157
+  - first:
+      213: -8338085474608370249
+    second: tileset_forest_evening_158
+  - first:
+      213: -590995196295348436
+    second: tileset_forest_evening_159
+  - first:
+      213: -3811726587073068886
+    second: tileset_forest_evening_160
+  - first:
+      213: -6677204119862839350
+    second: tileset_forest_evening_161
+  - first:
+      213: 1113967914103371457
+    second: tileset_forest_evening_162
+  - first:
+      213: -1770939461146393718
+    second: tileset_forest_evening_163
+  - first:
+      213: -7195275990340157999
+    second: tileset_forest_evening_164
+  - first:
+      213: 2853167594213917392
+    second: tileset_forest_evening_165
+  - first:
+      213: 7922461718787578220
+    second: tileset_forest_evening_166
+  - first:
+      213: 5080860599958625143
+    second: tileset_forest_evening_167
+  - first:
+      213: 3997120406715574968
+    second: tileset_forest_evening_168
+  - first:
+      213: -4772705399290793593
+    second: tileset_forest_evening_169
+  - first:
+      213: -6075069939304865268
+    second: tileset_forest_evening_170
+  - first:
+      213: -2961949659666778688
+    second: tileset_forest_evening_171
+  - first:
+      213: -2161175790509640932
+    second: tileset_forest_evening_172
+  - first:
+      213: -7009881907771019355
+    second: tileset_forest_evening_173
+  - first:
+      213: 1315690069028233758
+    second: tileset_forest_evening_174
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -232,14 +688,47 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tileset_forest_evening_1
+      name: tileset_forest_evening_0
       rect:
         serializedVersion: 2
         x: 0
+        y: 1408
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb97868fd21b88090800000000000000
+      internalID: -8031975124416038466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_forest_evening_1
+      rect:
+        serializedVersion: 2
+        x: 176
         y: 1408
         width: 176
         height: 176
@@ -260,7 +749,7 @@ TextureImporter:
       name: tileset_forest_evening_2
       rect:
         serializedVersion: 2
-        x: 176
+        x: 352
         y: 1408
         width: 176
         height: 176
@@ -281,7 +770,7 @@ TextureImporter:
       name: tileset_forest_evening_3
       rect:
         serializedVersion: 2
-        x: 352
+        x: 528
         y: 1408
         width: 176
         height: 176
@@ -302,8 +791,8 @@ TextureImporter:
       name: tileset_forest_evening_4
       rect:
         serializedVersion: 2
-        x: 528
-        y: 1412
+        x: 704
+        y: 1408
         width: 176
         height: 176
       alignment: 0
@@ -323,7 +812,7 @@ TextureImporter:
       name: tileset_forest_evening_5
       rect:
         serializedVersion: 2
-        x: 704
+        x: 880
         y: 1408
         width: 176
         height: 176
@@ -344,7 +833,7 @@ TextureImporter:
       name: tileset_forest_evening_6
       rect:
         serializedVersion: 2
-        x: 880
+        x: 1056
         y: 1408
         width: 176
         height: 176
@@ -365,7 +854,7 @@ TextureImporter:
       name: tileset_forest_evening_7
       rect:
         serializedVersion: 2
-        x: 1056
+        x: 1232
         y: 1408
         width: 176
         height: 176
@@ -386,8 +875,8 @@ TextureImporter:
       name: tileset_forest_evening_8
       rect:
         serializedVersion: 2
-        x: 1232
-        y: 1408
+        x: 0
+        y: 1232
         width: 176
         height: 176
       alignment: 0
@@ -407,7 +896,7 @@ TextureImporter:
       name: tileset_forest_evening_9
       rect:
         serializedVersion: 2
-        x: 0
+        x: 176
         y: 1232
         width: 176
         height: 176
@@ -428,7 +917,7 @@ TextureImporter:
       name: tileset_forest_evening_10
       rect:
         serializedVersion: 2
-        x: 176
+        x: 352
         y: 1232
         width: 176
         height: 176
@@ -449,7 +938,7 @@ TextureImporter:
       name: tileset_forest_evening_11
       rect:
         serializedVersion: 2
-        x: 352
+        x: 528
         y: 1232
         width: 176
         height: 176
@@ -470,7 +959,7 @@ TextureImporter:
       name: tileset_forest_evening_12
       rect:
         serializedVersion: 2
-        x: 528
+        x: 704
         y: 1232
         width: 176
         height: 176
@@ -491,7 +980,7 @@ TextureImporter:
       name: tileset_forest_evening_13
       rect:
         serializedVersion: 2
-        x: 704
+        x: 880
         y: 1232
         width: 176
         height: 176
@@ -512,7 +1001,7 @@ TextureImporter:
       name: tileset_forest_evening_14
       rect:
         serializedVersion: 2
-        x: 880
+        x: 1056
         y: 1232
         width: 176
         height: 176
@@ -533,7 +1022,7 @@ TextureImporter:
       name: tileset_forest_evening_15
       rect:
         serializedVersion: 2
-        x: 1056
+        x: 1232
         y: 1232
         width: 176
         height: 176
@@ -554,7 +1043,7 @@ TextureImporter:
       name: tileset_forest_evening_16
       rect:
         serializedVersion: 2
-        x: 1228
+        x: 1408
         y: 1232
         width: 176
         height: 176
@@ -575,8 +1064,8 @@ TextureImporter:
       name: tileset_forest_evening_17
       rect:
         serializedVersion: 2
-        x: 1408
-        y: 1232
+        x: 0
+        y: 1056
         width: 176
         height: 176
       alignment: 0
@@ -596,7 +1085,7 @@ TextureImporter:
       name: tileset_forest_evening_18
       rect:
         serializedVersion: 2
-        x: 0
+        x: 176
         y: 1056
         width: 176
         height: 176
@@ -617,7 +1106,7 @@ TextureImporter:
       name: tileset_forest_evening_19
       rect:
         serializedVersion: 2
-        x: 176
+        x: 352
         y: 1056
         width: 176
         height: 176
@@ -638,7 +1127,7 @@ TextureImporter:
       name: tileset_forest_evening_20
       rect:
         serializedVersion: 2
-        x: 352
+        x: 528
         y: 1056
         width: 176
         height: 176
@@ -659,7 +1148,7 @@ TextureImporter:
       name: tileset_forest_evening_21
       rect:
         serializedVersion: 2
-        x: 528
+        x: 704
         y: 1056
         width: 176
         height: 176
@@ -680,7 +1169,7 @@ TextureImporter:
       name: tileset_forest_evening_22
       rect:
         serializedVersion: 2
-        x: 704
+        x: 880
         y: 1056
         width: 176
         height: 176
@@ -698,11 +1187,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_forest_evening_23
+      name: tileset_forest_evening_24
       rect:
         serializedVersion: 2
-        x: 880
-        y: 1056
+        x: 0
+        y: 704
         width: 176
         height: 176
       alignment: 0
@@ -712,8 +1201,176 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3382006e87d449490800000000000000
-      internalID: -7740476677892855757
+      spriteID: cafc2c25a27f5ef80800000000000000
+      internalID: -8077778595469930580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_forest_evening_25
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 704
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86a68e12391221370800000000000000
+      internalID: 8291726779755293288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_forest_evening_26
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 704
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 021caee747aba0ce0800000000000000
+      internalID: -1438132121483165408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_forest_evening_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 528
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d66480e35ca9f1780800000000000000
+      internalID: -8710072982371285395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_forest_evening_28
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 528
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ef84d0194e9b3dc0800000000000000
+      internalID: -3658156235656228887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_forest_evening_29
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 528
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 430a365fdf10549a0800000000000000
+      internalID: -6249586717651394508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_forest_evening_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 352
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b92fcd82392345d0800000000000000
+      internalID: -3079572423087019595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_forest_evening_31
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 352
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b3f3b2f12a9e5330800000000000000
+      internalID: 3701565414341604276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_forest_evening_32
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 352
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bfb81459bf728080800000000000000
+      internalID: -9186639855925805128
       vertices: []
       indices: 
       edges: []
