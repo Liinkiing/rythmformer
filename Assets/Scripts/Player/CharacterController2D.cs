@@ -37,13 +37,6 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    [Serializable]
-    private struct Ray
-    {
-        [SerializeField] public Transform start;
-        [SerializeField] public Vector2 direction;
-    }
-
     #region Fields
 
     [Header("Movements"), SerializeField, Tooltip("Max speed, in units per second, that the character moves.")]
@@ -76,9 +69,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private float dashSpeed = 60f;
     [SerializeField] private float dashAcceleration = 500f;
 
-    [Space(), Header("Wall Riding")] [SerializeField]
-    private bool drawDebugRays = true;
-
+    [Space(), Header("Wall Riding")]
     [SerializeField, Range(0.1f, 3f)] private float surfaceRayLength = 0.6f;
 
     [SerializeField, Range(0, 1f), Tooltip("Deceleration applied when character is wall riding")]
@@ -90,9 +81,6 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField, Tooltip("Maximum additional speed to gain by performing rythm actions")]
     private float maxAdditionalSpeed = 5;
 
-    [SerializeField] private List<Ray> leftWallCheck;
-    [SerializeField] private List<Ray> rightWallCheck;
-    [SerializeField] private List<Ray> groundCheck;
     [SerializeField] private LayerMask wallsLayerMask;
 
     [Space(), Header("Action restrictions")] [SerializeField]
@@ -104,7 +92,7 @@ public class CharacterController2D : MonoBehaviour
     [Space(), Header("Variables")] [SerializeField]
     private Transform art;
 
-    private CapsuleCollider2D _boxCollider;
+    private BoxCollider2D _boxCollider;
     private Vector3 _initialLocalScale;
     private float _dashTime;
     private bool _dashing;
@@ -159,7 +147,7 @@ public class CharacterController2D : MonoBehaviour
     {
         _initialLocalScale = art.localScale;
         _artAnimator = art.GetComponent<Animator>();
-        _boxCollider = GetComponent<CapsuleCollider2D>();
+        _boxCollider = GetComponent<BoxCollider2D>();
         _synchronizer = Utils.FindObjectOfTypeOrThrow<SongSynchronizer>();
         _dashTime = dashDuration;
         _dashing = false;
@@ -206,8 +194,8 @@ public class CharacterController2D : MonoBehaviour
 
         UpdateScale(moveInput.x);
         SurfaceDetection();
-        HandleMovement(moveInput.x);
         HandleRythmAction(moveInput);
+        HandleMovement(moveInput.x);
         ResolveDash(moveInput.x);
         ResolveTimeBuffers(moveInput);
         HandleAnimations(Mathf.Abs(moveInput.x));
@@ -236,27 +224,33 @@ public class CharacterController2D : MonoBehaviour
     
     private void SurfaceDetection()
     {
-        if (leftWallCheck.Any(ray =>
-            null != Physics2D.Raycast(ray.start.position, ray.direction, surfaceRayLength, wallsLayerMask).collider))
-        {
-            _wall = 1;
-            _flags.CanDash = true;
-            _flags.CanJump = true;
-        }
-        else if (rightWallCheck.Any(ray =>
-            null != Physics2D.Raycast(ray.start.position, ray.direction, surfaceRayLength, wallsLayerMask).collider))
-        {
-            _wall = -1;
-            _flags.CanDash = true;
-            _flags.CanJump = true;
-        }
-        else
-        {
-            _wall = 0;
-        }
+        var hits = new RaycastHit2D[10];
+        _boxCollider.Cast(Vector2.down, hits, surfaceRayLength);
 
-        if (groundCheck.Any(ray =>
-            null != Physics2D.Raycast(ray.start.position, ray.direction, surfaceRayLength, wallsLayerMask).collider))
+        _grounded = false;
+        _wallRiding = false;
+        foreach (var hit in hits)
+        {
+            if (hit.distance <= 0)
+            {
+                if (Mathf.Abs(hit.normal.x) > 0)
+                {
+                    _wallRiding = true;
+                }
+                if (hit.normal.y > 0)
+                {
+                    _grounded = true;
+                }
+            }
+        }
+        
+        Vector2 s = _boxCollider.size;
+        Vector2 centerPosition = transform.position;
+
+        var downBufferSize = new Vector2(s.x + 2 * surfaceRayLength, s.y);
+        var downBuffer = Physics2D.BoxCast(centerPosition, downBufferSize, 0, Vector2.down, Mathf.Infinity, wallsLayerMask);
+        
+        if (downBuffer.distance <= surfaceRayLength && downBuffer.normal.y > 0)
         {
             _groundBuffer = true;
             _flags.CanDash = true;
@@ -265,6 +259,27 @@ public class CharacterController2D : MonoBehaviour
         else
         {
             _groundBuffer = false;
+        }
+        
+        var sideBufferSize = new Vector2(s.x, s.y - 2 * surfaceRayLength);
+        var rightBuffer = Physics2D.BoxCast(centerPosition, sideBufferSize, 0, Vector2.right, Mathf.Infinity, wallsLayerMask);
+        var leftBuffer = Physics2D.BoxCast(centerPosition, sideBufferSize, 0, Vector2.left, Mathf.Infinity, wallsLayerMask);
+        
+        if (rightBuffer.distance <= surfaceRayLength && rightBuffer.normal.x < 0)
+        {
+            _wall = 1;
+            _flags.CanDash = true;
+            _flags.CanJump = true;
+        }
+        else if (leftBuffer.distance <= surfaceRayLength && rightBuffer.normal.x > 0)
+        {
+            _wall = -1;
+            _flags.CanDash = true;
+            _flags.CanJump = true;
+        }
+        else
+        {
+            _wall = 0;
         }
     }
 
@@ -287,7 +302,7 @@ public class CharacterController2D : MonoBehaviour
         if (_input.Player.Jump.triggered)
         {
             _flags.ActionAvailable = false;
-            if (_groundBuffer || _wall != 0 || !_groundBuffer && _wall == 0 && _flags.CanJump)
+            if (_groundBuffer || _wall != 0 || _flags.CanJump)
             {
                 if (!_groundBuffer && _wall == 0 && _flags.CanJump)
                 {
@@ -349,14 +364,6 @@ public class CharacterController2D : MonoBehaviour
 
     private void HandleMovement(float moveInput)
     {
-        if (_wallRiding && !_grounded && _velocity.y < 0)
-        {
-            _velocity.y *= wallDeceleration;
-        }
-
-        var acceleration = _grounded || _wallRiding ? walkAcceleration : airAcceleration;
-        var deceleration = _grounded ? groundDeceleration : 0;
-
         //TODO: Move VFX to a dedicated script
         // Footstep VFX
         if (_grounded && moveInput != 0)
@@ -368,7 +375,18 @@ public class CharacterController2D : MonoBehaviour
             _leaves.Stop();
             _dustPS.Stop();
         }
+        
+        // Decelerate Y on wall downward
+        if (_wallRiding && !_grounded && _velocity.y < 0)
+        {
+            _velocity.y *= wallDeceleration;
+        }
+        
+        // Define surface resistance
+        var acceleration = _grounded || _wallRiding ? walkAcceleration : airAcceleration;
+        var deceleration = _grounded ? groundDeceleration : 0;
 
+        // Apply horizontal speed depending on user input
         if (Mathf.Abs(moveInput) > 0)
         {
             _velocity.x = Mathf.MoveTowards(_velocity.x,
@@ -380,84 +398,40 @@ public class CharacterController2D : MonoBehaviour
             _velocity.x = Mathf.MoveTowards(_velocity.x, 0, deceleration * Time.deltaTime);
         }
 
+        // Apply gravity
         if (!_dashing && !_grounded)
         {
             _velocity.y += Physics2D.gravity.y * 1.5f * Time.deltaTime;
         }
-
-        transform.Translate(_velocity * Time.deltaTime);
-
-        // Retrieve all colliders we have intersected after velocity has been applied.
-        var count = Physics2D.OverlapCapsuleNonAlloc(
-            new Vector2(transform.position.x + _boxCollider.offset.x, transform.position.y + _boxCollider.offset.y),
-            _boxCollider.size, _boxCollider.direction, 0, _hitsBuffer
-        );
         
-        var isAirborn = true;
-        for (var i = 0; i < count; i++)
+        // Define ending point
+        var pos = _velocity * Time.deltaTime;
+        
+        // Check if collision is expected
+        var hits = new RaycastHit2D[10];
+        _boxCollider.Cast(_velocity.normalized, hits, pos.magnitude);
+        
+        foreach (var hit in hits)
         {
-            // Ignore our own collider.
-            if (_hitsBuffer[i] == _boxCollider || _hitsBuffer[i].isTrigger) continue;
-            isAirborn = false;
-
-            ColliderDistance2D colliderDistance = _hitsBuffer[i].Distance(_boxCollider);
-            // Ensure that we are still overlapping this collider.
-            // The overlap may no longer exist due to another intersected collider
-            // pushing us out of this one.
-
-            if (colliderDistance.isOverlapped)
+            if (hit.distance > 0 && hit.distance < pos.magnitude)
             {
-                transform.Translate(colliderDistance.pointA - colliderDistance.pointB);
+                pos = _velocity.normalized * hit.distance ;
+            }
+        }
+        if (_grounded || _dashing)
+        {
+            pos.y = 0;
+        }
 
-                // If we intersect an object beneath us, set grounded to true. 
-                if (Vector2.Angle(colliderDistance.normal, Vector2.up) < 90)
-                {
-                    _grounded = true;
-                    _velocity.y = 0;
-                }
-
-                // If we intersect an object above us, we push down the play. 
-                if (Vector2.Angle(colliderDistance.normal, Vector2.up) == 180 && !_grounded)
-                {
-                    _velocity.y += Physics2D.gravity.y * 10f * Time.deltaTime;
-                }
-
-                // If we intersect an object in our sides, we are wall riding. 
-                if (Vector2.Angle(colliderDistance.normal, Vector2.up) == 90 && !_grounded)
-                {
-                    if (Math.Abs(_velocity.x) > 0 && _velocity.y > 0 && !_wallRiding)
-                    {
-                        _velocity.y *= (1 + Mathf.Abs(_velocity.x) * horizontalSpeedTransfer);
-                    }
-
-                    _velocity.x = 0;
-                    _wallRiding = true;
-                }
-                else
-                {
-                    _wallRiding = false;
-                }
+        if (_wallRiding)
+        {
+            if (_wall < 0 && pos.x < 0 || _wall > 0 && pos.x > 0)
+            {
+                pos.x = 0;
             }
         }
 
-        if (isAirborn)
-        {
-            _grounded = false;
-            _wallRiding = false;
-        }
-
-
-        if (drawDebugRays)
-        {
-            var rayLists = new List<List<Ray>> {leftWallCheck, rightWallCheck, groundCheck};
-            foreach (var rayList in rayLists)
-            {
-                foreach (var ray in rayList)
-                {
-                    Debug.DrawRay(ray.start.position, ray.direction * surfaceRayLength, Color.magenta);
-                }
-            }
-        }
+        transform.Translate(pos);
     }
 
     #endregion
