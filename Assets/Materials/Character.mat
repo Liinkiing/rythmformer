@@ -69,9 +69,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - PixelSnap: 0
+    - Tint_intensity: 0.27039427
     - Tint_intensity: 1
     - Tint_intensity: 0.27039427
     - _BumpScale: 1
+    - _ColorMask: 15
     - _ColorMask: 15
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -92,7 +94,13 @@ Material:
     - _StencilOp: 0
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
     - _UVSec: 0
+    - _UseUIAlphaClip: 0
     - _UseUIAlphaClip: 0
     - _ZWrite: 1
     m_Colors:
