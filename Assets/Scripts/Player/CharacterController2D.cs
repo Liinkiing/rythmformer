@@ -100,6 +100,7 @@ public class CharacterController2D : MonoBehaviour
     private PlayerInput _input;
     private Vector2 _velocity;
     private bool _grounded;
+    private bool _roofed;
     private bool _wallRiding;
     private PlayerFlags _flags;
     private SongSynchronizer _synchronizer;
@@ -224,22 +225,35 @@ public class CharacterController2D : MonoBehaviour
     
     private void SurfaceDetection()
     {
-        var hits = new RaycastHit2D[10];
-        _boxCollider.Cast(Vector2.down, hits, surfaceRayLength);
-
+        var downHits = new RaycastHit2D[10];
+        _boxCollider.Cast(Vector2.down, downHits, surfaceRayLength);
         _grounded = false;
         _wallRiding = false;
-        foreach (var hit in hits)
+        foreach (var downHit in downHits)
         {
-            if (hit.distance <= 0)
+            if (downHit.distance <= 0)
             {
-                if (Mathf.Abs(hit.normal.x) > 0)
+                if (Mathf.Abs(downHit.normal.x) > 0)
                 {
                     _wallRiding = true;
                 }
-                if (hit.normal.y > 0)
+                if (downHit.normal.y > 0)
                 {
                     _grounded = true;
+                }
+            }
+        }
+        
+        var upHits = new RaycastHit2D[10];
+        _boxCollider.Cast(Vector2.up, upHits, surfaceRayLength);
+        _roofed = false;
+        foreach (var upHit in upHits)
+        {
+            if (upHit.distance <= 0)
+            {
+                if (upHit.normal.y < 0)
+                {
+                    _roofed = true;
                 }
             }
         }
@@ -418,17 +432,16 @@ public class CharacterController2D : MonoBehaviour
                 pos = _velocity.normalized * hit.distance ;
             }
         }
-        if (_grounded || _dashing)
+        Debug.DrawRay(transform.position, pos * 15, Color.green);
+        
+        if (_grounded || _dashing || _roofed && pos.y > 0)
         {
             pos.y = 0;
         }
 
-        if (_wallRiding)
+        if (_wallRiding && (_wall < 0 && pos.x < 0 || _wall > 0 && pos.x > 0))
         {
-            if (_wall < 0 && pos.x < 0 || _wall > 0 && pos.x > 0)
-            {
-                pos.x = 0;
-            }
+            pos.x = 0;
         }
 
         transform.Translate(pos);
