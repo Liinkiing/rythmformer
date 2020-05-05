@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: tileset_forest_evening_18
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 9174259002270851343, guid: 5fb881dea25a54acca9068191412c000,
+  m_Sprite: {fileID: 9174259002270851343, guid: 224362e0a1086b3448626f9c88c4fcad,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
@@ -34,4 +34,4 @@ MonoBehaviour:
     e33: 1
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
-  m_ColliderType: 0
+  m_ColliderType: 2
