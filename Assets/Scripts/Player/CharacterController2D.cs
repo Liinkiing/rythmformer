@@ -405,17 +405,17 @@ public class CharacterController2D : MonoBehaviour
         var pos = _velocity * Time.deltaTime;
         
         // Check if collision is expected
-        var d = new float[2];
+        var minDistance = new float[2];
         
         _yCast.Distance = pos.magnitude;
         _yCast.Direction = _velocity.normalized;
-        d[0] = _yCast.MinDistance();
+        minDistance[0] = _yCast.MinDistance();
         
         _xCast.Distance = pos.magnitude;
         _xCast.Direction = _velocity.normalized;
-        d[1] = _xCast.MinDistance();
+        minDistance[1] = _xCast.MinDistance();
 
-        pos = _velocity.normalized * d.Min();
+        pos = _velocity.normalized * minDistance.Min();
         
         Debug.DrawRay(transform.position, pos * 15, Color.green);
         
