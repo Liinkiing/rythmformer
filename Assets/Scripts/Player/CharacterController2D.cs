@@ -93,6 +93,12 @@ public class CharacterController2D : MonoBehaviour
     private Transform art;
 
     private BoxCollider2D _boxCollider;
+    private DoubleCast _upCast;
+    private DoubleCast _rightCast;
+    private DoubleCast _downCast;
+    private DoubleCast _leftCast;
+    private DoubleCast _yCast;
+    private DoubleCast _xCast;
     private Vector3 _initialLocalScale;
     private float _dashTime;
     private bool _dashing;
@@ -155,6 +161,12 @@ public class CharacterController2D : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _input = new PlayerInput();
         _levelManager = Utils.FindObjectOfTypeOrThrow<LevelManager>();
+        _upCast = new DoubleCast(_boxCollider, Vector2.up, surfaceRayLength, new Vector2(0.5f, 1), wallsLayerMask);
+        _rightCast = new DoubleCast(_boxCollider, Vector2.right, surfaceRayLength, new Vector2(1, 0.5f), wallsLayerMask);
+        _downCast = new DoubleCast(_boxCollider, Vector2.down, surfaceRayLength, new Vector2(0.5f, 1), wallsLayerMask);
+        _leftCast = new DoubleCast(_boxCollider, Vector2.left, surfaceRayLength, new Vector2(1, 0.5f), wallsLayerMask);
+        _yCast = new DoubleCast(_boxCollider, Vector2.zero, 0, new Vector2(1, 0.5f), wallsLayerMask);
+        _xCast = new DoubleCast(_boxCollider, Vector2.zero, 0, new Vector2(0.5f, 1), wallsLayerMask);
     }
 
     private void Start()
@@ -225,42 +237,13 @@ public class CharacterController2D : MonoBehaviour
     
     private void SurfaceDetection()
     {
-        var downHits = new RaycastHit2D[10];
-        _boxCollider.Cast(Vector2.down, downHits, surfaceRayLength);
-        _grounded = false;
-        _wallRiding = false;
-        foreach (var downHit in downHits)
-        {
-            if (downHit.distance <= 0)
-            {
-                if (Mathf.Abs(downHit.normal.x) > 0)
-                {
-                    _wallRiding = true;
-                }
-                if (downHit.normal.y > 0)
-                {
-                    _grounded = true;
-                }
-            }
-        }
-        
-        var upHits = new RaycastHit2D[10];
-        _boxCollider.Cast(Vector2.up, upHits, surfaceRayLength);
-        _roofed = false;
-        foreach (var upHit in upHits)
-        {
-            if (upHit.distance <= 0)
-            {
-                if (upHit.normal.y < 0)
-                {
-                    _roofed = true;
-                }
-            }
-        }
-        
+        _grounded = _downCast.Check(_downCast.Down);
+        _roofed = _upCast.Check(_upCast.Up);
+        _wallRiding = _rightCast.Check(_rightCast.Right) || _leftCast.Check(_leftCast.Left);
+
         Vector2 s = _boxCollider.size;
         Vector2 centerPosition = transform.position;
-
+        
         var downBufferSize = new Vector2(s.x + 2 * surfaceRayLength, s.y);
         var downBuffer = Physics2D.BoxCast(centerPosition, downBufferSize, 0, Vector2.down, Mathf.Infinity, wallsLayerMask);
         
@@ -422,26 +405,30 @@ public class CharacterController2D : MonoBehaviour
         var pos = _velocity * Time.deltaTime;
         
         // Check if collision is expected
-        var hits = new RaycastHit2D[10];
-        _boxCollider.Cast(_velocity.normalized, hits, pos.magnitude);
+        var d = new float[2];
         
-        foreach (var hit in hits)
-        {
-            if (hit.distance > 0 && hit.distance < pos.magnitude)
-            {
-                pos = _velocity.normalized * hit.distance ;
-            }
-        }
+        _yCast.Distance = pos.magnitude;
+        _yCast.Direction = _velocity.normalized;
+        d[0] = _yCast.MinDistance();
+        
+        _xCast.Distance = pos.magnitude;
+        _xCast.Direction = _velocity.normalized;
+        d[1] = _xCast.MinDistance();
+
+        pos = _velocity.normalized * d.Min();
+        
         Debug.DrawRay(transform.position, pos * 15, Color.green);
         
         if (_grounded || _dashing || _roofed && pos.y > 0)
         {
             pos.y = 0;
+            _velocity.y = 0;
         }
 
         if (_wallRiding && (_wall < 0 && pos.x < 0 || _wall > 0 && pos.x > 0))
         {
             pos.x = 0;
+            _velocity.x = 0;
         }
 
         transform.Translate(pos);
