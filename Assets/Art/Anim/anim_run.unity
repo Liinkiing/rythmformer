@@ -603,7 +603,7 @@ PrefabInstance:
     - target: {fileID: 3600690296673013303, guid: 48a848133ecde1444b787205e569db84,
         type: 3}
       propertyPath: playMetronome
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3600690296673013303, guid: 48a848133ecde1444b787205e569db84,
         type: 3}
@@ -655,7 +655,7 @@ PrefabInstance:
         type: 3}
       propertyPath: song
       value: 
-      objectReference: {fileID: 11400000, guid: 58f67dc6bb9eb4944a001ce1d46b36f3,
+      objectReference: {fileID: 11400000, guid: 7f4fe472999cfa640940cac10b5986a1,
         type: 2}
     - target: {fileID: 3600690296673013320, guid: 48a848133ecde1444b787205e569db84,
         type: 3}

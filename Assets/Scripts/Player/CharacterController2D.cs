@@ -139,6 +139,7 @@ public class CharacterController2D : MonoBehaviour
     private static readonly int GroundedAnimatorTrigger = Animator.StringToHash("Grounded");
     private static readonly int SpeedFloat = Animator.StringToHash("Speed");
     private static readonly int SpeedMultiplierFloat = Animator.StringToHash("SpeedMultiplier");
+    private static readonly int IdleMultiplierFloat = Animator.StringToHash("IdleMultiplier");
     private static readonly int DashAnimatorTrigger = Animator.StringToHash("Dash");
     private static readonly int WallridingAnimatorBool = Animator.StringToHash("Wallriding");
 
@@ -164,6 +165,7 @@ public class CharacterController2D : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _input = new PlayerInput();
         _levelManager = Utils.FindObjectOfTypeOrThrow<LevelManager>();
+        _artAnimator.SetFloat(IdleMultiplierFloat, _synchronizer.song.Informations.bpm / 120.00f);
         _rippleController = GameObject.Find("PostProcessing").GetComponent<RippleController>();
         _upCast = new DoubleCast(_boxCollider, Vector2.up, surfaceRayLength, new Vector2(0.5f, 1), wallsLayerMask);
         _rightCast = new DoubleCast(_boxCollider, Vector2.right, surfaceRayLength, new Vector2(1, 0.5f), wallsLayerMask);
