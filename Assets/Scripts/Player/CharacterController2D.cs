@@ -227,7 +227,6 @@ public class CharacterController2D : MonoBehaviour
 
     private void UpdateScale(float direction)
     {
-        if (_wallRiding) return;
         if (direction > 0 && _isFlipped)
         {
             _isFlipped = false;
