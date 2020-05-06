@@ -229,6 +229,10 @@ public class CharacterController2D : MonoBehaviour
 
     private void UpdateScale(float direction)
     {
+        if (_wallRiding && !_grounded)
+        {
+            return;
+        }
         if (direction > 0 && _isFlipped)
         {
             _isFlipped = false;
@@ -288,6 +292,8 @@ public class CharacterController2D : MonoBehaviour
 
     private void HandleRythmAction(Vector2 moveInput)
     {
+        _flags.CanDash = !(moveInput.x < 0 && _wall == -1 || moveInput.x > 0 && _wall == 1);
+        
         if (!_flags.ActionAvailable)
         {
             if (_input.Player.Jump.triggered || _input.Player.Dash.triggered)
