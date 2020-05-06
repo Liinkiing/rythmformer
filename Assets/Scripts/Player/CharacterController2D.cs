@@ -291,6 +291,10 @@ public class CharacterController2D : MonoBehaviour
             if (_input.Player.Jump.triggered || _input.Player.Dash.triggered)
             {
                 var action = _input.Player.Jump.triggered ? PlayerActions.Jump : PlayerActions.Dash;
+                if (action == PlayerActions.Dash && !_flags.CanDash)
+                {
+                    return;
+                }
                 OnActionPerformed(this,
                     new OnActionEventArgs() {Move = action, Score = SongSynchronizer.EventScore.Failed});
                 _additionalSpeed -= numberOfSteps / 2;
@@ -436,6 +440,11 @@ public class CharacterController2D : MonoBehaviour
         }
         _artAnimator.SetBool(WallridingAnimatorBool, _wallRiding);
 
+        if (moveInput > 0 && _wall == -1 || moveInput < 0 && _wall == 1)
+        {
+            _flags.CanDash = false;
+        }
+        
         transform.Translate(pos);
     }
 
