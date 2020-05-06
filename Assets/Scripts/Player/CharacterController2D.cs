@@ -139,6 +139,8 @@ public class CharacterController2D : MonoBehaviour
     private static readonly int GroundedAnimatorTrigger = Animator.StringToHash("Grounded");
     private static readonly int SpeedFloat = Animator.StringToHash("Speed");
     private static readonly int SpeedMultiplierFloat = Animator.StringToHash("SpeedMultiplier");
+    private static readonly int DashAnimatorTrigger = Animator.StringToHash("Dash");
+    private static readonly int WallridingAnimatorBool = Animator.StringToHash("Wallriding");
 
     #endregion
 
@@ -225,6 +227,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void UpdateScale(float direction)
     {
+        if (_wallRiding) return;
         if (direction > 0 && _isFlipped)
         {
             _isFlipped = false;
@@ -432,6 +435,7 @@ public class CharacterController2D : MonoBehaviour
             pos.x = 0;
             _velocity.x = 0;
         }
+        _artAnimator.SetBool(WallridingAnimatorBool, _wallRiding);
 
         transform.Translate(pos);
     }
@@ -528,6 +532,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void Dash(Vector2 moveInput)
     {
+        _artAnimator.SetTrigger(DashAnimatorTrigger);
         OnActionPerformed(this, new OnActionEventArgs() {Move = PlayerActions.Dash, Score = _scoreState.Score});
         OnDash?.Invoke();
         _dashing = true;
