@@ -6726,14 +6726,13 @@ MonoBehaviour:
   walkAcceleration: 260
   airAcceleration: 100
   groundDeceleration: 120
-  jumpHeight: 6
+  jumpHeight: 12
   wallJumpSpeed: 12
   dashBuffer: 0.15
   horizontalSpeedTransfer: 0.03
   dashDuration: 0.15
-  dashSpeed: 40
+  dashSpeed: 60
   dashAcceleration: 500
-  drawDebugRays: 1
   surfaceRayLength: 0.35
   wallDeceleration: 0.93
   numberOfSteps: 4
@@ -6820,9 +6819,9 @@ BoxCollider2D:
     adaptiveTilingThreshold: 0
     drawMode: 0
     adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_AutoTiling: 1
   serializedVersion: 2
-  m_Size: {x: 0.8998127, y: 3.680726}
+  m_Size: {x: 0.9, y: 3.7}
   m_EdgeRadius: 0
 --- !u!1 &8018688871462401056
 GameObject:

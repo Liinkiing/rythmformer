@@ -396,10 +396,23 @@ public class CharacterController2D : MonoBehaviour
         }
 
         // Apply gravity
-        if (!_dashing && !_grounded)
+        if (_dashing || _grounded)
         {
-            _velocity.y += Physics2D.gravity.y * 1.5f * Time.deltaTime;
+            _velocity.y = 0;
+        } else if (_roofed)
+        {
+            _velocity.y = Physics2D.gravity.y * 2f * Time.deltaTime;
+        } else
+        {
+            _velocity.y += Physics2D.gravity.y * 2f * Time.deltaTime;
         }
+        
+        // Prevent speed gain against wall
+        if (_wallRiding && (_wall < 0 && _velocity.x < 0 || _wall > 0 && _velocity.x > 0))
+        {
+            _velocity.x = 0;
+        }
+        
         
         // Define ending point
         var pos = _velocity * Time.deltaTime;
@@ -419,17 +432,15 @@ public class CharacterController2D : MonoBehaviour
         
         Debug.DrawRay(transform.position, pos * 15, Color.green);
         
-        if (_grounded || _dashing || _roofed && pos.y > 0)
-        {
-            pos.y = 0;
-            _velocity.y = 0;
-        }
-
-        if (_wallRiding && (_wall < 0 && pos.x < 0 || _wall > 0 && pos.x > 0))
-        {
-            pos.x = 0;
-            _velocity.x = 0;
-        }
+        
+//        if (_grounded || _dashing || _roofed && pos.y > 0)
+//        {
+//            pos.y = 0;
+//        }
+//        if (_wallRiding && (_wall < 0 && pos.x < 0 || _wall > 0 && pos.x > 0))
+//        {
+//            pos.x = 0;
+//        }
 
         transform.Translate(pos);
     }
