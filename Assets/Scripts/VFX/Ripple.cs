@@ -28,7 +28,7 @@ public sealed class RippleRenderer : PostProcessEffectRenderer<Ripple>
     public override void Render(PostProcessRenderContext context)
     {
         PropertySheet sheet = context.propertySheets.Get(Shader.Find("Hidden/PostFX/Ripple"));
- 
+
         sheet.properties.SetFloat("_CenterX", settings.CenterX);
         sheet.properties.SetFloat("_CenterY", settings.CenterY);
         sheet.properties.SetFloat("_Amount", settings.Amount);
