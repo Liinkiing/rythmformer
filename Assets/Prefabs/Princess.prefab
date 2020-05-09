@@ -50,7 +50,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 24e4307b20de6b945a6c5b5438d574b5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: 1541400741291493735}
   - component: {fileID: 7466191228470969822}
   - component: {fileID: 5628964463342974733}
+  - component: {fileID: 1555145192}
   m_Layer: 0
   m_Name: gem_headphone
   m_TagString: Untagged
@@ -153,7 +154,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 24e4307b20de6b945a6c5b5438d574b5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -173,7 +174,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 396963491
   m_SortingLayer: 4
-  m_SortingOrder: 12
+  m_SortingOrder: 13
   m_Sprite: {fileID: 3066118006663060514, guid: 0592842f825f347788e935f55de2a25d,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -205,6 +206,20 @@ MonoBehaviour:
     m_Center: {x: 0.35803297, y: 0.64376414, z: 0}
     m_Extent: {x: 0.32032412, y: 0.21129161, z: 0}
   m_UseBatching: 1
+--- !u!114 &1555145192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464357681785508150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 311592108e35f43ae8a6d7488509cd88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pulseEffectMaterial: {fileID: 2100000, guid: 24e4307b20de6b945a6c5b5438d574b5,
+    type: 2}
 --- !u!1 &607092568809266705
 GameObject:
   m_ObjectHideFlags: 0
@@ -16737,6 +16752,7 @@ GameObject:
   - component: {fileID: 4953262142496857857}
   - component: {fileID: 5132509904353569552}
   - component: {fileID: 5999396381406761560}
+  - component: {fileID: 1550718348}
   m_Layer: 0
   m_Name: hair
   m_TagString: Untagged
@@ -16776,7 +16792,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 24e4307b20de6b945a6c5b5438d574b5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16833,6 +16849,20 @@ MonoBehaviour:
     m_Center: {x: 0.22881687, y: 0.7627442, z: 0}
     m_Extent: {x: 1.1434573, y: 1.6509781, z: 0}
   m_UseBatching: 1
+--- !u!114 &1550718348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8297088918422788643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 311592108e35f43ae8a6d7488509cd88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pulseEffectMaterial: {fileID: 2100000, guid: 24e4307b20de6b945a6c5b5438d574b5,
+    type: 2}
 --- !u!1 &8301924248308564486
 GameObject:
   m_ObjectHideFlags: 0
@@ -16906,6 +16936,7 @@ GameObject:
   - component: {fileID: 960659350330255555}
   - component: {fileID: 4890258446345945133}
   - component: {fileID: 666216392959263934}
+  - component: {fileID: 1799404308}
   m_Layer: 0
   m_Name: gem_headphone copie
   m_TagString: Untagged
@@ -16945,7 +16976,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 24e4307b20de6b945a6c5b5438d574b5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16997,6 +17028,20 @@ MonoBehaviour:
     m_Center: {x: 0.2898595, y: -0.48683473, z: 0}
     m_Extent: {x: 0.32032433, y: 0.21129149, z: 0}
   m_UseBatching: 1
+--- !u!114 &1799404308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8440213283152946755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 311592108e35f43ae8a6d7488509cd88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pulseEffectMaterial: {fileID: 2100000, guid: 24e4307b20de6b945a6c5b5438d574b5,
+    type: 2}
 --- !u!1 &8593540460571542490
 GameObject:
   m_ObjectHideFlags: 0
@@ -17047,7 +17092,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 24e4307b20de6b945a6c5b5438d574b5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17404,12 +17449,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5fb7c0e8022ad4feba9ab9cc47604ccc, type: 3}
---- !u!224 &7410689074497231368 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 689074348268726428, guid: 5fb7c0e8022ad4feba9ab9cc47604ccc,
-    type: 3}
-  m_PrefabInstance: {fileID: 8018688871298675348}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &269667518547104825 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7851487356058379949, guid: 5fb7c0e8022ad4feba9ab9cc47604ccc,
@@ -17422,3 +17461,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &7410689074497231368 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 689074348268726428, guid: 5fb7c0e8022ad4feba9ab9cc47604ccc,
+    type: 3}
+  m_PrefabInstance: {fileID: 8018688871298675348}
+  m_PrefabAsset: {fileID: 0}
