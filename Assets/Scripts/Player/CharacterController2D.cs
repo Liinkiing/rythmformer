@@ -126,6 +126,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private ParticleSystem _trailPS;
     [SerializeField] private ParticleSystem _dustPS;
     [SerializeField] private ParticleSystem _leaves;
+    private RippleController _rippleController;
 
     public enum FootstepFX
     {
@@ -161,6 +162,7 @@ public class CharacterController2D : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _input = new PlayerInput();
         _levelManager = Utils.FindObjectOfTypeOrThrow<LevelManager>();
+        _rippleController = GameObject.Find("PostProcessing").GetComponent<RippleController>();
         _upCast = new DoubleCast(_boxCollider, Vector2.up, surfaceRayLength, new Vector2(0.5f, 1), wallsLayerMask);
         _rightCast = new DoubleCast(_boxCollider, Vector2.right, surfaceRayLength, new Vector2(1, 0.5f), wallsLayerMask);
         _downCast = new DoubleCast(_boxCollider, Vector2.down, surfaceRayLength, new Vector2(0.5f, 1), wallsLayerMask);
@@ -533,6 +535,8 @@ public class CharacterController2D : MonoBehaviour
         _velocity.x = Mathf.MoveTowards(_velocity.x,
             (dashSpeed + _additionalSpeed * maxAdditionalSpeed / numberOfSteps) * moveInput.x, dashAcceleration);
         _flags.CanDash = false;
+        
+        _rippleController.startRipple();
         /*_trailPS.Play();*/
     }
 
