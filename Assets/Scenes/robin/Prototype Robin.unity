@@ -322,7 +322,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 282645925}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.07, y: -0.01, z: -10}
+  m_LocalPosition: {x: -6.38, y: 0.68, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1512527308}
@@ -9898,7 +9898,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1319141073}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.07, y: -0.01, z: -10}
+  m_LocalPosition: {x: -6.38, y: 0.68, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 311520343}
@@ -13969,12 +13969,12 @@ PrefabInstance:
     - target: {fileID: 8018688871446336652, guid: 88785b493f121ad40b98e77701f5eebc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.51
+      value: -6.38
       objectReference: {fileID: 0}
     - target: {fileID: 8018688871446336652, guid: 88785b493f121ad40b98e77701f5eebc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.99
+      value: 0.68
       objectReference: {fileID: 0}
     - target: {fileID: 8018688871446336652, guid: 88785b493f121ad40b98e77701f5eebc,
         type: 3}
@@ -18056,7 +18056,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1831099161}
   m_Layer: 0
-  m_Name: '--- SYSTEM ---'
+  m_Name: --- SYSTEM ---
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23047,7 +23047,7 @@ PrefabInstance:
     - target: {fileID: 7801734382630709360, guid: 302bb604df3c84eb5aa5cba5f638b841,
         type: 3}
       propertyPath: m_Tiles.Array.data[169].second.m_AllTileFlags
-      value: 1073741825
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7801734382630709360, guid: 302bb604df3c84eb5aa5cba5f638b841,
         type: 3}
@@ -26379,6 +26379,11 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[280].second.m_AllTileFlags
       value: 1073741825
       objectReference: {fileID: 0}
+    - target: {fileID: 7801734382630709360, guid: 302bb604df3c84eb5aa5cba5f638b841,
+        type: 3}
+      propertyPath: m_Tiles.Array.data[11].second.m_AllTileFlags
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7801734382784595599, guid: 302bb604df3c84eb5aa5cba5f638b841,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -26437,7 +26442,7 @@ PrefabInstance:
     - target: {fileID: 7801734382784595633, guid: 302bb604df3c84eb5aa5cba5f638b841,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 302bb604df3c84eb5aa5cba5f638b841, type: 3}

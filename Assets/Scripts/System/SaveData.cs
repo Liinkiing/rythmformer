@@ -17,8 +17,15 @@ public enum World
     Forest
 }
 
+public enum Difficulty
+{
+    Chill,
+    ProGamer
+}
+
 [Serializable]
 public class SaveData
 {
     public Dictionary<World, Dictionary<Level, bool>> LevelProgression;
+    public Difficulty Difficulty;
 }

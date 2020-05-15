@@ -96,6 +96,19 @@ public class GameManager : MonoSingleton<GameManager>
             UnlockLevel(World.Forest, Level.Level4);
         }
     }
+
+    [Button("Toggle Difficulty")]
+    public void ToggleDifficulty()
+    {
+        if (SaveManager.instance.Data.Difficulty == Difficulty.Chill)
+        {
+            ChangeDifficulty(Difficulty.ProGamer);
+        }
+        else
+        {
+            ChangeDifficulty(Difficulty.Chill);
+        }
+    }
 #endif
 
     #endregion
@@ -121,6 +134,7 @@ public class GameManager : MonoSingleton<GameManager>
     public override void Init()
     {
         Debug.Log("[INIT] GameManager");
+        Debug.Log($"Difficulty: {SaveManager.instance.Data.Difficulty.ToString()}");
     }
 
     #region Public Methods
@@ -142,6 +156,13 @@ public class GameManager : MonoSingleton<GameManager>
     public bool HasUnlockedLevel(World world, Level level)
     {
         return SaveManager.instance.Data.LevelProgression[world][level];
+    }
+
+    public void ChangeDifficulty(Difficulty difficulty)
+    {
+        SaveManager.instance.Data.Difficulty = difficulty;
+        SaveManager.instance.Save();
+        Debug.Log($"Changed difficulty to : {difficulty}");
     }
 
     #endregion
