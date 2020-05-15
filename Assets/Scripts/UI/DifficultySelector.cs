@@ -1,8 +1,23 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DifficultySelector : MonoBehaviour
 {
+
+   [SerializeField] private Button ChillButton;
+   [SerializeField] private Button ProGamerButton;
+
+   public void Start()
+   {
+      if (SaveManager.instance.Data.Difficulty == Difficulty.Chill)
+      {
+         ChillButton.Select();
+      } else if (SaveManager.instance.Data.Difficulty == Difficulty.ProGamer)
+      {
+         ProGamerButton.Select();
+      }
+   }
 
    public void ChangeDifficulty(string difficulty)
    {
