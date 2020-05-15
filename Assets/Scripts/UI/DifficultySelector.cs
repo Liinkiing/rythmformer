@@ -5,17 +5,17 @@ using UnityEngine.UI;
 public class DifficultySelector : MonoBehaviour
 {
 
-   [SerializeField] private Button ChillButton;
-   [SerializeField] private Button ProGamerButton;
+   [SerializeField] private Button _chillButton;
+   [SerializeField] private Button _proGamerButton;
 
    public void Start()
    {
       if (SaveManager.instance.Data.Difficulty == Difficulty.Chill)
       {
-         ChillButton.Select();
+         _chillButton.Select();
       } else if (SaveManager.instance.Data.Difficulty == Difficulty.ProGamer)
       {
-         ProGamerButton.Select();
+         _proGamerButton.Select();
       }
    }
 
