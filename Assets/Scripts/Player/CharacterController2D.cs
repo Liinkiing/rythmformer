@@ -138,6 +138,7 @@ public class CharacterController2D : MonoBehaviour
     private static readonly int JumpAnimatorTrigger = Animator.StringToHash("Jump");
     private static readonly int GroundedAnimatorTrigger = Animator.StringToHash("Grounded");
     private static readonly int SpeedFloat = Animator.StringToHash("Speed");
+    private static readonly int VelocityYFloat = Animator.StringToHash("VelocityY");
     private static readonly int SpeedMultiplierFloat = Animator.StringToHash("SpeedMultiplier");
     private static readonly int IdleMultiplierFloat = Animator.StringToHash("IdleMultiplier");
     private static readonly int DashAnimatorTrigger = Animator.StringToHash("Dash");
@@ -217,12 +218,13 @@ public class CharacterController2D : MonoBehaviour
         HandleMovement(moveInput.x);
         ResolveDash(moveInput.x);
         ResolveTimeBuffers(moveInput);
-        HandleAnimations(Mathf.Abs(moveInput.x));
+        HandleAnimations(moveInput, _velocity.y);
     }
 
-    private void HandleAnimations(float xSpeed)
+    private void HandleAnimations(Vector2 input, float velocityY)
     {
-        _artAnimator.SetFloat(SpeedFloat, xSpeed);
+        _artAnimator.SetFloat(SpeedFloat, Mathf.Abs(input.x));
+        _artAnimator.SetFloat(VelocityYFloat, velocityY);
         _artAnimator.SetBool(GroundedAnimatorTrigger, _grounded);
         _artAnimator.SetFloat(SpeedMultiplierFloat, _additionalSpeed == 0 ? 1f : 1f + (_additionalSpeed * 0.15f));
     }
