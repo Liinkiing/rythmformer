@@ -138,7 +138,11 @@ public class CharacterController2D : MonoBehaviour
     private static readonly int JumpAnimatorTrigger = Animator.StringToHash("Jump");
     private static readonly int GroundedAnimatorTrigger = Animator.StringToHash("Grounded");
     private static readonly int SpeedFloat = Animator.StringToHash("Speed");
+    private static readonly int VelocityYFloat = Animator.StringToHash("VelocityY");
     private static readonly int SpeedMultiplierFloat = Animator.StringToHash("SpeedMultiplier");
+    private static readonly int IdleMultiplierFloat = Animator.StringToHash("IdleMultiplier");
+    private static readonly int DashAnimatorTrigger = Animator.StringToHash("Dash");
+    private static readonly int WallridingAnimatorBool = Animator.StringToHash("Wallriding");
 
     #endregion
 
@@ -162,6 +166,7 @@ public class CharacterController2D : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _input = new PlayerInput();
         _levelManager = Utils.FindObjectOfTypeOrThrow<LevelManager>();
+        _artAnimator.SetFloat(IdleMultiplierFloat, _synchronizer.song.Informations.bpm / 120.00f);
         _rippleController = GameObject.Find("PostProcessing").GetComponent<RippleController>();
         _upCast = new DoubleCast(_boxCollider, Vector2.up, surfaceRayLength, new Vector2(0.5f, 1), wallsLayerMask);
         _rightCast = new DoubleCast(_boxCollider, Vector2.right, surfaceRayLength, new Vector2(1, 0.5f), wallsLayerMask);
@@ -213,18 +218,23 @@ public class CharacterController2D : MonoBehaviour
         HandleMovement(moveInput.x);
         ResolveDash(moveInput.x);
         ResolveTimeBuffers(moveInput);
-        HandleAnimations(Mathf.Abs(moveInput.x));
+        HandleAnimations(moveInput, _velocity.y);
     }
 
-    private void HandleAnimations(float xSpeed)
+    private void HandleAnimations(Vector2 input, float velocityY)
     {
-        _artAnimator.SetFloat(SpeedFloat, xSpeed);
+        _artAnimator.SetFloat(SpeedFloat, Mathf.Abs(input.x));
+        _artAnimator.SetFloat(VelocityYFloat, velocityY);
         _artAnimator.SetBool(GroundedAnimatorTrigger, _grounded);
         _artAnimator.SetFloat(SpeedMultiplierFloat, _additionalSpeed == 0 ? 1f : 1f + (_additionalSpeed * 0.15f));
     }
 
     private void UpdateScale(float direction)
     {
+        if (_wallRiding && !_grounded)
+        {
+            return;
+        }
         if (direction > 0 && _isFlipped)
         {
             _isFlipped = false;
@@ -284,11 +294,17 @@ public class CharacterController2D : MonoBehaviour
 
     private void HandleRythmAction(Vector2 moveInput)
     {
+        _flags.CanDash = !(moveInput.x < 0 && _wall == -1 || moveInput.x > 0 && _wall == 1);
+        
         if (!_flags.ActionAvailable)
         {
             if (_input.Player.Jump.triggered || _input.Player.Dash.triggered)
             {
                 var action = _input.Player.Jump.triggered ? PlayerActions.Jump : PlayerActions.Dash;
+                if (action == PlayerActions.Dash && !_flags.CanDash)
+                {
+                    return;
+                }
                 OnActionPerformed(this,
                     new OnActionEventArgs() {Move = action, Score = SongSynchronizer.EventScore.Failed});
                 _additionalSpeed -= numberOfSteps / 2;
@@ -432,7 +448,13 @@ public class CharacterController2D : MonoBehaviour
             pos.x = 0;
             _velocity.x = 0;
         }
+        _artAnimator.SetBool(WallridingAnimatorBool, _wallRiding);
 
+        if (moveInput > 0 && _wall == -1 || moveInput < 0 && _wall == 1)
+        {
+            _flags.CanDash = false;
+        }
+        
         transform.Translate(pos);
     }
 
@@ -528,6 +550,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void Dash(Vector2 moveInput)
     {
+        _artAnimator.SetTrigger(DashAnimatorTrigger);
         OnActionPerformed(this, new OnActionEventArgs() {Move = PlayerActions.Dash, Score = _scoreState.Score});
         OnDash?.Invoke();
         _dashing = true;
