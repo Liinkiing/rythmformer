@@ -12,7 +12,9 @@ public class LevelManager : MonoBehaviour
     private PlayerInput _input;
     private UIManager _UIManager;
 
-    [Space(), Header("Events")] public UnityEvent OnLevelReset;
+    [Space(), Header("Events")]
+    public UnityEvent OnLevelReset;
+    public UnityEvent OnLevelPause;
 
     private void Awake()
     {
@@ -29,11 +31,13 @@ public class LevelManager : MonoBehaviour
     private void OnEnable()
     {
         _input?.Enable();
+        OnLevelPause.AddListener(TogglePause);
     }
 
     private void OnDisable()
     {
         _input?.Disable();
+        OnLevelPause.RemoveListener(TogglePause);
     }
     
     private void OnDestroy()
@@ -48,8 +52,19 @@ public class LevelManager : MonoBehaviour
     
     private void PauseOnPerformed(InputAction.CallbackContext obj)
     {
+        OnLevelPause?.Invoke();
+    }
+
+    public void TogglePause()
+    {
+        Debug.Log("TogglePause");
+        _UIManager = Utils.FindObjectOfTypeOrThrow<UIManager>();
+        _songSynchronizer = Utils.FindObjectOfTypeOrThrow<SongSynchronizer>();
+
         isGamePaused = !isGamePaused;
         _UIManager.TogglePauseCanvas();
         _songSynchronizer.ToggleLowPassFilter(isGamePaused);
+        
+        /*SongSynchronizer.ToggleLowPassFilter(isGamePaused);*/
     }
 }

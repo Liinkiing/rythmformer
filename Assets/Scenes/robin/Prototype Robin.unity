@@ -1236,24 +1236,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2058840405}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &973660529 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 973660529, guid: a3e4a899474da4d21b6ab8f097036ec4,
-    type: 3}
-  m_PrefabInstance: {fileID: 8722991285832147935}
-  m_PrefabAsset: {fileID: 0}
---- !u!225 &973660534
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 973660529}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!4 &1020629482 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5420478452534503980, guid: ccd71741a8c28d44aaf284ea15ac9eed,
@@ -18149,6 +18131,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -13142228004113059, guid: b2765cb4178464745acfdfceb0aeb5aa,
+        type: 3}
+      propertyPath: _UIManager
+      value: 
+      objectReference: {fileID: 2077668498}
     - target: {fileID: 5290843127891230754, guid: b2765cb4178464745acfdfceb0aeb5aa,
         type: 3}
       propertyPath: m_Name
@@ -26578,36 +26565,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4905845147167252074, guid: a3e4a899474da4d21b6ab8f097036ec4,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4905845147167252074, guid: a3e4a899474da4d21b6ab8f097036ec4,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4905845147167252074, guid: a3e4a899474da4d21b6ab8f097036ec4,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4905845147167252074, guid: a3e4a899474da4d21b6ab8f097036ec4,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2077668498}
-    - target: {fileID: 4905845147167252074, guid: a3e4a899474da4d21b6ab8f097036ec4,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BackToChapter
-      objectReference: {fileID: 0}
-    - target: {fileID: 4905845147167252074, guid: a3e4a899474da4d21b6ab8f097036ec4,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 4905845147167252085, guid: a3e4a899474da4d21b6ab8f097036ec4,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -26643,11 +26600,6 @@ PrefabInstance:
       propertyPath: SceneTransition
       value: 
       objectReference: {fileID: 1358835509}
-    - target: {fileID: 5272078974633606229, guid: a3e4a899474da4d21b6ab8f097036ec4,
-        type: 3}
-      propertyPath: _pauseCanvas
-      value: 
-      objectReference: {fileID: 973660529}
     - target: {fileID: 8142906949404257255, guid: a3e4a899474da4d21b6ab8f097036ec4,
         type: 3}
       propertyPath: m_Name

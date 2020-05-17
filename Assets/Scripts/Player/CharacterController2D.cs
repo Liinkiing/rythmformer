@@ -133,6 +133,8 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private ParticleSystem _leaves;
     private RippleController _rippleController;
 
+    private bool isGamePaused;
+
     public enum FootstepFX
     {
         Dust,
@@ -190,6 +192,7 @@ public class CharacterController2D : MonoBehaviour
     {
         _input?.Enable();
         _levelManager?.OnLevelReset.AddListener(OnLevelReset);
+        _levelManager?.OnLevelPause.AddListener(OnLevelPause);
         AddThresholdedBeatEvents();
     }
 
@@ -198,7 +201,13 @@ public class CharacterController2D : MonoBehaviour
     {
         _input?.Disable();
         _levelManager?.OnLevelReset.RemoveListener(OnLevelReset);
+        _levelManager?.OnLevelPause.RemoveListener(OnLevelPause);
         RemoveThresholdedBeatEvents();
+    }
+
+    private void OnLevelPause()
+    {
+        isGamePaused = !isGamePaused;
     }
 
     private void Update()
