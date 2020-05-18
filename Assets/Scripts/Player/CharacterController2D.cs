@@ -75,11 +75,11 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField, Range(0, 1f), Tooltip("Deceleration applied when character is wall riding")]
     private float wallDeceleration = 0.8f;
 
-    [Space(), Header("Speed incrementation")] [SerializeField, Tooltip("Number of times maximum speed can increase")]
+    [Space(), Header("Speed incrementation")] [SerializeField, Tooltip("Number of actions to attain super speed")]
     private int numberOfSteps = 1;
 
     [SerializeField, Tooltip("Maximum additional speed to gain by performing rythm actions")]
-    private float maxAdditionalSpeed = 5;
+    private float superSpeed = 5;
 
     [SerializeField] private LayerMask wallsLayerMask;
 
@@ -117,6 +117,7 @@ public class CharacterController2D : MonoBehaviour
     private bool _groundBuffer;
     private float _dashBuffer;
     private int _additionalSpeed;
+    private float _superSpeedValue;
     private readonly Collider2D[] _hitsBuffer = new Collider2D[16];
     private LevelManager _levelManager;
     private Vector3 _initialPosition = Vector3.zero;
@@ -278,13 +279,11 @@ public class CharacterController2D : MonoBehaviour
         {
             _wall = 1;
             _flags.CanDash = true;
-            _flags.CanJump = true;
         }
-        else if (leftBuffer.distance <= surfaceRayLength && rightBuffer.normal.x > 0)
+        else if (leftBuffer.distance <= surfaceRayLength && leftBuffer.normal.x > 0)
         {
             _wall = -1;
             _flags.CanDash = true;
-            _flags.CanJump = true;
         }
         else
         {
@@ -294,21 +293,14 @@ public class CharacterController2D : MonoBehaviour
 
     private void HandleRythmAction(Vector2 moveInput)
     {
-        _flags.CanDash = !(moveInput.x < 0 && _wall == -1 || moveInput.x > 0 && _wall == 1);
-        
         if (!_flags.ActionAvailable)
         {
             if (_input.Player.Jump.triggered || _input.Player.Dash.triggered)
             {
                 var action = _input.Player.Jump.triggered ? PlayerActions.Jump : PlayerActions.Dash;
-                if (action == PlayerActions.Dash && !_flags.CanDash)
-                {
-                    return;
-                }
                 OnActionPerformed(this,
                     new OnActionEventArgs() {Move = action, Score = SongSynchronizer.EventScore.Failed});
-                _additionalSpeed -= numberOfSteps / 2;
-                if (_additionalSpeed < 0) _additionalSpeed = 0;
+                _additionalSpeed = 0;
             }
 
             return;
@@ -328,7 +320,7 @@ public class CharacterController2D : MonoBehaviour
                 if (_additionalSpeed < numberOfSteps) _additionalSpeed++;
             }
         }
-        else if (_input.Player.Dash.triggered && _flags.CanDash)
+        else if (_input.Player.Dash.triggered && _flags.CanDash && moveInput.x != _wall)
         {
             _flags.ActionAvailable = false;
             if (Mathf.Abs(moveInput.x) > 0)
@@ -341,6 +333,8 @@ public class CharacterController2D : MonoBehaviour
                 _dashBuffer = dashBuffer;
             }
         }
+
+        _superSpeedValue = _additionalSpeed == numberOfSteps ? superSpeed : 0;
     }
 
     private void ResolveDash(float moveInput)
@@ -351,7 +345,7 @@ public class CharacterController2D : MonoBehaviour
             {
                 _dashTime = dashDuration;
                 _velocity.y = 0;
-                _velocity.x = (speed + _additionalSpeed * maxAdditionalSpeed / numberOfSteps) * moveInput;
+                _velocity.x = (speed + _superSpeedValue) * moveInput;
                 _dashing = false;
             }
             else
@@ -405,7 +399,7 @@ public class CharacterController2D : MonoBehaviour
         if (Mathf.Abs(moveInput) > 0)
         {
             _velocity.x = Mathf.MoveTowards(_velocity.x,
-                (speed + _additionalSpeed * maxAdditionalSpeed / numberOfSteps) * moveInput,
+                (speed + _superSpeedValue) * moveInput,
                 acceleration * Time.deltaTime);
         }
         else
@@ -414,9 +408,21 @@ public class CharacterController2D : MonoBehaviour
         }
 
         // Apply gravity
-        if (!_dashing && !_grounded)
+        if (_dashing || _grounded)
         {
-            _velocity.y += Physics2D.gravity.y * 1.5f * Time.deltaTime;
+            _velocity.y = 0;
+        } else if (_roofed)
+        {
+            _velocity.y = Physics2D.gravity.y * 2f * Time.deltaTime;
+        } else
+        {
+            _velocity.y += Physics2D.gravity.y * 2f * Time.deltaTime;
+        }
+        
+        // Prevent speed gain against wall
+        if (_wallRiding && (_wall < 0 && _velocity.x < 0 || _wall > 0 && _velocity.x > 0))
+        {
+            _velocity.x = 0;
         }
         
         // Define ending point
@@ -437,23 +443,7 @@ public class CharacterController2D : MonoBehaviour
         
         Debug.DrawRay(transform.position, pos * 15, Color.green);
         
-        if (_grounded || _dashing || _roofed && pos.y > 0)
-        {
-            pos.y = 0;
-            _velocity.y = 0;
-        }
-
-        if (_wallRiding && (_wall < 0 && pos.x < 0 || _wall > 0 && pos.x > 0))
-        {
-            pos.x = 0;
-            _velocity.x = 0;
-        }
         _artAnimator.SetBool(WallridingAnimatorBool, _wallRiding);
-
-        if (moveInput > 0 && _wall == -1 || moveInput < 0 && _wall == 1)
-        {
-            _flags.CanDash = false;
-        }
         
         transform.Translate(pos);
     }
@@ -556,7 +546,7 @@ public class CharacterController2D : MonoBehaviour
         _dashing = true;
         _velocity.y = 0;
         _velocity.x = Mathf.MoveTowards(_velocity.x,
-            (dashSpeed + _additionalSpeed * maxAdditionalSpeed / numberOfSteps) * moveInput.x, dashAcceleration);
+            (dashSpeed + _superSpeedValue) * moveInput.x, dashAcceleration);
         _flags.CanDash = false;
         
         _rippleController.startRipple();
