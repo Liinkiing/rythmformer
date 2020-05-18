@@ -11,6 +11,7 @@ public class LevelSelector : MonoBehaviour
 
     [SerializeField] private GameObject _ButtonPrefab;
     [SerializeField] private GameObject SceneTransition;
+    [SerializeField] private TextMeshProUGUI ChapterTitle;
     private GameObject _ButtonWrapper;
     private List<GameObject> _levelButtons;
 
@@ -33,13 +34,27 @@ public class LevelSelector : MonoBehaviour
 
     private void Awake()
     {
-        _ButtonWrapper = GameObject.Find("Content");
+        _ButtonWrapper = GameObject.Find("Levels");
         _levelButtons = new List<GameObject>();
     }
 
     private void Start()
     {
+        var lastUnlockLevel = GameManager.instance.Levels[0];
         foreach (var levelData in GameManager.instance.Levels)
+        {
+            if (GameManager.instance.HasUnlockedLevel(levelData.World, levelData.Level))
+            {
+                lastUnlockLevel = levelData;
+            };
+        }
+
+        var lastUnlockChapter = GameManager.instance.Levels.FindAll(data => data.World == lastUnlockLevel.World);
+        int indexLastChapterUnlocked = Array.IndexOf(Enum.GetValues(typeof(World)), lastUnlockLevel.World);
+
+        ChapterTitle.SetText($"{(indexLastChapterUnlocked > 0 ? "Chapter " + indexLastChapterUnlocked : "Prologue")}\n{lastUnlockLevel.World}");
+        
+        foreach (var levelData in lastUnlockChapter)
         {
             var button = CreateButton($"{levelData.World} - {levelData.Level.ToString()}");
             button.GetComponent<LevelButtonData>().FillFromLevelData(levelData);
