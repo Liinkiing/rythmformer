@@ -56,6 +56,9 @@ public class CharacterController2D : MonoBehaviour
 
     [SerializeField, Tooltip("Horizontal speed on wall jump")]
     private float wallJumpSpeed = 12;
+    
+    [SerializeField, Tooltip("Time during which movement keys are locked after wall jumping")]
+    private float wallJumpLock;
 
     [SerializeField, Tooltip("Time given to give direction after Dash")]
     private float dashBuffer = 0.1f;
@@ -108,11 +111,12 @@ public class CharacterController2D : MonoBehaviour
     private bool _grounded;
     private bool _roofed;
     private bool _wallRiding;
+    private bool _moveLocked;
     private PlayerFlags _flags;
     private SongSynchronizer _synchronizer;
     private Rigidbody2D _rigidbody;
     private Vector3 _upVect;
-    private int _direction = 1;
+    private int _direction = 0;
     private int _wall;
     private bool _groundBuffer;
     private float _dashBuffer;
@@ -200,7 +204,11 @@ public class CharacterController2D : MonoBehaviour
     private void Update()
     {
         Vector2 moveInput = _input.Player.Move.ReadValue<Vector2>();
-        if (moveInput.x < 0)
+        if (_moveLocked || moveInput.x == 0)
+        {
+            _direction = 0;
+        }
+        else if (moveInput.x < 0)
         {
             _direction = -1;
         }
@@ -208,23 +216,19 @@ public class CharacterController2D : MonoBehaviour
         {
             _direction = 1;
         }
-        else
-        {
-            _direction = 0;
-        }
 
-        UpdateScale(moveInput.x);
+        UpdateScale(_direction);
         SurfaceDetection();
-        HandleRythmAction(moveInput);
-        HandleMovement(moveInput.x);
-        ResolveDash(moveInput.x);
-        ResolveTimeBuffers(moveInput);
-        HandleAnimations(moveInput, _velocity.y);
+        HandleRythmAction(_direction);
+        HandleMovement(_direction);
+        ResolveDash(_direction);
+        ResolveTimeBuffers(_direction);
+        HandleAnimations(_direction, _velocity.y);
     }
 
-    private void HandleAnimations(Vector2 input, float velocityY)
+    private void HandleAnimations(int input, float velocityY)
     {
-        _artAnimator.SetFloat(SpeedFloat, Mathf.Abs(input.x));
+        _artAnimator.SetFloat(SpeedFloat, Mathf.Abs(input));
         _artAnimator.SetFloat(VelocityYFloat, velocityY);
         _artAnimator.SetBool(GroundedAnimatorTrigger, _grounded);
         _artAnimator.SetFloat(SpeedMultiplierFloat, _additionalSpeed == 0 ? 1f : 1f + (_additionalSpeed * 0.15f));
@@ -291,7 +295,7 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    private void HandleRythmAction(Vector2 moveInput)
+    private void HandleRythmAction(int moveInput)
     {
         if (!_flags.ActionAvailable)
         {
@@ -320,10 +324,10 @@ public class CharacterController2D : MonoBehaviour
                 if (_additionalSpeed < numberOfSteps) _additionalSpeed++;
             }
         }
-        else if (_input.Player.Dash.triggered && _flags.CanDash && moveInput.x != _wall)
+        else if (_input.Player.Dash.triggered && _flags.CanDash && moveInput != _wall)
         {
             _flags.ActionAvailable = false;
-            if (Mathf.Abs(moveInput.x) > 0)
+            if (Mathf.Abs(moveInput) > 0)
             {
                 Dash(moveInput);
                 if (_additionalSpeed < numberOfSteps) _additionalSpeed++;
@@ -355,11 +359,11 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    private void ResolveTimeBuffers(Vector2 moveInput)
+    private void ResolveTimeBuffers(int moveInput)
     {
         if (_dashBuffer > 0)
         {
-            if (Mathf.Abs(moveInput.x) > 0)
+            if (Mathf.Abs(moveInput) > 0)
             {
                 _dashBuffer = 0;
                 Dash(moveInput);
@@ -531,14 +535,15 @@ public class CharacterController2D : MonoBehaviour
         _velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
         if (_wall != 0 && !_grounded)
         {
-            _velocity.x = _wall * wallJumpSpeed;
+            _velocity.x = -_wall * (wallJumpSpeed + _superSpeedValue);
+            LockMove(wallJumpLock);
         }
 
         _grounded = false;
         OnJump?.Invoke();
     }
 
-    private void Dash(Vector2 moveInput)
+    private void Dash(int moveInput)
     {
         _artAnimator.SetTrigger(DashAnimatorTrigger);
         OnActionPerformed(this, new OnActionEventArgs() {Move = PlayerActions.Dash, Score = _scoreState.Score});
@@ -546,11 +551,23 @@ public class CharacterController2D : MonoBehaviour
         _dashing = true;
         _velocity.y = 0;
         _velocity.x = Mathf.MoveTowards(_velocity.x,
-            (dashSpeed + _superSpeedValue) * moveInput.x, dashAcceleration);
+            (dashSpeed + _superSpeedValue) * moveInput, dashAcceleration);
         _flags.CanDash = false;
         
         _rippleController.startRipple();
         /*_trailPS.Play();*/
+    }
+
+    public void LockMove(float duration)
+    {
+        _moveLocked = true;
+        var coroutine = ResolveMoveLock(duration);
+        StartCoroutine(coroutine);
+    }
+    IEnumerator ResolveMoveLock(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        _moveLocked = false;
     }
 
     #endregion
