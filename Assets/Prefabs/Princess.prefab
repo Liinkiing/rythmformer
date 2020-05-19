@@ -6751,7 +6751,7 @@ MonoBehaviour:
   dashAcceleration: 500
   surfaceRayLength: 0.35
   wallDeceleration: 0.93
-  numberOfSteps: 1
+  numberOfSteps: 3
   superSpeed: 12
   wallsLayerMask:
     serializedVersion: 2
