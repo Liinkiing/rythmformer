@@ -113,6 +113,7 @@ public class CharacterController2D : MonoBehaviour
     private bool _wallRiding;
     private bool _moveLocked;
     private PlayerFlags _flags;
+    private bool _needsReset;
     private SongSynchronizer _synchronizer;
     private Rigidbody2D _rigidbody;
     private Vector3 _upVect;
@@ -173,12 +174,12 @@ public class CharacterController2D : MonoBehaviour
         _levelManager = Utils.FindObjectOfTypeOrThrow<LevelManager>();
         _artAnimator.SetFloat(IdleMultiplierFloat, _synchronizer.song.Informations.bpm / 120.00f);
         _rippleController = GameObject.Find("PostProcessing").GetComponent<RippleController>();
-        _upCast = new DoubleCast(_boxCollider, Vector2.up, surfaceRayLength, new Vector2(0.5f, 1), wallsLayerMask);
-        _rightCast = new DoubleCast(_boxCollider, Vector2.right, surfaceRayLength, new Vector2(1, 0.5f), wallsLayerMask);
-        _downCast = new DoubleCast(_boxCollider, Vector2.down, surfaceRayLength, new Vector2(0.5f, 1), wallsLayerMask);
-        _leftCast = new DoubleCast(_boxCollider, Vector2.left, surfaceRayLength, new Vector2(1, 0.5f), wallsLayerMask);
-        _yCast = new DoubleCast(_boxCollider, Vector2.zero, 0, new Vector2(1, 0.5f), wallsLayerMask);
-        _xCast = new DoubleCast(_boxCollider, Vector2.zero, 0, new Vector2(0.5f, 1), wallsLayerMask);
+        _upCast = new DoubleCast(_boxCollider, Vector2.up, surfaceRayLength, new Vector2(0.99f, 1), wallsLayerMask);
+        _rightCast = new DoubleCast(_boxCollider, Vector2.right, surfaceRayLength, new Vector2(1, 0.99f), wallsLayerMask);
+        _downCast = new DoubleCast(_boxCollider, Vector2.down, surfaceRayLength, new Vector2(0.99f, 1), wallsLayerMask);
+        _leftCast = new DoubleCast(_boxCollider, Vector2.left, surfaceRayLength, new Vector2(1, 0.99f), wallsLayerMask);
+        _yCast = new DoubleCast(_boxCollider, Vector2.zero, 0, new Vector2(1, 0.99f), wallsLayerMask);
+        _xCast = new DoubleCast(_boxCollider, Vector2.zero, 0, new Vector2(0.99f, 1), wallsLayerMask);
     }
 
     private void Start()
@@ -264,11 +265,12 @@ public class CharacterController2D : MonoBehaviour
         var downBufferSize = new Vector2(s.x + 2 * surfaceRayLength, s.y);
         var downBuffer = Physics2D.BoxCast(centerPosition, downBufferSize, 0, Vector2.down, Mathf.Infinity, wallsLayerMask);
         
-        if (downBuffer.distance <= surfaceRayLength && downBuffer.normal.y > 0)
+        if (downBuffer.distance <= surfaceRayLength && downBuffer.normal.y > 0.9f)
         {
             _groundBuffer = true;
             _flags.CanDash = true;
             _flags.CanJump = true;
+            _needsReset = false;
         }
         else
         {
@@ -279,15 +281,17 @@ public class CharacterController2D : MonoBehaviour
         var rightBuffer = Physics2D.BoxCast(centerPosition, sideBufferSize, 0, Vector2.right, Mathf.Infinity, wallsLayerMask);
         var leftBuffer = Physics2D.BoxCast(centerPosition, sideBufferSize, 0, Vector2.left, Mathf.Infinity, wallsLayerMask);
         
-        if (rightBuffer.distance <= surfaceRayLength && rightBuffer.normal.x < 0)
+        if (rightBuffer.distance <= surfaceRayLength && rightBuffer.normal.x < -0.9f)
         {
             _wall = 1;
             _flags.CanDash = true;
+            _needsReset = false;
         }
-        else if (leftBuffer.distance <= surfaceRayLength && leftBuffer.normal.x > 0)
+        else if (leftBuffer.distance <= surfaceRayLength && leftBuffer.normal.x > 0.9f)
         {
             _wall = -1;
             _flags.CanDash = true;
+            _needsReset = false;
         }
         else
         {
@@ -313,10 +317,11 @@ public class CharacterController2D : MonoBehaviour
         if (_input.Player.Jump.triggered)
         {
             _flags.ActionAvailable = false;
-            if (_groundBuffer || _wall != 0 || _flags.CanJump)
+            if (_groundBuffer || _wall != 0 || _flags.CanJump && !_needsReset)
             {
                 if (!_groundBuffer && _wall == 0 && _flags.CanJump)
                 {
+                    _needsReset = true;
                     _flags.CanJump = false;
                 }
 
@@ -324,11 +329,12 @@ public class CharacterController2D : MonoBehaviour
                 if (_additionalSpeed < numberOfSteps) _additionalSpeed++;
             }
         }
-        else if (_input.Player.Dash.triggered && _flags.CanDash && moveInput != _wall)
+        else if (_input.Player.Dash.triggered && _flags.CanDash && moveInput != _wall && !_needsReset)
         {
             _flags.ActionAvailable = false;
             if (Mathf.Abs(moveInput) > 0)
             {
+                _needsReset = true;
                 Dash(moveInput);
                 if (_additionalSpeed < numberOfSteps) _additionalSpeed++;
             }
@@ -535,7 +541,7 @@ public class CharacterController2D : MonoBehaviour
         _velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
         if (_wall != 0 && !_grounded)
         {
-            _velocity.x = -_wall * (wallJumpSpeed + _superSpeedValue);
+            _velocity.x = -_wall * wallJumpSpeed * 2;
             LockMove(wallJumpLock);
         }
 
@@ -550,8 +556,7 @@ public class CharacterController2D : MonoBehaviour
         OnDash?.Invoke();
         _dashing = true;
         _velocity.y = 0;
-        _velocity.x = Mathf.MoveTowards(_velocity.x,
-            (dashSpeed + _superSpeedValue) * moveInput, dashAcceleration);
+        _velocity.x = Mathf.MoveTowards(_velocity.x, dashSpeed * moveInput, dashAcceleration);
         _flags.CanDash = false;
         
         _rippleController.startRipple();
