@@ -153,7 +153,7 @@ public class SongSynchronizer : MonoBehaviour
         void Tween(AudioSource source)
         {
             AudioLowPassFilter sourceFilter = source.GetComponent<AudioLowPassFilter>();
-            int normalCutoffFrequency = 5007;
+            int normalCutoffFrequency = 22000;
             int pauseCutoffFrequency = 1500;
             
             float normalResonance = 1;
