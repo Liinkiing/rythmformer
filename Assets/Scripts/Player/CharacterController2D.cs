@@ -174,12 +174,12 @@ public class CharacterController2D : MonoBehaviour
         _levelManager = Utils.FindObjectOfTypeOrThrow<LevelManager>();
         _artAnimator.SetFloat(IdleMultiplierFloat, _synchronizer.song.Informations.bpm / 120.00f);
         _rippleController = GameObject.Find("PostProcessing").GetComponent<RippleController>();
-        _upCast = new DoubleCast(_boxCollider, Vector2.up, surfaceRayLength, new Vector2(0.99f, 1), wallsLayerMask);
-        _rightCast = new DoubleCast(_boxCollider, Vector2.right, surfaceRayLength, new Vector2(1, 0.99f), wallsLayerMask);
-        _downCast = new DoubleCast(_boxCollider, Vector2.down, surfaceRayLength, new Vector2(0.99f, 1), wallsLayerMask);
-        _leftCast = new DoubleCast(_boxCollider, Vector2.left, surfaceRayLength, new Vector2(1, 0.99f), wallsLayerMask);
-        _yCast = new DoubleCast(_boxCollider, Vector2.zero, 0, new Vector2(1, 0.99f), wallsLayerMask);
-        _xCast = new DoubleCast(_boxCollider, Vector2.zero, 0, new Vector2(0.99f, 1), wallsLayerMask);
+        _upCast = new DoubleCast(_boxCollider, Vector2.up, surfaceRayLength, new Vector2(0.9f, 1), wallsLayerMask);
+        _rightCast = new DoubleCast(_boxCollider, Vector2.right, surfaceRayLength, new Vector2(1, 0.9f), wallsLayerMask);
+        _downCast = new DoubleCast(_boxCollider, Vector2.down, surfaceRayLength, new Vector2(0.9f, 1), wallsLayerMask);
+        _leftCast = new DoubleCast(_boxCollider, Vector2.left, surfaceRayLength, new Vector2(1, 0.9f), wallsLayerMask);
+        _yCast = new DoubleCast(_boxCollider, Vector2.zero, 0, new Vector2(1, 0.9f), wallsLayerMask);
+        _xCast = new DoubleCast(_boxCollider, Vector2.zero, 0, new Vector2(0.9f, 1), wallsLayerMask);
     }
 
     private void Start()
