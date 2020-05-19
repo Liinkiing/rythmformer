@@ -1,13 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MainMenuController : MonoBehaviour
 {
     [SerializeField] private GameObject _sceneTransition;
     [SerializeField] private GameObject _continueLastSaveButton;
     [SerializeField] private GameObject _startNewGameButton;
+
+    private void Start()
+    {
+        EventSystem.current.SetSelectedGameObject(_continueLastSaveButton);
+    }
 
     public void ContinueLastSave()
     {
