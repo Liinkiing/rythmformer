@@ -18,6 +18,7 @@ public class GameManager : MonoSingleton<GameManager>
         SaveManager.instance.Data.LevelProgression[World.Forest] = SaveManager.instance.Data
             .LevelProgression[World.Forest].ToDictionary(pair => pair.Key, pair => false);
         SaveManager.instance.Save();
+        UpdateLastUnlockedLevel();
         Debug.Log("Locked all levels");
     }
 
@@ -29,6 +30,7 @@ public class GameManager : MonoSingleton<GameManager>
         SaveManager.instance.Data.LevelProgression[World.Forest] = SaveManager.instance.Data
             .LevelProgression[World.Forest].ToDictionary(pair => pair.Key, pair => true);
         SaveManager.instance.Save();
+        UpdateLastUnlockedLevel();
         Debug.Log("Unlocked all levels");
     }
 
@@ -130,11 +132,14 @@ public class GameManager : MonoSingleton<GameManager>
     [Space, Header("General")]
     public List<LevelData> Levels;
 
+    private LevelData _lastUnlockedLevel;
+
     #endregion
     public override void Init()
     {
         Debug.Log("[INIT] GameManager");
         Debug.Log($"Difficulty: {SaveManager.instance.Data.Difficulty.ToString()}");
+        UpdateLastUnlockedLevel();
     }
 
     #region Public Methods
@@ -143,6 +148,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         SaveManager.instance.Data.LevelProgression[world][level] = true;
         SaveManager.instance.Save();
+        UpdateLastUnlockedLevel();
         Debug.Log($"Unlocked {world.ToString()}.{level.ToString()}");
     }
 
@@ -150,6 +156,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         SaveManager.instance.Data.LevelProgression[world][level] = false;
         SaveManager.instance.Save();
+        UpdateLastUnlockedLevel();
         Debug.Log($"Locked {world.ToString()}.{level.ToString()}");
     }
 
@@ -163,6 +170,27 @@ public class GameManager : MonoSingleton<GameManager>
         SaveManager.instance.Data.Difficulty = difficulty;
         SaveManager.instance.Save();
         Debug.Log($"Changed difficulty to : {difficulty}");
+    }
+
+    public void UpdateLastUnlockedLevel()
+    {
+        LevelData localLastUnlockedLevel = Levels[0];
+        
+        foreach (var levelData in Levels)
+        {
+            if (HasUnlockedLevel(levelData.World, levelData.Level))
+            {
+                localLastUnlockedLevel = levelData;
+            };
+        }
+
+        LastUnlockedLevel = localLastUnlockedLevel;
+    }
+
+    public LevelData LastUnlockedLevel
+    {
+        get => _lastUnlockedLevel;
+        set => _lastUnlockedLevel = value;
     }
 
     #endregion

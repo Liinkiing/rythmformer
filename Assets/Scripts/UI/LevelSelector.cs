@@ -51,16 +51,7 @@ public class LevelSelector : MonoBehaviour
 
     private void Start()
     {
-        GameManager.LevelData lastUnlockLevel = GameManager.instance.Levels[0];
-        foreach (var levelData in GameManager.instance.Levels)
-        {
-            if (GameManager.instance.HasUnlockedLevel(levelData.World, levelData.Level))
-            {
-                lastUnlockLevel = levelData;
-            };
-        }
-        
-        GenerateUI(lastUnlockLevel.World);
+        GenerateUI(GameManager.instance.LastUnlockedLevel.World);
     }
 
     public void GenerateUI(World chapter)

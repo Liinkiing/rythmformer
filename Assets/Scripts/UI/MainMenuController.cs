@@ -11,18 +11,10 @@ public class MainMenuController : MonoBehaviour
 
     public void ContinueLastSave()
     {
-        GameManager.LevelData lastUnlockLevel = GameManager.instance.Levels[0];
-        foreach (var levelData in GameManager.instance.Levels)
-        {
-            if (GameManager.instance.HasUnlockedLevel(levelData.World, levelData.Level))
-            {
-                lastUnlockLevel = levelData;
-            };
-            
-        }
-        _continueLastSaveButton.GetComponent<LevelButtonData>().FillFromLevelData(lastUnlockLevel);
         
-        StartCoroutine(_sceneTransition.GetComponent<SceneLoader>().LoadLevel(lastUnlockLevel.Scene));
+        _continueLastSaveButton.GetComponent<LevelButtonData>().FillFromLevelData(GameManager.instance.LastUnlockedLevel);
+        
+        StartCoroutine(_sceneTransition.GetComponent<SceneLoader>().LoadLevel(GameManager.instance.LastUnlockedLevel.Scene));
     }
 
     public void StartNewGame()
