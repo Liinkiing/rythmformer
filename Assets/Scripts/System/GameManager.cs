@@ -9,7 +9,7 @@ public class GameManager : MonoSingleton<GameManager>
 {
     #region Debug
 
-#if UNITY_EDITOR
+
     [Button("Lock all levels")]
     public void LockAllLevels()
     {
@@ -111,7 +111,7 @@ public class GameManager : MonoSingleton<GameManager>
             ChangeDifficulty(Difficulty.Chill);
         }
     }
-#endif
+
 
     #endregion
 
