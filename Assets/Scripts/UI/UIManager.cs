@@ -56,5 +56,5 @@ public class UIManager : MonoSingleton<UIManager>
     public void BackToChapter()
     {
         StartCoroutine(SceneTransition.GetComponent<SceneLoader>().LoadLevel("LevelSelector"));
-    } 
+    }
 }
