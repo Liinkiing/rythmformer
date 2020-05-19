@@ -57,14 +57,11 @@ public class LevelManager : MonoBehaviour
 
     public void TogglePause()
     {
-        Debug.Log("TogglePause");
         _UIManager = Utils.FindObjectOfTypeOrThrow<UIManager>();
         _songSynchronizer = Utils.FindObjectOfTypeOrThrow<SongSynchronizer>();
 
         isGamePaused = !isGamePaused;
         _UIManager.TogglePauseCanvas();
         _songSynchronizer.ToggleLowPassFilter(isGamePaused);
-        
-        /*SongSynchronizer.ToggleLowPassFilter(isGamePaused);*/
     }
 }
