@@ -6743,6 +6743,7 @@ MonoBehaviour:
   groundDeceleration: 120
   jumpHeight: 12
   wallJumpSpeed: 12
+  wallJumpLock: 0.15
   dashBuffer: 0.15
   horizontalSpeedTransfer: 0.03
   dashDuration: 0.15

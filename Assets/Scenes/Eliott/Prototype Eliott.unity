@@ -4458,31 +4458,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8018688871446336655, guid: 88785b493f121ad40b98e77701f5eebc,
-        type: 3}
-      propertyPath: dashSpeed
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 8018688871446336655, guid: 88785b493f121ad40b98e77701f5eebc,
-        type: 3}
-      propertyPath: jumpHeight
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 8018688871446336655, guid: 88785b493f121ad40b98e77701f5eebc,
-        type: 3}
-      propertyPath: numberOfSteps
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8018688871446336655, guid: 88785b493f121ad40b98e77701f5eebc,
-        type: 3}
-      propertyPath: speed
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 8018688871446336655, guid: 88785b493f121ad40b98e77701f5eebc,
-        type: 3}
-      propertyPath: maxAdditionalSpeed
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 8018688871446336755, guid: 88785b493f121ad40b98e77701f5eebc,
         type: 3}
       propertyPath: m_Name
