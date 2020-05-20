@@ -24,7 +24,6 @@ public class LeaderboardManager : MonoSingleton<LeaderboardManager>
     {
         Http.SetSuperHeader("X-AUTH-TOKEN", _config.Token);
         _gm = GetComponent<GameManager>();
-        Debug.Log(_config.ApiRoot);
     }
 
     public IHttpRequest FetchBestScoreForLevel(World world, Level level)
