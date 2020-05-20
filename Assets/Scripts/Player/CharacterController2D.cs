@@ -200,30 +200,34 @@ public class CharacterController2D : MonoBehaviour
         _levelManager?.OnLevelReset.RemoveListener(OnLevelReset);
         RemoveThresholdedBeatEvents();
     }
+    
 
     private void Update()
     {
-        Vector2 moveInput = _input.Player.Move.ReadValue<Vector2>();
-        if (_moveLocked || moveInput.x == 0)
+        if (!_levelManager.isGamePaused)
         {
-            _direction = 0;
-        }
-        else if (moveInput.x < 0)
-        {
-            _direction = -1;
-        }
-        else if (moveInput.x > 0)
-        {
-            _direction = 1;
-        }
+            Vector2 moveInput = _input.Player.Move.ReadValue<Vector2>();
+            if (_moveLocked || moveInput.x == 0)
+            {
+                _direction = 0;
+            }
+            else if (moveInput.x < 0)
+            {
+                _direction = -1;
+            }
+            else if (moveInput.x > 0)
+            {
+                _direction = 1;
+            }
 
-        UpdateScale(_direction);
-        SurfaceDetection();
-        HandleRythmAction(_direction);
-        HandleMovement(_direction);
-        ResolveDash(_direction);
-        ResolveTimeBuffers(_direction);
-        HandleAnimations(_direction, _velocity.y);
+            UpdateScale(_direction);
+            SurfaceDetection();
+            HandleRythmAction(_direction);
+            HandleMovement(_direction);
+            ResolveDash(_direction);
+            ResolveTimeBuffers(_direction);
+            HandleAnimations(_direction, _velocity.y);
+        }
     }
 
     private void HandleAnimations(int input, float velocityY)

@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
+using DG.Tweening;
 
 public class SongSynchronizer : MonoBehaviour
 {
@@ -140,6 +141,31 @@ public class SongSynchronizer : MonoBehaviour
             Sources.Bass.timeSamples = 0;
             Sources.Melody.timeSamples = 0;
             Sources.Drums.timeSamples = 0;
+        }
+    }
+
+    public void ToggleLowPassFilter(bool pauseState)
+    {
+        Tween(Sources.Bass);
+        Tween(Sources.Melody);
+        Tween(Sources.Drums);
+        
+        void Tween(AudioSource source)
+        {
+            AudioLowPassFilter sourceFilter = source.GetComponent<AudioLowPassFilter>();
+            int normalCutoffFrequency = 22000;
+            int pauseCutoffFrequency = 1500;
+            
+            float normalResonance = 1;
+            float pauseResonance = 1.5f;
+
+            DOTween
+                .To(() => sourceFilter.cutoffFrequency, x => sourceFilter.cutoffFrequency = x, pauseState ? pauseCutoffFrequency : normalCutoffFrequency, UIManager.instance.pauseTransitionDuration)
+                .SetEase(Ease.InOutQuint);
+            
+            DOTween
+                .To(() => sourceFilter.lowpassResonanceQ, x => sourceFilter.lowpassResonanceQ = x, pauseState ? pauseResonance : normalResonance, UIManager.instance.pauseTransitionDuration)
+                .SetEase(Ease.InOutQuint);
         }
     }
 

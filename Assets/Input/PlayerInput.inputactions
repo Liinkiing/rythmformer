@@ -30,7 +30,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Menu",
+                    "name": "Pause",
                     "type": "Button",
                     "id": "3cd98f7f-99d7-40d0-8122-9f06ee0a243e",
                     "expectedControlType": "",
@@ -167,7 +167,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Menu",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -178,7 +178,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Menu",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

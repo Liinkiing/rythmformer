@@ -3,16 +3,24 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 [Serializable]
 public class LevelSelector : MonoBehaviour
 {
     #region Fields
 
-    [SerializeField] private GameObject _ButtonPrefab;
-    [SerializeField] private GameObject SceneTransition;
-    private GameObject _ButtonWrapper;
+    [SerializeField] private GameObject _buttonPrefab;
+    [SerializeField] private GameObject _sceneTransition;
+    [SerializeField] private TextMeshProUGUI _chapterTitle;
+    [SerializeField] private GameObject _nextChapter;
+    [SerializeField] private GameObject _lastChapter;
+    private GameObject _buttonWrapper;
     private List<GameObject> _levelButtons;
+    private Button _lastChapterButton;
+    private TextMeshProUGUI _lastChapterText;
+    private Button _nextChapterButton;
+    private TextMeshProUGUI _nextChapterText;
 
     #endregion
 
@@ -33,23 +41,80 @@ public class LevelSelector : MonoBehaviour
 
     private void Awake()
     {
-        _ButtonWrapper = GameObject.Find("Content");
+        _buttonWrapper = GameObject.Find("Levels");
         _levelButtons = new List<GameObject>();
+        _lastChapterButton = _lastChapter.GetComponent<Button>();
+        _lastChapterText = _lastChapter.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        _nextChapterButton = _nextChapter.GetComponent<Button>();
+        _nextChapterText = _nextChapter.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
     }
 
     private void Start()
     {
-        foreach (var levelData in GameManager.instance.Levels)
+        GenerateUI(GameManager.instance.LastUnlockedLevel.World);
+    }
+
+    public void GenerateUI(World chapter)
+    {
+        RemoveButtons();
+        _levelButtons.Clear();
+        
+        var levelsInChapter = GameManager.instance.Levels.FindAll(data => data.World == chapter);
+        int indexChapter = Array.IndexOf(Enum.GetValues(typeof(World)), chapter);
+        string lastChapterName = Enum.GetName(typeof(World), indexChapter-1);
+
+        #region Generate last and next chapter buttons
+        if (lastChapterName != null)
+        {
+            _lastChapter.SetActive(true);
+            var lastChapter = (World)Enum.Parse(typeof(World), lastChapterName);
+            _lastChapterText.SetText(lastChapterName);
+            
+            _lastChapterButton.onClick.AddListener(() =>
+            {
+                GenerateUI(lastChapter);
+            });
+        }
+        else
+        {
+            _lastChapter.SetActive(false);
+        }
+
+        string nextChapterName = Enum.GetName(typeof(World), indexChapter+1);
+        
+        if (nextChapterName != null)
+        {
+            _nextChapter.SetActive(true);
+            var nextChapter = (World)Enum.Parse(typeof(World), nextChapterName);
+            _nextChapterText.SetText(nextChapterName);
+            
+            _nextChapterButton.onClick.AddListener(() =>
+            {
+                GenerateUI(nextChapter);
+            });
+        }
+        else
+        {
+            _nextChapter.SetActive(false);
+        }
+
+        #endregion
+        
+        _chapterTitle.SetText($"{(indexChapter > 0 ? "Chapter " + indexChapter : "Prologue")}\n{chapter}");
+
+        foreach (var levelData in levelsInChapter)
         {
             var button = CreateButton($"{levelData.World} - {levelData.Level.ToString()}");
             button.GetComponent<LevelButtonData>().FillFromLevelData(levelData);
             button.GetComponent<Button>().onClick.AddListener(() =>
             {
-                StartCoroutine(SceneTransition.GetComponent<SceneLoader>().LoadLevel(levelData.Scene));
+                StartCoroutine(_sceneTransition.GetComponent<SceneLoader>().LoadLevel(levelData.Scene));
             });
             _levelButtons.Add(button);
             RefreshButtons();
         }
+        
+        EventSystem.current.SetSelectedGameObject(_levelButtons[0]);
     }
 
     private void OnDestroy()
@@ -72,10 +137,15 @@ public class LevelSelector : MonoBehaviour
 
     private GameObject CreateButton(string content)
     {
-        var button = Instantiate(_ButtonPrefab, _ButtonWrapper.transform.position,
-            _ButtonWrapper.transform.rotation);
-        button.transform.SetParent(_ButtonWrapper.transform);
+        var button = Instantiate(_buttonPrefab, _buttonWrapper.transform.position,
+            _buttonWrapper.transform.rotation);
+        button.transform.SetParent(_buttonWrapper.transform);
         button.GetComponentInChildren<TextMeshProUGUI>().text = content;
         return button;
+    }
+
+    private void RemoveButtons()
+    {
+        _levelButtons.ForEach(Destroy);
     }
 }

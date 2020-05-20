@@ -7,7 +7,7 @@ public class SceneLoader : MonoBehaviour
 {
     #region Fields
     [SerializeField] private Animator _SceneTransition;
-    [SerializeField] private float transitionTime = 1f;
+    [SerializeField] private float transitionTime;
     #endregion
 
     public IEnumerator LoadLevel(string levelName)
