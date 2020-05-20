@@ -5,7 +5,14 @@ using UnityEngine.InputSystem;
 
 public class LevelManager : MonoBehaviour
 {
+    [Serializable]
+    public struct LevelConfig
+    {
+        public World World;
+        public Level Level;
+    }
 
+    public LevelConfig Config = new LevelConfig() { World = World.Castle, Level =  Level.Tutorial };
     public bool isGamePaused;
     private SongSynchronizer _songSynchronizer;
     private CharacterController2D _player;

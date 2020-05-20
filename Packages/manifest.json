@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "com.dbrizov.naughtyattributes": "https://github.com/dbrizov/NaughtyAttributes.git#upm",
+    "com.dubitlimited.duck.unity-http": "https://github.com/dubit/unity-http.git",
     "com.unity.2d.psdimporter": "2.1.0",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.2d.tilemap": "1.0.0",
@@ -57,6 +58,10 @@
     "com.unity.2d.tilemap.extras": {
       "revision": "master",
       "hash": "e9955e7528762a4ba6cd0471215e2c2135436ebe"
+    },
+    "com.dubitlimited.duck.unity-http": {
+      "revision": "HEAD",
+      "hash": "709612fec948d2de7a31b280c4730d161219f9d6"
     }
   }
 }

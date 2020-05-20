@@ -10,8 +10,10 @@ public class UIManager : MonoSingleton<UIManager>
     [SerializeField] private GameObject SceneTransition;
     [SerializeField] private GameObject _pauseCanvas;
     [SerializeField] private Button _continuePauseButton;
+    [SerializeField] private CanvasGroup _levelEndCanvasGroup;
     private PlayerInput _input;
     private CanvasGroup _pauseCanvasGroup;
+    
     private LevelManager _levelManager;
 
     void Awake()
@@ -19,6 +21,11 @@ public class UIManager : MonoSingleton<UIManager>
         _levelManager = Utils.FindObjectOfTypeOrThrow<LevelManager>();
         _pauseCanvasGroup = _pauseCanvas.GetComponent<CanvasGroup>();
         _input = new PlayerInput();
+        
+        _levelEndCanvasGroup.alpha = 0;
+        _levelEndCanvasGroup.blocksRaycasts = false;
+        _levelEndCanvasGroup.interactable = false;
+        
         _pauseCanvasGroup.alpha = 0;
         _pauseCanvasGroup.blocksRaycasts = false;
         _pauseCanvasGroup.interactable = false;
@@ -51,6 +58,27 @@ public class UIManager : MonoSingleton<UIManager>
         {
             EventSystem.current.SetSelectedGameObject(_continuePauseButton.gameObject);
         }
+    }
+
+    public void ShowLevelEndCanvas()
+    {
+        _levelEndCanvasGroup.blocksRaycasts = true;
+        _levelEndCanvasGroup.interactable = true;
+        
+        DOTween
+            .To(() => _levelEndCanvasGroup.alpha, x => _levelEndCanvasGroup.alpha = x, 1, pauseTransitionDuration)
+            .SetEase(Ease.InOutQuint);
+    }
+
+
+    public void HideLevelEndCanvas()
+    {
+        _levelEndCanvasGroup.blocksRaycasts = false;
+        _levelEndCanvasGroup.interactable = false;
+        
+        DOTween
+            .To(() => _levelEndCanvasGroup.alpha, x => _levelEndCanvasGroup.alpha = x, 0, pauseTransitionDuration)
+            .SetEase(Ease.InOutQuint);
     }
 
     public void BackToChapter()

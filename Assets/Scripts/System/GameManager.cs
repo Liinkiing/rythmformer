@@ -138,6 +138,7 @@ public class GameManager : MonoSingleton<GameManager>
     public override void Init()
     {
         Debug.Log("[INIT] GameManager");
+        LeaderboardManager.instance.WakeServer();
         Debug.Log($"Difficulty: {SaveManager.instance.Data.Difficulty.ToString()}");
         UpdateLastUnlockedLevel();
     }
