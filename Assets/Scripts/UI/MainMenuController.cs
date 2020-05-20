@@ -14,7 +14,6 @@ public class MainMenuController : MonoBehaviour
 
     public void ContinueLastSave()
     {
-        
         _continueLastSaveButton.GetComponent<LevelButtonData>().FillFromLevelData(GameManager.instance.LastUnlockedLevel);
         
         StartCoroutine(_sceneTransition.GetComponent<SceneLoader>().LoadLevel(GameManager.instance.LastUnlockedLevel.Scene));
@@ -29,5 +28,10 @@ public class MainMenuController : MonoBehaviour
         
         _startNewGameButton.GetComponent<LevelButtonData>().FillFromLevelData(firstLevel);
         StartCoroutine(_sceneTransition.GetComponent<SceneLoader>().LoadLevel(firstLevel.Scene));
+    }
+
+    public void OpenSettings()
+    {
+        StartCoroutine(_sceneTransition.GetComponent<SceneLoader>().LoadLevel("Settings"));
     }
 }
