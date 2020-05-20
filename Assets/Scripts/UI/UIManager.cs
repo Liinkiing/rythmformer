@@ -59,10 +59,7 @@ public class UIManager : MonoSingleton<UIManager>
     {
         _levelEndCanvasGroup.blocksRaycasts = _levelEndUI.activeSelf ? false : true;
         _levelEndCanvasGroup.interactable = _levelEndUI.activeSelf ? false : true;
-
-        /*_levelEndUI.SetActive(_levelEndUI.activeSelf ? false : true);*/
-
-        Debug.Log(_levelEndUI.activeSelf);
+        
         if (_levelEndUI.activeSelf)
         {
             Sequence transitionSequence = DOTween.Sequence();
@@ -83,12 +80,6 @@ public class UIManager : MonoSingleton<UIManager>
                 .SetEase(Ease.InOutQuint);
         }
     }
-    
-    public void ToggleMainMenuUI()
-    {
-        _mainMenuUI.SetActive(_mainMenuUI.activeSelf ? false : true);
-    }
-    
     public void ToggleSelectDifficultyUI()
     {
         _selectDifficultyUI.SetActive(_selectDifficultyUI.activeSelf ? false : true);
@@ -97,6 +88,11 @@ public class UIManager : MonoSingleton<UIManager>
     public void ToggleLevelSelectorUI()
     {
         _levelSelectorUI.SetActive(_levelSelectorUI.activeSelf ? false : true);
+    }
+    
+    public void ToggleMainMenuUI()
+    {
+        _mainMenuUI.SetActive(_mainMenuUI.activeSelf ? false : true);
     }
     
     public void ToggleSettingsUI()

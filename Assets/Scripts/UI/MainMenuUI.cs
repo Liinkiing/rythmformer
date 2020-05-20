@@ -1,12 +1,18 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
+using DG.Tweening;
 
 public class MainMenuUI : MonoBehaviour
 {
     [SerializeField] private GameObject _sceneTransition;
     [SerializeField] private GameObject _continueLastSaveButton;
     [SerializeField] private GameObject _startNewGameButton;
+    [SerializeField] private GameObject _settingsButton;
+    [SerializeField] private CanvasGroup _settingsUICanvasGroup;
+    [SerializeField] private CanvasGroup _mainMenuUICanvasGroup;
+    [SerializeField] private GameObject _settingsChillButton;
+    [SerializeField] private GameObject _settingsProGamerlButton;
+    
 
     private void Start()
     {
@@ -33,7 +39,41 @@ public class MainMenuUI : MonoBehaviour
 
     public void OpenSettings()
     {
-        UIManager.instance.ToggleMainMenuUI();
-        UIManager.instance.ToggleSettingsUI();
+        _mainMenuUICanvasGroup.blocksRaycasts = false;
+        _mainMenuUICanvasGroup.interactable = false;
+        
+        _settingsUICanvasGroup.blocksRaycasts = true;
+        _settingsUICanvasGroup.interactable = true;
+        
+        EventSystem.current.SetSelectedGameObject(SaveManager.instance.Data.Difficulty == Difficulty.Chill ? _settingsChillButton : _settingsProGamerlButton);
+        
+        DOTween
+            .To(() => _settingsUICanvasGroup.alpha, x => _mainMenuUICanvasGroup.alpha = x, 0,
+                UIManager.instance.transitionUIDuration)
+            .SetEase(Ease.InOutQuint);
+        DOTween
+            .To(() => _mainMenuUICanvasGroup.alpha, x => _settingsUICanvasGroup.alpha = x, 1,
+                UIManager.instance.transitionUIDuration)
+            .SetEase(Ease.InOutQuint);
+    }
+    
+    public void CloseSettings()
+    {
+        _settingsUICanvasGroup.blocksRaycasts = false;
+        _settingsUICanvasGroup.interactable = false;
+        
+        _mainMenuUICanvasGroup.blocksRaycasts = true;
+        _mainMenuUICanvasGroup.interactable = true;
+        
+        EventSystem.current.SetSelectedGameObject(_settingsButton);
+        
+        DOTween
+            .To(() => _settingsUICanvasGroup.alpha, x => _settingsUICanvasGroup.alpha = x, 0,
+                UIManager.instance.transitionUIDuration)
+            .SetEase(Ease.InOutQuint);
+        DOTween
+            .To(() => _mainMenuUICanvasGroup.alpha, x => _mainMenuUICanvasGroup.alpha = x, 1,
+                UIManager.instance.transitionUIDuration)
+            .SetEase(Ease.InOutQuint);
     }
 }
