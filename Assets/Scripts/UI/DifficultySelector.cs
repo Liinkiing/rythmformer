@@ -35,8 +35,5 @@ public class DifficultySelector : MonoBehaviour
       {
          Debug.Log($"You want to change difficulty to '{difficulty}' which is not defined in Difficulty enum");
       }
-      
-      
-      
    }
 }
