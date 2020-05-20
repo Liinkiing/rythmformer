@@ -15,6 +15,8 @@ public class LevelSelector : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _chapterTitle;
     [SerializeField] private GameObject _nextChapter;
     [SerializeField] private GameObject _lastChapter;
+    [SerializeField] private GameObject _backToHomeButton;
+    [SerializeField] private TextMeshProUGUI _ToggleDifficultyButton;
     private GameObject _buttonWrapper;
     private List<GameObject> _levelButtons;
     private Button _lastChapterButton;
@@ -52,6 +54,7 @@ public class LevelSelector : MonoBehaviour
     private void Start()
     {
         GenerateUI(GameManager.instance.LastUnlockedLevel.World);
+        RefreshDifficultyButton();
     }
 
     public void GenerateUI(World chapter)
@@ -117,6 +120,17 @@ public class LevelSelector : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(_levelButtons[0]);
     }
 
+    private void RefreshDifficultyButton()
+    {
+        _ToggleDifficultyButton.SetText(SaveManager.instance.Data.Difficulty == Difficulty.Chill ? "Chill Gamer" : "Pro Gamer");
+    }
+    
+    public void ToggleDifficulty()
+    {
+        GameManager.instance.ToggleDifficulty();
+        RefreshDifficultyButton();
+    }
+
     private void OnDestroy()
     {
         _levelButtons.Clear();
@@ -147,5 +161,10 @@ public class LevelSelector : MonoBehaviour
     private void RemoveButtons()
     {
         _levelButtons.ForEach(Destroy);
+    }
+    
+    public void BackToMainMenu()
+    {
+        StartCoroutine(_sceneTransition.GetComponent<SceneLoader>().LoadLevel("MainMenu"));
     }
 }
