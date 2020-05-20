@@ -96,13 +96,15 @@ public class CharacterController2D : MonoBehaviour
     private Transform art;
 
     private BoxCollider2D _boxCollider;
-    private DoubleCast _upCast;
-    private DoubleCast _rightCast;
-    private DoubleCast _downCast;
-    private DoubleCast _leftCast;
-    private DoubleCast _yCast;
-    private DoubleCast _xCast;
-    private DoubleCast _ledgeCast;
+    private RaycastGroup _collisionX;
+    private RaycastGroup _collisionY;
+    private RaycastGroup _upCast;
+    private RaycastGroup _downCast;
+    private RaycastGroup _rightCast;
+    private RaycastGroup _leftCast;
+    private RaycastGroup _downBuffer;
+    private RaycastGroup _rightBuffer;
+    private RaycastGroup _leftBuffer;
     private Vector3 _initialLocalScale;
     private float _dashTime;
     private bool _dashing;
@@ -175,13 +177,15 @@ public class CharacterController2D : MonoBehaviour
         _levelManager = Utils.FindObjectOfTypeOrThrow<LevelManager>();
         _artAnimator.SetFloat(IdleMultiplierFloat, _synchronizer.song.Informations.bpm / 120.00f);
         _rippleController = GameObject.Find("PostProcessing").GetComponent<RippleController>();
-        _upCast = new DoubleCast(_boxCollider, Vector2.up, surfaceRayLength, new Vector2(0.9f, 1), wallsLayerMask);
-        _rightCast = new DoubleCast(_boxCollider, Vector2.right, surfaceRayLength, new Vector2(1, 0.9f), wallsLayerMask);
-        _downCast = new DoubleCast(_boxCollider, Vector2.down, surfaceRayLength, new Vector2(0.9f, 1), wallsLayerMask);
-        _leftCast = new DoubleCast(_boxCollider, Vector2.left, surfaceRayLength, new Vector2(1, 0.9f), wallsLayerMask);
-        _yCast = new DoubleCast(_boxCollider, Vector2.zero, 0, new Vector2(1, 0.9f), wallsLayerMask);
-        _xCast = new DoubleCast(_boxCollider, Vector2.zero, 0, new Vector2(0.9f, 1), wallsLayerMask);
-        _ledgeCast = new DoubleCast(_boxCollider, Vector2.zero, 0, new Vector2(1.1f, 1), wallsLayerMask);
+        _collisionX = new RaycastGroup(_boxCollider, Vector2.zero, 0, 7, wallsLayerMask, new Vector2(1, 1));
+        _collisionY = new RaycastGroup(_boxCollider, Vector2.zero, 0, 7, wallsLayerMask, new Vector2(1, 1));
+        _upCast = new RaycastGroup(_boxCollider, Vector2.up, 0.1f, 3, wallsLayerMask, new Vector2(1, 1));
+        _downCast = new RaycastGroup(_boxCollider, Vector2.down, 0.1f, 3, wallsLayerMask, new Vector2(1, 1));
+        _rightCast = new RaycastGroup(_boxCollider, Vector2.right, 0.1f, 7, wallsLayerMask, new Vector2(1, 1));
+        _leftCast = new RaycastGroup(_boxCollider, Vector2.left, 0.1f, 7, wallsLayerMask, new Vector2(1, 1));
+        _downBuffer = new RaycastGroup(_boxCollider, Vector2.down, surfaceRayLength, 3, wallsLayerMask, new Vector2(1.2f, 1));
+        _rightBuffer = new RaycastGroup(_boxCollider, Vector2.right, surfaceRayLength, 7, wallsLayerMask, new Vector2(1, 0.8f));
+        _leftBuffer = new RaycastGroup(_boxCollider, Vector2.left, surfaceRayLength, 7, wallsLayerMask, new Vector2(1, 0.8f));
     }
 
     private void Start()
@@ -259,15 +263,9 @@ public class CharacterController2D : MonoBehaviour
     {
         _grounded = _downCast.Check(_downCast.Down);
         _roofed = _upCast.Check(_upCast.Up);
-        _wallRiding = _rightCast.Check(_rightCast.Right) || _leftCast.Check(_leftCast.Left);
-
-        Vector2 s = _boxCollider.size;
-        Vector2 centerPosition = transform.position;
+        _wallRiding = _leftCast.Check(_leftCast.Left) || _rightCast.Check(_rightCast.Right);
         
-        var downBufferSize = new Vector2(s.x + 2 * surfaceRayLength, s.y);
-        var downBuffer = Physics2D.BoxCast(centerPosition, downBufferSize, 0, Vector2.down, Mathf.Infinity, wallsLayerMask);
-        
-        if (downBuffer.distance <= surfaceRayLength && downBuffer.normal.y > 0.9f)
+        if (_downBuffer.Check(_downBuffer.TouchDown))
         {
             _groundBuffer = true;
             _flags.CanDash = true;
@@ -279,17 +277,13 @@ public class CharacterController2D : MonoBehaviour
             _groundBuffer = false;
         }
         
-        var sideBufferSize = new Vector2(s.x, s.y - 2 * surfaceRayLength);
-        var rightBuffer = Physics2D.BoxCast(centerPosition, sideBufferSize, 0, Vector2.right, Mathf.Infinity, wallsLayerMask);
-        var leftBuffer = Physics2D.BoxCast(centerPosition, sideBufferSize, 0, Vector2.left, Mathf.Infinity, wallsLayerMask);
-        
-        if (rightBuffer.distance <= surfaceRayLength && rightBuffer.normal.x < -0.9f)
+        if (_rightBuffer.Check(_rightBuffer.TouchRight))
         {
             _wall = 1;
             _flags.CanDash = true;
             _needsReset = false;
         }
-        else if (leftBuffer.distance <= surfaceRayLength && leftBuffer.normal.x > 0.9f)
+        else if (_leftBuffer.Check(_leftBuffer.TouchLeft))
         {
             _wall = -1;
             _flags.CanDash = true;
@@ -383,7 +377,7 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    private void HandleMovement(float moveInput)
+    private void HandleMovement(int moveInput)
     {
         //TODO: Move VFX to a dedicated script
         // Footstep VFX
@@ -432,7 +426,7 @@ public class CharacterController2D : MonoBehaviour
         }
         
         // Prevent speed gain against wall
-        if (_wallRiding && (_wall < 0 && _velocity.x < 0 || _wall > 0 && _velocity.x > 0))
+        if (_wallRiding && (_wall < 0 && _velocity.x < 0 || _wall > 0 && _velocity.x > 0 || moveInput == _wall))
         {
             _velocity.x = 0;
         }
@@ -441,23 +435,17 @@ public class CharacterController2D : MonoBehaviour
         var pos = _velocity * Time.deltaTime;
         
         // Check if collision is expected
-        var minDistance = new float[3];
+        var distances = new float[2];
         
-        _yCast.Distance = pos.magnitude;
-        _yCast.Direction = _velocity.normalized;
-        minDistance[0] = _yCast.MinDistance();
-        
-        _xCast.Distance = pos.magnitude;
-        _xCast.Direction = _velocity.normalized;
-        minDistance[1] = _xCast.MinDistance();
+        _collisionX.Distance = pos.magnitude;
+        _collisionX.Direction = _velocity.normalized;
+        distances[0] = _collisionX.MinDistance(pos.x > 0 ? Vector2.right : Vector2.left);
 
-        _ledgeCast.Distance = pos.magnitude;
-        _ledgeCast.Direction = _velocity.normalized;
-        minDistance[2] = _ledgeCast.MinDistance(true);
+        _collisionY.Distance = pos.magnitude;
+        _collisionY.Direction = _velocity.normalized;
+        distances[1] = _collisionY.MinDistance(pos.y > 0 ? Vector2.up : Vector2.down);
 
-        pos = _velocity.normalized * minDistance.Min();
-        
-        Debug.DrawRay(transform.position, pos * 15, Color.green);
+        pos = _velocity.normalized * distances.Min();
         
         _artAnimator.SetBool(WallridingAnimatorBool, _wallRiding);
         
