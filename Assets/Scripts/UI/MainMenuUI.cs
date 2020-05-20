@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class MainMenuController : MonoBehaviour
+public class MainMenuUI : MonoBehaviour
 {
     [SerializeField] private GameObject _sceneTransition;
     [SerializeField] private GameObject _continueLastSaveButton;
@@ -32,6 +33,7 @@ public class MainMenuController : MonoBehaviour
 
     public void OpenSettings()
     {
-        StartCoroutine(_sceneTransition.GetComponent<SceneLoader>().LoadLevel("Settings"));
+        UIManager.instance.ToggleMainMenuUI();
+        UIManager.instance.ToggleSettingsUI();
     }
 }

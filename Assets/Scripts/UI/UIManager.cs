@@ -1,39 +1,34 @@
 ﻿using Rythmformer;
 using UnityEngine;
 using DG.Tweening;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 public class UIManager : MonoSingleton<UIManager>
 {
-    public float pauseTransitionDuration = 0.8f;
-    [SerializeField] private GameObject SceneTransition;
-    [SerializeField] private GameObject _pauseCanvas;
-    [SerializeField] private Button _continuePauseButton;
-    [SerializeField] private CanvasGroup _levelEndCanvasGroup;
-    private PlayerInput _input;
-    private CanvasGroup _pauseCanvasGroup;
+    public float transitionUIDuration = 0.8f;
     
-    private LevelManager _levelManager;
+    [SerializeField] private GameObject _sceneTransition;
+    [SerializeField] private GameObject _selectDifficultyUI;
+    [SerializeField] private GameObject _mainMenuUI;
+    [SerializeField] private GameObject _settingsUI;
+    [SerializeField] private CanvasGroup _settingsUICanvasGroup;
+    [SerializeField] private GameObject _levelUI;
+    [SerializeField] private GameObject _levelEndUI;
+    [SerializeField] private CanvasGroup _levelEndCanvasGroup;
+    [SerializeField] private GameObject _levelSelectorUI;
 
+    private PlayerInput _input;
+    
     void Awake()
     {
-        _levelManager = Utils.FindObjectOfTypeOrThrow<LevelManager>();
-        _pauseCanvasGroup = _pauseCanvas.GetComponent<CanvasGroup>();
         _input = new PlayerInput();
         
         _levelEndCanvasGroup.alpha = 0;
         _levelEndCanvasGroup.blocksRaycasts = false;
         _levelEndCanvasGroup.interactable = false;
         
-        _pauseCanvasGroup.alpha = 0;
-        _pauseCanvasGroup.blocksRaycasts = false;
-        _pauseCanvasGroup.interactable = false;
-
-        _continuePauseButton.onClick.AddListener(() =>
-        {
-            _levelManager.OnLevelPause?.Invoke();
-        });
+        _settingsUICanvasGroup.alpha = 0;
+        _settingsUICanvasGroup.blocksRaycasts = false;
+        _settingsUICanvasGroup.interactable = false;
     }
     private void OnEnable()
     {
@@ -45,44 +40,71 @@ public class UIManager : MonoSingleton<UIManager>
         _input?.Disable();
     }
 
-    public void TogglePauseCanvas()
-    {
-        _pauseCanvasGroup.blocksRaycasts = _levelManager.isGamePaused;
-        _pauseCanvasGroup.interactable = _levelManager.isGamePaused;
-        
-        DOTween
-            .To(() => _pauseCanvasGroup.alpha, x => _pauseCanvasGroup.alpha = x, _levelManager.isGamePaused ? 1 : 0, pauseTransitionDuration)
-            .SetEase(Ease.InOutQuint);
-
-        if (_levelManager.isGamePaused)
-        {
-            EventSystem.current.SetSelectedGameObject(_continuePauseButton.gameObject);
-        }
-    }
-
-    public void ShowLevelEndCanvas()
-    {
-        _levelEndCanvasGroup.blocksRaycasts = true;
-        _levelEndCanvasGroup.interactable = true;
-        
-        DOTween
-            .To(() => _levelEndCanvasGroup.alpha, x => _levelEndCanvasGroup.alpha = x, 1, pauseTransitionDuration)
-            .SetEase(Ease.InOutQuint);
-    }
-
-
-    public void HideLevelEndCanvas()
-    {
-        _levelEndCanvasGroup.blocksRaycasts = false;
-        _levelEndCanvasGroup.interactable = false;
-        
-        DOTween
-            .To(() => _levelEndCanvasGroup.alpha, x => _levelEndCanvasGroup.alpha = x, 0, pauseTransitionDuration)
-            .SetEase(Ease.InOutQuint);
-    }
-
     public void BackToChapter()
     {
-        StartCoroutine(SceneTransition.GetComponent<SceneLoader>().LoadLevel("LevelSelector"));
+        StartCoroutine(_sceneTransition.GetComponent<SceneLoader>().LoadLevel("LevelSelector"));
+    }
+    
+    public void BackToMainMenu()
+    {
+        StartCoroutine(_sceneTransition.GetComponent<SceneLoader>().LoadLevel("MainMenu"));
+    }
+
+    public void ToggleLevelUI()
+    {
+        _levelUI.SetActive(_levelUI.activeSelf ? false : true);
+    }
+    
+    public void ToggleLevelEndUI()
+    {
+        _levelEndCanvasGroup.blocksRaycasts = _levelEndUI.activeSelf ? false : true;
+        _levelEndCanvasGroup.interactable = _levelEndUI.activeSelf ? false : true;
+
+        /*_levelEndUI.SetActive(_levelEndUI.activeSelf ? false : true);*/
+
+        Debug.Log(_levelEndUI.activeSelf);
+        if (_levelEndUI.activeSelf)
+        {
+            Sequence transitionSequence = DOTween.Sequence();
+            transitionSequence.AppendCallback(() => _levelEndUI.SetActive(false));
+            transitionSequence.Append(
+                    DOTween
+                        .To(() => _levelEndCanvasGroup.alpha, x => _levelEndCanvasGroup.alpha = x, 0, transitionUIDuration)
+                        .SetEase(Ease.InOutQuint)
+                    );
+            
+            transitionSequence.Play();
+        }
+        else
+        {
+            _levelEndUI.SetActive(true);
+            DOTween
+                .To(() => _levelEndCanvasGroup.alpha, x => _levelEndCanvasGroup.alpha = x, 1, transitionUIDuration)
+                .SetEase(Ease.InOutQuint);
+        }
+    }
+    
+    public void ToggleMainMenuUI()
+    {
+        _mainMenuUI.SetActive(_mainMenuUI.activeSelf ? false : true);
+    }
+    
+    public void ToggleSelectDifficultyUI()
+    {
+        _selectDifficultyUI.SetActive(_selectDifficultyUI.activeSelf ? false : true);
+    }
+    
+    public void ToggleLevelSelectorUI()
+    {
+        _levelSelectorUI.SetActive(_levelSelectorUI.activeSelf ? false : true);
+    }
+    
+    public void ToggleSettingsUI()
+    {
+        _settingsUICanvasGroup.alpha = _settingsUI.activeSelf ? 0 : 1;
+        _settingsUICanvasGroup.blocksRaycasts = _settingsUI.activeSelf ? false : true;
+        _settingsUICanvasGroup.interactable = _settingsUI.activeSelf ? false : true;
+        
+        _settingsUI.SetActive(_settingsUI.activeSelf ? false : true);
     }
 }

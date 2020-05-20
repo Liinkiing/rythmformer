@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DifficultySelector : MonoBehaviour
+public class SelectDifficultyUI : MonoBehaviour
 {
 
    [SerializeField] private Button _chillButton;

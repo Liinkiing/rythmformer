@@ -1,19 +1,18 @@
-﻿using System;
-using HttpModel;
+﻿using HttpModel;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class LevelEnd : MonoBehaviour
+
+public class LevelEndUI : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI _scoreText;
     private LevelManager _levelManager;
-    [SerializeField] private TextMeshProUGUI _bestWorldTimeText;
-
+        
     private void Awake()
     {
         _levelManager = Utils.FindObjectOfTypeOrThrow<LevelManager>();
     }
-
+    
     private void Start()
     {
         LeaderboardManager.instance.FetchBestTimerForLevel(_levelManager.Config.World, _levelManager.Config.Level)
@@ -22,7 +21,7 @@ public class LevelEnd : MonoBehaviour
                 response =>
                 {
                     var entry = JsonUtility.FromJson<ScoreEntry>(response.Text);
-                    _bestWorldTimeText.text = _bestWorldTimeText.text.Replace("{TIME}", entry.timer.ToString("F"));
+                    _scoreText.text = _scoreText.text.Replace("{TIME}", entry.timer.ToString("F"));
                 })
             .Send();
     }
