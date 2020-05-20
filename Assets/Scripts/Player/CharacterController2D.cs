@@ -102,6 +102,7 @@ public class CharacterController2D : MonoBehaviour
     private DoubleCast _leftCast;
     private DoubleCast _yCast;
     private DoubleCast _xCast;
+    private DoubleCast _ledgeCast;
     private Vector3 _initialLocalScale;
     private float _dashTime;
     private bool _dashing;
@@ -180,6 +181,7 @@ public class CharacterController2D : MonoBehaviour
         _leftCast = new DoubleCast(_boxCollider, Vector2.left, surfaceRayLength, new Vector2(1, 0.9f), wallsLayerMask);
         _yCast = new DoubleCast(_boxCollider, Vector2.zero, 0, new Vector2(1, 0.9f), wallsLayerMask);
         _xCast = new DoubleCast(_boxCollider, Vector2.zero, 0, new Vector2(0.9f, 1), wallsLayerMask);
+        _ledgeCast = new DoubleCast(_boxCollider, Vector2.zero, 0, new Vector2(1.1f, 1), wallsLayerMask);
     }
 
     private void Start()
@@ -439,7 +441,7 @@ public class CharacterController2D : MonoBehaviour
         var pos = _velocity * Time.deltaTime;
         
         // Check if collision is expected
-        var minDistance = new float[2];
+        var minDistance = new float[3];
         
         _yCast.Distance = pos.magnitude;
         _yCast.Direction = _velocity.normalized;
@@ -448,6 +450,10 @@ public class CharacterController2D : MonoBehaviour
         _xCast.Distance = pos.magnitude;
         _xCast.Direction = _velocity.normalized;
         minDistance[1] = _xCast.MinDistance();
+
+        _ledgeCast.Distance = pos.magnitude;
+        _ledgeCast.Direction = _velocity.normalized;
+        minDistance[2] = _ledgeCast.MinDistance(true);
 
         pos = _velocity.normalized * minDistance.Min();
         

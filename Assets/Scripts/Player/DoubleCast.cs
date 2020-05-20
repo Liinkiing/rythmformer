@@ -49,7 +49,7 @@ public class DoubleCast {
         return result;
     }
 
-    public float MinDistance()
+    public float MinDistance(bool checkGround = false)
     {
         var result = _distance;
         var arrs = GetCast();
@@ -59,7 +59,13 @@ public class DoubleCast {
             {
                 if (hit.distance > 0 && hit.distance < result)
                 {
-                    result = hit.distance;
+                    if (!checkGround)
+                    {
+                        result = hit.distance;
+                    } else if (hit.normal.y > 0.1f)
+                    {
+                        result = hit.distance;
+                    }
                 }
             }
         }
