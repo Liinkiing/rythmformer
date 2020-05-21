@@ -118,15 +118,13 @@ public class CharacterController2D : MonoBehaviour
     private PlayerFlags _flags;
     private bool _needsReset;
     private SongSynchronizer _synchronizer;
-    private Rigidbody2D _rigidbody;
     private Vector3 _upVect;
-    private int _direction = 0;
+    private int _direction;
     private int _wall;
     private bool _groundBuffer;
     private float _dashBuffer;
     private int _additionalSpeed;
     private float _superSpeedValue;
-    private readonly Collider2D[] _hitsBuffer = new Collider2D[16];
     private LevelManager _levelManager;
     private Vector3 _initialPosition = Vector3.zero;
     private Animator _artAnimator;
@@ -172,7 +170,6 @@ public class CharacterController2D : MonoBehaviour
         _synchronizer = Utils.FindObjectOfTypeOrThrow<SongSynchronizer>();
         _dashTime = dashDuration;
         _dashing = false;
-        _rigidbody = GetComponent<Rigidbody2D>();
         _input = new PlayerInput();
         _levelManager = Utils.FindObjectOfTypeOrThrow<LevelManager>();
         _artAnimator.SetFloat(IdleMultiplierFloat, _synchronizer.song.Informations.bpm / 120.00f);
@@ -184,8 +181,8 @@ public class CharacterController2D : MonoBehaviour
         _rightCast = new RaycastGroup(_boxCollider, Vector2.right, 0.1f, 7, wallsLayerMask, new Vector2(1, 1));
         _leftCast = new RaycastGroup(_boxCollider, Vector2.left, 0.1f, 7, wallsLayerMask, new Vector2(1, 1));
         _downBuffer = new RaycastGroup(_boxCollider, Vector2.down, surfaceRayLength, 3, wallsLayerMask, new Vector2(1.2f, 1));
-        _rightBuffer = new RaycastGroup(_boxCollider, Vector2.right, surfaceRayLength, 7, wallsLayerMask, new Vector2(1, 0.8f));
-        _leftBuffer = new RaycastGroup(_boxCollider, Vector2.left, surfaceRayLength, 7, wallsLayerMask, new Vector2(1, 0.8f));
+        _rightBuffer = new RaycastGroup(_boxCollider, Vector2.right, surfaceRayLength, 7, wallsLayerMask, new Vector2(1, 1));
+        _leftBuffer = new RaycastGroup(_boxCollider, Vector2.left, surfaceRayLength, 7, wallsLayerMask, new Vector2(1, 1));
     }
 
     private void Start()
@@ -426,7 +423,7 @@ public class CharacterController2D : MonoBehaviour
         }
         
         // Prevent speed gain against wall
-        if (_wallRiding && (_wall < 0 && _velocity.x < 0 || _wall > 0 && _velocity.x > 0 || moveInput == _wall))
+        if (_wallRiding && (_wall < 0 && _velocity.x < 0 || _wall > 0 && _velocity.x > 0))
         {
             _velocity.x = 0;
         }
