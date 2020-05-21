@@ -1,8 +1,6 @@
 ﻿using HttpModel;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
-
 
 public class LevelEndUI : MonoBehaviour
 {
@@ -27,6 +25,6 @@ public class LevelEndUI : MonoBehaviour
                 })
             .Send();
         
-        EventSystem.current.SetSelectedGameObject(_continueButton);
+        UIManager.instance.SetEventSystemsTarget(_continueButton);
     }
 }

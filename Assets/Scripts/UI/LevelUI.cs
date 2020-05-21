@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-using UnityEngine.EventSystems;
 using TMPro;
 public class LevelUI : MonoBehaviour
 {
@@ -71,7 +70,7 @@ public class LevelUI : MonoBehaviour
 
         if (_levelManager.isGamePaused)
         {
-            EventSystem.current.SetSelectedGameObject(_continueButton.gameObject);
+            UIManager.instance.SetEventSystemsTarget(_continueButton.gameObject);
         }
     }
 }

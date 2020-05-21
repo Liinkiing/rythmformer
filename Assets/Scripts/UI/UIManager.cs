@@ -1,6 +1,7 @@
 ﻿using Rythmformer;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.EventSystems;
 
 public class UIManager : MonoSingleton<UIManager>
 {
@@ -102,5 +103,10 @@ public class UIManager : MonoSingleton<UIManager>
         _settingsUICanvasGroup.interactable = _settingsUI.activeSelf ? false : true;
         
         _settingsUI.SetActive(_settingsUI.activeSelf ? false : true);
+    }
+
+    public void SetEventSystemsTarget(GameObject obj)
+    {
+        EventSystem.current.SetSelectedGameObject(obj);
     }
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 [Serializable]
 public class LevelSelector : MonoBehaviour
@@ -116,7 +115,7 @@ public class LevelSelector : MonoBehaviour
             RefreshButtons();
         }
         
-        EventSystem.current.SetSelectedGameObject(_levelButtons[0]);
+        UIManager.instance.SetEventSystemsTarget(_levelButtons[0]);
     }
 
     private void RefreshDifficultyButton()

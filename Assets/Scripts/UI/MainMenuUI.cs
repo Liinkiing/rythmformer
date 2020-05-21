@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.EventSystems;
 using DG.Tweening;
 
 public class MainMenuUI : MonoBehaviour
@@ -16,7 +15,7 @@ public class MainMenuUI : MonoBehaviour
 
     private void Start()
     {
-        EventSystem.current.SetSelectedGameObject(_continueLastSaveButton);
+        UIManager.instance.SetEventSystemsTarget(_continueLastSaveButton);
     }
 
     public void ContinueLastSave()
@@ -45,8 +44,8 @@ public class MainMenuUI : MonoBehaviour
         _settingsUICanvasGroup.blocksRaycasts = true;
         _settingsUICanvasGroup.interactable = true;
         
-        EventSystem.current.SetSelectedGameObject(SaveManager.instance.Data.Difficulty == Difficulty.Chill ? _settingsChillButton : _settingsProGamerlButton);
-        
+        UIManager.instance.SetEventSystemsTarget(SaveManager.instance.Data.Difficulty == Difficulty.Chill ? _settingsChillButton : _settingsProGamerlButton);
+
         DOTween
             .To(() => _settingsUICanvasGroup.alpha, x => _mainMenuUICanvasGroup.alpha = x, 0,
                 UIManager.instance.transitionUIDuration)
@@ -65,8 +64,8 @@ public class MainMenuUI : MonoBehaviour
         _mainMenuUICanvasGroup.blocksRaycasts = true;
         _mainMenuUICanvasGroup.interactable = true;
         
-        EventSystem.current.SetSelectedGameObject(_settingsButton);
-        
+        UIManager.instance.SetEventSystemsTarget(_settingsButton);
+
         DOTween
             .To(() => _settingsUICanvasGroup.alpha, x => _settingsUICanvasGroup.alpha = x, 0,
                 UIManager.instance.transitionUIDuration)
