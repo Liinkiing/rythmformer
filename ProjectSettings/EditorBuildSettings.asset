@@ -23,12 +23,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/robin/Prototype Robin.unity
     guid: 21731142e41a444e69f7597f1e7a4e24
-  - enabled: 1
-    path: Assets/Scenes/Main/Settings.unity
-    guid: 11ecf41e9802c0248a1693eeb641c44b
-  - enabled: 1
-    path: Assets/Scenes/Main/Score.unity
-    guid: f3775889cf178944f9240e010a475439
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 490d09f96a57bf643840772a85a17873,
       type: 2}

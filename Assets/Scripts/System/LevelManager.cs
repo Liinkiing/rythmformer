@@ -17,7 +17,7 @@ public class LevelManager : MonoBehaviour
     private SongSynchronizer _songSynchronizer;
     private CharacterController2D _player;
     private PlayerInput _input;
-    private UIManager _UIManager;
+    private LevelUI _levelUI;
 
     [Space(), Header("Events")]
     public UnityEvent OnLevelReset;
@@ -31,7 +31,7 @@ public class LevelManager : MonoBehaviour
         _input.Global.Reset.performed += OnResetPerformedHandler;
         _input.Player.Pause.performed += PauseOnPerformed;
         
-        _UIManager = Utils.FindObjectOfTypeOrThrow<UIManager>();
+        _levelUI = Utils.FindObjectOfTypeOrThrow<LevelUI>();
         _songSynchronizer = Utils.FindObjectOfTypeOrThrow<SongSynchronizer>();
     }
 
@@ -64,11 +64,9 @@ public class LevelManager : MonoBehaviour
 
     public void TogglePause()
     {
-        _UIManager = Utils.FindObjectOfTypeOrThrow<UIManager>();
-        _songSynchronizer = Utils.FindObjectOfTypeOrThrow<SongSynchronizer>();
-
         isGamePaused = !isGamePaused;
-        _UIManager.TogglePauseCanvas();
+        
+        _levelUI.TogglePauseCanvas();
         _songSynchronizer.ToggleLowPassFilter(isGamePaused);
     }
 }

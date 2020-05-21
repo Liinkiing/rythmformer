@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 [Serializable]
 public class LevelSelector : MonoBehaviour
@@ -15,7 +14,6 @@ public class LevelSelector : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _chapterTitle;
     [SerializeField] private GameObject _nextChapter;
     [SerializeField] private GameObject _lastChapter;
-    [SerializeField] private GameObject _backToHomeButton;
     [SerializeField] private TextMeshProUGUI _ToggleDifficultyButton;
     private GameObject _buttonWrapper;
     private List<GameObject> _levelButtons;
@@ -117,7 +115,7 @@ public class LevelSelector : MonoBehaviour
             RefreshButtons();
         }
         
-        EventSystem.current.SetSelectedGameObject(_levelButtons[0]);
+        UIManager.instance.SetEventSystemsTarget(_levelButtons[0]);
     }
 
     private void RefreshDifficultyButton()
@@ -161,10 +159,5 @@ public class LevelSelector : MonoBehaviour
     private void RemoveButtons()
     {
         _levelButtons.ForEach(Destroy);
-    }
-    
-    public void BackToMainMenu()
-    {
-        StartCoroutine(_sceneTransition.GetComponent<SceneLoader>().LoadLevel("MainMenu"));
     }
 }

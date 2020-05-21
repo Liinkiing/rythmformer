@@ -160,11 +160,11 @@ public class SongSynchronizer : MonoBehaviour
             float pauseResonance = 1.5f;
 
             DOTween
-                .To(() => sourceFilter.cutoffFrequency, x => sourceFilter.cutoffFrequency = x, pauseState ? pauseCutoffFrequency : normalCutoffFrequency, UIManager.instance.pauseTransitionDuration)
+                .To(() => sourceFilter.cutoffFrequency, x => sourceFilter.cutoffFrequency = x, pauseState ? pauseCutoffFrequency : normalCutoffFrequency, UIManager.instance.transitionUIDuration)
                 .SetEase(Ease.InOutQuint);
             
             DOTween
-                .To(() => sourceFilter.lowpassResonanceQ, x => sourceFilter.lowpassResonanceQ = x, pauseState ? pauseResonance : normalResonance, UIManager.instance.pauseTransitionDuration)
+                .To(() => sourceFilter.lowpassResonanceQ, x => sourceFilter.lowpassResonanceQ = x, pauseState ? pauseResonance : normalResonance, UIManager.instance.transitionUIDuration)
                 .SetEase(Ease.InOutQuint);
         }
     }
