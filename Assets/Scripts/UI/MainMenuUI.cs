@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
-using DG.Tweening;
+using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour
 {
     [SerializeField] private GameObject _sceneTransition;
+    [SerializeField] private GameObject _mainMenuUI;
+    [SerializeField] private GameObject _settingsUI;
     [SerializeField] private GameObject _continueLastSaveButton;
     [SerializeField] private GameObject _startNewGameButton;
     [SerializeField] private GameObject _settingsButton;
@@ -11,11 +13,33 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private CanvasGroup _mainMenuUICanvasGroup;
     [SerializeField] private GameObject _settingsChillButton;
     [SerializeField] private GameObject _settingsProGamerlButton;
-    
+    [SerializeField] private Button _backToHomeButton;
 
     private void Start()
     {
         UIManager.instance.SetEventSystemsTarget(_continueLastSaveButton);
+        
+        _settingsButton.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            UIManager.instance.SetUIContainerStateWithInternalNavigation(
+                _mainMenuUI,
+                _mainMenuUICanvasGroup,
+                _settingsUI, 
+                _settingsUICanvasGroup,
+                SaveManager.instance.Data.Difficulty == Difficulty.Chill ? _settingsChillButton : _settingsProGamerlButton
+                );
+        });
+        
+        _backToHomeButton.onClick.AddListener(() =>
+        {
+            UIManager.instance.SetUIContainerStateWithInternalNavigation(
+                _settingsUI, 
+                _settingsUICanvasGroup,
+                _mainMenuUI,
+                _mainMenuUICanvasGroup,
+                _settingsButton
+            );
+        });
     }
 
     public void ContinueLastSave()
@@ -34,45 +58,5 @@ public class MainMenuUI : MonoBehaviour
         
         _startNewGameButton.GetComponent<LevelButtonData>().FillFromLevelData(firstLevel);
         StartCoroutine(_sceneTransition.GetComponent<SceneLoader>().LoadLevel(firstLevel.Scene));
-    }
-
-    public void OpenSettings()
-    {
-        _mainMenuUICanvasGroup.blocksRaycasts = false;
-        _mainMenuUICanvasGroup.interactable = false;
-        
-        _settingsUICanvasGroup.blocksRaycasts = true;
-        _settingsUICanvasGroup.interactable = true;
-        
-        UIManager.instance.SetEventSystemsTarget(SaveManager.instance.Data.Difficulty == Difficulty.Chill ? _settingsChillButton : _settingsProGamerlButton);
-
-        DOTween
-            .To(() => _settingsUICanvasGroup.alpha, x => _mainMenuUICanvasGroup.alpha = x, 0,
-                UIManager.instance.transitionUIDuration)
-            .SetEase(Ease.InOutQuint);
-        DOTween
-            .To(() => _mainMenuUICanvasGroup.alpha, x => _settingsUICanvasGroup.alpha = x, 1,
-                UIManager.instance.transitionUIDuration)
-            .SetEase(Ease.InOutQuint);
-    }
-    
-    public void CloseSettings()
-    {
-        _settingsUICanvasGroup.blocksRaycasts = false;
-        _settingsUICanvasGroup.interactable = false;
-        
-        _mainMenuUICanvasGroup.blocksRaycasts = true;
-        _mainMenuUICanvasGroup.interactable = true;
-        
-        UIManager.instance.SetEventSystemsTarget(_settingsButton);
-
-        DOTween
-            .To(() => _settingsUICanvasGroup.alpha, x => _settingsUICanvasGroup.alpha = x, 0,
-                UIManager.instance.transitionUIDuration)
-            .SetEase(Ease.InOutQuint);
-        DOTween
-            .To(() => _mainMenuUICanvasGroup.alpha, x => _mainMenuUICanvasGroup.alpha = x, 1,
-                UIManager.instance.transitionUIDuration)
-            .SetEase(Ease.InOutQuint);
     }
 }
