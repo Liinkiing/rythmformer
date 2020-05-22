@@ -13966,26 +13966,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4346076881122639162, guid: a3e4a899474da4d21b6ab8f097036ec4,
-        type: 3}
-      propertyPath: m_Alpha
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4346076881122639162, guid: a3e4a899474da4d21b6ab8f097036ec4,
-        type: 3}
-      propertyPath: m_Interactable
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4346076881122639162, guid: a3e4a899474da4d21b6ab8f097036ec4,
-        type: 3}
-      propertyPath: m_BlocksRaycasts
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4576626225154852109, guid: a3e4a899474da4d21b6ab8f097036ec4,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4852194504022444642, guid: a3e4a899474da4d21b6ab8f097036ec4,
         type: 3}
       propertyPath: m_LocalPosition.x

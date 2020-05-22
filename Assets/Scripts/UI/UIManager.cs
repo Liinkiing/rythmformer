@@ -33,16 +33,6 @@ public class UIManager : MonoSingleton<UIManager>
         _input?.Disable();
     }
 
-    public void BackToChapter()
-    {
-        StartCoroutine(_sceneTransition.GetComponent<SceneLoader>().LoadLevel("LevelSelector"));
-    }
-    
-    public void BackToMainMenu()
-    {
-        StartCoroutine(_sceneTransition.GetComponent<SceneLoader>().LoadLevel("MainMenu"));
-    }
-    
     public void SetUIContainerState(GameObject UIContainer, UIContainerAction action)
     {
         switch (action)
@@ -98,5 +88,10 @@ public class UIManager : MonoSingleton<UIManager>
     public void SetEventSystemsTarget(GameObject obj)
     {
         EventSystem.current.SetSelectedGameObject(obj);
+    }
+
+    public void NavigateToScene(string sceneName)
+    {
+        StartCoroutine(_sceneTransition.GetComponent<SceneLoader>().LoadLevel(sceneName));
     }
 }
