@@ -1,4 +1,5 @@
-﻿using Rythmformer;
+﻿using System;
+using Rythmformer;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.EventSystems;
@@ -6,9 +7,10 @@ using UnityEngine.EventSystems;
 public class UIManager : MonoSingleton<UIManager>
 {
     public float transitionUIDuration = 0.8f;
-    private GameObject _sceneTransition;
+    [SerializeField] private GameObject _sceneTransition;
     private PlayerInput _input;
     private int _transitionSequenceID;
+    private GameObject _eventSystemTarget;
 
     public enum UIContainerAction
     {
@@ -20,14 +22,25 @@ public class UIManager : MonoSingleton<UIManager>
     void Awake()
     {
         _input = new PlayerInput();
-        
     }
     
     private void OnEnable()
     {
         _input?.Enable();
     }
-    
+
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        if (!hasFocus)
+        {
+            SetEventSystemsTarget(EventSystem.current.currentSelectedGameObject);
+        }
+        else
+        {
+            SetEventSystemsTarget(_eventSystemTarget);
+        }
+    }
+
     private void OnDisable()
     {
         _input?.Disable();
@@ -98,7 +111,8 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void SetEventSystemsTarget(GameObject obj)
     {
-        EventSystem.current.SetSelectedGameObject(obj);
+        _eventSystemTarget = obj;
+        EventSystem.current.SetSelectedGameObject(_eventSystemTarget);
     }
 
     public void NavigateToScene(string sceneName)
