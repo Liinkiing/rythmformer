@@ -6,9 +6,9 @@ using UnityEngine.EventSystems;
 public class UIManager : MonoSingleton<UIManager>
 {
     public float transitionUIDuration = 0.8f;
-    public GameObject _sceneTransition;
+    private GameObject _sceneTransition;
     private PlayerInput _input;
-    private Sequence transitionSequence;
+    private int _transitionSequenceID;
 
     public enum UIContainerAction
     {
@@ -21,8 +21,8 @@ public class UIManager : MonoSingleton<UIManager>
     {
         _input = new PlayerInput();
         
-        transitionSequence = DOTween.Sequence();
     }
+    
     private void OnEnable()
     {
         _input?.Enable();
@@ -52,37 +52,48 @@ public class UIManager : MonoSingleton<UIManager>
     public void SetUIContainerStateWithInternalNavigation(
         GameObject UIContainerCurrent, 
         CanvasGroup CanvasGroupCurrent, 
-        GameObject UIContainerTarget, CanvasGroup CanvasGroupTarget, 
+        GameObject UIContainerTarget, 
+        CanvasGroup CanvasGroupTarget, 
         GameObject nextEventSytemTarget = null)
     {
+     
         CanvasGroupTarget.blocksRaycasts = true;
         CanvasGroupTarget.interactable = true;
         
-
         UIContainerTarget.SetActive(true);
+
         if (nextEventSytemTarget)
         {
             SetEventSystemsTarget(nextEventSytemTarget);    
         }
         
+        if (DOTween.IsTweening(_transitionSequenceID))
+        {
+            DOTween.Kill(_transitionSequenceID);
+        }
+        
+        Sequence transitionSequence =  DOTween.Sequence();
         transitionSequence.Append(
-            DOTween
-                .To(() => CanvasGroupCurrent.alpha, x => CanvasGroupCurrent.alpha = x, 0, transitionUIDuration)
+            CanvasGroupCurrent
+                .DOFade(0, transitionUIDuration)
                 .SetEase(Ease.InOutQuint)
         );
         transitionSequence.Append(
-            DOTween
-                .To(() => CanvasGroupTarget.alpha, x => CanvasGroupTarget.alpha = x, 1, transitionUIDuration)
+            CanvasGroupTarget
+                .DOFade(1, transitionUIDuration)
                 .SetEase(Ease.InOutQuint)
         );
+
         transitionSequence.AppendCallback(() =>
         {
+            Debug.Log("Should disable current container");
             CanvasGroupCurrent.blocksRaycasts = false;
             CanvasGroupCurrent.interactable = false;
             UIContainerCurrent.SetActive(false);
         });
             
         transitionSequence.Play();
+        _transitionSequenceID = transitionSequence.intId;
     }
 
     public void SetEventSystemsTarget(GameObject obj)
