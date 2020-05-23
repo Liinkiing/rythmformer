@@ -127,7 +127,7 @@ public class CharacterController2D : MonoBehaviour
     private Vector3 _initialPosition = Vector3.zero;
     private Animator _artAnimator;
 
-    private ScoreState _scoreState = new ScoreState(score: SongSynchronizer.EventScore.Ok);
+    private ScoreState _scoreState = new ScoreState(score: SongSynchronizer.EventScore.Nice);
     [SerializeField] private ParticleSystem _trailPS;
     [SerializeField] private ParticleSystem _dustPS;
     [SerializeField] private ParticleSystem _leaves;
@@ -519,14 +519,14 @@ public class CharacterController2D : MonoBehaviour
         {
             case SongSynchronizer.EventState.Start:
                 _flags.ActionAvailable = true;
-                _scoreState.Score = SongSynchronizer.EventScore.Ok;
+                _scoreState.Score = SongSynchronizer.EventScore.Nice;
                 break;
             case SongSynchronizer.EventState.Mid:
                 _scoreState.Score = SongSynchronizer.EventScore.Perfect;
                 break;
             case SongSynchronizer.EventState.End:
                 _flags.ActionAvailable = false;
-                _scoreState.Score = SongSynchronizer.EventScore.Ok;
+                _scoreState.Score = SongSynchronizer.EventScore.Nice;
                 break;
         }
     }
