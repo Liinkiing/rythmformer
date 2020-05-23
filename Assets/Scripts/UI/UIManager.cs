@@ -99,7 +99,6 @@ public class UIManager : MonoSingleton<UIManager>
 
         transitionSequence.AppendCallback(() =>
         {
-            Debug.Log("Should disable current container");
             CanvasGroupCurrent.blocksRaycasts = false;
             CanvasGroupCurrent.interactable = false;
             UIContainerCurrent.SetActive(false);
