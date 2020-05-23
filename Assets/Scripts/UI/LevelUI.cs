@@ -8,6 +8,10 @@ public class LevelUI : MonoBehaviour
     [SerializeField] private Button _continueButton;
     [SerializeField] private Button _scoreboardButton;
     [SerializeField] private TextMeshProUGUI _UITimer;
+    [SerializeField] private GameObject _levelUI;
+    [SerializeField] private CanvasGroup _levelUICanvasGroup;
+    [SerializeField] private GameObject _levelEndUI;
+    [SerializeField] private CanvasGroup _levelEndUICanvasGroup;
     private CanvasGroup _pauseCanvas;
     private float _timeElapsed;
     private LevelManager _levelManager;
@@ -28,8 +32,11 @@ public class LevelUI : MonoBehaviour
         
         _scoreboardButton.onClick.AddListener(() =>
         {
-            UIManager.instance.ToggleLevelUI();
-            UIManager.instance.ToggleLevelEndUI();
+            UIManager.instance.SetUIContainerStateWithInternalNavigation(
+                _levelUI, 
+                _levelUICanvasGroup,
+                _levelEndUI, 
+                _levelEndUICanvasGroup);
         });
         
         _timeElapsed = 0;
