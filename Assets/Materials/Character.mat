@@ -74,7 +74,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - PixelSnap: 0
-    - Tint_intensity: 0.5
+    - Tint_intensity: 1.5
     - _BumpScale: 1
     - _ColorMask: 15
     - _Cutoff: 0.5
