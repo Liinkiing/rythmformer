@@ -1,9 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
 using Rythmformer;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
+public enum BindingScheme
+{
+    Gamepad,
+    Keyboard
+}
+
+public enum GameAction
+{
+    Jump,
+    Dash,
+    Retry,
+    SwitchMode,
+}
+
+[RequireComponent(typeof(BindingIcons))]
 public class UIManager : MonoSingleton<UIManager>
 {
     public float transitionUIDuration = 0.8f;
@@ -11,6 +28,21 @@ public class UIManager : MonoSingleton<UIManager>
     private PlayerInput _input;
     private int _transitionSequenceID;
     private GameObject _eventSystemTarget;
+    private InputAction _gamepadAction = new InputAction(binding: "<Gamepad>/*", interactions: "press");
+    private InputAction _keyboardAction = new InputAction(binding: "<Keyboard>/*");
+
+    private List<InputAction> _mousesAction = new List<InputAction>()
+    {
+        new InputAction(binding: "<Mouse>/leftButton"),
+        new InputAction(binding: "<Mouse>/rightButton"),
+        new InputAction(binding: "<Mouse>/rightButton"),
+        new InputAction(binding: "<Mouse>/middleButton"),
+        new InputAction(binding: "<Mouse>/forwardButton"),
+        new InputAction(binding: "<Mouse>/backButton"),
+        new InputAction(binding: "<Mouse>/press"),
+    };
+
+    public event Action<UIManager, BindingScheme, string> SchemeChanged;
 
     public enum UIContainerAction
     {
@@ -22,11 +54,36 @@ public class UIManager : MonoSingleton<UIManager>
     void Awake()
     {
         _input = new PlayerInput();
+        _gamepadAction.performed += context =>
+        {
+            if (GameManager.instance.CurrentBindingScheme == BindingScheme.Gamepad) return;
+            OnSchemeChanged(this, BindingScheme.Gamepad, context.control.path);
+            GameManager.instance.CurrentBindingScheme = BindingScheme.Gamepad;
+        };
+        _keyboardAction.performed += context =>
+        {
+            if (GameManager.instance.CurrentBindingScheme == BindingScheme.Keyboard) return;
+            OnSchemeChanged(this, BindingScheme.Keyboard, context.control.path);
+            GameManager.instance.CurrentBindingScheme = BindingScheme.Keyboard;
+        };
+
+        foreach (var mouseAction in _mousesAction)
+        {
+            mouseAction.performed += context =>
+            {
+                if (GameManager.instance.CurrentBindingScheme == BindingScheme.Keyboard) return;
+                OnSchemeChanged(this, BindingScheme.Keyboard, context.control.path);
+                GameManager.instance.CurrentBindingScheme = BindingScheme.Keyboard;
+            };
+        }
     }
-    
+
     private void OnEnable()
     {
         _input?.Enable();
+        _gamepadAction.Enable();
+        _keyboardAction.Enable();
+        _mousesAction.ForEach(m => m.Enable());
     }
 
     private void OnApplicationFocus(bool hasFocus)
@@ -44,6 +101,9 @@ public class UIManager : MonoSingleton<UIManager>
     private void OnDisable()
     {
         _input?.Disable();
+        _gamepadAction.Disable();
+        _keyboardAction.Disable();
+        _mousesAction.ForEach(m => m.Disable());
     }
 
     public void SetUIContainerState(GameObject UIContainer, UIContainerAction action)
@@ -63,29 +123,28 @@ public class UIManager : MonoSingleton<UIManager>
     }
 
     public void SetUIContainerStateWithInternalNavigation(
-        GameObject UIContainerCurrent, 
-        CanvasGroup CanvasGroupCurrent, 
-        GameObject UIContainerTarget, 
-        CanvasGroup CanvasGroupTarget, 
+        GameObject UIContainerCurrent,
+        CanvasGroup CanvasGroupCurrent,
+        GameObject UIContainerTarget,
+        CanvasGroup CanvasGroupTarget,
         GameObject nextEventSytemTarget = null)
     {
-     
         CanvasGroupTarget.blocksRaycasts = true;
         CanvasGroupTarget.interactable = true;
-        
+
         UIContainerTarget.SetActive(true);
 
         if (nextEventSytemTarget)
         {
-            SetEventSystemsTarget(nextEventSytemTarget);    
+            SetEventSystemsTarget(nextEventSytemTarget);
         }
-        
+
         if (DOTween.IsTweening(_transitionSequenceID))
         {
             DOTween.Kill(_transitionSequenceID);
         }
-        
-        Sequence transitionSequence =  DOTween.Sequence();
+
+        Sequence transitionSequence = DOTween.Sequence();
         transitionSequence.Append(
             CanvasGroupCurrent
                 .DOFade(0, transitionUIDuration)
@@ -103,7 +162,7 @@ public class UIManager : MonoSingleton<UIManager>
             CanvasGroupCurrent.interactable = false;
             UIContainerCurrent.SetActive(false);
         });
-            
+
         transitionSequence.Play();
         _transitionSequenceID = transitionSequence.intId;
     }
@@ -117,5 +176,10 @@ public class UIManager : MonoSingleton<UIManager>
     public void NavigateToScene(string sceneName)
     {
         StartCoroutine(_sceneTransition.GetComponent<SceneLoader>().LoadLevel(sceneName));
+    }
+
+    protected virtual void OnSchemeChanged(UIManager sender, BindingScheme change, string path)
+    {
+        SchemeChanged?.Invoke(sender, change, path);
     }
 }

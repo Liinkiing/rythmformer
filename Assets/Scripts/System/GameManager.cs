@@ -133,6 +133,8 @@ public class GameManager : MonoSingleton<GameManager>
     public List<LevelData> Levels;
 
     private LevelData _lastUnlockedLevel;
+    
+    public BindingScheme CurrentBindingScheme = BindingScheme.Keyboard;
 
     #endregion
     public override void Init()
