@@ -47,7 +47,7 @@ public class LevelUI : MonoBehaviour
         if (!_levelManager.isGamePaused)
         {
             _timeElapsed += Time.deltaTime;
-            _UITimer.SetText($"Time : {_timeElapsed:0.000}");
+            _UITimer.SetText($"{_timeElapsed:0.000}");
         }
     }
     

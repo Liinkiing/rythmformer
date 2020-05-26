@@ -38,7 +38,7 @@ public class ScoreController : MonoBehaviour
             case SongSynchronizer.EventScore.Perfect:
                 text.faceColor = _green;
                 break;
-            case SongSynchronizer.EventScore.Ok:
+            case SongSynchronizer.EventScore.Nice:
                 text.faceColor = _yellow;
                 break;
             case SongSynchronizer.EventScore.Failed:

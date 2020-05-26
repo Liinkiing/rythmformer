@@ -25,7 +25,7 @@ public class SongSynchronizer : MonoBehaviour
     public enum EventScore
     {
         Failed,
-        Ok,
+        Nice,
         Perfect
     }
 
