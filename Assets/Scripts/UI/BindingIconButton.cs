@@ -25,8 +25,8 @@ public class BindingIconButton : MonoBehaviour
         UIManager.instance.SchemeChanged -= OnSchemeChanged;
     }
 
-    private void OnSchemeChanged(UIManager sender, BindingScheme change, string path)
+    private void OnSchemeChanged(UIManager sender, BindingScheme scheme, string path)
     {
-        _image.sprite = _bindingIcons.GetSprite(change, action);
+        _image.sprite = _bindingIcons.GetSprite(scheme, action);
     }
 }

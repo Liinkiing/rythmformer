@@ -178,8 +178,8 @@ public class UIManager : MonoSingleton<UIManager>
         StartCoroutine(_sceneTransition.GetComponent<SceneLoader>().LoadLevel(sceneName));
     }
 
-    protected virtual void OnSchemeChanged(UIManager sender, BindingScheme change, string path)
+    protected virtual void OnSchemeChanged(UIManager sender, BindingScheme scheme, string path)
     {
-        SchemeChanged?.Invoke(sender, change, path);
+        SchemeChanged?.Invoke(sender, scheme, path);
     }
 }
