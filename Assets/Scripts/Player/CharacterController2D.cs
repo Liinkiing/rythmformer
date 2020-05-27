@@ -476,6 +476,8 @@ public class CharacterController2D : MonoBehaviour
     private void OnLevelReset()
     {
         transform.position = _initialPosition;
+        _additionalSpeed = 0;
+        _velocity = Vector2.zero;
     }
 
     #endregion
