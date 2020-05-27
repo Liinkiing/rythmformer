@@ -367,7 +367,6 @@ public class CharacterController2D : MonoBehaviour
             }
             else
             {
-                _velocity.y = 0;
                 _dashTime -= Time.deltaTime;
             }
         }
