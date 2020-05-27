@@ -405,9 +405,17 @@ public class CharacterController2D : MonoBehaviour
         // Apply horizontal speed depending on user input
         if (Mathf.Abs(moveInput) > 0)
         {
-            _velocity.x = Mathf.MoveTowards(_velocity.x,
+            var inputVelocity = Mathf.MoveTowards(_velocity.x,
                 (speed + _superSpeedValue) * moveInput,
                 acceleration * Time.deltaTime);
+            if ((moveInput > 0 && _velocity.x > 0 && _velocity.x > inputVelocity) || (moveInput < 0 && _velocity.x < 0 && _velocity.x < inputVelocity))
+            {
+                
+            } else
+            {
+                _velocity.x = inputVelocity;
+            }
+            
         }
         else
         {
