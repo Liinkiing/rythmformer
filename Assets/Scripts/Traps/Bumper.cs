@@ -8,6 +8,8 @@ public class Bumper : Trap
     private float angle;
     [SerializeField, Tooltip("Bump power")]
     private float power;
+    [SerializeField, Tooltip("timing after bump during which controls are locked")]
+    private float lockTime;
     [SerializeField, Tooltip("Active on Kick")]
     private bool kick;
 
@@ -33,6 +35,11 @@ public class Bumper : Trap
     {
         base.TrapAction();
         Player.Velocity = _direction * power;
+        Player.Bumping = true;
+        if (lockTime > 0)
+        {
+            Player.LockMove(lockTime);
+        }
     }
 
     private void UpdateAngle()

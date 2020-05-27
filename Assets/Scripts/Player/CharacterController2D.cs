@@ -114,6 +114,7 @@ public class CharacterController2D : MonoBehaviour
     private bool _grounded;
     private bool _roofed;
     private bool _wallRiding;
+    private bool _bumping;
     private bool _moveLocked;
     private PlayerFlags _flags;
     private bool _needsReset;
@@ -145,6 +146,11 @@ public class CharacterController2D : MonoBehaviour
     {
         get { return _velocity; }
         set { _velocity = value; }
+    }
+    public bool Bumping 
+    {
+        get { return _bumping; }
+        set { _bumping = value; }
     }
     public BoxCollider2D BoxCollider 
     {
@@ -275,7 +281,7 @@ public class CharacterController2D : MonoBehaviour
         _grounded = _downCast.Check(_downCast.Down);
         _roofed = _upCast.Check(_upCast.Up);
         _wallRiding = _leftCast.Check(_leftCast.Left) || _rightCast.Check(_rightCast.Right);
-        
+
         if (_downBuffer.Check(_downBuffer.TouchDown))
         {
             _groundBuffer = true;
@@ -433,7 +439,7 @@ public class CharacterController2D : MonoBehaviour
         }
 
         // Apply gravity
-        if (_dashing || _grounded)
+        if (_dashing || (_grounded && !_bumping))
         {
             _velocity.y = 0;
         } else if (_roofed)
@@ -449,6 +455,7 @@ public class CharacterController2D : MonoBehaviour
         {
             _velocity.x = 0;
         }
+        _bumping = false;
         
         // Define ending point
         var pos = _velocity * Time.deltaTime;
