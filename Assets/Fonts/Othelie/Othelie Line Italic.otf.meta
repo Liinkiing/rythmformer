@@ -1,0 +1,27 @@
+fileFormatVersion: 2
+guid: 9a227db95331e14449b42ca57b122141
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Othelie
+  fontNames:
+  - Othelie
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 21e85265c358ce544a33f48ab469eafa, type: 3}
+  - {fileID: 12800000, guid: a84f2385a41d2ca4ba924502160193f5, type: 3}
+  - {fileID: 12800000, guid: d0594fa722a7a3249a65be381fa006e5, type: 3}
+  - {fileID: 12800000, guid: 188f2938abf5dd148920d018bb01a804, type: 3}
+  - {fileID: 12800000, guid: 6ae2c5ed80ac28046bc53c56875f2698, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
