@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class LevelEndUI : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _scoreText;
+    [SerializeField] private TextMeshProUGUI _localTimeText;
+    [SerializeField] private TextMeshProUGUI _worldTimeText;
     [SerializeField] private GameObject _continueButton;
     [SerializeField] private GameObject _scoreBox;
     [SerializeField] private VerticalLayoutGroup _verticalLayout;
@@ -21,13 +22,15 @@ public class LevelEndUI : MonoBehaviour
     
     private void Start()
     {
+        _levelManager.FinishLevel();
+        _localTimeText.text = _localTimeText.text.Replace("{TIME}", _levelManager.TimeElapsed.ToString("0.000"));
         LeaderboardManager.instance.FetchBestTimerForLevel(_levelManager.Config.World, _levelManager.Config.Level)
             .OnError(response => Debug.LogError(response.Text))
             .OnSuccess(
                 response =>
                 {
                     var entry = JsonUtility.FromJson<ScoreEntry>(response.Text);
-                    _scoreText.text = _scoreText.text.Replace("{TIME}", entry.timer.ToString("F"));
+                    _worldTimeText.text = _worldTimeText.text.Replace("{TIME}", entry.timer.ToString("0.000"));
                 })
             .Send();
         
