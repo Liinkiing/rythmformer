@@ -211,7 +211,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void Update()
     {
-        Vector2 moveInput = _levelManager.isGamePaused ? Vector2.zero : _input.Player.Move.ReadValue<Vector2>();
+        Vector2 moveInput = GameManager.instance.GamePaused ? Vector2.zero : _input.Player.Move.ReadValue<Vector2>();
         if (_moveLocked || moveInput.x == 0)
         {
             _direction = 0;
@@ -512,7 +512,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void OnTresholdedAction(SongSynchronizer sender, SongSynchronizer.EventState state)
     {
-        if (_levelManager.isGamePaused) return;
+        if (GameManager.instance.GamePaused) return;
         // We stop ParticleSystem to reset the emitting one with new properties
         _leaves.Stop();
         _dustPS.Stop();
@@ -534,7 +534,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void Jump()
     {
-        if (_levelManager.isGamePaused) return;
+        if (GameManager.instance.GamePaused) return;
         _artAnimator.SetTrigger(JumpAnimatorTrigger);
         OnActionPerformed(this, new OnActionEventArgs() {Move = PlayerActions.Jump, Score = _scoreState.Score});
         // Calculate the velocity required to achieve the target jump height.
@@ -551,7 +551,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void Dash(int moveInput)
     {
-        if (_levelManager.isGamePaused) return;
+        if (GameManager.instance.GamePaused) return;
         _artAnimator.SetTrigger(DashAnimatorTrigger);
         OnActionPerformed(this, new OnActionEventArgs() {Move = PlayerActions.Dash, Score = _scoreState.Score});
         OnDash?.Invoke();
@@ -591,7 +591,7 @@ public class CharacterController2D : MonoBehaviour
 
     protected virtual void OnActionPerformed(CharacterController2D sender, OnActionEventArgs action)
     {
-        if (_levelManager.isGamePaused) return;
+        if (GameManager.instance.GamePaused) return;
         ActionPerformed?.Invoke(sender, action);
     }
 

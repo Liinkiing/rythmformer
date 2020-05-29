@@ -26,7 +26,7 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
-        isGamePaused = false;
+        GameManager.instance.state = GameManager.GameState.InGame;
         TimeElapsed = 0f;
 
         _input = new PlayerInput();
@@ -40,7 +40,7 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
-        if (isGamePaused) return;
+        if (GameManager.instance.GamePaused) return;
         TimeElapsed += Time.deltaTime;
     }
 
@@ -63,7 +63,7 @@ public class LevelManager : MonoBehaviour
 
     private void OnResetPerformedHandler(InputAction.CallbackContext context)
     {
-        if (isGamePaused || _hasFinishedLevel) return;
+        if (GameManager.instance.GamePaused || _hasFinishedLevel) return;
         TimeElapsed = 0;
         OnLevelReset?.Invoke();
     }
@@ -77,16 +77,19 @@ public class LevelManager : MonoBehaviour
     public void TogglePause()
     {
         if (_hasFinishedLevel) return;
-        isGamePaused = !isGamePaused;
+        GameManager.instance.state =
+            GameManager.instance.GamePaused
+                ? GameManager.GameState.InGame
+                : GameManager.GameState.Pause;
 
         _levelUI.TogglePauseCanvas();
-        _songSynchronizer.ToggleLowPassFilter(isGamePaused);
+        _songSynchronizer.ToggleLowPassFilter(GameManager.instance.GamePaused);
     }
 
     public void FinishLevel()
     {
         _hasFinishedLevel = true;
-        isGamePaused = true;
+        GameManager.instance.state = GameManager.GameState.LevelEnd;
         _songSynchronizer.ToggleLowPassFilter(true);
     }
 }

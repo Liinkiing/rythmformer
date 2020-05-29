@@ -39,21 +39,22 @@ public class LevelUI : MonoBehaviour
 
     private void Update()
     {
-        if (_levelManager.isGamePaused) return;
+        if (GameManager.instance.GamePaused) return;
         _UITimer.SetText($"{_levelManager.TimeElapsed:0.000}");
     }
 
     public void TogglePauseCanvas()
     {
-        _pauseCanvas.blocksRaycasts = _levelManager.isGamePaused;
-        _pauseCanvas.interactable = _levelManager.isGamePaused;
+        var gamePaused = GameManager.instance.GamePaused;
+        _pauseCanvas.blocksRaycasts = gamePaused;
+        _pauseCanvas.interactable = gamePaused;
 
         DOTween
-            .To(() => _pauseCanvas.alpha, x => _pauseCanvas.alpha = x, _levelManager.isGamePaused ? 1 : 0,
+            .To(() => _pauseCanvas.alpha, x => _pauseCanvas.alpha = x, gamePaused ? 1 : 0,
                 UIManager.instance.transitionUIDuration)
             .SetEase(Ease.InOutQuint);
 
-        if (_levelManager.isGamePaused)
+        if (gamePaused)
         {
             GameManager.instance.state = GameManager.GameState.Pause;
             UIManager.instance.SetEventSystemsTarget(_continueButton.gameObject);

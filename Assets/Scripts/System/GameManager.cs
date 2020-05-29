@@ -123,6 +123,7 @@ public class GameManager : MonoSingleton<GameManager>
     #region Public Fields
 
     [HideInInspector] public GameState state = GameState.InGame;
+    [HideInInspector] public bool GamePaused => (state == GameState.Pause || state == GameState.LevelEnd);
 
     #endregion
 
@@ -133,8 +134,9 @@ public class GameManager : MonoSingleton<GameManager>
         MainMenu,
         InGame,
         Pause,
+        LevelEnd,
     }
-    
+
     [Serializable]
     public struct LevelData
     {
@@ -170,7 +172,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void OnSwitchModeButtonPerformed(InputAction.CallbackContext obj)
     {
-        if (state == GameState.InGame) return;
+        if (state == GameState.InGame || state == GameState.LevelEnd) return;
         ToggleDifficulty();
         OnDifficultyChanged(this, Difficulty);
     }
@@ -195,7 +197,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         return SaveManager.instance.Data.LevelScores[world][level];
     }
-    
+
     public void WriteLocalScore(World world, Level level, LevelScoreData score)
     {
         SaveManager.instance.Data.LevelScores[world][level] = score;
