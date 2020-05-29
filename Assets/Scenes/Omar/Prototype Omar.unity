@@ -696,6 +696,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88785b493f121ad40b98e77701f5eebc, type: 3}
+--- !u!225 &420544045 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 4346076881122639162, guid: a3e4a899474da4d21b6ab8f097036ec4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1488968090}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &430776102
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,7 +870,12 @@ PrefabInstance:
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.size
-      value: 58
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mParameters.Array.size
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
@@ -4400,31 +4411,31 @@ PrefabInstance:
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[1].target
       value: 
-      objectReference: {fileID: 1710891001}
+      objectReference: {fileID: 1710891002}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[1].name
-      value: enabled
+      value: Dash
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[2].target
       value: 
-      objectReference: {fileID: 1488968091}
+      objectReference: {fileID: 1710891001}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[2].name
-      value: eulerAngles
+      value: enabled
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[3].target
       value: 
-      objectReference: {fileID: 1488968091}
+      objectReference: {fileID: 1710891002}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[3].name
-      value: forward
+      value: enabled
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
@@ -4434,33 +4445,33 @@ PrefabInstance:
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[4].name
-      value: hasChanged
+      value: eulerAngles
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[5].target
       value: 
-      objectReference: {fileID: 1710891000}
+      objectReference: {fileID: 1488968091}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[5].name
-      value: hideFlags
+      value: forward
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[6].target
       value: 
-      objectReference: {fileID: 1710891001}
+      objectReference: {fileID: 1488968091}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[6].name
-      value: hideFlags
+      value: hasChanged
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[7].target
       value: 
-      objectReference: {fileID: 1488968091}
+      objectReference: {fileID: 1710891002}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[7].name
@@ -4470,21 +4481,21 @@ PrefabInstance:
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[8].target
       value: 
-      objectReference: {fileID: 1488968091}
+      objectReference: {fileID: 1710891001}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[8].name
-      value: hierarchyCapacity
+      value: hideFlags
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[9].target
       value: 
-      objectReference: {fileID: 1710891000}
+      objectReference: {fileID: 1488968091}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[9].name
-      value: isStatic
+      value: hideFlags
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
@@ -4494,7 +4505,7 @@ PrefabInstance:
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[10].name
-      value: layer
+      value: hideFlags
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
@@ -4504,47 +4515,47 @@ PrefabInstance:
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[11].name
-      value: localEulerAngles
+      value: hierarchyCapacity
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[12].target
       value: 
-      objectReference: {fileID: 1488968091}
+      objectReference: {fileID: 1710891000}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[12].name
-      value: localPosition
+      value: isStatic
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[13].target
       value: 
-      objectReference: {fileID: 1488968091}
+      objectReference: {fileID: 1710891002}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[13].name
-      value: localRotation
+      value: Jump
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[14].target
       value: 
-      objectReference: {fileID: 1488968091}
+      objectReference: {fileID: 1710891000}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[14].name
-      value: localScale
+      value: layer
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[15].target
       value: 
-      objectReference: {fileID: 1710891001}
+      objectReference: {fileID: 1488968091}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[15].name
-      value: name
+      value: localEulerAngles
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
@@ -4554,17 +4565,17 @@ PrefabInstance:
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[16].name
-      value: name
+      value: localPosition
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[17].target
       value: 
-      objectReference: {fileID: 1710891000}
+      objectReference: {fileID: 1488968091}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[17].name
-      value: name
+      value: localRotation
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
@@ -4574,87 +4585,87 @@ PrefabInstance:
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[18].name
-      value: parent
+      value: localScale
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[19].target
       value: 
-      objectReference: {fileID: 1710891001}
+      objectReference: {fileID: 1488968091}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[19].name
-      value: pauseTransitionDuration
+      value: name
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[20].target
       value: 
-      objectReference: {fileID: 1488968091}
+      objectReference: {fileID: 1710891000}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[20].name
-      value: position
+      value: name
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[21].target
       value: 
-      objectReference: {fileID: 1488968091}
+      objectReference: {fileID: 1710891002}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[21].name
-      value: right
+      value: name
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[22].target
       value: 
-      objectReference: {fileID: 1488968091}
+      objectReference: {fileID: 1710891001}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[22].name
-      value: rotation
+      value: name
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[23].target
       value: 
-      objectReference: {fileID: 1710891001}
+      objectReference: {fileID: 1488968091}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[23].name
-      value: runInEditMode
+      value: parent
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[24].target
       value: 
-      objectReference: {fileID: 1710891001}
+      objectReference: {fileID: 1488968091}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[24].name
-      value: tag
+      value: position
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[25].target
       value: 
-      objectReference: {fileID: 1488968091}
+      objectReference: {fileID: 1710891002}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[25].name
-      value: tag
+      value: Retry
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[26].target
       value: 
-      objectReference: {fileID: 1710891000}
+      objectReference: {fileID: 1488968091}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[26].name
-      value: tag
+      value: right
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
@@ -4664,17 +4675,17 @@ PrefabInstance:
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[27].name
-      value: up
+      value: rotation
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[28].target
       value: 
-      objectReference: {fileID: 1710891001}
+      objectReference: {fileID: 1710891002}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[28].name
-      value: useGUILayout
+      value: runInEditMode
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
@@ -4684,117 +4695,117 @@ PrefabInstance:
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[29].name
-      value: BackToChapter ()
+      value: runInEditMode
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[30].target
       value: 
-      objectReference: {fileID: 1710891000}
+      objectReference: {fileID: 1710891002}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[30].name
-      value: CreatePrimitive (PrimitiveType type)
+      value: SwitchMode
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[31].target
       value: 
-      objectReference: {fileID: 1488968091}
+      objectReference: {fileID: 1710891002}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[31].name
-      value: DetachChildren ()
+      value: tag
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[32].target
       value: 
-      objectReference: {fileID: 1488968091}
+      objectReference: {fileID: 1710891001}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[32].name
-      value: Find (String n)
+      value: tag
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[33].target
       value: 
-      objectReference: {fileID: 1710891000}
+      objectReference: {fileID: 1488968091}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[33].name
-      value: Find (String name)
+      value: tag
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[34].target
       value: 
-      objectReference: {fileID: 1488968091}
+      objectReference: {fileID: 1710891000}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[34].name
-      value: FindChild (String n)
+      value: tag
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[35].target
       value: 
-      objectReference: {fileID: 1710891000}
+      objectReference: {fileID: 1710891001}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[35].name
-      value: FindGameObjectsWithTag (String tag)
+      value: transitionUIDuration
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[36].target
       value: 
-      objectReference: {fileID: 1710891000}
+      objectReference: {fileID: 1488968091}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[36].name
-      value: FindGameObjectWithTag (String tag)
+      value: up
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[37].target
       value: 
-      objectReference: {fileID: 1710891000}
+      objectReference: {fileID: 1710891002}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[37].name
-      value: FindWithTag (String tag)
+      value: useGUILayout
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[38].target
       value: 
-      objectReference: {fileID: 1488968091}
+      objectReference: {fileID: 1710891001}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[38].name
-      value: GetChild (Int32 index)
+      value: useGUILayout
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[39].target
       value: 
-      objectReference: {fileID: 1488968091}
+      objectReference: {fileID: 1710891001}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[39].name
-      value: GetChildCount ()
+      value: add_SchemeChanged (String] value)
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[40].target
       value: 
-      objectReference: {fileID: 1488968091}
+      objectReference: {fileID: 1710891000}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[40].name
-      value: GetEnumerator ()
+      value: CreatePrimitive (PrimitiveType type)
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
@@ -4804,27 +4815,27 @@ PrefabInstance:
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[41].name
-      value: GetSiblingIndex ()
+      value: DetachChildren ()
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[42].target
       value: 
-      objectReference: {fileID: 1710891001}
+      objectReference: {fileID: 1488968091}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[42].name
-      value: HideLevelEndCanvas ()
+      value: Find (String n)
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[43].target
       value: 
-      objectReference: {fileID: 1710891001}
+      objectReference: {fileID: 1710891000}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[43].name
-      value: Init ()
+      value: Find (String name)
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
@@ -4834,7 +4845,7 @@ PrefabInstance:
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[44].name
-      value: IsChildOf (Transform parent)
+      value: FindChild (String n)
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
@@ -4844,17 +4855,17 @@ PrefabInstance:
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[45].name
-      value: PlayAnimation (Object animation)
+      value: FindGameObjectsWithTag (String tag)
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[46].target
       value: 
-      objectReference: {fileID: 1488968091}
+      objectReference: {fileID: 1710891000}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[46].name
-      value: RotateAroundLocal (Vector3 axis, Single angle)
+      value: FindGameObjectWithTag (String tag)
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
@@ -4864,27 +4875,27 @@ PrefabInstance:
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[47].name
-      value: SampleAnimation (Object clip, Single time)
+      value: FindWithTag (String tag)
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[48].target
       value: 
-      objectReference: {fileID: 1710891000}
+      objectReference: {fileID: 1488968091}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[48].name
-      value: SetActive (Boolean value)
+      value: GetChild (Int32 index)
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[49].target
       value: 
-      objectReference: {fileID: 1710891000}
+      objectReference: {fileID: 1488968091}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[49].name
-      value: SetActiveRecursively (Boolean state)
+      value: GetChildCount ()
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
@@ -4894,7 +4905,7 @@ PrefabInstance:
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[50].name
-      value: SetAsFirstSibling ()
+      value: GetEnumerator ()
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
@@ -4904,37 +4915,37 @@ PrefabInstance:
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[51].name
-      value: SetAsLastSibling ()
+      value: GetSiblingIndex ()
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[52].target
       value: 
-      objectReference: {fileID: 1488968091}
+      objectReference: {fileID: 1710891002}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[52].name
-      value: SetPositionAndRotation (Vector3 position, Quaternion rotation)
+      value: GetSprite (BindingScheme scheme, GameAction action)
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[53].target
       value: 
-      objectReference: {fileID: 1488968091}
+      objectReference: {fileID: 1710891001}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[53].name
-      value: SetSiblingIndex (Int32 index)
+      value: Init ()
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[54].target
       value: 
-      objectReference: {fileID: 1710891001}
+      objectReference: {fileID: 1488968091}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[54].name
-      value: ShowLevelEndCanvas ()
+      value: IsChildOf (Transform parent)
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
@@ -4944,7 +4955,7 @@ PrefabInstance:
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[55].name
-      value: StopAllCoroutines ()
+      value: NavigateToScene (String sceneName)
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
@@ -4954,7 +4965,7 @@ PrefabInstance:
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[56].name
-      value: StopAnimation ()
+      value: PlayAnimation (Object animation)
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
@@ -4964,7 +4975,7 @@ PrefabInstance:
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mEntryList.Array.data[57].name
-      value: TogglePauseCanvas ()
+      value: remove_SchemeChanged (String] value)
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
@@ -4974,7 +4985,7 @@ PrefabInstance:
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
       propertyPath: onEnter.Array.data[0].mMethodName
-      value: ShowLevelEndCanvas
+      value: SetUIContainerStateWithInternalNavigation
       objectReference: {fileID: 0}
     - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
         type: 3}
@@ -4985,6 +4996,174 @@ PrefabInstance:
         type: 3}
       propertyPath: onEnter.Array.data[0].mUpdateEntryList
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mEntryList.Array.data[58].target
+      value: 
+      objectReference: {fileID: 1488968091}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mEntryList.Array.data[58].name
+      value: RotateAroundLocal (Vector3 axis, Single angle)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mEntryList.Array.data[59].target
+      value: 
+      objectReference: {fileID: 1710891000}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mEntryList.Array.data[59].name
+      value: SampleAnimation (Object clip, Single time)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mEntryList.Array.data[60].target
+      value: 
+      objectReference: {fileID: 1710891000}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mEntryList.Array.data[60].name
+      value: SetActive (Boolean value)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mEntryList.Array.data[61].target
+      value: 
+      objectReference: {fileID: 1710891000}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mEntryList.Array.data[61].name
+      value: SetActiveRecursively (Boolean state)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mEntryList.Array.data[62].target
+      value: 
+      objectReference: {fileID: 1488968091}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mEntryList.Array.data[62].name
+      value: SetAsFirstSibling ()
+      objectReference: {fileID: 0}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mEntryList.Array.data[63].target
+      value: 
+      objectReference: {fileID: 1488968091}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mEntryList.Array.data[63].name
+      value: SetAsLastSibling ()
+      objectReference: {fileID: 0}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mEntryList.Array.data[64].target
+      value: 
+      objectReference: {fileID: 1710891001}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mEntryList.Array.data[64].name
+      value: SetEventSystemsTarget (GameObject obj)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mEntryList.Array.data[65].target
+      value: 
+      objectReference: {fileID: 1488968091}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mEntryList.Array.data[65].name
+      value: SetPositionAndRotation (Vector3 position, Quaternion rotation)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mEntryList.Array.data[66].target
+      value: 
+      objectReference: {fileID: 1488968091}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mEntryList.Array.data[66].name
+      value: SetSiblingIndex (Int32 index)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mEntryList.Array.data[67].target
+      value: 
+      objectReference: {fileID: 1710891001}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mEntryList.Array.data[67].name
+      value: SetUIContainerState (GameObject UIContainer, UIManager+UIContainerAction
+        action)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mEntryList.Array.data[68].target
+      value: 
+      objectReference: {fileID: 1710891001}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mEntryList.Array.data[68].name
+      value: SetUIContainerStateWithInternalNavigation (GameObject UIContainerCurrent,
+        CanvasGroup CanvasGroupCurrent, GameObject UIContainerTarget, CanvasGroup
+        CanvasGroupTarget, GameObject nextEventSytemTarget)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mEntryList.Array.data[69].target
+      value: 
+      objectReference: {fileID: 1710891001}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mEntryList.Array.data[69].name
+      value: StopAllCoroutines ()
+      objectReference: {fileID: 0}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mEntryList.Array.data[70].target
+      value: 
+      objectReference: {fileID: 1710891002}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mEntryList.Array.data[70].name
+      value: StopAllCoroutines ()
+      objectReference: {fileID: 0}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mEntryList.Array.data[71].target
+      value: 
+      objectReference: {fileID: 1710891000}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mEntryList.Array.data[71].name
+      value: StopAnimation ()
+      objectReference: {fileID: 0}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mParameters.Array.data[0].obj
+      value: 
+      objectReference: {fileID: 1488968095}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mParameters.Array.data[1].obj
+      value: 
+      objectReference: {fileID: 1488968094}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mParameters.Array.data[2].obj
+      value: 
+      objectReference: {fileID: 1701815472}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mParameters.Array.data[3].obj
+      value: 
+      objectReference: {fileID: 420544045}
+    - target: {fileID: 8546624973939848107, guid: 2829785c6104c9f45a27f6a9aa5ae87c,
+        type: 3}
+      propertyPath: onEnter.Array.data[0].mParameters.Array.data[4].obj
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2829785c6104c9f45a27f6a9aa5ae87c, type: 3}
@@ -5033,6 +5212,7 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5170,6 +5350,18 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01ef94fed99e1ee4ba7ae36f822ac19f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &627450632
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9845,11 +10037,55 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1095250919}
     m_Modifications:
+    - target: {fileID: 4562813, guid: a3e4a899474da4d21b6ab8f097036ec4, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 121754756887375941, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 121754756887375941, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 121754756887375941, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 121754756887375941, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 434687983862030583, guid: a3e4a899474da4d21b6ab8f097036ec4,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064556910702314816, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      propertyPath: m_AnchorMin.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1064556910702314816, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064556910702314816, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 959.8435
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064556910702314816, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -250
+      objectReference: {fileID: 0}
     - target: {fileID: 1761300812480833175, guid: a3e4a899474da4d21b6ab8f097036ec4,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -9863,12 +10099,12 @@ PrefabInstance:
     - target: {fileID: 1761300812480833175, guid: a3e4a899474da4d21b6ab8f097036ec4,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 800
       objectReference: {fileID: 0}
     - target: {fileID: 1761300812480833175, guid: a3e4a899474da4d21b6ab8f097036ec4,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -289
       objectReference: {fileID: 0}
     - target: {fileID: 1761300812480833175, guid: a3e4a899474da4d21b6ab8f097036ec4,
         type: 3}
@@ -9893,12 +10129,12 @@ PrefabInstance:
     - target: {fileID: 1859388115754734317, guid: a3e4a899474da4d21b6ab8f097036ec4,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 800
       objectReference: {fileID: 0}
     - target: {fileID: 1859388115754734317, guid: a3e4a899474da4d21b6ab8f097036ec4,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -409
       objectReference: {fileID: 0}
     - target: {fileID: 1859388115754734317, guid: a3e4a899474da4d21b6ab8f097036ec4,
         type: 3}
@@ -9909,6 +10145,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300484469060959439, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300484469060959439, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300484469060959439, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 959.8435
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300484469060959439, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -146
       objectReference: {fileID: 0}
     - target: {fileID: 2628076747483904826, guid: a3e4a899474da4d21b6ab8f097036ec4,
         type: 3}
@@ -9973,12 +10229,12 @@ PrefabInstance:
     - target: {fileID: 3878466459400833712, guid: a3e4a899474da4d21b6ab8f097036ec4,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 800
       objectReference: {fileID: 0}
     - target: {fileID: 3878466459400833712, guid: a3e4a899474da4d21b6ab8f097036ec4,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -529
       objectReference: {fileID: 0}
     - target: {fileID: 3878466459400833712, guid: a3e4a899474da4d21b6ab8f097036ec4,
         type: 3}
@@ -10009,6 +10265,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368994575060308166, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368994575060308166, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368994575060308166, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 959.8435
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368994575060308166, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -42
       objectReference: {fileID: 0}
     - target: {fileID: 4439612618193948345, guid: a3e4a899474da4d21b6ab8f097036ec4,
         type: 3}
@@ -10175,6 +10451,31 @@ PrefabInstance:
       propertyPath: SceneTransition
       value: 
       objectReference: {fileID: 145690723}
+    - target: {fileID: 6345150541122052518, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345150541122052518, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345150541122052518, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 959.8435
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345150541122052518, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -354
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851617520971328463, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8135405851637749757, guid: a3e4a899474da4d21b6ab8f097036ec4,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -10205,11 +10506,43 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 8972568773980962714, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8972568773980962714, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8972568773980962714, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8972568773980962714, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3e4a899474da4d21b6ab8f097036ec4, type: 3}
 --- !u!4 &1488968091 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4852194504022444642, guid: a3e4a899474da4d21b6ab8f097036ec4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1488968090}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &1488968094 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 7972385761628150428, guid: a3e4a899474da4d21b6ab8f097036ec4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1488968090}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1488968095 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 434687983862030583, guid: a3e4a899474da4d21b6ab8f097036ec4,
     type: 3}
   m_PrefabInstance: {fileID: 1488968090}
   m_PrefabAsset: {fileID: 0}
@@ -10389,6 +10722,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1597330634}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1701815472 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4576626225154852109, guid: a3e4a899474da4d21b6ab8f097036ec4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1488968090}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1710891000 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8142906949404257255, guid: a3e4a899474da4d21b6ab8f097036ec4,
@@ -10405,6 +10744,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84f452456e81b4a978b53216a477e0e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1710891002 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3777861495737326361, guid: a3e4a899474da4d21b6ab8f097036ec4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1488968090}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710891000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5aec7d75f78f8b47bbc7137d8b58e01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1733645522

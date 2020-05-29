@@ -134,7 +134,9 @@ public class GameManager : MonoSingleton<GameManager>
 
     private LevelData _lastUnlockedLevel;
     
-    public BindingScheme CurrentBindingScheme = BindingScheme.Keyboard;
+    [HideInInspector] public BindingScheme CurrentBindingScheme = BindingScheme.Keyboard;
+
+    public Difficulty Difficulty => SaveManager.instance.Data.Difficulty;
 
     #endregion
     public override void Init()

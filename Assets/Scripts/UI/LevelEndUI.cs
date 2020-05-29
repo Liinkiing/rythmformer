@@ -1,16 +1,22 @@
 ﻿using HttpModel;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelEndUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _scoreText;
     [SerializeField] private GameObject _continueButton;
+    [SerializeField] private GameObject _scoreBox;
+    [SerializeField] private VerticalLayoutGroup _verticalLayout;
     private LevelManager _levelManager;
         
     private void Awake()
     {
         _levelManager = Utils.FindObjectOfTypeOrThrow<LevelManager>();
+        var isPro = GameManager.instance.Difficulty == Difficulty.ProGamer;
+        _scoreBox.SetActive(isPro);
+        _verticalLayout.padding.top = isPro ? 0 : 120;
     }
     
     private void Start()
