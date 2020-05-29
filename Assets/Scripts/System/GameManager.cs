@@ -120,8 +120,21 @@ public class GameManager : MonoSingleton<GameManager>
 
     #endregion
 
+    #region Public Fields
+
+    [HideInInspector] public GameState state = GameState.InGame;
+
+    #endregion
+
     #region Public Structures
 
+    public enum GameState
+    {
+        MainMenu,
+        InGame,
+        Pause,
+    }
+    
     [Serializable]
     public struct LevelData
     {
@@ -157,6 +170,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void OnSwitchModeButtonPerformed(InputAction.CallbackContext obj)
     {
+        if (state == GameState.InGame) return;
         ToggleDifficulty();
         OnDifficultyChanged(this, Difficulty);
     }

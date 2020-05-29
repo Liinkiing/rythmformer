@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,7 +23,7 @@ public class ProModeContainer : MonoBehaviour
     private void UpdateValues(Difficulty difficulty)
     {
         var isProMode = difficulty == Difficulty.ProGamer;
-        _canvas.alpha = isProMode ? 1f : 0.3f;
+        _canvas.DOFade(isProMode ? 1 : 0.3f, 0.3f);
         _proText.text = _initialText.Replace(PlaceholderText, isProMode ? "ON" : "OFF");
     }
     

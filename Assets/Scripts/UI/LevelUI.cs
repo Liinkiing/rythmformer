@@ -55,7 +55,12 @@ public class LevelUI : MonoBehaviour
 
         if (_levelManager.isGamePaused)
         {
+            GameManager.instance.state = GameManager.GameState.Pause;
             UIManager.instance.SetEventSystemsTarget(_continueButton.gameObject);
+        }
+        else
+        {
+            GameManager.instance.state = GameManager.GameState.InGame;
         }
     }
 }

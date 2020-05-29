@@ -34,6 +34,7 @@ public class LevelManager : MonoBehaviour
         _input.Player.Pause.performed += PauseOnPerformed;
 
         _levelUI = Utils.FindObjectOfTypeOrThrow<LevelUI>();
+        GameManager.instance.state = GameManager.GameState.InGame;
         _songSynchronizer = Utils.FindObjectOfTypeOrThrow<SongSynchronizer>();
     }
 
