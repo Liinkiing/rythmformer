@@ -4,11 +4,11 @@ using System.Linq;
 using NaughtyAttributes;
 using Rythmformer;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoSingleton<GameManager>
 {
     #region Debug
-
 
     [Button("Lock all levels")]
     public void LockAllLevels()
@@ -112,6 +112,11 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
+    #endregion
+
+    #region Events
+
+    public event Action<GameManager, Difficulty> DifficultyChanged;
 
     #endregion
 
@@ -126,26 +131,49 @@ public class GameManager : MonoSingleton<GameManager>
     }
 
     #endregion
-    
+
     #region Public Fields
 
-    [Space, Header("General")]
-    public List<LevelData> Levels;
+    [Space, Header("General")] public List<LevelData> Levels;
 
     private LevelData _lastUnlockedLevel;
-    
+    private PlayerInput _playerInput;
+
     [HideInInspector] public BindingScheme CurrentBindingScheme = BindingScheme.Keyboard;
 
     public Difficulty Difficulty => SaveManager.instance.Data.Difficulty;
 
     #endregion
+
     public override void Init()
     {
         Debug.Log("[INIT] GameManager");
         LeaderboardManager.instance.WakeServer();
         Debug.Log($"Difficulty: {SaveManager.instance.Data.Difficulty.ToString()}");
+        _playerInput = new PlayerInput();
+        _playerInput.Global.Switchmode.performed += OnSwitchModeButtonPerformed;
         UpdateLastUnlockedLevel();
     }
+
+    private void OnSwitchModeButtonPerformed(InputAction.CallbackContext obj)
+    {
+        ToggleDifficulty();
+        OnDifficultyChanged(this, Difficulty);
+    }
+
+    #region Unity Hooks
+
+    private void OnEnable()
+    {
+        _playerInput?.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _playerInput?.Disable();
+    }
+
+    #endregion
 
     #region Public Methods
 
@@ -180,13 +208,13 @@ public class GameManager : MonoSingleton<GameManager>
     public void UpdateLastUnlockedLevel()
     {
         LevelData localLastUnlockedLevel = Levels[0];
-        
+
         foreach (var levelData in Levels)
         {
             if (HasUnlockedLevel(levelData.World, levelData.Level))
             {
                 localLastUnlockedLevel = levelData;
-            };
+            }
         }
 
         LastUnlockedLevel = localLastUnlockedLevel;
@@ -199,4 +227,9 @@ public class GameManager : MonoSingleton<GameManager>
     }
 
     #endregion
+
+    protected virtual void OnDifficultyChanged(GameManager sender, Difficulty newDifficulty)
+    {
+        DifficultyChanged?.Invoke(this, newDifficulty);
+    }
 }
