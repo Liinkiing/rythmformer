@@ -115,11 +115,22 @@ public class SaveManager : MonoSingleton<SaveManager>
 
     private SaveData CreateSaveData()
     {
-        var save = new SaveData {LevelProgression = new Dictionary<World, Dictionary<Level, bool>>()};
+        var save = new SaveData
+        {
+            LevelProgression = new Dictionary<World, Dictionary<Level, bool>>(),
+            LevelScores = new Dictionary<World, Dictionary<Level, LevelScoreData>>()
+        };
         foreach (var entry in GameManager.instance.Levels.GroupBy(levelData => levelData.World)
             .ToDictionary(p => p.Key, p => p.ToDictionary(data => data.Level, data => false)))
         {
             save.LevelProgression.Add(entry.Key, entry.Value);
+        }
+
+        foreach (var entry in GameManager.instance.Levels.GroupBy(levelData => levelData.World)
+            .ToDictionary(p => p.Key,
+                p => p.ToDictionary(data => data.Level, data => new LevelScoreData() {Score = 0, Timer = 0f})))
+        {
+            save.LevelScores.Add(entry.Key, entry.Value);
         }
 
         return save;

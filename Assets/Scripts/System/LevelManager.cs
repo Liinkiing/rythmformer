@@ -78,7 +78,7 @@ public class LevelManager : MonoBehaviour
     {
         if (_hasFinishedLevel) return;
         isGamePaused = !isGamePaused;
-        
+
         _levelUI.TogglePauseCanvas();
         _songSynchronizer.ToggleLowPassFilter(isGamePaused);
     }

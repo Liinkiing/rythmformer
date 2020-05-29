@@ -191,6 +191,17 @@ public class GameManager : MonoSingleton<GameManager>
 
     #region Public Methods
 
+    public LevelScoreData GetLocalScore(World world, Level level)
+    {
+        return SaveManager.instance.Data.LevelScores[world][level];
+    }
+    
+    public void WriteLocalScore(World world, Level level, LevelScoreData score)
+    {
+        SaveManager.instance.Data.LevelScores[world][level] = score;
+        SaveManager.instance.Save();
+    }
+
     public void UnlockLevel(World world, Level level)
     {
         SaveManager.instance.Data.LevelProgression[world][level] = true;
