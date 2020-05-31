@@ -44,7 +44,6 @@ public class MainMenuUI : MonoBehaviour
 
     public void ContinueLastSave()
     {
-        Debug.Log("test");
         _continueLastSaveButton.GetComponent<LevelButtonData>().FillFromLevelData(GameManager.instance.LastUnlockedLevel);
         
         StartCoroutine(_sceneTransition.GetComponent<SceneLoader>().LoadLevel(GameManager.instance.LastUnlockedLevel.Scene));
