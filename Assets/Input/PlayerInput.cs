@@ -244,7 +244,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e52cd738-1be9-4780-9ef3-a97df14ee8c4"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""path"": ""<Keyboard>/c"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
