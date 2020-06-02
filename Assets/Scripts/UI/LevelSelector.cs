@@ -101,9 +101,10 @@ public class LevelSelector : MonoBehaviour
         
         _chapterTitle.SetText($"{(indexChapter > 0 ? "Chapter " + indexChapter : "Prologue")}\n{chapter}");
 
+        var test = 0;
         foreach (var levelData in levelsInChapter)
         {
-            var button = CreateButton($"{levelData.World} - {levelData.Level.ToString()}");
+            var button = CreateButton($"{levelData.World} - {levelData.Level.ToString()}", test);
             button.GetComponent<LevelButtonData>().FillFromLevelData(levelData);
             button.GetComponent<Button>().onClick.AddListener(() =>
             {
@@ -111,6 +112,7 @@ public class LevelSelector : MonoBehaviour
             });
             _levelButtons.Add(button);
             RefreshButtons();
+            test += 1;
         }
         
         UIManager.instance.SetEventSystemsTarget(_levelButtons[0]);
@@ -134,11 +136,25 @@ public class LevelSelector : MonoBehaviour
         }
     }
 
-    private GameObject CreateButton(string content)
+    private GameObject CreateButton(string content, int index)
     {
+        Rect rect = _buttonWrapper.GetComponent<RectTransform>().rect;
+        
+        float baseAngle = Mathf.PI * (0 + 1) / (4 + 1f);
+        float heightFactor = (Mathf.Sin(baseAngle) * rect.height) / rect.height;
+
+        float angle = Mathf.PI * (index + 1) / (4 + 1f);
+        float x = Mathf.Cos(angle) * rect.width/2;
+        
+        float y = Mathf.Sin(angle) * rect.height/heightFactor - (Mathf.Sin(baseAngle) * rect.height/heightFactor);
+        Vector3 pos = new Vector3(x, y, 0);
+
         var button = Instantiate(_buttonPrefab, _buttonWrapper.transform.position,
             _buttonWrapper.transform.rotation);
+        
         button.transform.SetParent(_buttonWrapper.transform);
+        button.transform.localPosition = pos;
+
         button.GetComponentInChildren<TextMeshProUGUI>().text = content;
         return button;
     }
