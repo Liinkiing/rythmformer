@@ -69,7 +69,7 @@ public class LevelSelector : MonoBehaviour
         {
             _lastChapter.SetActive(true);
             var lastChapter = (World)Enum.Parse(typeof(World), lastChapterName);
-            _lastChapterText.SetText(lastChapterName);
+            _lastChapterText.SetText($"Chapter {indexChapter - 1}");
             
             _lastChapterButton.onClick.AddListener(() =>
             {
@@ -87,7 +87,7 @@ public class LevelSelector : MonoBehaviour
         {
             _nextChapter.SetActive(true);
             var nextChapter = (World)Enum.Parse(typeof(World), nextChapterName);
-            _nextChapterText.SetText(nextChapterName);
+            _nextChapterText.SetText($"Chapter {indexChapter + 1}");
             
             _nextChapterButton.onClick.AddListener(() =>
             {
