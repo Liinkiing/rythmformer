@@ -23,9 +23,16 @@ public enum Difficulty
     ProGamer
 }
 
+public struct LevelScoreData
+{
+    public float Timer;
+    public int Score;
+}
+
 [Serializable]
 public class SaveData
 {
     public Dictionary<World, Dictionary<Level, bool>> LevelProgression;
+    public Dictionary<World, Dictionary<Level, LevelScoreData>> LevelScores;
     public Difficulty Difficulty;
 }

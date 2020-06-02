@@ -56,7 +56,7 @@ public class CharacterController2D : MonoBehaviour
 
     [SerializeField, Tooltip("Horizontal speed on wall jump")]
     private float wallJumpSpeed = 12;
-    
+
     [SerializeField, Tooltip("Time during which movement keys are locked after wall jumping")]
     private float wallJumpLock;
 
@@ -72,8 +72,8 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private float dashSpeed = 60f;
     [SerializeField] private float dashAcceleration = 500f;
 
-    [Space(), Header("Wall Riding")]
-    [SerializeField, Range(0.1f, 3f)] private float surfaceRayLength = 0.6f;
+    [Space(), Header("Wall Riding")] [SerializeField, Range(0.1f, 3f)]
+    private float surfaceRayLength = 0.6f;
 
     [SerializeField, Range(0, 1f), Tooltip("Deceleration applied when character is wall riding")]
     private float wallDeceleration = 0.8f;
@@ -130,7 +130,7 @@ public class CharacterController2D : MonoBehaviour
     private Vector3 _initialPosition = Vector3.zero;
     private Animator _artAnimator;
 
-    private ScoreState _scoreState = new ScoreState(score: SongSynchronizer.EventScore.Ok);
+    private ScoreState _scoreState = new ScoreState(score: SongSynchronizer.EventScore.Nice);
     [SerializeField] private ParticleSystem _trailPS;
     [SerializeField] private ParticleSystem _dustPS;
     [SerializeField] private ParticleSystem _leaves;
@@ -196,9 +196,12 @@ public class CharacterController2D : MonoBehaviour
         _downCast = new RaycastGroup(_boxCollider, Vector2.down, 0.1f, 3, wallsLayerMask, new Vector2(1, 1));
         _rightCast = new RaycastGroup(_boxCollider, Vector2.right, 0.1f, 7, wallsLayerMask, new Vector2(1, 1));
         _leftCast = new RaycastGroup(_boxCollider, Vector2.left, 0.1f, 7, wallsLayerMask, new Vector2(1, 1));
-        _downBuffer = new RaycastGroup(_boxCollider, Vector2.down, surfaceRayLength, 3, wallsLayerMask, new Vector2(1.2f, 1));
-        _rightBuffer = new RaycastGroup(_boxCollider, Vector2.right, surfaceRayLength, 7, wallsLayerMask, new Vector2(1, 1));
-        _leftBuffer = new RaycastGroup(_boxCollider, Vector2.left, surfaceRayLength, 7, wallsLayerMask, new Vector2(1, 1));
+        _downBuffer = new RaycastGroup(_boxCollider, Vector2.down, surfaceRayLength, 3, wallsLayerMask,
+            new Vector2(1.2f, 1));
+        _rightBuffer = new RaycastGroup(_boxCollider, Vector2.right, surfaceRayLength, 7, wallsLayerMask,
+            new Vector2(1, 1));
+        _leftBuffer = new RaycastGroup(_boxCollider, Vector2.left, surfaceRayLength, 7, wallsLayerMask,
+            new Vector2(1, 1));
     }
 
     private void Start()
@@ -220,34 +223,31 @@ public class CharacterController2D : MonoBehaviour
         _levelManager?.OnLevelReset.RemoveListener(OnLevelReset);
         RemoveThresholdedBeatEvents();
     }
-    
+
 
     private void Update()
     {
-        if (!_levelManager.isGamePaused)
+        Vector2 moveInput = GameManager.instance.GamePaused ? Vector2.zero : _input.Player.Move.ReadValue<Vector2>();
+        if (_moveLocked || moveInput.x == 0)
         {
-            Vector2 moveInput = _input.Player.Move.ReadValue<Vector2>();
-            if (_moveLocked || moveInput.x == 0)
-            {
-                _direction = 0;
-            }
-            else if (moveInput.x < 0)
-            {
-                _direction = -1;
-            }
-            else if (moveInput.x > 0)
-            {
-                _direction = 1;
-            }
-
-            UpdateScale(_direction);
-            SurfaceDetection();
-            HandleRythmAction(_direction);
-            HandleMovement(_direction);
-            ResolveDash(_direction);
-            ResolveTimeBuffers(_direction);
-            HandleAnimations(_direction, _velocity.y);
+            _direction = 0;
         }
+        else if (moveInput.x < 0)
+        {
+            _direction = -1;
+        }
+        else if (moveInput.x > 0)
+        {
+            _direction = 1;
+        }
+
+        UpdateScale(_direction);
+        SurfaceDetection();
+        HandleRythmAction(_direction);
+        HandleMovement(_direction);
+        ResolveDash(_direction);
+        ResolveTimeBuffers(_direction);
+        HandleAnimations(_direction, _velocity.y);
     }
 
     private void HandleAnimations(int input, float velocityY)
@@ -264,6 +264,7 @@ public class CharacterController2D : MonoBehaviour
         {
             return;
         }
+
         if (direction > 0 && _isFlipped)
         {
             _isFlipped = false;
@@ -275,7 +276,7 @@ public class CharacterController2D : MonoBehaviour
             art.localScale = new Vector3(art.localScale.x * -1, art.localScale.y, art.localScale.z);
         }
     }
-    
+
     private void SurfaceDetection()
     {
         _grounded = _downCast.Check(_downCast.Down);
@@ -293,7 +294,7 @@ public class CharacterController2D : MonoBehaviour
         {
             _groundBuffer = false;
         }
-        
+
         if (_rightBuffer.Check(_rightBuffer.TouchRight))
         {
             _wall = 1;
@@ -407,13 +408,13 @@ public class CharacterController2D : MonoBehaviour
             _leaves.Stop();
             _dustPS.Stop();
         }
-        
+
         // Decelerate Y on wall downward
         if (_wallRiding && !_grounded && _velocity.y < 0)
         {
             _velocity.y *= wallDeceleration;
         }
-        
+
         // Define surface resistance
         var acceleration = _grounded || _wallRiding ? walkAcceleration : airAcceleration;
         var deceleration = _grounded ? groundDeceleration : 0;
@@ -442,14 +443,16 @@ public class CharacterController2D : MonoBehaviour
         if (_dashing || (_grounded && !_bumping))
         {
             _velocity.y = 0;
-        } else if (_roofed)
+        }
+        else if (_roofed)
         {
             _velocity.y = Physics2D.gravity.y * 2f * Time.deltaTime;
-        } else
+        }
+        else
         {
             _velocity.y += Physics2D.gravity.y * 2f * Time.deltaTime;
         }
-        
+
         // Prevent speed gain against wall
         if (_wallRiding && (_wall < 0 && _velocity.x < 0 || _wall > 0 && _velocity.x > 0))
         {
@@ -459,10 +462,10 @@ public class CharacterController2D : MonoBehaviour
         
         // Define ending point
         var pos = _velocity * Time.deltaTime;
-        
+
         // Check if collision is expected
         var distances = new float[2];
-        
+
         _collisionX.Distance = pos.magnitude;
         _collisionX.Direction = _velocity.normalized;
         distances[0] = _collisionX.MinDistance(pos.x > 0 ? Vector2.right : Vector2.left);
@@ -472,9 +475,9 @@ public class CharacterController2D : MonoBehaviour
         distances[1] = _collisionY.MinDistance(pos.y > 0 ? Vector2.up : Vector2.down);
 
         pos = _velocity.normalized * distances.Min();
-        
+
         _artAnimator.SetBool(WallridingAnimatorBool, _wallRiding);
-        
+
         transform.Translate(pos);
     }
 
@@ -536,6 +539,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void OnTresholdedAction(SongSynchronizer sender, SongSynchronizer.EventState state)
     {
+        if (GameManager.instance.GamePaused) return;
         // We stop ParticleSystem to reset the emitting one with new properties
         _leaves.Stop();
         _dustPS.Stop();
@@ -543,20 +547,21 @@ public class CharacterController2D : MonoBehaviour
         {
             case SongSynchronizer.EventState.Start:
                 _flags.ActionAvailable = true;
-                _scoreState.Score = SongSynchronizer.EventScore.Ok;
+                _scoreState.Score = SongSynchronizer.EventScore.Nice;
                 break;
             case SongSynchronizer.EventState.Mid:
                 _scoreState.Score = SongSynchronizer.EventScore.Perfect;
                 break;
             case SongSynchronizer.EventState.End:
                 _flags.ActionAvailable = false;
-                _scoreState.Score = SongSynchronizer.EventScore.Ok;
+                _scoreState.Score = SongSynchronizer.EventScore.Nice;
                 break;
         }
     }
 
     private void Jump()
     {
+        if (GameManager.instance.GamePaused) return;
         _artAnimator.SetTrigger(JumpAnimatorTrigger);
         OnActionPerformed(this, new OnActionEventArgs() {Move = PlayerActions.Jump, Score = _scoreState.Score});
         // Calculate the velocity required to achieve the target jump height.
@@ -573,6 +578,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void Dash(int moveInput)
     {
+        if (GameManager.instance.GamePaused) return;
         _artAnimator.SetTrigger(DashAnimatorTrigger);
         OnActionPerformed(this, new OnActionEventArgs() {Move = PlayerActions.Dash, Score = _scoreState.Score});
         OnDash?.Invoke();
@@ -580,7 +586,7 @@ public class CharacterController2D : MonoBehaviour
         _velocity.y = 0;
         _velocity.x = Mathf.MoveTowards(_velocity.x, dashSpeed * moveInput, dashAcceleration);
         _flags.CanDash = false;
-        
+
         _rippleController.startRipple();
         /*_trailPS.Play();*/
     }
@@ -591,6 +597,7 @@ public class CharacterController2D : MonoBehaviour
         var coroutine = ResolveMoveLock(duration);
         StartCoroutine(coroutine);
     }
+
     IEnumerator ResolveMoveLock(float duration)
     {
         yield return new WaitForSeconds(duration);
@@ -611,6 +618,7 @@ public class CharacterController2D : MonoBehaviour
 
     protected virtual void OnActionPerformed(CharacterController2D sender, OnActionEventArgs action)
     {
+        if (GameManager.instance.GamePaused) return;
         ActionPerformed?.Invoke(sender, action);
     }
 

@@ -208,6 +208,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Switch mode"",
+                    ""type"": ""Button"",
+                    ""id"": ""e9cfc25d-e40f-4597-966d-3b3cb671298f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -230,6 +238,28 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e52cd738-1be9-4780-9ef3-a97df14ee8c4"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Switch mode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""94e76eba-e9d7-4f13-8293-5c6cb75453ff"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Switch mode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -270,6 +300,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         // Global
         m_Global = asset.FindActionMap("Global", throwIfNotFound: true);
         m_Global_Reset = m_Global.FindAction("Reset", throwIfNotFound: true);
+        m_Global_Switchmode = m_Global.FindAction("Switch mode", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -377,11 +408,13 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Global;
     private IGlobalActions m_GlobalActionsCallbackInterface;
     private readonly InputAction m_Global_Reset;
+    private readonly InputAction m_Global_Switchmode;
     public struct GlobalActions
     {
         private @PlayerInput m_Wrapper;
         public GlobalActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Reset => m_Wrapper.m_Global_Reset;
+        public InputAction @Switchmode => m_Wrapper.m_Global_Switchmode;
         public InputActionMap Get() { return m_Wrapper.m_Global; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -394,6 +427,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Reset.started -= m_Wrapper.m_GlobalActionsCallbackInterface.OnReset;
                 @Reset.performed -= m_Wrapper.m_GlobalActionsCallbackInterface.OnReset;
                 @Reset.canceled -= m_Wrapper.m_GlobalActionsCallbackInterface.OnReset;
+                @Switchmode.started -= m_Wrapper.m_GlobalActionsCallbackInterface.OnSwitchmode;
+                @Switchmode.performed -= m_Wrapper.m_GlobalActionsCallbackInterface.OnSwitchmode;
+                @Switchmode.canceled -= m_Wrapper.m_GlobalActionsCallbackInterface.OnSwitchmode;
             }
             m_Wrapper.m_GlobalActionsCallbackInterface = instance;
             if (instance != null)
@@ -401,6 +437,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Reset.started += instance.OnReset;
                 @Reset.performed += instance.OnReset;
                 @Reset.canceled += instance.OnReset;
+                @Switchmode.started += instance.OnSwitchmode;
+                @Switchmode.performed += instance.OnSwitchmode;
+                @Switchmode.canceled += instance.OnSwitchmode;
             }
         }
     }
@@ -433,5 +472,6 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     public interface IGlobalActions
     {
         void OnReset(InputAction.CallbackContext context);
+        void OnSwitchmode(InputAction.CallbackContext context);
     }
 }

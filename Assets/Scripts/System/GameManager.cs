@@ -4,11 +4,11 @@ using System.Linq;
 using NaughtyAttributes;
 using Rythmformer;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoSingleton<GameManager>
 {
     #region Debug
-
 
     [Button("Lock all levels")]
     public void LockAllLevels()
@@ -112,10 +112,30 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
+    #endregion
+
+    #region Events
+
+    public event Action<GameManager, Difficulty> DifficultyChanged;
+
+    #endregion
+
+    #region Public Fields
+
+    [HideInInspector] public GameState state = GameState.InGame;
+    [HideInInspector] public bool GamePaused => (state == GameState.Pause || state == GameState.LevelEnd);
 
     #endregion
 
     #region Public Structures
+
+    public enum GameState
+    {
+        MainMenu,
+        InGame,
+        Pause,
+        LevelEnd,
+    }
 
     [Serializable]
     public struct LevelData
@@ -126,24 +146,63 @@ public class GameManager : MonoSingleton<GameManager>
     }
 
     #endregion
-    
+
     #region Public Fields
 
-    [Space, Header("General")]
-    public List<LevelData> Levels;
+    [Space, Header("General")] public List<LevelData> Levels;
 
     private LevelData _lastUnlockedLevel;
+    private PlayerInput _playerInput;
+
+    [HideInInspector] public BindingScheme CurrentBindingScheme = BindingScheme.Keyboard;
+
+    public Difficulty Difficulty => SaveManager.instance.Data.Difficulty;
 
     #endregion
+
     public override void Init()
     {
         Debug.Log("[INIT] GameManager");
         LeaderboardManager.instance.WakeServer();
         Debug.Log($"Difficulty: {SaveManager.instance.Data.Difficulty.ToString()}");
+        _playerInput = new PlayerInput();
+        _playerInput.Global.Switchmode.performed += OnSwitchModeButtonPerformed;
         UpdateLastUnlockedLevel();
     }
 
+    private void OnSwitchModeButtonPerformed(InputAction.CallbackContext obj)
+    {
+        if (state == GameState.InGame || state == GameState.LevelEnd) return;
+        ToggleDifficulty();
+        OnDifficultyChanged(this, Difficulty);
+    }
+
+    #region Unity Hooks
+
+    private void OnEnable()
+    {
+        _playerInput?.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _playerInput?.Disable();
+    }
+
+    #endregion
+
     #region Public Methods
+
+    public LevelScoreData GetLocalScore(World world, Level level)
+    {
+        return SaveManager.instance.Data.LevelScores[world][level];
+    }
+
+    public void WriteLocalScore(World world, Level level, LevelScoreData score)
+    {
+        SaveManager.instance.Data.LevelScores[world][level] = score;
+        SaveManager.instance.Save();
+    }
 
     public void UnlockLevel(World world, Level level)
     {
@@ -176,13 +235,13 @@ public class GameManager : MonoSingleton<GameManager>
     public void UpdateLastUnlockedLevel()
     {
         LevelData localLastUnlockedLevel = Levels[0];
-        
+
         foreach (var levelData in Levels)
         {
             if (HasUnlockedLevel(levelData.World, levelData.Level))
             {
                 localLastUnlockedLevel = levelData;
-            };
+            }
         }
 
         LastUnlockedLevel = localLastUnlockedLevel;
@@ -195,4 +254,9 @@ public class GameManager : MonoSingleton<GameManager>
     }
 
     #endregion
+
+    protected virtual void OnDifficultyChanged(GameManager sender, Difficulty newDifficulty)
+    {
+        DifficultyChanged?.Invoke(this, newDifficulty);
+    }
 }

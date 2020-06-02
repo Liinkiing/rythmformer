@@ -62,7 +62,10 @@ public class RaycastGroup {
             {
                 if (hit.distance > 0.01f && hit.distance < result)
                 {
-                    result = hit.distance - 0.01f;
+                    var bufferX = _direction.x * _direction.x;
+                    var bufferY = _direction.y * _direction.y;
+                    var buffer = Mathf.Sqrt(bufferX + bufferY) * 0.01f - 0.00001f;
+                    result = hit.distance - buffer;
                 }
             }
         }

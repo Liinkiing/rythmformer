@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour
@@ -14,6 +15,11 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private GameObject _settingsChillButton;
     [SerializeField] private GameObject _settingsProGamerlButton;
     [SerializeField] private Button _backToHomeButton;
+
+    private void Awake()
+    {
+        GameManager.instance.state = GameManager.GameState.MainMenu;
+    }
 
     private void Start()
     {
