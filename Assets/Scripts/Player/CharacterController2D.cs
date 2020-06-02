@@ -484,6 +484,10 @@ public class CharacterController2D : MonoBehaviour
         // Prevent speed gain against wall
         if (_wallRiding && (_wall < 0 && _velocity.x < 0 || _wall > 0 && _velocity.x > 0))
         {
+            if (_velocity.y > 0)
+            {
+                _velocity.y += Math.Abs(_velocity.x) * horizontalSpeedTransfer;
+            }
             _velocity.x = 0;
         }
         _bumping = false;

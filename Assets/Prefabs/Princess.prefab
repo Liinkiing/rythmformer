@@ -6745,7 +6745,7 @@ MonoBehaviour:
   wallJumpSpeed: 12
   wallJumpLock: 0.15
   dashBuffer: 0.15
-  horizontalSpeedTransfer: 0.03
+  horizontalSpeedTransfer: 0.085
   dashDuration: 0.15
   dashSpeed: 60
   dashAcceleration: 500
