@@ -15,7 +15,8 @@ public class CharacterController2D : MonoBehaviour
     public enum PlayerActions
     {
         Jump,
-        Dash
+        Dash,
+        Dance
     }
 
     [Serializable]
@@ -71,6 +72,10 @@ public class CharacterController2D : MonoBehaviour
 
     [SerializeField] private float dashSpeed = 60f;
     [SerializeField] private float dashAcceleration = 500f;
+    
+    [Space(), Header("Dance")]
+    [SerializeField] private float danceDuration;
+    [SerializeField] private float danceDeceleration;
 
     [Space(), Header("Wall Riding")] [SerializeField, Range(0.1f, 3f)]
     private float surfaceRayLength = 0.6f;
@@ -89,8 +94,10 @@ public class CharacterController2D : MonoBehaviour
     [Space(), Header("Action restrictions")] [SerializeField]
     private SongSynchronizer.ThresholdBeatEvents restrictActionOn;
 
-    [Space(), Header("Events")] public UnityEvent OnJump;
+    [Space(), Header("Events")]
+    public UnityEvent OnJump;
     public UnityEvent OnDash;
+    public UnityEvent OnDance;
 
     [Space(), Header("Variables")] [SerializeField]
     private Transform art;
@@ -108,6 +115,7 @@ public class CharacterController2D : MonoBehaviour
     private Vector3 _initialLocalScale;
     private float _dashTime;
     private bool _dashing;
+    private bool _dancing;
     private bool _isFlipped;
     private PlayerInput _input;
     private Vector2 _velocity;
@@ -317,9 +325,17 @@ public class CharacterController2D : MonoBehaviour
     {
         if (!_flags.ActionAvailable)
         {
-            if (_input.Player.Jump.triggered || _input.Player.Dash.triggered)
+            if (_input.Player.Jump.triggered || _input.Player.Dash.triggered || _input.Player.Dance.triggered)
             {
-                var action = _input.Player.Jump.triggered ? PlayerActions.Jump : PlayerActions.Dash;
+                PlayerActions action;
+                if (_input.Player.Jump.triggered) {
+                    action = PlayerActions.Jump;
+                } else if (_input.Player.Dash.triggered) {
+                    action = PlayerActions.Dash;
+                } else {
+                    action = PlayerActions.Dance;
+                }
+                
                 OnActionPerformed(this,
                     new OnActionEventArgs() {Move = action, Score = SongSynchronizer.EventScore.Failed});
                 _additionalSpeed = 0;
@@ -356,6 +372,12 @@ public class CharacterController2D : MonoBehaviour
             {
                 _dashBuffer = dashBuffer;
             }
+        } else if (_input.Player.Dance.triggered)
+        {
+            _flags.ActionAvailable = false;
+            
+            Dance(danceDuration);
+            if (_additionalSpeed < numberOfSteps) _additionalSpeed++;
         }
 
         _superSpeedValue = _additionalSpeed == numberOfSteps ? superSpeed : 0;
@@ -410,9 +432,15 @@ public class CharacterController2D : MonoBehaviour
         }
 
         // Decelerate Y on wall downward
-        if (_wallRiding && !_grounded && _velocity.y < 0)
+        if (!_grounded && _velocity.y < 0)
         {
-            _velocity.y *= wallDeceleration;
+            if (_wallRiding)
+            {
+                _velocity.y *= wallDeceleration;
+            } else if (_dancing)
+            {
+                _velocity.y *= danceDeceleration;
+            }
         }
 
         // Define surface resistance
@@ -589,6 +617,22 @@ public class CharacterController2D : MonoBehaviour
 
         _rippleController.startRipple();
         /*_trailPS.Play();*/
+    }
+
+    private void Dance(float duration)
+    {
+        if (GameManager.instance.GamePaused) return;
+        OnActionPerformed(this, new OnActionEventArgs() {Move = PlayerActions.Dance, Score = _scoreState.Score});
+        OnDance?.Invoke();
+        _dancing = true;
+        var coroutine = ResolveDance(duration);
+        StartCoroutine(coroutine);
+    }
+    
+    IEnumerator ResolveDance(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        _dancing = false;
     }
 
     public void LockMove(float duration)
