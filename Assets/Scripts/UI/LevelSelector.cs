@@ -14,7 +14,6 @@ public class LevelSelector : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _chapterTitle;
     [SerializeField] private GameObject _nextChapter;
     [SerializeField] private GameObject _lastChapter;
-    [SerializeField] private TextMeshProUGUI _ToggleDifficultyButton;
     private GameObject _buttonWrapper;
     private List<GameObject> _levelButtons;
     private Button _lastChapterButton;
@@ -44,15 +43,14 @@ public class LevelSelector : MonoBehaviour
         _buttonWrapper = GameObject.Find("Levels");
         _levelButtons = new List<GameObject>();
         _lastChapterButton = _lastChapter.GetComponent<Button>();
-        _lastChapterText = _lastChapter.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        _lastChapterText = _lastChapter.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         _nextChapterButton = _nextChapter.GetComponent<Button>();
-        _nextChapterText = _nextChapter.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        _nextChapterText = _nextChapter.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
     }
 
     private void Start()
     {
         GenerateUI(GameManager.instance.LastUnlockedLevel.World);
-        RefreshDifficultyButton();
     }
 
     public void GenerateUI(World chapter)
@@ -69,7 +67,7 @@ public class LevelSelector : MonoBehaviour
         {
             _lastChapter.SetActive(true);
             var lastChapter = (World)Enum.Parse(typeof(World), lastChapterName);
-            _lastChapterText.SetText($"Chapter {indexChapter - 1}");
+            _lastChapterText.SetText($"{indexChapter - 1}");
             
             _lastChapterButton.onClick.AddListener(() =>
             {
@@ -87,7 +85,7 @@ public class LevelSelector : MonoBehaviour
         {
             _nextChapter.SetActive(true);
             var nextChapter = (World)Enum.Parse(typeof(World), nextChapterName);
-            _nextChapterText.SetText($"Chapter {indexChapter + 1}");
+            _nextChapterText.SetText($"{indexChapter + 1}");
             
             _nextChapterButton.onClick.AddListener(() =>
             {
@@ -116,17 +114,6 @@ public class LevelSelector : MonoBehaviour
         }
         
         UIManager.instance.SetEventSystemsTarget(_levelButtons[0]);
-    }
-
-    private void RefreshDifficultyButton()
-    {
-        _ToggleDifficultyButton.SetText(SaveManager.instance.Data.Difficulty == Difficulty.Chill ? "Chill Gamer" : "Pro Gamer");
-    }
-    
-    public void ToggleDifficulty()
-    {
-        GameManager.instance.ToggleDifficulty();
-        RefreshDifficultyButton();
     }
 
     private void OnDestroy()
