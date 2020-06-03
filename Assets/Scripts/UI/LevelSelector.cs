@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 [Serializable]
 public class LevelSelector : MonoBehaviour
@@ -14,6 +16,7 @@ public class LevelSelector : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _chapterTitle;
     [SerializeField] private GameObject _nextChapter;
     [SerializeField] private GameObject _lastChapter;
+    [SerializeField] private GameObject _sunSprite;
     private GameObject _buttonWrapper;
     private List<GameObject> _levelButtons;
     private Button _lastChapterButton;
@@ -51,6 +54,47 @@ public class LevelSelector : MonoBehaviour
     private void Start()
     {
         GenerateUI(GameManager.instance.LastUnlockedLevel.World);
+        
+        //TODO: WIP
+        //AnimateSun();
+    }
+
+    private void AnimateSun()
+    {
+        int index = 0;
+        
+        List<Vector3> ListWayPoints = new List<Vector3>();
+
+        foreach (var button in _levelButtons)
+        {
+            
+            /*new Vector3(_levelButtons[1].transform.localPosition.x, _levelButtons[1].transform.localPosition.y + 45),
+            new Vector3(_levelButtons[0].transform.localPosition.x, _levelButtons[0].transform.localPosition.y + 80),  
+            new Vector3(_levelButtons[1].transform.localPosition.x - 80, _levelButtons[1].transform.localPosition.y + 45),*/
+
+            /*if (index != 0 && index != _levelButtons.Count - 1)*/
+            if (index == 1)
+            {
+                Vector3 targetPoint = new Vector3(_levelButtons[index].transform.localPosition.x,
+                    _levelButtons[index].transform.localPosition.y + 45);
+            
+                Vector3 inControlPoint = new Vector3(_levelButtons[index-1].transform.localPosition.x,
+                    _levelButtons[index-1].transform.localPosition.y + 80);
+            
+                Vector3 outControlPoint = new Vector3(_levelButtons[index].transform.localPosition.x - 80,
+                    _levelButtons[index].transform.localPosition.y + 45);
+
+                ListWayPoints.Add(targetPoint);
+                ListWayPoints.Add(inControlPoint);
+                ListWayPoints.Add(outControlPoint);
+            }
+
+            index++;
+        }
+        
+
+
+        _sunSprite.transform.DOLocalPath(ListWayPoints.ToArray(), 2, PathType.Linear);
     }
 
     public void GenerateUI(World chapter)
@@ -101,10 +145,10 @@ public class LevelSelector : MonoBehaviour
         
         _chapterTitle.SetText($"{(indexChapter > 0 ? "Chapter " + indexChapter : "Prologue")}\n{chapter}");
 
-        var test = 0;
+        int index = 0;
         foreach (var levelData in levelsInChapter)
         {
-            var button = CreateButton($"{levelData.World} - {levelData.Level.ToString()}", test);
+            GameObject button = CreateButton(levelData.Level.ToString(), index);
             button.GetComponent<LevelButtonData>().FillFromLevelData(levelData);
             button.GetComponent<Button>().onClick.AddListener(() =>
             {
@@ -112,8 +156,14 @@ public class LevelSelector : MonoBehaviour
             });
             _levelButtons.Add(button);
             RefreshButtons();
-            test += 1;
+            index++;
         }
+
+        GameObject targetButton = _levelButtons[0];
+        Vector3 targetButtonLocalPosition = targetButton.transform.localPosition; 
+        Rect targetButtonRect = targetButton.GetComponent<RectTransform>().rect;
+        
+        _sunSprite.transform.localPosition = new Vector3(targetButtonLocalPosition.x, targetButtonLocalPosition.y + targetButtonRect.height/2 ,0);
         
         UIManager.instance.SetEventSystemsTarget(_levelButtons[0]);
     }
@@ -146,6 +196,9 @@ public class LevelSelector : MonoBehaviour
         float angle = Mathf.PI * (4 - index) / (4 + 1f);
         float x = Mathf.Cos(angle) * rect.width/2;
         float y = Mathf.Sin(angle) * rect.height/heightFactor - (Mathf.Sin(baseAngle) * rect.height/heightFactor);
+
+        x = Mathf.Round(x);
+        y = Mathf.Round(y);
 
         var button = Instantiate(_buttonPrefab, _buttonWrapper.transform.position,
             _buttonWrapper.transform.rotation);
