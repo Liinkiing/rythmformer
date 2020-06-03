@@ -151,6 +151,7 @@ public class LevelSelector : MonoBehaviour
             _buttonWrapper.transform.rotation);
         
         button.transform.SetParent(_buttonWrapper.transform);
+        button.transform.localScale = Vector3.one;
         button.transform.localPosition = new Vector3(x, y, 0);
 
         button.GetComponentInChildren<TextMeshProUGUI>().text = content;
