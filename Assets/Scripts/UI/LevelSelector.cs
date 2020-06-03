@@ -143,17 +143,15 @@ public class LevelSelector : MonoBehaviour
         float baseAngle = Mathf.PI * (0 + 1) / (4 + 1f);
         float heightFactor = (Mathf.Sin(baseAngle) * rect.height) / rect.height;
 
-        float angle = Mathf.PI * (index + 1) / (4 + 1f);
+        float angle = Mathf.PI * (4 - index) / (4 + 1f);
         float x = Mathf.Cos(angle) * rect.width/2;
-        
         float y = Mathf.Sin(angle) * rect.height/heightFactor - (Mathf.Sin(baseAngle) * rect.height/heightFactor);
-        Vector3 pos = new Vector3(x, y, 0);
 
         var button = Instantiate(_buttonPrefab, _buttonWrapper.transform.position,
             _buttonWrapper.transform.rotation);
         
         button.transform.SetParent(_buttonWrapper.transform);
-        button.transform.localPosition = pos;
+        button.transform.localPosition = new Vector3(x, y, 0);
 
         button.GetComponentInChildren<TextMeshProUGUI>().text = content;
         return button;
