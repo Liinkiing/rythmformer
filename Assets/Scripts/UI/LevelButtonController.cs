@@ -1,13 +1,8 @@
-﻿using System;
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
-using DG.Tweening;
 
 public class LevelButtonController : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
-    [SerializeField] private Image _banner;
     [SerializeField] private GameObject _sun;
     private void Awake()
     {
