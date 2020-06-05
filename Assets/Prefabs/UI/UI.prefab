@@ -4937,13 +4937,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Jump:
-    Keyboard: {fileID: 21300000, guid: fccd816cf6836e3498db8e3bd4354aa3, type: 3}
+    Keyboard: {fileID: 21300000, guid: b679fe2681745a9498e3eb36e361c02f, type: 3}
     Gamepad: {fileID: 21300000, guid: ee5ebef1c0525a84d8d2fb1fdcbd0251, type: 3}
   Dash:
-    Keyboard: {fileID: 21300000, guid: fccd816cf6836e3498db8e3bd4354aa3, type: 3}
+    Keyboard: {fileID: 21300000, guid: 254c47f0f4dd899499dd688fdd226ae6, type: 3}
     Gamepad: {fileID: 21300000, guid: 9a0bdd99fd20abd42a09091cb02cb8c6, type: 3}
   Retry:
-    Keyboard: {fileID: 21300000, guid: fccd816cf6836e3498db8e3bd4354aa3, type: 3}
+    Keyboard: {fileID: 21300000, guid: 29b508627852c564b99ef4a48eaf8d72, type: 3}
     Gamepad: {fileID: 21300000, guid: 2c3fa3b379a1fab43b27e3772e161703, type: 3}
   SwitchMode:
     Keyboard: {fileID: 21300000, guid: fccd816cf6836e3498db8e3bd4354aa3, type: 3}
