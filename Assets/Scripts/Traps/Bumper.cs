@@ -15,13 +15,18 @@ public class Bumper : Trap
     private bool kick;
 
     private float _prevAngle;
+    private static readonly int BumpTrigger = Animator.StringToHash("Bump");
+
 
     public UnityEvent onBump;
     public AudioClip BumpSound;
 
     private Vector2 _direction;
+    private Animator _animator;
+
     private void Start()
     {
+        _animator = GetComponent<Animator>();
         UpdateAngle();
         OnKick = kick;
     }
@@ -41,6 +46,7 @@ public class Bumper : Trap
         Player.Velocity = _direction * power;
         Player.Bumping = true;
         onBump?.Invoke();
+        _animator.SetTrigger(BumpTrigger);
         MusicManager.instance.PlaySFX(BumpSound);
         if (lockTime > 0)
         {
