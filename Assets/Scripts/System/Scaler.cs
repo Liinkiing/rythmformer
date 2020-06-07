@@ -6,6 +6,8 @@ public class Scaler : MonoBehaviour
 {
     // Start is called before the first frame update
     public bool KeepAspectRatio;
+    public bool InversedX;
+    public bool InversedY;
 
     void Awake()
     {
@@ -16,7 +18,9 @@ public class Scaler : MonoBehaviour
         var spriteSize = gameObject.GetComponent<SpriteRenderer>().bounds.size;
 
         var scaleFactorX = worldSpaceWidth / spriteSize.x;
+        scaleFactorX = InversedX ? scaleFactorX * -1 : scaleFactorX;
         var scaleFactorY = worldSpaceHeight / spriteSize.y;
+        scaleFactorY = InversedY ? scaleFactorY * -1 : scaleFactorY;
 
         if (KeepAspectRatio)
         {
