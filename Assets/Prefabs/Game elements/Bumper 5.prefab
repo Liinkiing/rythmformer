@@ -50,6 +50,10 @@ MonoBehaviour:
   power: 40
   lockTime: 0
   kick: 0
+  onBump:
+    m_PersistentCalls:
+      m_Calls: []
+  BumpSound: {fileID: 8300000, guid: 781d69b62c03601419278882d86f6607, type: 3}
 --- !u!61 &2864400617360909894
 BoxCollider2D:
   m_ObjectHideFlags: 0

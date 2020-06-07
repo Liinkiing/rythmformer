@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Bumper : Trap
 {
@@ -14,6 +15,9 @@ public class Bumper : Trap
     private bool kick;
 
     private float _prevAngle;
+
+    public UnityEvent onBump;
+    public AudioClip BumpSound;
 
     private Vector2 _direction;
     private void Start()
@@ -36,6 +40,8 @@ public class Bumper : Trap
         base.TrapAction();
         Player.Velocity = _direction * power;
         Player.Bumping = true;
+        onBump?.Invoke();
+        MusicManager.instance.PlaySFX(BumpSound);
         if (lockTime > 0)
         {
             Player.LockMove(lockTime);
