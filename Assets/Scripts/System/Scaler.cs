@@ -34,6 +34,6 @@ public class Scaler : MonoBehaviour
             }
         }
 
-        gameObject.transform.localScale = new Vector3(scaleFactorX * 1.2f, scaleFactorY * 1.2f, 1);
+        gameObject.transform.localScale = new Vector3(scaleFactorX * 1.2f, scaleFactorY, 1);
     }
 }

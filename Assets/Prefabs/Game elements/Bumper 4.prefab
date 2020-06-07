@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2864400617360909894}
   - component: {fileID: 2864400617360909893}
   m_Layer: 0
-  m_Name: Bumper
+  m_Name: Bumper 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,6 +48,7 @@ MonoBehaviour:
   restrictActionOn: 0
   angle: 0
   power: 40
+  lockTime: 0
   kick: 0
 --- !u!61 &2864400617360909894
 BoxCollider2D:
@@ -62,18 +63,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.79}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.72, y: 1.48}
+    oldSize: {x: 7.22, y: 3.59}
     newSize: {x: 3.72, y: 1.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.4, y: 1.1}
+  m_Size: {x: 7.12, y: 1.96}
   m_EdgeRadius: 0
 --- !u!212 &2864400617360909893
 SpriteRenderer:
@@ -114,8 +115,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -6503168793744202299, guid: 0592842f825f347788e935f55de2a25d,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: ac86ea7c33731b44eb10225c1e53215f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
