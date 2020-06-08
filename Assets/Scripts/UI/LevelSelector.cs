@@ -5,6 +5,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using DG.Tweening.Plugins.Core.PathCore;
+using Rythmformer;
 using UnityEditor;
 
 [Serializable]
@@ -18,16 +20,17 @@ public class LevelSelector : MonoBehaviour
     [SerializeField] private GameObject _nextChapter;
     [SerializeField] private GameObject _lastChapter;
     [SerializeField] private GameObject _sunSprite;
-    [SerializeField] private GameObject debugSquare;
+    [SerializeField] private GameObject _dummySunSprite;
+    [SerializeField] private Material _gradientMaterial;
+    
     private GameObject _buttonWrapper;
-    private List<GameObject> _levelButtons;
     private Button _lastChapterButton;
     private TextMeshProUGUI _lastChapterText;
     private Button _nextChapterButton;
     private TextMeshProUGUI _nextChapterText;
-    private List<Vector3> debugInControlPointArray = new List<Vector3>();
-    private List<Vector3> debugOutControlPointArray = new List<Vector3>();
-    private List<Vector3> debugTargetArray = new List<Vector3>();
+    private Tween _pathTween;
+    public List<GameObject> _levelButtons;
+    public GameObject lastSelectedLevelButton;
 
     #endregion
 
@@ -61,107 +64,102 @@ public class LevelSelector : MonoBehaviour
         GenerateUI(GameManager.instance.LastUnlockedLevel.World);
         
         //TODO: WIP
-        /*AnimateSun();*/
+        InitAnimateSun();
     }
 
-    private void AnimateSun()
+    private void InitAnimateSun()
     {
-        int index = 0;
+        List<Vector3> listWayPoints = new List<Vector3>();
+        Rect rect = _buttonWrapper.GetComponent<RectTransform>().rect;
         
-        List<Vector3> ListWayPoints = new List<Vector3>();
+        var endPositionTarget = _levelButtons[3].transform.localPosition;
+        var endPositionPoint = new Vector3(endPositionTarget.x, endPositionTarget.y + 45);
+        var inControlPoint = new Vector3(rect.center.x, rect.y + rect.height + 80);
+        var outControlPoint = inControlPoint;
+
+        listWayPoints.Add(endPositionPoint);
+        listWayPoints.Add(inControlPoint);
+        listWayPoints.Add(outControlPoint);
+
+        _dummySunSprite.transform.localPosition = _sunSprite.transform.localPosition;
+
+        /*
+         * We init a path on a fake gameObject to later use it with DoVirtual.
+         * We never create a new tween, we always use this value of _pathTween
+         */
+        _pathTween = _dummySunSprite.transform
+            .DOLocalPath(listWayPoints.ToArray(), 1f, PathType.CubicBezier);
+        _pathTween.Pause();
+        _pathTween.ForceInit();
+    }
+
+    public void AnimateSun(int buttonIndex)
+    {
+        if (_pathTween == null)
+        {
+            return;
+        }
         Rect rect = _buttonWrapper.GetComponent<RectTransform>().rect;
 
-        foreach (var button in _levelButtons)
+        var pathLength = _pathTween.PathLength();
+        var totalAngle = 3 * (Mathf.PI / 5);
+        var circleLength = (rect.width / 2) * totalAngle;
+        var distanceBetween2Points = (rect.width / 2) * (Mathf.PI / 5);
+        var ratio = pathLength / circleLength;
+        int indexButtonLastSelected = _levelButtons.FindIndex(0, o => o == lastSelectedLevelButton);
+
+        float GetRatioDistanceOrigin()
         {
-            
-            /*new Vector3(_levelButtons[1].transform.localPosition.x, _levelButtons[1].transform.localPosition.y + 45),
-            new Vector3(_levelButtons[0].transform.localPosition.x, _levelButtons[0].transform.localPosition.y + 80),  
-            new Vector3(_levelButtons[1].transform.localPosition.x - 80, _levelButtons[1].transform.localPosition.y + 45),*/
-
-            if (index != 0 && index != _levelButtons.Count){
-            
-            float angle = Mathf.PI * (4 - index) / (4 + 1f);
-            float baseAngle = Mathf.PI * (0 + 1) / (4 + 1f);
-            
-            float cos = Mathf.Cos(angle);
-            float sin = Mathf.Sin(angle);
-            Debug.Log($"Coord = {cos} ; {sin}");
-            
-            //if (index == 1)
-            
-                /*Vector3 targetPoint = new Vector3(_levelButtons[index].transform.localPosition.x,
-                    _levelButtons[index].transform.localPosition.y + 45);
-            
-                Vector3 inControlPoint = new Vector3(_levelButtons[index-1].transform.localPosition.x,
-                    _levelButtons[index-1].transform.localPosition.y + 80);
-            
-                Vector3 outControlPoint = new Vector3(_levelButtons[index].transform.localPosition.x - 80,
-                    _levelButtons[index].transform.localPosition.y + 45);*/
-                
-                //x = _levelButtons[index-1].transform.localPosition.x
-                
-                //cos(pi/4) + 4/3 * tan(pi/16) * sin(pi/4)
-                //sin(pi/4) - 4/3 * tan(pi/16) * cos(pi/4)
-                    
-                Vector3 targetPoint = new Vector3(_levelButtons[index].transform.localPosition.x,
-                    _levelButtons[index].transform.localPosition.y + 45);
-                
-                Vector3 inControlPoint = new Vector3(
-                    (cos + 4/3 * Mathf.Tan(Mathf.PI/5) * cos) * rect.width/2,
-                    (sin + 4 / 3 * Mathf.Tan(Mathf.PI / 5) * cos) * rect.height
-                    );
-
-                Vector3 outControlPoint = new Vector3(
-                    (cos - 4/3 * Mathf.Tan(Mathf.PI/5) * cos) * rect.width/2,
-                    (sin + 4 / 3 * Mathf.Tan(Mathf.PI / 5) * cos) * rect.height
-                    );
-                
-                
-                debugInControlPointArray.Add(inControlPoint);
-                debugOutControlPointArray.Add(outControlPoint);
-                debugTargetArray.Add(targetPoint);
-                
-                ListWayPoints.Add(targetPoint);
-                ListWayPoints.Add(inControlPoint);
-                ListWayPoints.Add(outControlPoint);
+            if (indexButtonLastSelected < buttonIndex)
+            {
+                return (distanceBetween2Points * (buttonIndex - 1)) / circleLength;
             }
-
-            index++;
+            
+            return (distanceBetween2Points * (indexButtonLastSelected)) / circleLength;
+            
         }
-
-        var position1 = _levelButtons[1].transform.localPosition;
-        var position2 = _levelButtons[2].transform.localPosition;
-        var test = Vector3.Lerp(position1, position2, -0.5f);
         
-        Debug.Log($"Position 1 : {position1} ; Position 2 : {position2} ; Computed Lerp = {test}");
+        float GetRatioDistanceTarget()
+        {
+            if (indexButtonLastSelected < buttonIndex)
+            {
+                return (distanceBetween2Points * (buttonIndex)) / circleLength;
+            }
+            
+            return (distanceBetween2Points * (indexButtonLastSelected-1)) / circleLength;
+        }
+        
+        var ratioDistanceOrigin = GetRatioDistanceOrigin();
+        var ratioDistanceTarget = GetRatioDistanceTarget();
+        
+        float start = Convert.ToSingle(Math.Round(ratioDistanceOrigin / ratio,2));
+        float end = Convert.ToSingle(Math.Round(ratioDistanceTarget / ratio,2));
+        
+        DOVirtual.Float(start, end, 1f, f => {
+                Vector3 point = _pathTween.PathGetPoint(f);
+                _sunSprite.transform.localPosition = point;
+            });
+        
 
-        _sunSprite.transform.DOLocalPath(ListWayPoints.ToArray(), 2, PathType.CubicBezier).SetLoops(-1);
+        //TODO: WIP
+        if (buttonIndex > 1)
+        {
+            Color32 startColorPurple = new Color32(39, 51, 38, 255);
+            Color32 endColorPurple = new Color32(94, 57, 131, 255);
+
+            _gradientMaterial.DOColor(startColorPurple, "color_bottom", 1f);
+            _gradientMaterial.DOColor(endColorPurple, "color_top", 1f);
+        }
+        else
+        {
+            Color32 startColorGreen = new Color32(211, 244, 222, 255);
+            Color32 endColorGreen = new Color32(197, 242, 249, 255);
+            
+            _gradientMaterial.DOColor(startColorGreen, "color_bottom", 1f);
+            _gradientMaterial.DOColor(endColorGreen, "color_top", 1f);
+        }
     }
     
-    void OnDrawGizmos()
-    {
-        Vector3 size = new Vector3(20, 20, 1);
-        
-        Gizmos.color = Color.green;
-        foreach (var vector3 in debugInControlPointArray.ToArray())
-        {
-            Gizmos.DrawCube(vector3, size);    
-        }
-        
-        Gizmos.color = Color.red;
-        foreach (var vector3 in debugOutControlPointArray.ToArray())
-        {
-            Gizmos.DrawCube(vector3, size);    
-        }
-        
-        size = new Vector3(10, 10, 1);
-        Gizmos.color = Color.magenta;
-        foreach (var vector3 in debugTargetArray.ToArray())
-        {
-            Gizmos.DrawCube(vector3, size);    
-        }
-    }
-
     public void GenerateUI(World chapter)
     {
         RemoveButtons();
@@ -255,7 +253,7 @@ public class LevelSelector : MonoBehaviour
     {
         Rect rect = _buttonWrapper.GetComponent<RectTransform>().rect;
         
-        float baseAngle = Mathf.PI * (0 + 1) / (4 + 1f);
+        float baseAngle = Mathf.PI / (4 + 1f);
         float heightFactor = (Mathf.Sin(baseAngle) * rect.height) / rect.height;
 
         float angle = Mathf.PI * (4 - index) / (4 + 1f);

@@ -3,18 +3,22 @@ using UnityEngine.EventSystems;
 
 public class LevelButtonController : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
-    [SerializeField] private GameObject _sun;
+    private LevelSelector _levelSelectorController;
+
     private void Awake()
     {
-        _sun = GameObject.Find("Sun");
+        _levelSelectorController = GameObject.Find("LevelSelector UI").GetComponent<LevelSelector>();
     }
 
     public void OnSelect(BaseEventData data)
     {
-        _sun.transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + 45);
+
+        int indexSelectedButton = _levelSelectorController._levelButtons.FindIndex(0, o => o == data.selectedObject);
+        _levelSelectorController.AnimateSun(indexSelectedButton);
     }
     
     public void OnDeselect(BaseEventData data)
     {
+        _levelSelectorController.lastSelectedLevelButton = gameObject;
     }
 }
