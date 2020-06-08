@@ -29,6 +29,8 @@ public class LevelSelector : MonoBehaviour
     private Button _nextChapterButton;
     private TextMeshProUGUI _nextChapterText;
     private Tween _pathTween;
+    private List<GameManager.LevelData> _levelsInChapter;
+    
     public List<GameObject> _levelButtons;
     public GameObject lastSelectedLevelButton;
 
@@ -72,7 +74,7 @@ public class LevelSelector : MonoBehaviour
         List<Vector3> listWayPoints = new List<Vector3>();
         Rect rect = _buttonWrapper.GetComponent<RectTransform>().rect;
         
-        var endPositionTarget = _levelButtons[3].transform.localPosition;
+        var endPositionTarget = _levelButtons[_levelsInChapter.Count-1].transform.localPosition;
         var endPositionPoint = new Vector3(endPositionTarget.x, endPositionTarget.y + 45);
         var inControlPoint = new Vector3(rect.center.x, rect.y + rect.height + 80);
         var outControlPoint = inControlPoint;
@@ -100,9 +102,9 @@ public class LevelSelector : MonoBehaviour
             Rect rect = _buttonWrapper.GetComponent<RectTransform>().rect;
 
             var pathLength = _pathTween.PathLength();
-            var totalAngle = 3 * (Mathf.PI / 5);
+            var totalAngle = (_levelsInChapter.Count-1) * (Mathf.PI / (_levelsInChapter.Count + 1));
             var circleLength = (rect.width / 2) * totalAngle;
-            var distanceBetween2Points = (rect.width / 2) * (Mathf.PI / 5);
+            var distanceBetween2Points = (rect.width / 2) * (Mathf.PI / (_levelsInChapter.Count + 1));
             var ratio = pathLength / circleLength;
             int indexButtonLastSelected = _levelButtons.FindIndex(0, o => o == lastSelectedLevelButton);
 
@@ -170,7 +172,7 @@ public class LevelSelector : MonoBehaviour
         RemoveButtons();
         _levelButtons.Clear();
         
-        var levelsInChapter = GameManager.instance.Levels.FindAll(data => data.World == chapter);
+        _levelsInChapter = GameManager.instance.Levels.FindAll(data => data.World == chapter);
         int indexChapter = Array.IndexOf(Enum.GetValues(typeof(World)), chapter);
         string lastChapterName = Enum.GetName(typeof(World), indexChapter-1);
 
@@ -214,7 +216,7 @@ public class LevelSelector : MonoBehaviour
         _chapterTitle.SetText($"{(indexChapter > 0 ? "Chapter " + indexChapter : "Prologue")}\n{chapter}");
 
         int index = 0;
-        foreach (var levelData in levelsInChapter)
+        foreach (var levelData in _levelsInChapter)
         {
             GameObject button = CreateButton(levelData.Level.ToString(), index);
             button.GetComponent<LevelButtonData>().FillFromLevelData(levelData);
@@ -257,11 +259,11 @@ public class LevelSelector : MonoBehaviour
     private GameObject CreateButton(string content, int index)
     {
         Rect rect = _buttonWrapper.GetComponent<RectTransform>().rect;
-        
-        float baseAngle = Mathf.PI / (4 + 1f);
+
+        float baseAngle = Mathf.PI / (_levelsInChapter.Count+1);
         float heightFactor = (Mathf.Sin(baseAngle) * rect.height) / rect.height;
 
-        float angle = Mathf.PI * (4 - index) / (4 + 1f);
+        float angle = Mathf.PI * (_levelsInChapter.Count - index) / (_levelsInChapter.Count+1f);
         float x = Mathf.Cos(angle) * rect.width/2;
         float y = Mathf.Sin(angle) * rect.height/heightFactor - (Mathf.Sin(baseAngle) * rect.height/heightFactor);
 
