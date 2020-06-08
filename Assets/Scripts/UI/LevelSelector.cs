@@ -95,68 +95,73 @@ public class LevelSelector : MonoBehaviour
 
     public void AnimateSun(int buttonIndex)
     {
-        if (_pathTween == null)
+        if (_pathTween != null)
         {
-            return;
-        }
-        Rect rect = _buttonWrapper.GetComponent<RectTransform>().rect;
+            Rect rect = _buttonWrapper.GetComponent<RectTransform>().rect;
 
-        var pathLength = _pathTween.PathLength();
-        var totalAngle = 3 * (Mathf.PI / 5);
-        var circleLength = (rect.width / 2) * totalAngle;
-        var distanceBetween2Points = (rect.width / 2) * (Mathf.PI / 5);
-        var ratio = pathLength / circleLength;
-        int indexButtonLastSelected = _levelButtons.FindIndex(0, o => o == lastSelectedLevelButton);
+            var pathLength = _pathTween.PathLength();
+            var totalAngle = 3 * (Mathf.PI / 5);
+            var circleLength = (rect.width / 2) * totalAngle;
+            var distanceBetween2Points = (rect.width / 2) * (Mathf.PI / 5);
+            var ratio = pathLength / circleLength;
+            int indexButtonLastSelected = _levelButtons.FindIndex(0, o => o == lastSelectedLevelButton);
 
-        float GetRatioDistanceOrigin()
-        {
-            if (indexButtonLastSelected < buttonIndex)
+            float GetRatioDistanceOrigin()
             {
-                return (distanceBetween2Points * (buttonIndex - 1)) / circleLength;
+                if (indexButtonLastSelected < buttonIndex)
+                {
+                    return (distanceBetween2Points * (buttonIndex - 1)) / circleLength;
+                }
+
+                return (distanceBetween2Points * (indexButtonLastSelected)) / circleLength;
+
             }
-            
-            return (distanceBetween2Points * (indexButtonLastSelected)) / circleLength;
-            
-        }
-        
-        float GetRatioDistanceTarget()
-        {
-            if (indexButtonLastSelected < buttonIndex)
+
+            float GetRatioDistanceTarget()
             {
-                return (distanceBetween2Points * (buttonIndex)) / circleLength;
+                if (indexButtonLastSelected < buttonIndex)
+                {
+                    return (distanceBetween2Points * (buttonIndex)) / circleLength;
+                }
+
+                return (distanceBetween2Points * (indexButtonLastSelected - 1)) / circleLength;
             }
-            
-            return (distanceBetween2Points * (indexButtonLastSelected-1)) / circleLength;
-        }
-        
-        var ratioDistanceOrigin = GetRatioDistanceOrigin();
-        var ratioDistanceTarget = GetRatioDistanceTarget();
-        
-        float start = Convert.ToSingle(Math.Round(ratioDistanceOrigin / ratio,2));
-        float end = Convert.ToSingle(Math.Round(ratioDistanceTarget / ratio,2));
-        
-        DOVirtual.Float(start, end, 1f, f => {
+
+            var ratioDistanceOrigin = GetRatioDistanceOrigin();
+            var ratioDistanceTarget = GetRatioDistanceTarget();
+
+            float start = Convert.ToSingle(Math.Round(ratioDistanceOrigin / ratio, 2));
+            float end = Convert.ToSingle(Math.Round(ratioDistanceTarget / ratio, 2));
+
+            DOVirtual.Float(start, end, 1f, f =>
+            {
                 Vector3 point = _pathTween.PathGetPoint(f);
                 _sunSprite.transform.localPosition = point;
             });
-        
-
-        //TODO: WIP
-        if (buttonIndex > 1)
-        {
-            Color32 startColorPurple = new Color32(39, 51, 38, 255);
-            Color32 endColorPurple = new Color32(94, 57, 131, 255);
-
-            _gradientMaterial.DOColor(startColorPurple, "color_bottom", 1f);
-            _gradientMaterial.DOColor(endColorPurple, "color_top", 1f);
         }
-        else
+
+        if (buttonIndex < 1)
         {
             Color32 startColorGreen = new Color32(211, 244, 222, 255);
             Color32 endColorGreen = new Color32(197, 242, 249, 255);
             
             _gradientMaterial.DOColor(startColorGreen, "color_bottom", 1f);
             _gradientMaterial.DOColor(endColorGreen, "color_top", 1f);
+        }
+        else if (buttonIndex == 1)
+        {
+            Color32 startColorGreen = new Color32(254, 180, 157, 255);
+            Color32 endColorGreen = new Color32(254, 131, 156, 255);
+            
+            _gradientMaterial.DOColor(startColorGreen, "color_bottom", 1f);
+            _gradientMaterial.DOColor(endColorGreen, "color_top", 1f);
+        } else
+        {
+            Color32 startColorPurple = new Color32(39, 51, 38, 255);
+            Color32 endColorPurple = new Color32(94, 57, 131, 255);
+
+            _gradientMaterial.DOColor(startColorPurple, "color_bottom", 1f);
+            _gradientMaterial.DOColor(endColorPurple, "color_top", 1f);
         }
     }
     
@@ -277,5 +282,19 @@ public class LevelSelector : MonoBehaviour
     private void RemoveButtons()
     {
         _levelButtons.ForEach(Destroy);
+    }
+    
+    private void ResetMaterial()
+    {
+        Color32 startColorGreen = new Color32(254, 180, 157, 255);
+        Color32 endColorGreen = new Color32(254, 131, 156, 255);
+            
+        _gradientMaterial.DOColor(startColorGreen, "color_bottom", 1f);
+        _gradientMaterial.DOColor(endColorGreen, "color_top", 1f);
+    }
+
+    private void OnApplicationQuit()
+    {
+        ResetMaterial();
     }
 }
