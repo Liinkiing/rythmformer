@@ -27,7 +27,6 @@ public class LevelManager : MonoBehaviour
     private void Awake()
     {
         GameManager.instance.state = GameManager.GameState.InGame;
-        TimeElapsed = 0f;
 
         _input = new PlayerInput();
         _input.Global.Reset.performed += OnResetPerformedHandler;
@@ -36,6 +35,7 @@ public class LevelManager : MonoBehaviour
         _levelUI = Utils.FindObjectOfTypeOrThrow<LevelUI>();
         GameManager.instance.state = GameManager.GameState.InGame;
         _songSynchronizer = Utils.FindObjectOfTypeOrThrow<SongSynchronizer>();
+        TimeElapsed = -_songSynchronizer.delay;
     }
 
     private void Update()

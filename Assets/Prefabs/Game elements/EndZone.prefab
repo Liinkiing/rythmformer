@@ -1,0 +1,324 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5277956836494088872
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5277956836494088873}
+  - component: {fileID: 3539635015871038242}
+  - component: {fileID: 8403100669892084526}
+  m_Layer: 0
+  m_Name: EndZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5277956836494088873
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5277956836494088872}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2.9870858, y: 7.5577464, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &3539635015871038242
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5277956836494088872}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &8403100669892084526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5277956836494088872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc850601ce2c4b39afe6d1faec459015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collidesWith: Player
+  onEnter:
+  - mEventName: 
+    mShowGroup: 1
+    mUpdateEntryList: 0
+    mEntryList:
+    - target: {fileID: 8142906949404257255, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: active
+    - target: {fileID: 3777861495737326361, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: Dash
+    - target: {fileID: 5272078974633606229, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: enabled
+    - target: {fileID: 3777861495737326361, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: enabled
+    - target: {fileID: 4852194504022444642, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: eulerAngles
+    - target: {fileID: 4852194504022444642, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: forward
+    - target: {fileID: 4852194504022444642, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: hasChanged
+    - target: {fileID: 8142906949404257255, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: hideFlags
+    - target: {fileID: 4852194504022444642, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: hideFlags
+    - target: {fileID: 3777861495737326361, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: hideFlags
+    - target: {fileID: 5272078974633606229, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: hideFlags
+    - target: {fileID: 4852194504022444642, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: hierarchyCapacity
+    - target: {fileID: 8142906949404257255, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: isStatic
+    - target: {fileID: 3777861495737326361, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: Jump
+    - target: {fileID: 8142906949404257255, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: layer
+    - target: {fileID: 5272078974633606229, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: levelEndUI
+    - target: {fileID: 5272078974633606229, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: levelUI
+    - target: {fileID: 4852194504022444642, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: localEulerAngles
+    - target: {fileID: 4852194504022444642, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: localPosition
+    - target: {fileID: 4852194504022444642, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: localRotation
+    - target: {fileID: 4852194504022444642, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: localScale
+    - target: {fileID: 4852194504022444642, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: name
+    - target: {fileID: 3777861495737326361, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: name
+    - target: {fileID: 8142906949404257255, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: name
+    - target: {fileID: 5272078974633606229, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: name
+    - target: {fileID: 4852194504022444642, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: parent
+    - target: {fileID: 4852194504022444642, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: position
+    - target: {fileID: 3777861495737326361, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: Retry
+    - target: {fileID: 4852194504022444642, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: right
+    - target: {fileID: 4852194504022444642, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: rotation
+    - target: {fileID: 3777861495737326361, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: runInEditMode
+    - target: {fileID: 5272078974633606229, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: runInEditMode
+    - target: {fileID: 3777861495737326361, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: SwitchMode
+    - target: {fileID: 3777861495737326361, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: tag
+    - target: {fileID: 4852194504022444642, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: tag
+    - target: {fileID: 8142906949404257255, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: tag
+    - target: {fileID: 5272078974633606229, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: tag
+    - target: {fileID: 5272078974633606229, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: transitionUIDuration
+    - target: {fileID: 4852194504022444642, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: up
+    - target: {fileID: 3777861495737326361, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: useGUILayout
+    - target: {fileID: 5272078974633606229, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: useGUILayout
+    - target: {fileID: 5272078974633606229, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: add_SchemeChanged (String] value)
+    - target: {fileID: 8142906949404257255, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: CreatePrimitive (PrimitiveType type)
+    - target: {fileID: 4852194504022444642, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: DetachChildren ()
+    - target: {fileID: 4852194504022444642, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: Find (String n)
+    - target: {fileID: 8142906949404257255, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: Find (String name)
+    - target: {fileID: 4852194504022444642, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: FindChild (String n)
+    - target: {fileID: 8142906949404257255, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: FindGameObjectsWithTag (String tag)
+    - target: {fileID: 8142906949404257255, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: FindGameObjectWithTag (String tag)
+    - target: {fileID: 8142906949404257255, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: FindWithTag (String tag)
+    - target: {fileID: 4852194504022444642, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: GetChild (Int32 index)
+    - target: {fileID: 4852194504022444642, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: GetChildCount ()
+    - target: {fileID: 4852194504022444642, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: GetEnumerator ()
+    - target: {fileID: 4852194504022444642, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: GetSiblingIndex ()
+    - target: {fileID: 3777861495737326361, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: GetSprite (BindingScheme scheme, GameAction action)
+    - target: {fileID: 5272078974633606229, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: Init ()
+    - target: {fileID: 4852194504022444642, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: IsChildOf (Transform parent)
+    - target: {fileID: 5272078974633606229, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: NavigateToScene (String sceneName)
+    - target: {fileID: 8142906949404257255, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: PlayAnimation (Object animation)
+    - target: {fileID: 5272078974633606229, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: remove_SchemeChanged (String] value)
+    - target: {fileID: 4852194504022444642, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: RotateAroundLocal (Vector3 axis, Single angle)
+    - target: {fileID: 8142906949404257255, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: SampleAnimation (Object clip, Single time)
+    - target: {fileID: 8142906949404257255, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: SetActive (Boolean value)
+    - target: {fileID: 8142906949404257255, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: SetActiveRecursively (Boolean state)
+    - target: {fileID: 4852194504022444642, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: SetAsFirstSibling ()
+    - target: {fileID: 4852194504022444642, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: SetAsLastSibling ()
+    - target: {fileID: 5272078974633606229, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: SetEventSystemsTarget (GameObject obj)
+    - target: {fileID: 4852194504022444642, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: SetPositionAndRotation (Vector3 position, Quaternion rotation)
+    - target: {fileID: 4852194504022444642, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: SetSiblingIndex (Int32 index)
+    - target: {fileID: 5272078974633606229, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: SetUIContainerState (GameObject UIContainer, UIManager+UIContainerAction
+        action)
+    - target: {fileID: 5272078974633606229, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: SetUIContainerStateWithInternalNavigation (GameObject UIContainerCurrent,
+        CanvasGroup CanvasGroupCurrent, GameObject UIContainerTarget, CanvasGroup
+        CanvasGroupTarget, GameObject nextEventSytemTarget)
+    - target: {fileID: 5272078974633606229, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: ShowLevelEndScreen ()
+    - target: {fileID: 5272078974633606229, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: StopAllCoroutines ()
+    - target: {fileID: 3777861495737326361, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: StopAllCoroutines ()
+    - target: {fileID: 8142906949404257255, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      name: StopAnimation ()
+    mTarget: {fileID: 5272078974633606229, guid: a3e4a899474da4d21b6ab8f097036ec4,
+      type: 3}
+    mMethodName: ShowLevelEndScreen
+    mParameters: []
+    mCached: 0
+    oneShot: 0
+  onExit: []
+  onStay: []
+  enterSpecificTriggers:
+    onEnterLeft: []
+    onEnterRight: []
+    onEnterTop: []
+    onEnterBottom: []
+  exitSpecificTriggers:
+    onExitLeft: []
+    onExitRight: []
+    onExitTop: []
+    onExitBottom: []

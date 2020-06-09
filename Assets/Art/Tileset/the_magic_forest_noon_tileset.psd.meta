@@ -1,0 +1,1711 @@
+fileFormatVersion: 2
+guid: 4a45b00e7b174d740a6fbe8d5aad835c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3012688933576152999
+    second: the_magic_forest_noon_tileset_0
+  - first:
+      213: 6012939772949650751
+    second: the_magic_forest_noon_tileset_1
+  - first:
+      213: -8069081876070242730
+    second: the_magic_forest_noon_tileset_2
+  - first:
+      213: -5554797801603943507
+    second: the_magic_forest_noon_tileset_3
+  - first:
+      213: -2936770417754028558
+    second: the_magic_forest_noon_tileset_4
+  - first:
+      213: -5828720936784191563
+    second: the_magic_forest_noon_tileset_5
+  - first:
+      213: -2314223025335687032
+    second: the_magic_forest_noon_tileset_6
+  - first:
+      213: 3130535958916336877
+    second: the_magic_forest_noon_tileset_7
+  - first:
+      213: -2463142457454309437
+    second: the_magic_forest_noon_tileset_8
+  - first:
+      213: 9166632913547508874
+    second: the_magic_forest_noon_tileset_9
+  - first:
+      213: -7851687299578675030
+    second: the_magic_forest_noon_tileset_10
+  - first:
+      213: 3695193400606014037
+    second: the_magic_forest_noon_tileset_11
+  - first:
+      213: 6371347716388630599
+    second: the_magic_forest_noon_tileset_12
+  - first:
+      213: 9202405067987850864
+    second: the_magic_forest_noon_tileset_13
+  - first:
+      213: 8353332041156672114
+    second: the_magic_forest_noon_tileset_14
+  - first:
+      213: 22168811917159811
+    second: the_magic_forest_noon_tileset_15
+  - first:
+      213: 2697172605771729175
+    second: the_magic_forest_noon_tileset_16
+  - first:
+      213: -5328984488566824716
+    second: the_magic_forest_noon_tileset_17
+  - first:
+      213: 8307809724578613377
+    second: the_magic_forest_noon_tileset_18
+  - first:
+      213: -7068774344479904608
+    second: the_magic_forest_noon_tileset_19
+  - first:
+      213: -4536535051885583440
+    second: the_magic_forest_noon_tileset_20
+  - first:
+      213: 6128890072749292977
+    second: the_magic_forest_noon_tileset_21
+  - first:
+      213: 1374613229891464635
+    second: the_magic_forest_noon_tileset_22
+  - first:
+      213: 3366004076769366417
+    second: the_magic_forest_noon_tileset_23
+  - first:
+      213: -3815321024611557692
+    second: the_magic_forest_noon_tileset_24
+  - first:
+      213: 813944457696693746
+    second: the_magic_forest_noon_tileset_25
+  - first:
+      213: 3038738551955900648
+    second: the_magic_forest_noon_tileset_26
+  - first:
+      213: 5135763545589463708
+    second: the_magic_forest_noon_tileset_27
+  - first:
+      213: -3231228498756280659
+    second: the_magic_forest_noon_tileset_28
+  - first:
+      213: 9077856412151995649
+    second: the_magic_forest_noon_tileset_29
+  - first:
+      213: -6537808386047320370
+    second: the_magic_forest_noon_tileset_30
+  - first:
+      213: -3918530058498654287
+    second: the_magic_forest_noon_tileset_31
+  - first:
+      213: -8554534623632798342
+    second: the_magic_forest_noon_tileset_32
+  - first:
+      213: 6204989716910505895
+    second: the_magic_forest_noon_tileset_33
+  - first:
+      213: -6611795375272825789
+    second: the_magic_forest_noon_tileset_34
+  - first:
+      213: 3288288898456940882
+    second: the_magic_forest_noon_tileset_35
+  - first:
+      213: 2173895595957767201
+    second: the_magic_forest_noon_tileset_36
+  - first:
+      213: 4040412459877257018
+    second: the_magic_forest_noon_tileset_37
+  - first:
+      213: 8719276960929843953
+    second: the_magic_forest_noon_tileset_38
+  - first:
+      213: -6077180295313890415
+    second: the_magic_forest_noon_tileset_39
+  - first:
+      213: 8290207292218760661
+    second: the_magic_forest_noon_tileset_40
+  - first:
+      213: -1271314310098259075
+    second: the_magic_forest_noon_tileset_41
+  - first:
+      213: -5088995430312875153
+    second: the_magic_forest_noon_tileset_42
+  - first:
+      213: 6805985925742294463
+    second: the_magic_forest_noon_tileset_43
+  - first:
+      213: 1939575004846393531
+    second: the_magic_forest_noon_tileset_44
+  - first:
+      213: 640179452343343029
+    second: the_magic_forest_noon_tileset_45
+  - first:
+      213: -3720470222677849428
+    second: the_magic_forest_noon_tileset_46
+  - first:
+      213: -1974863292639889385
+    second: the_magic_forest_noon_tileset_47
+  - first:
+      213: -6704185712766968023
+    second: the_magic_forest_noon_tileset_48
+  - first:
+      213: 6568294510885908446
+    second: the_magic_forest_noon_tileset_49
+  - first:
+      213: 47181144116735875
+    second: the_magic_forest_noon_tileset_50
+  - first:
+      213: 7989504563328761767
+    second: the_magic_forest_noon_tileset_51
+  - first:
+      213: -4495170570671992125
+    second: the_magic_forest_noon_tileset_52
+  - first:
+      213: 4286643503794513923
+    second: the_magic_forest_noon_tileset_53
+  - first:
+      213: -4415526298027541034
+    second: the_magic_forest_noon_tileset_54
+  - first:
+      213: 6591921573967959423
+    second: the_magic_forest_noon_tileset_55
+  - first:
+      213: 815769067614789380
+    second: the_magic_forest_noon_tileset_56
+  - first:
+      213: -5980198421384834189
+    second: the_magic_forest_noon_tileset_57
+  - first:
+      213: 2244108003684529419
+    second: the_magic_forest_noon_tileset_58
+  - first:
+      213: -4435584388029008286
+    second: the_magic_forest_noon_tileset_59
+  - first:
+      213: 6021468384116900973
+    second: the_magic_forest_noon_tileset_60
+  - first:
+      213: -440164713360631465
+    second: the_magic_forest_noon_tileset_61
+  - first:
+      213: -794824630227713689
+    second: the_magic_forest_noon_tileset_62
+  - first:
+      213: 1043196733096134210
+    second: the_magic_forest_noon_tileset_63
+  - first:
+      213: 3894676627092229970
+    second: the_magic_forest_noon_tileset_64
+  - first:
+      213: -4515604072246177038
+    second: the_magic_forest_noon_tileset_65
+  - first:
+      213: 225617303602669160
+    second: the_magic_forest_noon_tileset_66
+  - first:
+      213: 1612884520292792464
+    second: the_magic_forest_noon_tileset_67
+  - first:
+      213: -4014788376691394412
+    second: the_magic_forest_noon_tileset_68
+  - first:
+      213: 633161092148112983
+    second: the_magic_forest_noon_tileset_69
+  - first:
+      213: 9160533069081193112
+    second: the_magic_forest_noon_tileset_70
+  - first:
+      213: 1209248741919318421
+    second: the_magic_forest_noon_tileset_71
+  - first:
+      213: 2505063290725760982
+    second: the_magic_forest_noon_tileset_72
+  - first:
+      213: -2829833578038430399
+    second: the_magic_forest_noon_tileset_73
+  - first:
+      213: 7906189782061126140
+    second: the_magic_forest_noon_tileset_74
+  - first:
+      213: 3061876708916151555
+    second: the_magic_forest_noon_tileset_75
+  - first:
+      213: 3996308630406867278
+    second: the_magic_forest_noon_tileset_76
+  - first:
+      213: 383205171228390887
+    second: the_magic_forest_noon_tileset_77
+  - first:
+      213: -8398196727942682103
+    second: the_magic_forest_noon_tileset_78
+  - first:
+      213: -1299260442497096727
+    second: the_magic_forest_noon_tileset_79
+  - first:
+      213: 902350058600100344
+    second: the_magic_forest_noon_tileset_80
+  - first:
+      213: -6916797757901005351
+    second: the_magic_forest_noon_tileset_81
+  - first:
+      213: 210726860882602671
+    second: the_magic_forest_noon_tileset_82
+  - first:
+      213: 1975424275917993410
+    second: the_magic_forest_noon_tileset_83
+  - first:
+      213: -5356837270365319835
+    second: the_magic_forest_noon_tileset_84
+  - first:
+      213: 5090697404071433432
+    second: the_magic_forest_noon_tileset_85
+  - first:
+      213: 1436654935143038677
+    second: the_magic_forest_noon_tileset_86
+  - first:
+      213: 5350806410306262689
+    second: the_magic_forest_noon_tileset_87
+  - first:
+      213: -350101313965541764
+    second: the_magic_forest_noon_tileset_88
+  - first:
+      213: -8772235119566312187
+    second: the_magic_forest_noon_tileset_89
+  - first:
+      213: -6956568148123013587
+    second: the_magic_forest_noon_tileset_90
+  - first:
+      213: 3418734498998615987
+    second: the_magic_forest_noon_tileset_91
+  - first:
+      213: 6367379352251210294
+    second: the_magic_forest_noon_tileset_92
+  - first:
+      213: 7729827826419724778
+    second: the_magic_forest_noon_tileset_93
+  - first:
+      213: -5789635212286254840
+    second: the_magic_forest_noon_tileset_94
+  - first:
+      213: -2757890848496936685
+    second: the_magic_forest_noon_tileset_95
+  - first:
+      213: -2100921422212973355
+    second: the_magic_forest_noon_tileset_96
+  - first:
+      213: -9098967579100379583
+    second: the_magic_forest_noon_tileset_97
+  - first:
+      213: -2047506155886966362
+    second: the_magic_forest_noon_tileset_98
+  - first:
+      213: -2664389498496762984
+    second: the_magic_forest_noon_tileset_99
+  - first:
+      213: -4059445838783360913
+    second: the_magic_forest_noon_tileset_100
+  - first:
+      213: 2985212647328899340
+    second: the_magic_forest_noon_tileset_101
+  - first:
+      213: 2437619145630539133
+    second: the_magic_forest_noon_tileset_102
+  - first:
+      213: 6944136993742753526
+    second: the_magic_forest_noon_tileset_103
+  - first:
+      213: 6680596781463518423
+    second: the_magic_forest_noon_tileset_104
+  - first:
+      213: -4561234908451889983
+    second: the_magic_forest_noon_tileset_105
+  - first:
+      213: -2460938568613801125
+    second: the_magic_forest_noon_tileset_106
+  - first:
+      213: 3208782447107726924
+    second: the_magic_forest_noon_tileset_107
+  - first:
+      213: 6812704466030286556
+    second: the_magic_forest_noon_tileset_108
+  - first:
+      213: 8653297902381795272
+    second: the_magic_forest_noon_tileset_109
+  - first:
+      213: 4681945157903405381
+    second: the_magic_forest_noon_tileset_110
+  - first:
+      213: -2224794846445341669
+    second: the_magic_forest_noon_tileset_111
+  - first:
+      213: -3999331082683245765
+    second: the_magic_forest_noon_tileset_112
+  - first:
+      213: 4177052532356974217
+    second: the_magic_forest_noon_tileset_113
+  - first:
+      213: -8125231833365914410
+    second: the_magic_forest_noon_tileset_114
+  - first:
+      213: 8585106357765304011
+    second: the_magic_forest_noon_tileset_115
+  - first:
+      213: 44944965031542993
+    second: the_magic_forest_noon_tileset_116
+  - first:
+      213: 4481950331384838761
+    second: the_magic_forest_noon_tileset_117
+  - first:
+      213: 8409491721656360590
+    second: the_magic_forest_noon_tileset_118
+  - first:
+      213: 1812115286049482198
+    second: the_magic_forest_noon_tileset_119
+  - first:
+      213: -1179306118836848076
+    second: the_magic_forest_noon_tileset_120
+  - first:
+      213: -5240390224921299616
+    second: the_magic_forest_noon_tileset_121
+  - first:
+      213: 7303275094414388248
+    second: the_magic_forest_noon_tileset_122
+  - first:
+      213: 7808747737917488441
+    second: the_magic_forest_noon_tileset_123
+  - first:
+      213: 7698973720817927279
+    second: the_magic_forest_noon_tileset_124
+  - first:
+      213: -5761531253246198768
+    second: the_magic_forest_noon_tileset_125
+  - first:
+      213: -8106956931972424822
+    second: the_magic_forest_noon_tileset_126
+  - first:
+      213: 5200534433645797602
+    second: the_magic_forest_noon_tileset_127
+  - first:
+      213: 8052600568244824884
+    second: the_magic_forest_noon_tileset_128
+  - first:
+      213: -6358525607072556498
+    second: the_magic_forest_noon_tileset_129
+  - first:
+      213: -3989773334691939006
+    second: the_magic_forest_noon_tileset_130
+  - first:
+      213: -4798842837640897911
+    second: the_magic_forest_noon_tileset_131
+  - first:
+      213: 4143409846175439498
+    second: the_magic_forest_noon_tileset_132
+  - first:
+      213: -9022567788665995
+    second: the_magic_forest_noon_tileset_133
+  - first:
+      213: -5197266523625828892
+    second: the_magic_forest_noon_tileset_134
+  - first:
+      213: -1503118138777160053
+    second: the_magic_forest_noon_tileset_135
+  - first:
+      213: -2938262747302030397
+    second: the_magic_forest_noon_tileset_136
+  - first:
+      213: 7260072321116704558
+    second: the_magic_forest_noon_tileset_137
+  - first:
+      213: 9153261103092193896
+    second: the_magic_forest_noon_tileset_138
+  - first:
+      213: -880372802498093373
+    second: the_magic_forest_noon_tileset_139
+  - first:
+      213: -2463984094614524550
+    second: the_magic_forest_noon_tileset_140
+  - first:
+      213: -5573218062859144059
+    second: the_magic_forest_noon_tileset_141
+  - first:
+      213: -1631612909209653692
+    second: the_magic_forest_noon_tileset_142
+  - first:
+      213: -7396496892707031233
+    second: the_magic_forest_noon_tileset_143
+  - first:
+      213: 6736498590994531791
+    second: the_magic_forest_noon_tileset_144
+  - first:
+      213: -603768948895155637
+    second: the_magic_forest_noon_tileset_145
+  - first:
+      213: 8679305459760601209
+    second: the_magic_forest_noon_tileset_146
+  - first:
+      213: -397594008633756382
+    second: the_magic_forest_noon_tileset_147
+  - first:
+      213: -3530495716048061099
+    second: the_magic_forest_noon_tileset_148
+  - first:
+      213: 9006228971268439497
+    second: the_magic_forest_noon_tileset_149
+  - first:
+      213: 1412173737712982509
+    second: the_magic_forest_noon_tileset_150
+  - first:
+      213: 1748842699369597390
+    second: the_magic_forest_noon_tileset_151
+  - first:
+      213: 6882224028225292149
+    second: the_magic_forest_noon_tileset_152
+  - first:
+      213: -5790238398790951414
+    second: the_magic_forest_noon_tileset_153
+  - first:
+      213: -7211492337116602104
+    second: the_magic_forest_noon_tileset_154
+  - first:
+      213: 3865199293417406834
+    second: the_magic_forest_noon_tileset_155
+  - first:
+      213: -5564359417165884394
+    second: the_magic_forest_noon_tileset_156
+  - first:
+      213: 4411941119743304210
+    second: the_magic_forest_noon_tileset_157
+  - first:
+      213: -5550274512858520252
+    second: the_magic_forest_noon_tileset_158
+  - first:
+      213: -4302097467834713256
+    second: the_magic_forest_noon_tileset_159
+  - first:
+      213: -4089686424314775526
+    second: the_magic_forest_noon_tileset_160
+  - first:
+      213: -5318142869764403052
+    second: the_magic_forest_noon_tileset_161
+  - first:
+      213: -1506166750719688929
+    second: the_magic_forest_noon_tileset_162
+  - first:
+      213: -2219586352455339814
+    second: the_magic_forest_noon_tileset_163
+  - first:
+      213: 7557956598925229002
+    second: the_magic_forest_noon_tileset_164
+  - first:
+      213: -128867172218570783
+    second: the_magic_forest_noon_tileset_165
+  - first:
+      213: -7038988145243573054
+    second: the_magic_forest_noon_tileset_166
+  - first:
+      213: 4964921961159961651
+    second: the_magic_forest_noon_tileset_167
+  - first:
+      213: -3063552201601299639
+    second: the_magic_forest_noon_tileset_168
+  - first:
+      213: -8604243307867406113
+    second: the_magic_forest_noon_tileset_169
+  - first:
+      213: 7953727656581392320
+    second: the_magic_forest_noon_tileset_170
+  - first:
+      213: -1836333005251217513
+    second: the_magic_forest_noon_tileset_171
+  - first:
+      213: -8931222223603034970
+    second: the_magic_forest_noon_tileset_172
+  - first:
+      213: 5236916269496403924
+    second: the_magic_forest_noon_tileset_173
+  - first:
+      213: 6402573346434094067
+    second: the_magic_forest_noon_tileset_174
+  - first:
+      213: 2311038242191368917
+    second: the_magic_forest_noon_tileset_175
+  - first:
+      213: 7906150304043068098
+    second: the_magic_forest_noon_tileset_176
+  - first:
+      213: -4376484662665310805
+    second: the_magic_forest_noon_tileset_177
+  - first:
+      213: 7071555885132365294
+    second: the_magic_forest_noon_tileset_178
+  - first:
+      213: -8168767497851317051
+    second: the_magic_forest_noon_tileset_179
+  - first:
+      213: -3154282800611989756
+    second: the_magic_forest_noon_tileset_180
+  - first:
+      213: -6413797588079540847
+    second: the_magic_forest_noon_tileset_181
+  - first:
+      213: -2004556347881989338
+    second: the_magic_forest_noon_tileset_182
+  - first:
+      213: 864351578141714470
+    second: the_magic_forest_noon_tileset_183
+  - first:
+      213: -4025596236515911284
+    second: the_magic_forest_noon_tileset_184
+  - first:
+      213: 162375525547542946
+    second: the_magic_forest_noon_tileset_185
+  - first:
+      213: 520393765486672557
+    second: the_magic_forest_noon_tileset_186
+  - first:
+      213: -8209960524161948569
+    second: the_magic_forest_noon_tileset_187
+  - first:
+      213: 5216545103135637296
+    second: the_magic_forest_noon_tileset_188
+  - first:
+      213: 4379464527505580698
+    second: the_magic_forest_noon_tileset_189
+  - first:
+      213: 5327635895222879608
+    second: the_magic_forest_noon_tileset_190
+  - first:
+      213: 3700415149433307054
+    second: the_magic_forest_noon_tileset_191
+  - first:
+      213: 1775884509086254227
+    second: the_magic_forest_noon_tileset_192
+  - first:
+      213: -7042923994783596039
+    second: the_magic_forest_noon_tileset_193
+  - first:
+      213: 7489866372652653941
+    second: the_magic_forest_noon_tileset_194
+  - first:
+      213: -5680830390607612519
+    second: the_magic_forest_noon_tileset_195
+  - first:
+      213: 5182937295656807533
+    second: the_magic_forest_noon_tileset_196
+  - first:
+      213: -2743508473931432499
+    second: the_magic_forest_noon_tileset_197
+  - first:
+      213: 5371599972360677150
+    second: the_magic_forest_noon_tileset_198
+  - first:
+      213: 2538627444888605961
+    second: the_magic_forest_noon_tileset_199
+  - first:
+      213: -4515363146879158803
+    second: the_magic_forest_noon_tileset_0
+  - first:
+      213: 811259990259878139
+    second: the_magic_forest_noon_tileset_1
+  - first:
+      213: 8150769136512527266
+    second: the_magic_forest_noon_tileset_2
+  - first:
+      213: -6137564790389890205
+    second: the_magic_forest_noon_tileset_3
+  - first:
+      213: 7134610226026045966
+    second: the_magic_forest_noon_tileset_4
+  - first:
+      213: -8375377730706411580
+    second: the_magic_forest_noon_tileset_5
+  - first:
+      213: -6827683153843909268
+    second: the_magic_forest_noon_tileset_6
+  - first:
+      213: -3457907814817250197
+    second: the_magic_forest_noon_tileset_7
+  - first:
+      213: -7512924250142424995
+    second: the_magic_forest_noon_tileset_8
+  - first:
+      213: 2549514288613330913
+    second: the_magic_forest_noon_tileset_9
+  - first:
+      213: 1295917645078705507
+    second: the_magic_forest_noon_tileset_10
+  - first:
+      213: -4100359974482476772
+    second: the_magic_forest_noon_tileset_11
+  - first:
+      213: -6187161978587949808
+    second: the_magic_forest_noon_tileset_12
+  - first:
+      213: 8268771856288859230
+    second: the_magic_forest_noon_tileset_13
+  - first:
+      213: -6081083160035501349
+    second: the_magic_forest_noon_tileset_14
+  - first:
+      213: 420965388504098074
+    second: the_magic_forest_noon_tileset_15
+  - first:
+      213: -5747026644272700303
+    second: the_magic_forest_noon_tileset_16
+  - first:
+      213: 7562619115200285179
+    second: the_magic_forest_noon_tileset_17
+  - first:
+      213: 1605004666209568832
+    second: the_magic_forest_noon_tileset_18
+  - first:
+      213: -9211039843247996513
+    second: the_magic_forest_noon_tileset_19
+  - first:
+      213: -4758792566920611094
+    second: the_magic_forest_noon_tileset_20
+  - first:
+      213: -6812108521664839573
+    second: the_magic_forest_noon_tileset_21
+  - first:
+      213: -4312635802359460632
+    second: the_magic_forest_noon_tileset_22
+  - first:
+      213: 3045191917884068464
+    second: the_magic_forest_noon_tileset_23
+  - first:
+      213: 2753193623409240728
+    second: the_magic_forest_noon_tileset_24
+  - first:
+      213: 7018388336069332612
+    second: the_magic_forest_noon_tileset_25
+  - first:
+      213: 4679192192587257494
+    second: the_magic_forest_noon_tileset_26
+  - first:
+      213: -4963703098946143742
+    second: the_magic_forest_noon_tileset_27
+  - first:
+      213: 7386322537883796798
+    second: the_magic_forest_noon_tileset_28
+  - first:
+      213: -7886859502205496005
+    second: the_magic_forest_noon_tileset_29
+  - first:
+      213: -6785631213288165175
+    second: the_magic_forest_noon_tileset_30
+  - first:
+      213: 6991461106450422767
+    second: the_magic_forest_noon_tileset_31
+  - first:
+      213: -7600542592824145589
+    second: the_magic_forest_noon_tileset_32
+  - first:
+      213: -1470123312963842026
+    second: the_magic_forest_noon_tileset_33
+  - first:
+      213: -815682823151039370
+    second: the_magic_forest_noon_tileset_34
+  - first:
+      213: -8469381395519425424
+    second: the_magic_forest_noon_tileset_35
+  - first:
+      213: 7193176691310896787
+    second: the_magic_forest_noon_tileset_36
+  - first:
+      213: -8428510092605187713
+    second: the_magic_forest_noon_tileset_37
+  - first:
+      213: 2071183594042514598
+    second: the_magic_forest_noon_tileset_38
+  - first:
+      213: 514740738126600494
+    second: the_magic_forest_noon_tileset_39
+  - first:
+      213: -7255987720710767593
+    second: the_magic_forest_noon_tileset_40
+  - first:
+      213: -8520946163839613412
+    second: the_magic_forest_noon_tileset_41
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_0
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 1584
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de5b06e24253651c0800000000000000
+      internalID: -4515363146879158803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_1
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 1584
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf84de3b9ac224b00800000000000000
+      internalID: 811259990259878139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1408
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2abeb0458595d1170800000000000000
+      internalID: 8150769136512527266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_3
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 1408
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 363add2675df2daa0800000000000000
+      internalID: -6137564790389890205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_4
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 1408
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e02e625233a330360800000000000000
+      internalID: 7134610226026045966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_5
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 1408
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cfe68d145ea4cb80800000000000000
+      internalID: -8375377730706411580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_6
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 1408
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6d0730a8523f31a0800000000000000
+      internalID: -6827683153843909268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_7
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 1408
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6445c7c92b0300d0800000000000000
+      internalID: -3457907814817250197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_8
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 1408
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d50c7dd133bbcb790800000000000000
+      internalID: -7512924250142424995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1232
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ef8492dcb1b16320800000000000000
+      internalID: 2549514288613330913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_10
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 1232
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 365b31d6b360cf110800000000000000
+      internalID: 1295917645078705507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 1232
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c110ebde3589817c0800000000000000
+      internalID: -4100359974482476772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_12
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 1232
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 015567226f8c22aa0800000000000000
+      internalID: -6187161978587949808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_13
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 1232
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5448d6813490c270800000000000000
+      internalID: 8268771856288859230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_14
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 1232
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bda597cb517ab9ba0800000000000000
+      internalID: -6081083160035501349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1056
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a15658c5ac197d500800000000000000
+      internalID: 420965388504098074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_16
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 1056
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 174ab6157b57e30b0800000000000000
+      internalID: -5747026644272700303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_17
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 1056
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf9871d4402d3f860800000000000000
+      internalID: 7562619115200285179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_18
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 1056
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04804408d3f164610800000000000000
+      internalID: 1605004666209568832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_19
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 1056
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f91cb339010db2080800000000000000
+      internalID: -9211039843247996513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_20
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 1056
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aea7de0af5f55fdb0800000000000000
+      internalID: -4758792566920611094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_21
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 1056
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6081c244678671a0800000000000000
+      internalID: -6812108521664839573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_22
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 880
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ec8bba46907624c0800000000000000
+      internalID: -4312635802359460632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_23
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 880
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 072de5a4ae1b24a20800000000000000
+      internalID: 3045191917884068464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_24
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 880
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89aad21730f453620800000000000000
+      internalID: 2753193623409240728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_25
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 880
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48e4823b103566160800000000000000
+      internalID: 7018388336069332612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_26
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 880
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 696d1faf184dfe040800000000000000
+      internalID: 4679192192587257494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 704
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20a3fc094526d1bb0800000000000000
+      internalID: -4963703098946143742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_28
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 704
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e35860bb63d718660800000000000000
+      internalID: 7386322537883796798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_29
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 704
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3590a1b11f3c8290800000000000000
+      internalID: -7886859502205496005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_30
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 704
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c0f7230d5894d1a0800000000000000
+      internalID: -6785631213288165175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_31
+      rect:
+        serializedVersion: 2
+        x: 1232
+        y: 704
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: febdfee75d8a60160800000000000000
+      internalID: 6991461106450422767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_32
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 704
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b498d7ef7c2758690800000000000000
+      internalID: -7600542592824145589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_33
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 528
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61015cac2a2199be0800000000000000
+      internalID: -1470123312963842026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_34
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 528
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67cc1b44bcc1ea4f0800000000000000
+      internalID: -815682823151039370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_35
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 528
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07433c45e76b67a80800000000000000
+      internalID: -8469381395519425424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_36
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 528
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 396a434f61c43d360800000000000000
+      internalID: 7193176691310896787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_37
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 352
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7919781abae70b80800000000000000
+      internalID: -8428510092605187713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_38
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 352
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ac558351825ebc10800000000000000
+      internalID: 2071183594042514598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_39
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 352
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e29557f59f9b42700800000000000000
+      internalID: 514740738126600494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_40
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 176
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71c3074ac9d8d4b90800000000000000
+      internalID: -7255987720710767593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: the_magic_forest_noon_tileset_41
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 176
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c16cc122c948fb980800000000000000
+      internalID: -8520946163839613412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 1
+  pSDShowRemoveMatteOption: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

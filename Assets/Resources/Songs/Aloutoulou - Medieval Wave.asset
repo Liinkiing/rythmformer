@@ -21,4 +21,4 @@ MonoBehaviour:
     Bass: {fileID: 0}
     Drums: {fileID: 0}
     Melody: {fileID: 0}
-    All: {fileID: 8300000, guid: d9d2c5c64a849404f907c958a5af3184, type: 3}
+    All: {fileID: 8300000, guid: 760a11131135dc548b3ada545bbd2413, type: 3}

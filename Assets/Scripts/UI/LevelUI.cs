@@ -40,7 +40,7 @@ public class LevelUI : MonoBehaviour
     private void Update()
     {
         if (GameManager.instance.GamePaused) return;
-        _UITimer.SetText($"{_levelManager.TimeElapsed:0.000}");
+        _UITimer.SetText(_levelManager.TimeElapsed < 0f ? "0.000" : $"{_levelManager.TimeElapsed:0.000}");
     }
 
     public void TogglePauseCanvas()

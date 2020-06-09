@@ -31,6 +31,11 @@ public class UIManager : MonoSingleton<UIManager>
     private InputAction _gamepadAction = new InputAction(binding: "<Gamepad>/*", interactions: "press");
     private InputAction _keyboardAction = new InputAction(binding: "<Keyboard>/*");
 
+    public GameObject levelUI;
+    public CanvasGroup levelUICanvasGroup;
+    public GameObject levelEndUI;
+    public CanvasGroup levelEndUICanvasGroup;
+
     private List<InputAction> _mousesAction = new List<InputAction>()
     {
         new InputAction(binding: "<Mouse>/leftButton"),
@@ -104,6 +109,12 @@ public class UIManager : MonoSingleton<UIManager>
         _gamepadAction.Disable();
         _keyboardAction.Disable();
         _mousesAction.ForEach(m => m.Disable());
+    }
+
+    public void ShowLevelEndScreen()
+    {
+        SetUIContainerStateWithInternalNavigation(levelUI, levelUICanvasGroup, levelEndUI,
+            levelEndUICanvasGroup, GameObject.Find("Continue button"));
     }
 
     public void SetUIContainerState(GameObject UIContainer, UIContainerAction action)

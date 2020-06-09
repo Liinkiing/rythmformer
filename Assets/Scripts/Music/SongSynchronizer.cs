@@ -59,7 +59,7 @@ public class SongSynchronizer : MonoBehaviour
     [SerializeField] private AudioClip metronome;
     
     [Space, Header("Options"), Tooltip("Used to PlayScheduled the song to be on the exact dspTime and to avoid unpredictable behaviours")]
-    [SerializeField] private float delay = 2f;
+    public float delay = 2f;
 
     private bool _ticked;
     private double _secondsElapsed;
