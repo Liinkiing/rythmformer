@@ -323,7 +323,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void HandleRythmAction(int moveInput)
     {
-        if (!_flags.ActionAvailable)
+        if (!_flags.ActionAvailable && !_synchronizer.IsSilent)
         {
             if (_input.Player.Jump.triggered || _input.Player.Dash.triggered || _input.Player.Dance.triggered)
             {
