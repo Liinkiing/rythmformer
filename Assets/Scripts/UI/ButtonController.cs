@@ -18,6 +18,7 @@ public class ButtonController : MonoBehaviour, ISelectHandler, IDeselectHandler
  private Color32 green = new Color32(118, 227, 178, 255);
  private Color32 lightPurple = new Color32(192, 115, 255, 255);
  private DG.Tweening.Core.TweenerCore<Color, Color, ColorOptions> _tween;
+ private int yolo;
 
  private void Awake()
  {
@@ -69,7 +70,6 @@ public class ButtonController : MonoBehaviour, ISelectHandler, IDeselectHandler
 
  private void AnimateFirstLetterGradient()
  {
-
   var stepAnimation = 1;
   var targetColor = green;
   var color = lightPurple;
@@ -88,29 +88,26 @@ public class ButtonController : MonoBehaviour, ISelectHandler, IDeselectHandler
   
   _tween.OnStepComplete(() =>
   {
-
    stepAnimation += 1;
 
-   if (stepAnimation > 4) stepAnimation = 1;
-
-   switch (stepAnimation)
+   switch (stepAnimation % 4)
    {
+    case 0:
+     targetColor = green;
+     color = lightPurple;
+     break;
+    
     case 1:
      targetColor = green;
      color = lightPurple;
      break;
     
     case 2:
-     targetColor = green;
-     color = lightPurple;
-     break;
-    
-    case 3:
      targetColor = lightPurple;
      color = green;
      break;
     
-    case 4:
+    case 3:
      targetColor = lightPurple;
      color = green;
      break;
@@ -123,37 +120,38 @@ public class ButtonController : MonoBehaviour, ISelectHandler, IDeselectHandler
 
  private void callback(Color32 targetColor, int stepAnimation)
  {
-  switch (stepAnimation)
+
+  switch (stepAnimation % 4)
   {
-   case 1:
+   case 0:
     _firstLetterGradient.topLeft = lightPurple;
     _firstLetterGradient.topRight = lightPurple;
     _firstLetterGradient.bottomLeft = targetColor;
     _firstLetterGradient.bottomRight = targetColor;
     break;
     
-   case 2:
+   case 1:
     _firstLetterGradient.topLeft = targetColor;
     _firstLetterGradient.topRight = targetColor;
     _firstLetterGradient.bottomLeft = green;
     _firstLetterGradient.bottomRight = green;
     break;
     
-   case 3:
+   case 2:
     _firstLetterGradient.topLeft = green;
     _firstLetterGradient.topRight = green;
     _firstLetterGradient.bottomLeft = targetColor;
     _firstLetterGradient.bottomRight = targetColor;
     break;
     
-   case 4:
+   case 3:
     _firstLetterGradient.topLeft = targetColor;
     _firstLetterGradient.topRight = targetColor;
     _firstLetterGradient.bottomLeft = lightPurple;
     _firstLetterGradient.bottomRight = lightPurple;
     break;
   }
-
+  
   _firstLetterTM.colorGradient = _firstLetterGradient;
  }
 
