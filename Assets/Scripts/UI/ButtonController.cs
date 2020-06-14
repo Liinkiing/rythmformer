@@ -28,26 +28,12 @@ public class ButtonController : MonoBehaviour, ISelectHandler, IDeselectHandler
  
  public void OnSelect(BaseEventData data)
  {
-  transform
-   .DOBlendableMoveBy(new Vector3(-_shadowWidth/2, _shadowWidth/2, 0), _hoverAnimationDuration)
-   .SetEase(Ease.InOutQuint);
-  
-  DOTween
-   .To(()=> _buttonShadow.effectDistance, x=> _buttonShadow.effectDistance = x, new Vector2(_shadowWidth, -_shadowWidth), _hoverAnimationDuration)
-   .SetEase(Ease.InOutQuint);
-  
+  AnimateShadow();
   AnimateFirstLetterGradient();
  }
  public void OnDeselect(BaseEventData data)
  {
-  transform
-   .DOBlendableMoveBy(new Vector3(_shadowWidth/2, -_shadowWidth/2, 0), _hoverAnimationDuration)
-   .SetEase(Ease.InOutQuint);
-  
-  DOTween
-   .To(() => _buttonShadow.effectDistance, x => _buttonShadow.effectDistance = x, Vector2.zero, _hoverAnimationDuration)
-   .SetEase(Ease.InOutQuint);
-
+ResetShadowAnimation();
   ResetFirstLetterGradient();
  }
 
@@ -68,6 +54,17 @@ public class ButtonController : MonoBehaviour, ISelectHandler, IDeselectHandler
   _textTM.SetText(text);
  }
 
+ private void AnimateShadow()
+ {
+  transform
+   .DOBlendableMoveBy(new Vector3(-_shadowWidth/2, _shadowWidth/2, 0), _hoverAnimationDuration)
+   .SetEase(Ease.InOutQuint);
+  
+  DOTween
+   .To(()=> _buttonShadow.effectDistance, x=> _buttonShadow.effectDistance = x, new Vector2(_shadowWidth, -_shadowWidth), _hoverAnimationDuration)
+   .SetEase(Ease.InOutQuint);
+ }
+
  private void AnimateFirstLetterGradient()
  {
   _animatorClipFirstLetter.SetBool(StartAnimation, true);
@@ -76,5 +73,15 @@ public class ButtonController : MonoBehaviour, ISelectHandler, IDeselectHandler
  private void ResetFirstLetterGradient()
  {
   _animatorClipFirstLetter.SetBool(StartAnimation, false);
+ }
+ private void ResetShadowAnimation()
+ {
+  transform
+   .DOBlendableMoveBy(new Vector3(_shadowWidth/2, -_shadowWidth/2, 0), _hoverAnimationDuration)
+   .SetEase(Ease.InOutQuint);
+  
+  DOTween
+   .To(() => _buttonShadow.effectDistance, x => _buttonShadow.effectDistance = x, Vector2.zero, _hoverAnimationDuration)
+   .SetEase(Ease.InOutQuint);
  }
 }
