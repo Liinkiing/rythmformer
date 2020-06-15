@@ -25,7 +25,6 @@ public class RandomSounds : MonoBehaviour
     private void DoPlay()
     {
         float random = Random.value;
-        Debug.Log($"random: {random}");
         if (random < percentageToPlay)
         {
             MusicManager.instance.PlaySFX(sounds.Random(), 0.5f);
