@@ -91,11 +91,6 @@ public class SongSynchronizer : MonoBehaviour
 
     void Start()
     {
-        if (IsSilent)
-        {
-            return;
-        }
-        
         _startTick = AudioSettings.dspTime + delay;
         _secondsPerTicks = (60 / song.Informations.bpm) / 4;
 
@@ -119,11 +114,6 @@ public class SongSynchronizer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (IsSilent)
-        {
-            return;
-        }
-        
         _secondsElapsed = AudioSettings.dspTime - _startTick;
         _songPosInTicks = (int) (_secondsElapsed / _secondsPerTicks);
         if (_songPosInTicks <= _tick)
@@ -138,11 +128,6 @@ public class SongSynchronizer : MonoBehaviour
 
     public void ResetSong()
     {
-        if (IsSilent)
-        {
-            return;
-        }
-        
         _startTick = AudioSettings.dspTime;
         _tick = 0;
         _measure = 0;
@@ -199,10 +184,6 @@ public class SongSynchronizer : MonoBehaviour
 
     void LateUpdate()
     {
-        if (IsSilent)
-        {
-            return;
-        }
         if (!_ticked && _songPosInTicks >= _tick)
         {
             _ticked = true;

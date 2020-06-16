@@ -174,6 +174,7 @@ public class CharacterController2D : MonoBehaviour
     private static readonly int IdleMultiplierFloat = Animator.StringToHash("IdleMultiplier");
     private static readonly int DashAnimatorTrigger = Animator.StringToHash("Dash");
     private static readonly int WallridingAnimatorBool = Animator.StringToHash("Wallriding");
+    private static readonly int SilentLevelAnimatorBool = Animator.StringToHash("SilentLevel");
 
     #endregion
 
@@ -210,6 +211,7 @@ public class CharacterController2D : MonoBehaviour
             new Vector2(1, 1));
         _leftBuffer = new RaycastGroup(_boxCollider, Vector2.left, surfaceRayLength, 7, wallsLayerMask,
             new Vector2(1, 1));
+        _artAnimator.SetBool(SilentLevelAnimatorBool, _synchronizer.IsSilent);
     }
 
     private void Start()
@@ -323,7 +325,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void HandleRythmAction(int moveInput)
     {
-        if (!_flags.ActionAvailable && !_synchronizer.IsSilent)
+        if (!_flags.ActionAvailable)
         {
             if (_input.Player.Jump.triggered || _input.Player.Dash.triggered || _input.Player.Dance.triggered)
             {
