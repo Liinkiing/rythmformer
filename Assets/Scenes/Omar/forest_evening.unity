@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -582,7 +582,7 @@ PrefabInstance:
     - target: {fileID: 7801734382784595633, guid: 8c0332a152d73594292545e3b772084f,
         type: 3}
       propertyPath: m_Name
-      value: forest_2
+      value: forest_evening
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c0332a152d73594292545e3b772084f, type: 3}
@@ -2066,7 +2066,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.010817, y: 22.815243, z: -10}
+  m_LocalPosition: {x: 21.519121, y: 22.8, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 641651252}
@@ -3799,7 +3799,7 @@ PrefabInstance:
     - target: {fileID: 2864400617360909895, guid: cd74f6d44f1be384696371088e6b9a92,
         type: 3}
       propertyPath: power
-      value: 80
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 2864400617360909895, guid: cd74f6d44f1be384696371088e6b9a92,
         type: 3}
@@ -3864,11 +3864,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 114.19393, y: 17.85014}
-      - {x: -22.742188, y: 18.679707}
-      - {x: -22.7138, y: -29.57229}
-      - {x: 21.801668, y: -29.943499}
-      - {x: 113.95903, y: -30.256977}
+    - - {x: 145, y: 18}
+      - {x: -22, y: 18}
+      - {x: -22, y: -35}
+      - {x: 145, y: -35}
 --- !u!1001 &2064062265
 PrefabInstance:
   m_ObjectHideFlags: 0
