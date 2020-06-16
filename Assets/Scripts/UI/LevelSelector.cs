@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-using DG.Tweening.Plugins.Core.PathCore;
-using Rythmformer;
-using UnityEditor;
 
 [Serializable]
 public class LevelSelector : MonoBehaviour
