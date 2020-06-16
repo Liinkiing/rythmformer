@@ -1,0 +1,1399 @@
+fileFormatVersion: 2
+guid: aa7aeab22b03fd14087d0442ffc213f4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7787512971829322405
+    second: castle_tutoriel_tileset_0
+  - first:
+      213: -1485215882091107671
+    second: castle_tutoriel_tileset_1
+  - first:
+      213: 1213177821995254054
+    second: castle_tutoriel_tileset_2
+  - first:
+      213: 5715141719899416656
+    second: castle_tutoriel_tileset_3
+  - first:
+      213: -943576919027289267
+    second: castle_tutoriel_tileset_4
+  - first:
+      213: 6821727423222512055
+    second: castle_tutoriel_tileset_5
+  - first:
+      213: -4406872859896200163
+    second: castle_tutoriel_tileset_6
+  - first:
+      213: -975598453459595904
+    second: castle_tutoriel_tileset_7
+  - first:
+      213: 5580705635249067016
+    second: castle_tutoriel_tileset_8
+  - first:
+      213: 1528246012134847289
+    second: castle_tutoriel_tileset_9
+  - first:
+      213: -1026458777541346644
+    second: castle_tutoriel_tileset_10
+  - first:
+      213: -1530945220269114157
+    second: castle_tutoriel_tileset_11
+  - first:
+      213: -3829092738199120797
+    second: castle_tutoriel_tileset_12
+  - first:
+      213: 7663842388335865637
+    second: castle_tutoriel_tileset_13
+  - first:
+      213: 7121483450519726867
+    second: castle_tutoriel_tileset_14
+  - first:
+      213: 1178921553498131902
+    second: castle_tutoriel_tileset_15
+  - first:
+      213: 2691429268144479454
+    second: castle_tutoriel_tileset_16
+  - first:
+      213: -8527688420663516737
+    second: castle_tutoriel_tileset_17
+  - first:
+      213: 1414024182767800388
+    second: castle_tutoriel_tileset_18
+  - first:
+      213: -7948173659479511075
+    second: castle_tutoriel_tileset_19
+  - first:
+      213: 5732367372460819159
+    second: castle_tutoriel_tileset_20
+  - first:
+      213: 8832395924450334132
+    second: castle_tutoriel_tileset_21
+  - first:
+      213: 1488472916329795846
+    second: castle_tutoriel_tileset_22
+  - first:
+      213: 7248085623456477756
+    second: castle_tutoriel_tileset_23
+  - first:
+      213: -6048421473596879481
+    second: castle_tutoriel_tileset_24
+  - first:
+      213: 2735719497164282491
+    second: castle_tutoriel_tileset_25
+  - first:
+      213: -855122124614933137
+    second: castle_tutoriel_tileset_26
+  - first:
+      213: -2315540137960776572
+    second: castle_tutoriel_tileset_27
+  - first:
+      213: -678781594015283252
+    second: castle_tutoriel_tileset_28
+  - first:
+      213: -5119379817588665719
+    second: castle_tutoriel_tileset_29
+  - first:
+      213: -8551762207129554549
+    second: castle_tutoriel_tileset_30
+  - first:
+      213: -4078624397165031123
+    second: castle_tutoriel_tileset_31
+  - first:
+      213: -5850789285738817422
+    second: castle_tutoriel_tileset_32
+  - first:
+      213: -7517454354728840899
+    second: castle_tutoriel_tileset_33
+  - first:
+      213: -7700381567740472723
+    second: castle_tutoriel_tileset_34
+  - first:
+      213: 6381086150169346806
+    second: castle_tutoriel_tileset_35
+  - first:
+      213: -9029962345834133522
+    second: castle_tutoriel_tileset_36
+  - first:
+      213: -1782720700611925033
+    second: castle_tutoriel_tileset_37
+  - first:
+      213: 8321319319084343991
+    second: castle_tutoriel_tileset_38
+  - first:
+      213: 4380568360702441822
+    second: castle_tutoriel_tileset_39
+  - first:
+      213: 8849789338661157381
+    second: castle_tutoriel_tileset_40
+  - first:
+      213: 3337215662654789054
+    second: castle_tutoriel_tileset_41
+  - first:
+      213: 189439108994075192
+    second: castle_tutoriel_tileset_42
+  - first:
+      213: -8668027042380140272
+    second: castle_tutoriel_tileset_43
+  - first:
+      213: -3621124170901275300
+    second: castle_tutoriel_tileset_44
+  - first:
+      213: -7305743407263040410
+    second: castle_tutoriel_tileset_45
+  - first:
+      213: -8013973434448131210
+    second: castle_tutoriel_tileset_46
+  - first:
+      213: -222608887355895256
+    second: castle_tutoriel_tileset_47
+  - first:
+      213: 8030881655352732330
+    second: castle_tutoriel_tileset_48
+  - first:
+      213: 1152126148981635983
+    second: castle_tutoriel_tileset_49
+  - first:
+      213: 5516830007911903100
+    second: castle_tutoriel_tileset_50
+  - first:
+      213: 3649444506543797200
+    second: castle_tutoriel_tileset_51
+  - first:
+      213: -9132281846936190112
+    second: castle_tutoriel_tileset_52
+  - first:
+      213: -3253001097679138747
+    second: castle_tutoriel_tileset_53
+  - first:
+      213: 7557793932187406003
+    second: castle_tutoriel_tileset_54
+  - first:
+      213: 3160894949607931026
+    second: castle_tutoriel_tileset_55
+  - first:
+      213: 7315049467673277242
+    second: castle_tutoriel_tileset_56
+  - first:
+      213: 8308311029325127417
+    second: castle_tutoriel_tileset_57
+  - first:
+      213: 3649599977424689900
+    second: castle_tutoriel_tileset_58
+  - first:
+      213: -3047486751873066662
+    second: castle_tutoriel_tileset_59
+  - first:
+      213: -7878501274150526952
+    second: castle_tutoriel_tileset_60
+  - first:
+      213: -2222256457360107004
+    second: castle_tutoriel_tileset_61
+  - first:
+      213: 8744888489794455163
+    second: castle_tutoriel_tileset_62
+  - first:
+      213: -267441818403512974
+    second: castle_tutoriel_tileset_63
+  - first:
+      213: -6587095700095711730
+    second: castle_tutoriel_tileset_64
+  - first:
+      213: 8057001722837808359
+    second: castle_tutoriel_tileset_65
+  - first:
+      213: -7870769706570908642
+    second: castle_tutoriel_tileset_66
+  - first:
+      213: -8696679555040695971
+    second: castle_tutoriel_tileset_67
+  - first:
+      213: -4665188954772005204
+    second: castle_tutoriel_tileset_68
+  - first:
+      213: 8339865399907075463
+    second: castle_tutoriel_tileset_69
+  - first:
+      213: 6092009579643796898
+    second: castle_tutoriel_tileset_70
+  - first:
+      213: 2596730959738312950
+    second: castle_tutoriel_tileset_71
+  - first:
+      213: -3129566350496975921
+    second: castle_tutoriel_tileset_72
+  - first:
+      213: -4611315428903006523
+    second: castle_tutoriel_tileset_73
+  - first:
+      213: -1936195765808097695
+    second: castle_tutoriel_tileset_74
+  - first:
+      213: 4983511465005616062
+    second: castle_tutoriel_tileset_75
+  - first:
+      213: -175443376716700510
+    second: castle_tutoriel_tileset_76
+  - first:
+      213: 4054617220296850104
+    second: castle_tutoriel_tileset_77
+  - first:
+      213: -6814071933620524387
+    second: castle_tutoriel_tileset_78
+  - first:
+      213: -3722161036271566153
+    second: castle_tutoriel_tileset_79
+  - first:
+      213: 6217212203098831099
+    second: castle_tutoriel_tileset_80
+  - first:
+      213: 4912398397438421466
+    second: castle_tutoriel_tileset_81
+  - first:
+      213: -2800546065608609294
+    second: castle_tutoriel_tileset_82
+  - first:
+      213: 3523356898480319557
+    second: castle_tutoriel_tileset_83
+  - first:
+      213: 2579998971149177009
+    second: castle_tutoriel_tileset_84
+  - first:
+      213: -1166175390786461003
+    second: castle_tutoriel_tileset_85
+  - first:
+      213: 2909146533667643161
+    second: castle_tutoriel_tileset_86
+  - first:
+      213: 7970422790847069037
+    second: castle_tutoriel_tileset_87
+  - first:
+      213: 271686454993646750
+    second: castle_tutoriel_tileset_88
+  - first:
+      213: -4700635488688248636
+    second: castle_tutoriel_tileset_89
+  - first:
+      213: -4025846857715358315
+    second: castle_tutoriel_tileset_90
+  - first:
+      213: -8393451185591976398
+    second: castle_tutoriel_tileset_91
+  - first:
+      213: 3627606995738260771
+    second: castle_tutoriel_tileset_92
+  - first:
+      213: 1201775382025129879
+    second: castle_tutoriel_tileset_93
+  - first:
+      213: 5063121221020285631
+    second: castle_tutoriel_tileset_94
+  - first:
+      213: 1019256936538407002
+    second: castle_tutoriel_tileset_95
+  - first:
+      213: 8527484185951896878
+    second: castle_tutoriel_tileset_96
+  - first:
+      213: -4760491223400046112
+    second: castle_tutoriel_tileset_97
+  - first:
+      213: 1278752145497585948
+    second: castle_tutoriel_tileset_98
+  - first:
+      213: 5180111297892683654
+    second: castle_tutoriel_tileset_99
+  - first:
+      213: 1359317863282064782
+    second: castle_tutoriel_tileset_100
+  - first:
+      213: 6745061203489536178
+    second: castle_tutoriel_tileset_101
+  - first:
+      213: -4993279497319068755
+    second: castle_tutoriel_tileset_102
+  - first:
+      213: -8338217694452222043
+    second: castle_tutoriel_tileset_103
+  - first:
+      213: 3179007215316910864
+    second: castle_tutoriel_tileset_104
+  - first:
+      213: 5956080079820441592
+    second: castle_tutoriel_tileset_105
+  - first:
+      213: -1175850297202061118
+    second: castle_tutoriel_tileset_106
+  - first:
+      213: -4297308028447602719
+    second: castle_tutoriel_tileset_107
+  - first:
+      213: -3423235749091487219
+    second: castle_tutoriel_tileset_108
+  - first:
+      213: -3905812895829378080
+    second: castle_tutoriel_tileset_109
+  - first:
+      213: -4574052026679159292
+    second: castle_tutoriel_tileset_110
+  - first:
+      213: -6115090611775428302
+    second: castle_tutoriel_tileset_111
+  - first:
+      213: 8777899036728825301
+    second: castle_tutoriel_tileset_112
+  - first:
+      213: 8179193898769013208
+    second: castle_tutoriel_tileset_113
+  - first:
+      213: 2900430622866046996
+    second: castle_tutoriel_tileset_114
+  - first:
+      213: 3759017070956116961
+    second: castle_tutoriel_tileset_115
+  - first:
+      213: -3786186277663853870
+    second: castle_tutoriel_tileset_116
+  - first:
+      213: -5546338172388887402
+    second: castle_tutoriel_tileset_117
+  - first:
+      213: 9012113532612557405
+    second: castle_tutoriel_tileset_118
+  - first:
+      213: 6007691020906400448
+    second: castle_tutoriel_tileset_119
+  - first:
+      213: 5633372002661180903
+    second: castle_tutoriel_tileset_120
+  - first:
+      213: 1516773534955764269
+    second: castle_tutoriel_tileset_121
+  - first:
+      213: -7615347851760428819
+    second: castle_tutoriel_tileset_122
+  - first:
+      213: 4313203446253197986
+    second: castle_tutoriel_tileset_123
+  - first:
+      213: 5908889527988431121
+    second: castle_tutoriel_tileset_124
+  - first:
+      213: 4686367583389072668
+    second: castle_tutoriel_tileset_125
+  - first:
+      213: 3506385856710397007
+    second: castle_tutoriel_tileset_126
+  - first:
+      213: 555507075485025066
+    second: castle_tutoriel_tileset_127
+  - first:
+      213: -1609657709528291222
+    second: castle_tutoriel_tileset_128
+  - first:
+      213: -422247687494463631
+    second: castle_tutoriel_tileset_129
+  - first:
+      213: 5808845581411528225
+    second: castle_tutoriel_tileset_130
+  - first:
+      213: 7832988727619671275
+    second: castle_tutoriel_tileset_131
+  - first:
+      213: 3636976530628803421
+    second: castle_tutoriel_tileset_132
+  - first:
+      213: -2131564022726796782
+    second: castle_tutoriel_tileset_133
+  - first:
+      213: -6184340579846424247
+    second: castle_tutoriel_tileset_134
+  - first:
+      213: -4813036149664318440
+    second: castle_tutoriel_tileset_135
+  - first:
+      213: 6175766426579180220
+    second: castle_tutoriel_tileset_136
+  - first:
+      213: 1163367116963425358
+    second: castle_tutoriel_tileset_137
+  - first:
+      213: -1067267634566903451
+    second: castle_tutoriel_tileset_138
+  - first:
+      213: -1462219680178657047
+    second: castle_tutoriel_tileset_139
+  - first:
+      213: -7208116722430537538
+    second: castle_tutoriel_tileset_140
+  - first:
+      213: -3492544032716408082
+    second: castle_tutoriel_tileset_141
+  - first:
+      213: -738926131089359229
+    second: castle_tutoriel_tileset_142
+  - first:
+      213: -4775849775462290671
+    second: castle_tutoriel_tileset_143
+  - first:
+      213: 81392669587305095
+    second: castle_tutoriel_tileset_144
+  - first:
+      213: 8249301962651264989
+    second: castle_tutoriel_tileset_145
+  - first:
+      213: 8924163781135715266
+    second: castle_tutoriel_tileset_146
+  - first:
+      213: 5997204206833397633
+    second: castle_tutoriel_tileset_147
+  - first:
+      213: -1270780318063619791
+    second: castle_tutoriel_tileset_148
+  - first:
+      213: 7621406241965023123
+    second: castle_tutoriel_tileset_149
+  - first:
+      213: 2510315620994523721
+    second: castle_tutoriel_tileset_150
+  - first:
+      213: -1570704754197054018
+    second: castle_tutoriel_tileset_151
+  - first:
+      213: 2587283949334370485
+    second: castle_tutoriel_tileset_152
+  - first:
+      213: -6937484784599757986
+    second: castle_tutoriel_tileset_153
+  - first:
+      213: -8257554337899996939
+    second: castle_tutoriel_tileset_154
+  - first:
+      213: 1022731623797241602
+    second: castle_tutoriel_tileset_155
+  - first:
+      213: 8923318338714411052
+    second: castle_tutoriel_tileset_156
+  - first:
+      213: -3081990401733117075
+    second: castle_tutoriel_tileset_157
+  - first:
+      213: 2219853903483649749
+    second: castle_tutoriel_tileset_158
+  - first:
+      213: -8569569264943434334
+    second: castle_tutoriel_tileset_159
+  - first:
+      213: -7924891689165775657
+    second: castle_tutoriel_tileset_160
+  - first:
+      213: 5525611718291980435
+    second: castle_tutoriel_tileset_161
+  - first:
+      213: -672745733220487718
+    second: castle_tutoriel_tileset_162
+  - first:
+      213: 3707936323539427450
+    second: castle_tutoriel_tileset_163
+  - first:
+      213: 1204398580529712527
+    second: castle_tutoriel_tileset_164
+  - first:
+      213: -7609348033622994236
+    second: castle_tutoriel_tileset_165
+  - first:
+      213: 4723672093901230457
+    second: castle_tutoriel_tileset_166
+  - first:
+      213: 3695004508604020209
+    second: castle_tutoriel_tileset_167
+  - first:
+      213: 4562119633834233873
+    second: castle_tutoriel_tileset_168
+  - first:
+      213: -6701341932809363586
+    second: castle_tutoriel_tileset_169
+  - first:
+      213: 4552083639284593570
+    second: castle_tutoriel_tileset_170
+  - first:
+      213: -3869954702706104664
+    second: castle_tutoriel_tileset_171
+  - first:
+      213: 8470520806655549436
+    second: castle_tutoriel_tileset_172
+  - first:
+      213: 340106327788985710
+    second: castle_tutoriel_tileset_173
+  - first:
+      213: -7636605472602440993
+    second: castle_tutoriel_tileset_174
+  - first:
+      213: -4254332794047751420
+    second: castle_tutoriel_tileset_175
+  - first:
+      213: 20222004197767885
+    second: castle_tutoriel_tileset_176
+  - first:
+      213: 8627659108046128146
+    second: castle_tutoriel_tileset_177
+  - first:
+      213: 4222003441532457371
+    second: castle_tutoriel_tileset_178
+  - first:
+      213: 6134557824447904141
+    second: castle_tutoriel_tileset_179
+  - first:
+      213: 9135012306276743258
+    second: castle_tutoriel_tileset_180
+  - first:
+      213: 371111237920364259
+    second: castle_tutoriel_tileset_181
+  - first:
+      213: 7370954301843966920
+    second: castle_tutoriel_tileset_182
+  - first:
+      213: -2735512786274773056
+    second: castle_tutoriel_tileset_183
+  - first:
+      213: 2139223853002035678
+    second: castle_tutoriel_tileset_184
+  - first:
+      213: 5284972911064168020
+    second: castle_tutoriel_tileset_185
+  - first:
+      213: 2233670329852738315
+    second: castle_tutoriel_tileset_186
+  - first:
+      213: -344759590950926875
+    second: castle_tutoriel_tileset_187
+  - first:
+      213: 4247483150004076142
+    second: castle_tutoriel_tileset_188
+  - first:
+      213: -7617421835083290412
+    second: castle_tutoriel_tileset_189
+  - first:
+      213: -1553667790288302701
+    second: castle_tutoriel_tileset_190
+  - first:
+      213: 9009828827464316447
+    second: castle_tutoriel_tileset_191
+  - first:
+      213: 8261145050136212595
+    second: castle_tutoriel_tileset_192
+  - first:
+      213: 1900370998082411829
+    second: castle_tutoriel_tileset_193
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1408
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a222a1b9cdc21c60800000000000000
+      internalID: 7787512971829322405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_1
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 1408
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9aae0353604736be0800000000000000
+      internalID: -1485215882091107671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_2
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 1408
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 621c8692dc216d010800000000000000
+      internalID: 1213177821995254054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_3
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 1408
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 058ae973d13405f40800000000000000
+      internalID: 5715141719899416656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_4
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 1408
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d43fe1b9acdb7e2f0800000000000000
+      internalID: -943576919027289267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_5
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 1408
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b9f7b7c2f4abae50800000000000000
+      internalID: 6821727423222512055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_6
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 1408
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d14c3978b74a7d2c0800000000000000
+      internalID: -4406872859896200163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1232
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08dce12206af572f0800000000000000
+      internalID: -975598453459595904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_8
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 1232
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8049a091536a27d40800000000000000
+      internalID: 5580705635249067016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_9
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 1232
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93374baa6ab653510800000000000000
+      internalID: 1528246012134847289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_10
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 1232
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: caaf0142e2941c1f0800000000000000
+      internalID: -1026458777541346644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 1232
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3dcf647fe6df0cae0800000000000000
+      internalID: -1530945220269114157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_12
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 1232
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3641d9721745cdac0800000000000000
+      internalID: -3829092738199120797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1056
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52f27532c007b5a60800000000000000
+      internalID: 7663842388335865637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_14
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 1056
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31b2d0e877794d260800000000000000
+      internalID: 7121483450519726867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_15
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 1056
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebdce4e18ee5c5010800000000000000
+      internalID: 1178921553498131902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_16
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 1056
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edc57d9d8a0e95520800000000000000
+      internalID: 2691429268144479454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_17
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 1056
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb1a323209097a980800000000000000
+      internalID: -8527688420663516737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_18
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 1056
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 440dfad908f9f9310800000000000000
+      internalID: 1414024182767800388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_19
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 1056
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddf6b9dfa2a62b190800000000000000
+      internalID: -7948173659479511075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_20
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 880
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d2019df0c57d8f40800000000000000
+      internalID: 5732367372460819159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_21
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 880
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b558781c49f29a70800000000000000
+      internalID: 8832395924450334132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_22
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 880
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60190ab2b3e18a410800000000000000
+      internalID: 1488472916329795846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_23
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 880
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c323db7f87f569460800000000000000
+      internalID: 7248085623456477756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 704
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78dc96637b0bf0ca0800000000000000
+      internalID: -6048421473596879481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_25
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 704
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7a5691636a37f520800000000000000
+      internalID: 2735719497164282491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_26
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 704
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f65efb255fef124f0800000000000000
+      internalID: -855122124614933137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 528
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48c50b5438c8ddfd0800000000000000
+      internalID: -2315540137960776572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_28
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 528
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc745a09cbb7496f0800000000000000
+      internalID: -678781594015283252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_29
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 528
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 982d256fd2f44f8b0800000000000000
+      internalID: -5119379817588665719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 352
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b81be60f499025980800000000000000
+      internalID: -8551762207129554549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_31
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 352
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d219cb268b0d567c0800000000000000
+      internalID: -4078624397165031123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_32
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 352
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27850e7b422ddcea0800000000000000
+      internalID: -5850789285738817422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_tutoriel_tileset_33
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 176
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d319c23f713aca790800000000000000
+      internalID: -7517454354728840899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

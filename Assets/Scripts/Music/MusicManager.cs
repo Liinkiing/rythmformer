@@ -17,8 +17,21 @@ public class MusicManager : MonoSingleton<MusicManager>
     [Space, Header("Audio sources")] [SerializeField]
     public AudioSources Sources;
 
+    public void PlaySFX(AudioClip clip)
+    {
+        Sources.SFX.pitch = 1f;
+        Sources.SFX.PlayOneShot(clip, 1.2f);
+    }
+    
     public void PlaySFX(AudioClip clip, float volume = 1.2f)
     {
+        Sources.SFX.pitch = 1f;
+        Sources.SFX.PlayOneShot(clip, volume);
+    }
+
+    public void PlaySFX(AudioClip clip, float volume = 1.2f, float pitch = 1f)
+    {
+        Sources.SFX.pitch = pitch;
         Sources.SFX.PlayOneShot(clip, volume);
     }
 }

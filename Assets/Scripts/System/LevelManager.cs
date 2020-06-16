@@ -5,14 +5,23 @@ using UnityEngine.InputSystem;
 
 public class LevelManager : MonoBehaviour
 {
+    public enum FloorType
+    {
+        Stone,
+        Grass
+    }
+
     [Serializable]
     public struct LevelConfig
     {
         public World World;
         public Level Level;
+        public FloorType Floor;
     }
 
-    public LevelConfig Config = new LevelConfig() {World = World.Castle, Level = Level.Tutorial};
+    public LevelConfig Config = new LevelConfig()
+        {World = World.Castle, Level = Level.Tutorial, Floor = FloorType.Stone};
+
     public bool isGamePaused;
     [HideInInspector] public float TimeElapsed;
     private SongSynchronizer _songSynchronizer;
