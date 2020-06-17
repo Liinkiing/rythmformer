@@ -24,10 +24,10 @@ EditorBuildSettings:
     path: Assets/Scenes/robin/Prototype Robin.unity
     guid: 21731142e41a444e69f7597f1e7a4e24
   - enabled: 1
-    path: Assets/Scenes/Omar/forest_1.unity
+    path: Assets/Scenes/Omar/forest_noon.unity
     guid: 757fa29f62951f24b864b241b633c439
   - enabled: 1
-    path: Assets/Scenes/Omar/forest_2.unity
+    path: Assets/Scenes/Omar/forest_evening.unity
     guid: 0448e4a596f295042b851282c33c1e69
   - enabled: 1
     path: Assets/Scenes/Omar/castle_tutorial.unity
