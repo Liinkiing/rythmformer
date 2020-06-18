@@ -738,6 +738,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6935238603259866023, guid: a3e4a899474da4d21b6ab8f097036ec4,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: ProGamer
+      objectReference: {fileID: 0}
     - target: {fileID: 6976557350536127757, guid: a3e4a899474da4d21b6ab8f097036ec4,
         type: 3}
       propertyPath: m_LocalPosition.y

@@ -23,6 +23,8 @@ public class DifficultyButtonController : MonoBehaviour, ISelectHandler, IDesele
 
     private void Awake()
     {
+        _buttonShadow = GetComponent<Shadow>();
+        
         _cloneMaterial = new Material(_gradientMaterial);
         GetComponent<Image>().material = _cloneMaterial;
         
@@ -32,7 +34,7 @@ public class DifficultyButtonController : MonoBehaviour, ISelectHandler, IDesele
 
     public void OnSelect(BaseEventData data)
     {
-        AnimateShadow();
+        ResetShadowAnimation();
         _imageDifficulty.sprite = _activatedSprite;
         
         transform
@@ -47,13 +49,14 @@ public class DifficultyButtonController : MonoBehaviour, ISelectHandler, IDesele
     
     public void OnDeselect(BaseEventData data)
     {
-        ResetShadowAnimation();
+        AnimateShadow();
         _imageDifficulty.sprite = _disabledSprite;
         
         transform
             .DOScale(new Vector3(1,1,1), 0.5f)
             .SetEase(Ease.InOutQuint);
-
+        
+        gradientSequence.Pause();
         gradientSequence.Kill();
         _cloneMaterial.DOFloat(1.5f, "gradient_position", 1f);
     }
