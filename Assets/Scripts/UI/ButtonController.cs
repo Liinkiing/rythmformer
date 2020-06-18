@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using DG.Tweening;
-using DG.Tweening.Plugins.Options;
 
 [ExecuteInEditMode]
 public class ButtonController : MonoBehaviour, ISelectHandler, IDeselectHandler
@@ -13,11 +12,9 @@ public class ButtonController : MonoBehaviour, ISelectHandler, IDeselectHandler
  [SerializeField] private TextMeshProUGUI _textTM;
  [SerializeField] private Animator _animatorClipFirstLetter;
  private Shadow _buttonShadow;
- private int _shadowWidth = 8;
- private float _hoverAnimationDuration = 0.3f;
- private VertexGradient _firstLetterGradient;
+ private readonly int _shadowWidth = 8;
+ private readonly float _hoverAnimationDuration = 0.3f;
  private static readonly int StartAnimation = Animator.StringToHash("StartAnimation");
- private static readonly int ResetAnimation = Animator.StringToHash("ResetAnimation");
 
  private void Awake()
  {
@@ -33,7 +30,7 @@ public class ButtonController : MonoBehaviour, ISelectHandler, IDeselectHandler
  }
  public void OnDeselect(BaseEventData data)
  {
-ResetShadowAnimation();
+  ResetShadowAnimation();
   ResetFirstLetterGradient();
  }
 
