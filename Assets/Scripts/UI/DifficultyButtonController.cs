@@ -11,14 +11,12 @@ public class DifficultyButtonController : MonoBehaviour, ISelectHandler, IDesele
     [SerializeField] private Sprite _disabledSprite;
     [SerializeField] private Image _imageDifficulty;
     [SerializeField] private Material _gradientMaterial;
-    [SerializeField] private Color testColor;
     private Shadow _buttonShadow;
     private readonly int _shadowWidth = 8;
     private readonly float _hoverAnimationDuration = 0.3f;
     private Material _cloneMaterial;
     private Color green = new Color32(114, 240,193, 255);
     private Color blue = new Color32(144, 152,232,255);
-    private Color purple = new Color32(192, 115, 255,255);
     private Sequence gradientSequence;
 
     private void Awake()

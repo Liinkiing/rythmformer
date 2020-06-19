@@ -28,6 +28,7 @@ public class LevelSelector : MonoBehaviour
     private GameObject _padlockNextChapter;
     private Tween _pathTween;
     private List<GameManager.LevelData> _levelsInChapter;
+    private Material _cloneMaterial;
     
     public List<GameObject> _levelButtons;
     public GameObject lastSelectedLevelButton;
@@ -59,6 +60,10 @@ public class LevelSelector : MonoBehaviour
         _nextChapterTextNumber = _nextChapter.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
         _padlockNextChapter = _nextChapter.transform.Find("Padlock").gameObject;
         _nextChapterText = _nextChapter.transform.Find("Chapter").gameObject.GetComponent<TextMeshProUGUI>();
+        
+        _cloneMaterial = new Material(_gradientMaterial);
+        Image canvasImage = transform.GetChild(0).gameObject.GetComponent<Image>();
+        canvasImage.material = _cloneMaterial;
     }
 
     private void Start()
@@ -145,23 +150,23 @@ public class LevelSelector : MonoBehaviour
             Color32 startColorGreen = new Color32(211, 244, 222, 255);
             Color32 endColorGreen = new Color32(197, 242, 249, 255);
             
-            _gradientMaterial.DOColor(startColorGreen, "color_bottom", 1f);
-            _gradientMaterial.DOColor(endColorGreen, "color_top", 1f);
+            _cloneMaterial.DOColor(startColorGreen, "color_bottom", 1f);
+            _cloneMaterial.DOColor(endColorGreen, "color_top", 1f);
         }
         else if (buttonIndex == 1)
         {
             Color32 startColorGreen = new Color32(254, 180, 157, 255);
             Color32 endColorGreen = new Color32(254, 131, 156, 255);
             
-            _gradientMaterial.DOColor(startColorGreen, "color_bottom", 1f);
-            _gradientMaterial.DOColor(endColorGreen, "color_top", 1f);
+            _cloneMaterial.DOColor(startColorGreen, "color_bottom", 1f);
+            _cloneMaterial.DOColor(endColorGreen, "color_top", 1f);
         } else
         {
             Color32 startColorPurple = new Color32(39, 51, 38, 255);
             Color32 endColorPurple = new Color32(94, 57, 131, 255);
 
-            _gradientMaterial.DOColor(startColorPurple, "color_bottom", 1f);
-            _gradientMaterial.DOColor(endColorPurple, "color_top", 1f);
+            _cloneMaterial.DOColor(startColorPurple, "color_bottom", 1f);
+            _cloneMaterial.DOColor(endColorPurple, "color_top", 1f);
         }
     }
     
@@ -296,19 +301,5 @@ public class LevelSelector : MonoBehaviour
     private void RemoveButtons()
     {
         _levelButtons.ForEach(Destroy);
-    }
-    
-    private void ResetMaterial()
-    {
-        Color32 startColorGreen = new Color32(254, 180, 157, 255);
-        Color32 endColorGreen = new Color32(254, 131, 156, 255);
-            
-        _gradientMaterial.DOColor(startColorGreen, "color_bottom", 1f);
-        _gradientMaterial.DOColor(endColorGreen, "color_top", 1f);
-    }
-
-    private void OnApplicationQuit()
-    {
-        ResetMaterial();
     }
 }
