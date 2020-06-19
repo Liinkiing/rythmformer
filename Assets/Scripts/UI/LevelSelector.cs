@@ -21,9 +21,11 @@ public class LevelSelector : MonoBehaviour
     
     private GameObject _buttonWrapper;
     private Button _lastChapterButton;
-    private TextMeshProUGUI _lastChapterText;
+    private TextMeshProUGUI _lastChapterTextNumber;
     private Button _nextChapterButton;
     private TextMeshProUGUI _nextChapterText;
+    private TextMeshProUGUI _nextChapterTextNumber;
+    private GameObject _padlockNextChapter;
     private Tween _pathTween;
     private List<GameManager.LevelData> _levelsInChapter;
     
@@ -52,16 +54,16 @@ public class LevelSelector : MonoBehaviour
         _buttonWrapper = GameObject.Find("Levels");
         _levelButtons = new List<GameObject>();
         _lastChapterButton = _lastChapter.GetComponent<Button>();
-        _lastChapterText = _lastChapter.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+        _lastChapterTextNumber = _lastChapter.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
         _nextChapterButton = _nextChapter.GetComponent<Button>();
-        _nextChapterText = _nextChapter.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+        _nextChapterTextNumber = _nextChapter.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+        _padlockNextChapter = _nextChapter.transform.Find("Padlock").gameObject;
+        _nextChapterText = _nextChapter.transform.Find("Chapter").gameObject.GetComponent<TextMeshProUGUI>();
     }
 
     private void Start()
     {
         GenerateUI(GameManager.instance.LastUnlockedLevel.World);
-        
-        //TODO: WIP
         InitAnimateSun();
     }
 
@@ -177,7 +179,7 @@ public class LevelSelector : MonoBehaviour
         {
             _lastChapter.SetActive(true);
             var lastChapter = (World)Enum.Parse(typeof(World), lastChapterName);
-            _lastChapterText.SetText($"{indexChapter - 1}");
+            _lastChapterTextNumber.SetText($"{indexChapter - 1}");
             
             _lastChapterButton.onClick.AddListener(() =>
             {
@@ -191,12 +193,21 @@ public class LevelSelector : MonoBehaviour
 
         string nextChapterName = Enum.GetName(typeof(World), indexChapter+1);
         
+        _nextChapterTextNumber.SetText($"{indexChapter + 1}");
+        
         if (nextChapterName != null)
         {
             _nextChapter.SetActive(true);
-            var nextChapter = (World)Enum.Parse(typeof(World), nextChapterName);
-            _nextChapterText.SetText($"{indexChapter + 1}");
+            _padlockNextChapter.SetActive(false);
+            _nextChapterButton.interactable = true;
             
+            var currentColor = _nextChapterTextNumber.color;
+            var newColor = new Color(currentColor.r, currentColor.g, currentColor.b, 1f);
+            _nextChapterText.faceColor = newColor;
+            _nextChapterTextNumber.faceColor = newColor;
+            
+            var nextChapter = (World)Enum.Parse(typeof(World), nextChapterName);
+
             _nextChapterButton.onClick.AddListener(() =>
             {
                 GenerateUI(nextChapter);
@@ -204,7 +215,12 @@ public class LevelSelector : MonoBehaviour
         }
         else
         {
-            _nextChapter.SetActive(false);
+            _padlockNextChapter.SetActive(true);
+            _nextChapterButton.interactable = false;
+            var currentColor = _nextChapterTextNumber.color;
+            var newColor = new Color(currentColor.r, currentColor.g, currentColor.b, 0.3f);
+            _nextChapterText.faceColor = newColor;
+            _nextChapterTextNumber.faceColor = newColor;
         }
 
         #endregion
