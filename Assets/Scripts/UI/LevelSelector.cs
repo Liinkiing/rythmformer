@@ -18,7 +18,7 @@ public class LevelSelector : MonoBehaviour
     [SerializeField] private GameObject _sunSprite;
     [SerializeField] private GameObject _dummySunSprite;
     [SerializeField] private Material _gradientMaterial;
-    
+
     private GameObject _buttonWrapper;
     private Button _lastChapterButton;
     private TextMeshProUGUI _lastChapterTextNumber;
@@ -182,6 +182,7 @@ public class LevelSelector : MonoBehaviour
         #region Generate last and next chapter buttons
         if (lastChapterName != null)
         {
+            _chapterTitle.gameObject.transform.parent.gameObject.SetActive(true);
             _lastChapter.SetActive(true);
             var lastChapter = (World)Enum.Parse(typeof(World), lastChapterName);
             _lastChapterTextNumber.SetText($"{indexChapter - 1}");
@@ -193,6 +194,7 @@ public class LevelSelector : MonoBehaviour
         }
         else
         {
+            _chapterTitle.gameObject.transform.parent.gameObject.SetActive(false);
             _lastChapter.SetActive(false);
         }
 
@@ -230,7 +232,7 @@ public class LevelSelector : MonoBehaviour
 
         #endregion
         
-        _chapterTitle.SetText($"{(indexChapter > 0 ? "Chapter " + indexChapter : "Prologue")}\n{chapter}");
+        _chapterTitle.SetText($"{(indexChapter > 0 ? "Chapter " + indexChapter : "Prologue")}");
 
         int index = 0;
         foreach (var levelData in _levelsInChapter)
