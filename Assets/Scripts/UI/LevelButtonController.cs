@@ -12,7 +12,6 @@ public class LevelButtonController : MonoBehaviour, ISelectHandler, IDeselectHan
 
     public void OnSelect(BaseEventData data)
     {
-
         int indexSelectedButton = _levelSelectorController._levelButtons.FindIndex(0, o => o == data.selectedObject);
         _levelSelectorController.AnimateSun(indexSelectedButton);
     }

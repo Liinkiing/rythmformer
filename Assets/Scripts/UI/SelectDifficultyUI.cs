@@ -12,10 +12,14 @@ public class SelectDifficultyUI : MonoBehaviour
    {
       if (SaveManager.instance.Data.Difficulty == Difficulty.Chill)
       {
-         _chillButton.Select();
+         UIManager.instance.SetEventSystemsTarget(_chillButton.gameObject);
       } else if (SaveManager.instance.Data.Difficulty == Difficulty.ProGamer)
       {
-         _proGamerButton.Select();
+         UIManager.instance.SetEventSystemsTarget(_proGamerButton.gameObject);
+      }
+      else
+      {
+         UIManager.instance.SetEventSystemsTarget(_chillButton.gameObject);
       }
    }
 
