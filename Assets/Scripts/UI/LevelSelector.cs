@@ -74,28 +74,36 @@ public class LevelSelector : MonoBehaviour
 
     private void InitAnimateSun()
     {
-        List<Vector3> listWayPoints = new List<Vector3>();
-        Rect rect = _buttonWrapper.GetComponent<RectTransform>().rect;
+        if (_levelButtons.Count > 1)
+        {
+            List<Vector3> listWayPoints = new List<Vector3>();
+            Rect rect = _buttonWrapper.GetComponent<RectTransform>().rect;
         
-        var endPositionTarget = _levelButtons[_levelsInChapter.Count-1].transform.localPosition;
-        var endPositionPoint = new Vector3(endPositionTarget.x, endPositionTarget.y + 45);
-        var inControlPoint = new Vector3(rect.center.x, rect.y + rect.height + 80);
-        var outControlPoint = inControlPoint;
+            var endPositionTarget = _levelButtons[_levelsInChapter.Count-1].transform.localPosition;
+            var endPositionPoint = new Vector3(endPositionTarget.x, endPositionTarget.y + 45);
+            var inControlPoint = new Vector3(rect.center.x, rect.y + rect.height + 80);
+            var outControlPoint = inControlPoint;
 
-        listWayPoints.Add(endPositionPoint);
-        listWayPoints.Add(inControlPoint);
-        listWayPoints.Add(outControlPoint);
+            listWayPoints.Add(endPositionPoint);
+            listWayPoints.Add(inControlPoint);
+            listWayPoints.Add(outControlPoint);
 
-        _dummySunSprite.transform.localPosition = _sunSprite.transform.localPosition;
+            _dummySunSprite.transform.localPosition = _sunSprite.transform.localPosition;
 
-        /*
-         * We init a path on a fake gameObject to later use it with DoVirtual.
-         * We never create a new tween, we always use this value of _pathTween
-         */
-        _pathTween = _dummySunSprite.transform
-            .DOLocalPath(listWayPoints.ToArray(), 1f, PathType.CubicBezier);
-        _pathTween.Pause();
-        _pathTween.ForceInit();
+            /*
+             * We init a path on a fake gameObject to later use it with DoVirtual.
+             * We never create a new tween, we always use this value of _pathTween
+             */
+            _pathTween = _dummySunSprite.transform
+                .DOLocalPath(listWayPoints.ToArray(), 1f, PathType.CubicBezier);
+            _pathTween.Pause();
+            _pathTween.ForceInit();
+        }
+        else
+        {
+            _pathTween = null;
+        }
+
     }
 
     public void AnimateSun(int buttonIndex)
@@ -190,6 +198,7 @@ public class LevelSelector : MonoBehaviour
             _lastChapterButton.onClick.AddListener(() =>
             {
                 GenerateUI(lastChapter);
+                InitAnimateSun();
             });
         }
         else
@@ -218,6 +227,7 @@ public class LevelSelector : MonoBehaviour
             _nextChapterButton.onClick.AddListener(() =>
             {
                 GenerateUI(nextChapter);
+                InitAnimateSun();
             });
         }
         else
