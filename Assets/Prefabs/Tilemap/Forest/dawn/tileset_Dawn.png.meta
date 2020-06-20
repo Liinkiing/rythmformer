@@ -1,0 +1,1624 @@
+fileFormatVersion: 2
+guid: b54836b826defa842b472273ea5b35b8
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7985177998706397353
+    second: tileset_Dawn_0
+  - first:
+      213: 4011582703081481406
+    second: tileset_Dawn_1
+  - first:
+      213: 4226272418718312839
+    second: tileset_Dawn_2
+  - first:
+      213: 532428056817526509
+    second: tileset_Dawn_3
+  - first:
+      213: -4109655411260252833
+    second: tileset_Dawn_4
+  - first:
+      213: 440874241630974700
+    second: tileset_Dawn_5
+  - first:
+      213: -3854695287559373930
+    second: tileset_Dawn_6
+  - first:
+      213: -4107646548608285838
+    second: tileset_Dawn_7
+  - first:
+      213: -2664281841770481491
+    second: tileset_Dawn_8
+  - first:
+      213: 1355027699597042715
+    second: tileset_Dawn_9
+  - first:
+      213: 7696482637287461756
+    second: tileset_Dawn_10
+  - first:
+      213: 2243070280917020017
+    second: tileset_Dawn_11
+  - first:
+      213: -7585584445463673593
+    second: tileset_Dawn_12
+  - first:
+      213: 187470714504225862
+    second: tileset_Dawn_13
+  - first:
+      213: 610292913143974159
+    second: tileset_Dawn_14
+  - first:
+      213: -989137824146800897
+    second: tileset_Dawn_15
+  - first:
+      213: -3717064956809885601
+    second: tileset_Dawn_16
+  - first:
+      213: 456842862816653162
+    second: tileset_Dawn_17
+  - first:
+      213: -7170137904575282133
+    second: tileset_Dawn_18
+  - first:
+      213: -7565486922487901981
+    second: tileset_Dawn_19
+  - first:
+      213: 6009869600216713809
+    second: tileset_Dawn_20
+  - first:
+      213: -2324541080438799646
+    second: tileset_Dawn_21
+  - first:
+      213: -4162971355103978469
+    second: tileset_Dawn_22
+  - first:
+      213: 7054091925851482805
+    second: tileset_Dawn_23
+  - first:
+      213: 7844049039408843702
+    second: tileset_Dawn_24
+  - first:
+      213: -7641972836773823907
+    second: tileset_Dawn_25
+  - first:
+      213: -3206688442015009278
+    second: tileset_Dawn_26
+  - first:
+      213: 4788240626137267510
+    second: tileset_Dawn_27
+  - first:
+      213: -4394081090819623656
+    second: tileset_Dawn_28
+  - first:
+      213: -453579155967639797
+    second: tileset_Dawn_29
+  - first:
+      213: -1944521234425533693
+    second: tileset_Dawn_30
+  - first:
+      213: -11552616501964949
+    second: tileset_Dawn_31
+  - first:
+      213: -2084138690663085783
+    second: tileset_Dawn_32
+  - first:
+      213: -6096993261638178539
+    second: tileset_Dawn_33
+  - first:
+      213: -1632158630644780383
+    second: tileset_Dawn_34
+  - first:
+      213: 8667982119559932098
+    second: tileset_Dawn_35
+  - first:
+      213: 1838783158444065790
+    second: tileset_Dawn_36
+  - first:
+      213: 4906423313887515358
+    second: tileset_Dawn_37
+  - first:
+      213: -8030175174295961455
+    second: tileset_Dawn_38
+  - first:
+      213: -370757845387515077
+    second: tileset_Dawn_39
+  - first:
+      213: -5843629988699936305
+    second: tileset_Dawn_40
+  - first:
+      213: -5869422190910768278
+    second: tileset_Dawn_41
+  - first:
+      213: 4283510224008988019
+    second: tileset_Dawn_42
+  - first:
+      213: -4105347510978010271
+    second: tileset_Dawn_43
+  - first:
+      213: -5062848429474169628
+    second: tileset_Dawn_44
+  - first:
+      213: -8555597701292452124
+    second: tileset_Dawn_45
+  - first:
+      213: 5799911046511319237
+    second: tileset_Dawn_46
+  - first:
+      213: 7692652539003609519
+    second: tileset_Dawn_47
+  - first:
+      213: 7861716514510128121
+    second: tileset_Dawn_48
+  - first:
+      213: -2527718388676820251
+    second: tileset_Dawn_49
+  - first:
+      213: 7433471891343254543
+    second: tileset_Dawn_50
+  - first:
+      213: -627404573978338210
+    second: tileset_Dawn_51
+  - first:
+      213: -3197566308421987109
+    second: tileset_Dawn_52
+  - first:
+      213: 9215660485645013965
+    second: tileset_Dawn_53
+  - first:
+      213: -2320221115452690116
+    second: tileset_Dawn_54
+  - first:
+      213: 4735088408269865806
+    second: tileset_Dawn_55
+  - first:
+      213: 7326992761270503151
+    second: tileset_Dawn_56
+  - first:
+      213: -8449111912524782711
+    second: tileset_Dawn_57
+  - first:
+      213: -8166555280805740869
+    second: tileset_Dawn_58
+  - first:
+      213: -7822318312724075531
+    second: tileset_Dawn_59
+  - first:
+      213: 5781062339811070529
+    second: tileset_Dawn_60
+  - first:
+      213: -7090332471661989013
+    second: tileset_Dawn_61
+  - first:
+      213: 1829672315090391542
+    second: tileset_Dawn_62
+  - first:
+      213: -5161063967298560609
+    second: tileset_Dawn_63
+  - first:
+      213: -5590414489384415482
+    second: tileset_Dawn_64
+  - first:
+      213: 5175073444870334185
+    second: tileset_Dawn_65
+  - first:
+      213: -6848535678702131102
+    second: tileset_Dawn_66
+  - first:
+      213: -465335878382923042
+    second: tileset_Dawn_67
+  - first:
+      213: 2806371455672146624
+    second: tileset_Dawn_68
+  - first:
+      213: -7823009699256553894
+    second: tileset_Dawn_69
+  - first:
+      213: -2925793380602442552
+    second: tileset_Dawn_70
+  - first:
+      213: -8768548196782713805
+    second: tileset_Dawn_71
+  - first:
+      213: 5343549062813398584
+    second: tileset_Dawn_72
+  - first:
+      213: 5481740503675887586
+    second: tileset_Dawn_73
+  - first:
+      213: 1500302686062538143
+    second: tileset_Dawn_74
+  - first:
+      213: -5580249022127631880
+    second: tileset_Dawn_75
+  - first:
+      213: -5432756884939636468
+    second: tileset_Dawn_76
+  - first:
+      213: 5953379766789784454
+    second: tileset_Dawn_77
+  - first:
+      213: -9082561254458658151
+    second: tileset_Dawn_78
+  - first:
+      213: 4532404107210352635
+    second: tileset_Dawn_79
+  - first:
+      213: -2959931210101948988
+    second: tileset_Dawn_80
+  - first:
+      213: 7230252504925140042
+    second: tileset_Dawn_81
+  - first:
+      213: -3754110718221910202
+    second: tileset_Dawn_82
+  - first:
+      213: 3014087662582226524
+    second: tileset_Dawn_83
+  - first:
+      213: -1294431001561237860
+    second: tileset_Dawn_84
+  - first:
+      213: -1905609045043776872
+    second: tileset_Dawn_85
+  - first:
+      213: 8884150057310853720
+    second: tileset_Dawn_86
+  - first:
+      213: 5863071036747590927
+    second: tileset_Dawn_87
+  - first:
+      213: 2662411485873243924
+    second: tileset_Dawn_88
+  - first:
+      213: 5619570569021244242
+    second: tileset_Dawn_89
+  - first:
+      213: -7824564094513171198
+    second: tileset_Dawn_90
+  - first:
+      213: 854757487555349470
+    second: tileset_Dawn_91
+  - first:
+      213: -6576108473821107133
+    second: tileset_Dawn_92
+  - first:
+      213: -8666862744387885751
+    second: tileset_Dawn_93
+  - first:
+      213: 8590184804074543107
+    second: tileset_Dawn_94
+  - first:
+      213: -3713485921111810392
+    second: tileset_Dawn_95
+  - first:
+      213: -8885856879962050943
+    second: tileset_Dawn_96
+  - first:
+      213: -3557601248771646960
+    second: tileset_Dawn_97
+  - first:
+      213: 3504925390697365489
+    second: tileset_Dawn_98
+  - first:
+      213: -8678187234854115361
+    second: tileset_Dawn_99
+  - first:
+      213: 8415261464114604589
+    second: tileset_Dawn_100
+  - first:
+      213: 3228057207843404974
+    second: tileset_Dawn_101
+  - first:
+      213: 720005204156131944
+    second: tileset_Dawn_102
+  - first:
+      213: -6973301210811719376
+    second: tileset_Dawn_103
+  - first:
+      213: 3382916539012767445
+    second: tileset_Dawn_104
+  - first:
+      213: 7798796767419418083
+    second: tileset_Dawn_105
+  - first:
+      213: -9190474606214084806
+    second: tileset_Dawn_106
+  - first:
+      213: -3502107042593866445
+    second: tileset_Dawn_107
+  - first:
+      213: -3781254333304984548
+    second: tileset_Dawn_108
+  - first:
+      213: -841472016102630941
+    second: tileset_Dawn_109
+  - first:
+      213: -2774229783675239082
+    second: tileset_Dawn_110
+  - first:
+      213: -2895178113663840858
+    second: tileset_Dawn_111
+  - first:
+      213: -7014149427585522691
+    second: tileset_Dawn_112
+  - first:
+      213: -1678148931690978093
+    second: tileset_Dawn_113
+  - first:
+      213: 8769704435552587657
+    second: tileset_Dawn_114
+  - first:
+      213: -6942488000125421887
+    second: tileset_Dawn_115
+  - first:
+      213: -5753415924836996988
+    second: tileset_Dawn_116
+  - first:
+      213: 1586070541490155450
+    second: tileset_Dawn_117
+  - first:
+      213: -7496541711659373048
+    second: tileset_Dawn_118
+  - first:
+      213: -7219408352723645438
+    second: tileset_Dawn_119
+  - first:
+      213: 1060615075821244399
+    second: tileset_Dawn_120
+  - first:
+      213: 7277913339964024035
+    second: tileset_Dawn_121
+  - first:
+      213: 8341220759123660963
+    second: tileset_Dawn_122
+  - first:
+      213: 3420739205406336743
+    second: tileset_Dawn_123
+  - first:
+      213: 8459062991229539555
+    second: tileset_Dawn_124
+  - first:
+      213: -8603288735407518545
+    second: tileset_Dawn_125
+  - first:
+      213: 1453528054145939350
+    second: tileset_Dawn_126
+  - first:
+      213: 1731271568465172557
+    second: tileset_Dawn_127
+  - first:
+      213: -251637310205510996
+    second: tileset_Dawn_128
+  - first:
+      213: 2162599985913491168
+    second: tileset_Dawn_129
+  - first:
+      213: 6299638886346088079
+    second: tileset_Dawn_130
+  - first:
+      213: 6802946786755332441
+    second: tileset_Dawn_131
+  - first:
+      213: 3805422395038500946
+    second: tileset_Dawn_132
+  - first:
+      213: 324075632204940465
+    second: tileset_Dawn_133
+  - first:
+      213: 3084064908523534719
+    second: tileset_Dawn_134
+  - first:
+      213: -4511580219516541292
+    second: tileset_Dawn_135
+  - first:
+      213: -5867064951983628850
+    second: tileset_Dawn_136
+  - first:
+      213: -6481512238466598338
+    second: tileset_Dawn_137
+  - first:
+      213: 9002552217842841305
+    second: tileset_Dawn_138
+  - first:
+      213: -5702253719050501776
+    second: tileset_Dawn_139
+  - first:
+      213: 3178474561967284138
+    second: tileset_Dawn_140
+  - first:
+      213: 2186795869301662112
+    second: tileset_Dawn_141
+  - first:
+      213: -1156400007446597106
+    second: tileset_Dawn_142
+  - first:
+      213: 7127575966432196506
+    second: tileset_Dawn_143
+  - first:
+      213: 4082291599299631972
+    second: tileset_Dawn_144
+  - first:
+      213: 7527008343617636148
+    second: tileset_Dawn_145
+  - first:
+      213: -1032915028012953208
+    second: tileset_Dawn_146
+  - first:
+      213: -4902732187490618818
+    second: tileset_Dawn_147
+  - first:
+      213: -2296403873724604995
+    second: tileset_Dawn_148
+  - first:
+      213: 1019417554055370608
+    second: tileset_Dawn_149
+  - first:
+      213: -8095628138808471330
+    second: tileset_Dawn_150
+  - first:
+      213: -2109517583194048058
+    second: tileset_Dawn_151
+  - first:
+      213: 14643667152602700
+    second: tileset_Dawn_152
+  - first:
+      213: 4796364105610364350
+    second: tileset_Dawn_153
+  - first:
+      213: -893178430744359038
+    second: tileset_Dawn_154
+  - first:
+      213: -5153525062715554977
+    second: tileset_Dawn_155
+  - first:
+      213: 1166573552456205515
+    second: tileset_Dawn_156
+  - first:
+      213: 1233361152163021885
+    second: tileset_Dawn_157
+  - first:
+      213: -2275333539815769810
+    second: tileset_Dawn_158
+  - first:
+      213: 1047819007772214981
+    second: tileset_Dawn_159
+  - first:
+      213: -6461038335510450339
+    second: tileset_Dawn_160
+  - first:
+      213: -7020125527621230881
+    second: tileset_Dawn_161
+  - first:
+      213: 6809527252528221056
+    second: tileset_Dawn_162
+  - first:
+      213: -6175229635215907960
+    second: tileset_Dawn_163
+  - first:
+      213: -8925655412132437798
+    second: tileset_Dawn_164
+  - first:
+      213: 4359103360739667624
+    second: tileset_Dawn_165
+  - first:
+      213: -5117639436514345366
+    second: tileset_Dawn_166
+  - first:
+      213: -8121913900631638664
+    second: tileset_Dawn_167
+  - first:
+      213: 101748440681436635
+    second: tileset_Dawn_168
+  - first:
+      213: 1117544926839250682
+    second: tileset_Dawn_169
+  - first:
+      213: -5397765517383909393
+    second: tileset_Dawn_170
+  - first:
+      213: -8106684188628878178
+    second: tileset_Dawn_171
+  - first:
+      213: -7513484892295857155
+    second: tileset_Dawn_172
+  - first:
+      213: 3217576910106686292
+    second: tileset_Dawn_173
+  - first:
+      213: -5861825703326165876
+    second: tileset_Dawn_174
+  - first:
+      213: -6959486703453019013
+    second: tileset_Dawn_175
+  - first:
+      213: -2086953907389285235
+    second: tileset_Dawn_176
+  - first:
+      213: -662446437984184996
+    second: tileset_Dawn_177
+  - first:
+      213: 489763356384068865
+    second: tileset_Dawn_178
+  - first:
+      213: -5121721311170720876
+    second: tileset_Dawn_179
+  - first:
+      213: -2092529436325926073
+    second: tileset_Dawn_180
+  - first:
+      213: -4625047315663527152
+    second: tileset_Dawn_181
+  - first:
+      213: 993937877800698497
+    second: tileset_Dawn_182
+  - first:
+      213: 6846227032891641804
+    second: tileset_Dawn_183
+  - first:
+      213: 6134721117904643651
+    second: tileset_Dawn_184
+  - first:
+      213: -7056878349799842635
+    second: tileset_Dawn_185
+  - first:
+      213: 3105872776595492856
+    second: tileset_Dawn_186
+  - first:
+      213: -8977869150666347222
+    second: tileset_Dawn_187
+  - first:
+      213: 996640619256433714
+    second: tileset_Dawn_188
+  - first:
+      213: 2973852594153942439
+    second: tileset_Dawn_189
+  - first:
+      213: -7675641052211177733
+    second: tileset_Dawn_190
+  - first:
+      213: 5656720805101415704
+    second: tileset_Dawn_191
+  - first:
+      213: -9146669257673888379
+    second: tileset_Dawn_192
+  - first:
+      213: -5033125108133181910
+    second: tileset_Dawn_193
+  - first:
+      213: -3061048802399690814
+    second: tileset_Dawn_194
+  - first:
+      213: 1917344485516632634
+    second: tileset_Dawn_195
+  - first:
+      213: -2019278201302730538
+    second: tileset_Dawn_196
+  - first:
+      213: -1353091216840995123
+    second: tileset_Dawn_197
+  - first:
+      213: -1750377456868252131
+    second: tileset_Dawn_198
+  - first:
+      213: 1614207896606268452
+    second: tileset_Dawn_199
+  - first:
+      213: 2546955310591472896
+    second: tileset_Dawn_200
+  - first:
+      213: -8876104469623388516
+    second: tileset_Dawn_201
+  - first:
+      213: -4128276591745831825
+    second: tileset_Dawn_202
+  - first:
+      213: -3162447838785339981
+    second: tileset_Dawn_203
+  - first:
+      213: -6064532422928069172
+    second: tileset_Dawn_204
+  - first:
+      213: 9118459409607377923
+    second: tileset_Dawn_205
+  - first:
+      213: -9036162689409553490
+    second: tileset_Dawn_206
+  - first:
+      213: 291644115604368491
+    second: tileset_Dawn_207
+  - first:
+      213: 7119458925008945164
+    second: tileset_Dawn_208
+  - first:
+      213: 1960186913277913656
+    second: tileset_Dawn_209
+  - first:
+      213: -2650517299458397985
+    second: tileset_Dawn_210
+  - first:
+      213: -2890325718080179005
+    second: tileset_Dawn_211
+  - first:
+      213: -1326509637323840228
+    second: tileset_Dawn_212
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: tileset_Dawn_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1408
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7896cb18f5cb6aa30800000000000000
+      internalID: 4226272418718312839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_3
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 1408
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de66f0b2f70936700800000000000000
+      internalID: 532428056817526509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_4
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 1408
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5d12966d2297f6c0800000000000000
+      internalID: -4109655411260252833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_5
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 1408
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce2b80379cc4e1600800000000000000
+      internalID: 440874241630974700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_6
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 1408
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69bb6ab1f0f518ac0800000000000000
+      internalID: -3854695287559373930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_7
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 1408
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 273085f2a35bef6c0800000000000000
+      internalID: -4107646548608285838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_8
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 1408
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da83fb7e7c1960bd0800000000000000
+      internalID: -2664281841770481491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1232
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b14eb4773860ec210800000000000000
+      internalID: 1355027699597042715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_10
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 1232
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c731b7f4e266fca60800000000000000
+      internalID: 7696482637287461756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 1232
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17d6b44498cf02f10800000000000000
+      internalID: 2243070280917020017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_12
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 1232
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 705c86213279ab690800000000000000
+      internalID: -7585584445463673593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_13
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 1232
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64420df1f970a9200800000000000000
+      internalID: 187470714504225862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_14
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 1232
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0982e8cb22387800800000000000000
+      internalID: 610292913143974159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1056
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffeb3ddb360e542f0800000000000000
+      internalID: -989137824146800897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_16
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 1056
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f584b4a9d155a6cc0800000000000000
+      internalID: -3717064956809885601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_17
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 1056
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6feb5cc928075600800000000000000
+      internalID: 456842862816653162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_18
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 1056
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b240a37909d8e7c90800000000000000
+      internalID: -7170137904575282133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_19
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 1056
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e0de384abdf10790800000000000000
+      internalID: -7565486922487901981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_20
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 1056
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15a065b4f88576350800000000000000
+      internalID: 6009869600216713809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_21
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 1056
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e284aa04329dbfd0800000000000000
+      internalID: -2324541080438799646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_22
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 880
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1c96e0eb972a36c0800000000000000
+      internalID: -4162971355103978469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_23
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 880
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ba245d7b3b25e160800000000000000
+      internalID: 7054091925851482805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_24
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 880
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bb45b2ba09abdc60800000000000000
+      internalID: 7844049039408843702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_25
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 880
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5a79e0a13242f590800000000000000
+      internalID: -7641972836773823907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_26
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 880
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 206385c0add8f73d0800000000000000
+      internalID: -3206688442015009278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_27
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 880
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63d7104fa7f337240800000000000000
+      internalID: 4788240626137267510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_28
+      rect:
+        serializedVersion: 2
+        x: 1232
+        y: 880
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8157f6b57861503c0800000000000000
+      internalID: -4394081090819623656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_29
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 704
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0ff60b292094b9f0800000000000000
+      internalID: -453579155967639797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_30
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 704
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30bacd36d3ca305e0800000000000000
+      internalID: -1944521234425533693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_31
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 704
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6f8c2dd4f4f6dff0800000000000000
+      internalID: -11552616501964949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_32
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 704
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 929016037e6a313e0800000000000000
+      internalID: -2084138690663085783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_33
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 704
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5192b1a8ee0236ba0800000000000000
+      internalID: -6096993261638178539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_34
+      rect:
+        serializedVersion: 2
+        x: 1232
+        y: 704
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a2745b7f586959e0800000000000000
+      internalID: -1632158630644780383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_35
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 704
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c8aec310dbda4870800000000000000
+      internalID: 8667982119559932098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 526
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef387025a8ba48910800000000000000
+      internalID: 1838783158444065790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_37
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 528
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed2d5f5320e171440800000000000000
+      internalID: 4906423313887515358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_38
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 528
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 190cde389361f8090800000000000000
+      internalID: -8030175174295961455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_39
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 528
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3becf734bdcadaf0800000000000000
+      internalID: -370757845387515077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 352
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc968b47c7147eea0800000000000000
+      internalID: -5843629988699936305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_41
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 352
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6bf7f96d9f9b8ea0800000000000000
+      internalID: -5869422190910768278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_42
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 352
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3754fcd8ad5127b30800000000000000
+      internalID: 4283510224008988019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_Dawn_43
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 176
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1632f989030e607c0800000000000000
+      internalID: -4105347510978010271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
