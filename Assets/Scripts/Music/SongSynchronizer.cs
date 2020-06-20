@@ -15,6 +15,17 @@ public class SongSynchronizer : MonoBehaviour
         End
     }
 
+    public enum PossibleMeasure
+    {
+        FourthStep,
+        HalfStep,
+        Step,
+        EveryTwoStep,
+        FirstAndThirdStep,
+        HalfBeat,
+        Beat
+    }
+
     public enum ThresholdBeatEvents
     {
         Step,
@@ -58,8 +69,9 @@ public class SongSynchronizer : MonoBehaviour
     [SerializeField] private bool playMetronome;
 
     [SerializeField] private AudioClip metronome;
-    
-    [Space, Header("Options"), Tooltip("Used to PlayScheduled the song to be on the exact dspTime and to avoid unpredictable behaviours")]
+
+    [Space, Header("Options"),
+     Tooltip("Used to PlayScheduled the song to be on the exact dspTime and to avoid unpredictable behaviours")]
     public float delay = 2f;
 
     private bool _ticked;
@@ -71,7 +83,7 @@ public class SongSynchronizer : MonoBehaviour
     private int _measure;
     private int _quarters;
     private LevelManager _levelManager;
-    
+
     [SerializeField] private bool runInBackground = true;
 
     private void Awake()
@@ -150,22 +162,24 @@ public class SongSynchronizer : MonoBehaviour
         Tween(Sources.Bass);
         Tween(Sources.Melody);
         Tween(Sources.Drums);
-        
+
         void Tween(AudioSource source)
         {
             AudioLowPassFilter sourceFilter = source.GetComponent<AudioLowPassFilter>();
             int normalCutoffFrequency = 22000;
             int pauseCutoffFrequency = 1500;
-            
+
             float normalResonance = 1;
             float pauseResonance = 1.5f;
 
             DOTween
-                .To(() => sourceFilter.cutoffFrequency, x => sourceFilter.cutoffFrequency = x, pauseState ? pauseCutoffFrequency : normalCutoffFrequency, UIManager.instance.transitionUIDuration)
+                .To(() => sourceFilter.cutoffFrequency, x => sourceFilter.cutoffFrequency = x,
+                    pauseState ? pauseCutoffFrequency : normalCutoffFrequency, UIManager.instance.transitionUIDuration)
                 .SetEase(Ease.InOutQuint);
-            
+
             DOTween
-                .To(() => sourceFilter.lowpassResonanceQ, x => sourceFilter.lowpassResonanceQ = x, pauseState ? pauseResonance : normalResonance, UIManager.instance.transitionUIDuration)
+                .To(() => sourceFilter.lowpassResonanceQ, x => sourceFilter.lowpassResonanceQ = x,
+                    pauseState ? pauseResonance : normalResonance, UIManager.instance.transitionUIDuration)
                 .SetEase(Ease.InOutQuint);
         }
     }
