@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using HttpModel;
 using TMPro;
+using UnityEngine.UI;
 
 public class LevelButtonController : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
@@ -13,6 +15,8 @@ public class LevelButtonController : MonoBehaviour, ISelectHandler, IDeselectHan
     [SerializeField] private CanvasGroup canvasContainerTimer;
     [SerializeField] private TextMeshProUGUI localTimerText;
     [SerializeField] private TextMeshProUGUI worldTimerText;
+    [SerializeField] private List<Sprite> stampList;
+    [SerializeField] private Image stamp;
     
     private LevelSelector _levelSelectorController;
     private float _bestLocalScore;
@@ -26,7 +30,19 @@ public class LevelButtonController : MonoBehaviour, ISelectHandler, IDeselectHan
     private void Start()
     {
         _bestLocalScore = GameManager.instance.GetLocalScore(world, level).Timer;
-        
+
+        if (_bestLocalScore > 0)
+        {
+            var index = Array.IndexOf(Enum.GetValues(typeof(Level)), level);
+            stamp.sprite = stampList[index];
+            
+            stamp.gameObject.SetActive(true);
+        }
+        else
+        {
+            stamp.gameObject.SetActive(false);
+        }
+
         LeaderboardManager.instance.FetchBestTimerForLevel(world, level)
             .OnError(response => Debug.LogError(response.Text))
             .OnSuccess(

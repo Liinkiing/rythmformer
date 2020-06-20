@@ -247,7 +247,7 @@ public class LevelSelector : MonoBehaviour
         int index = 0;
         foreach (var levelData in _levelsInChapter)
         {
-            GameObject button = CreateButton(levelData.Level, index);
+            GameObject button = CreateButton(chapter, levelData.Level, index);
             button.GetComponent<LevelButtonData>().FillFromLevelData(levelData);
             button.GetComponent<Button>().onClick.AddListener(() =>
             {
@@ -285,7 +285,7 @@ public class LevelSelector : MonoBehaviour
         }
     }
 
-    private GameObject CreateButton(Level level, int index)
+    private GameObject CreateButton(World world, Level level, int index)
     {
         Rect rect = _buttonWrapper.GetComponent<RectTransform>().rect;
 
@@ -309,7 +309,7 @@ public class LevelSelector : MonoBehaviour
         button.GetComponentInChildren<TextMeshProUGUI>().text = level.ToString();
         
         LevelButtonController buttonController = button.GetComponent<LevelButtonController>();
-        buttonController.world = GameManager.instance.LastUnlockedLevel.World;
+        buttonController.world = world;
         buttonController.level = level;
         
         return button;
