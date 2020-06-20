@@ -1,19 +1,19 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Experimental.Rendering.Universal;
 
-[RequireComponent(typeof(SpriteRenderer))]
-public class RythmColor : MonoBehaviour
+public class RythmAnimator : MonoBehaviour
 {
     private SongSynchronizer _synchronizer;
-    private SpriteRenderer _renderer;
-    private Color initialColor;
-    [SerializeField] private Color desiredColor = Color.black;
+    private Animator _animator;
     [SerializeField] private SongSynchronizer.PossibleMeasure measure = SongSynchronizer.PossibleMeasure.Step;
-    [SerializeField] private float TweenDuration = 0.2f;
+    [SerializeField] private string AnimationToTrigger;
+    
+    private void Awake()
+    {
+        _synchronizer = Utils.FindObjectOfTypeOrThrow<SongSynchronizer>();
+        _animator = GetComponent<Animator>();
+    }
 
     private void OnEnable()
     {
@@ -73,13 +73,6 @@ public class RythmColor : MonoBehaviour
 
     private void OnMeasure(SongSynchronizer sender, EventArgs evt)
     {
-        if (_renderer.color == initialColor)
-        {
-            _renderer.DOColor(desiredColor, TweenDuration);
-        }
-        else
-        {
-            _renderer.DOColor(initialColor, TweenDuration);
-        }
+        _animator.SetTrigger(AnimationToTrigger);
     }
 }

@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Experimental.Rendering.Universal;
 
 public class RythmScaler : MonoBehaviour
 {
     private SongSynchronizer _synchronizer;
     private Vector3 initialScale;
     [SerializeField] private Vector3 desiredScale = new Vector3(0.5f, 0.5f);
+    [SerializeField] private SongSynchronizer.PossibleMeasure measure = SongSynchronizer.PossibleMeasure.Step;
+    [SerializeField] private float TweenDuration = 0.2f;
 
     private void Awake()
     {
@@ -19,23 +18,69 @@ public class RythmScaler : MonoBehaviour
 
     private void OnEnable()
     {
-        _synchronizer.Step += OnHalfBeat;
+        switch (measure)
+        {
+            case SongSynchronizer.PossibleMeasure.FourthStep:
+                _synchronizer.FourthStep += OnMeasure;
+                break;
+            case SongSynchronizer.PossibleMeasure.HalfStep:
+                _synchronizer.HalfStep += OnMeasure;
+                break;
+            case SongSynchronizer.PossibleMeasure.Step:
+                _synchronizer.Step += OnMeasure;
+                break;
+            case SongSynchronizer.PossibleMeasure.EveryTwoStep:
+                _synchronizer.EveryTwoStep += OnMeasure;
+                break;
+            case SongSynchronizer.PossibleMeasure.FirstAndThirdStep:
+                _synchronizer.FirstAndThirdStep += OnMeasure;
+                break;
+            case SongSynchronizer.PossibleMeasure.HalfBeat:
+                _synchronizer.HalfBeat += OnMeasure;
+                break;
+            case SongSynchronizer.PossibleMeasure.Beat:
+                _synchronizer.Beat += OnMeasure;
+                break;
+        }
     }
 
     private void OnDisable()
     {
-        _synchronizer.Step -= OnHalfBeat;
+        switch (measure)
+        {
+            case SongSynchronizer.PossibleMeasure.FourthStep:
+                _synchronizer.FourthStep -= OnMeasure;
+                break;
+            case SongSynchronizer.PossibleMeasure.HalfStep:
+                _synchronizer.HalfStep -= OnMeasure;
+                break;
+            case SongSynchronizer.PossibleMeasure.Step:
+                _synchronizer.Step -= OnMeasure;
+                break;
+            case SongSynchronizer.PossibleMeasure.EveryTwoStep:
+                _synchronizer.EveryTwoStep -= OnMeasure;
+                break;
+            case SongSynchronizer.PossibleMeasure.FirstAndThirdStep:
+                _synchronizer.FirstAndThirdStep -= OnMeasure;
+                break;
+            case SongSynchronizer.PossibleMeasure.HalfBeat:
+                _synchronizer.HalfBeat -= OnMeasure;
+                break;
+            case SongSynchronizer.PossibleMeasure.Beat:
+                _synchronizer.Beat -= OnMeasure;
+                break;
+        }
     }
 
-    private void OnHalfBeat(SongSynchronizer sender, EventArgs evt)
+    private void OnMeasure(SongSynchronizer sender, EventArgs evt)
     {
         if (transform.localScale == initialScale)
         {
-            transform.DOScale(desiredScale, 0.2f);
+            transform.DOScale(desiredScale, TweenDuration);
         }
         else
         {
-            transform.DOScale(initialScale, 0.2f);
+            transform.DOScale(initialScale, TweenDuration);
         }
     }
 }
