@@ -194,6 +194,11 @@ public class UIManager : MonoSingleton<UIManager>
         Application.Quit();
     }
 
+    public string FormatTimer(float timer)
+    {
+        return timer.ToString("0.000");
+    }
+
     protected virtual void OnSchemeChanged(UIManager sender, BindingScheme scheme, string path)
     {
         SchemeChanged?.Invoke(sender, scheme, path);
