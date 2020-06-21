@@ -14,7 +14,14 @@ public class RythmColor : MonoBehaviour
     [SerializeField] private Color desiredColor = Color.black;
     [SerializeField] private SongSynchronizer.PossibleMeasure measure = SongSynchronizer.PossibleMeasure.Step;
     [SerializeField] private float TweenDuration = 0.2f;
-
+  
+    private void Awake()
+    {
+        _renderer = GetComponent<SpriteRenderer>();
+        _synchronizer = Utils.FindObjectOfTypeOrThrow<SongSynchronizer>();
+        initialColor = _renderer.color;
+    }
+    
     private void OnEnable()
     {
         switch (measure)

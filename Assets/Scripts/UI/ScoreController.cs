@@ -6,19 +6,19 @@ public class ScoreController : MonoBehaviour
     #region Fields
     
     [SerializeField] private CharacterController2D player;
-    [SerializeField] private TextMeshProUGUI uiScore;
+    [SerializeField] private SpriteRenderer uiScore;
+    [SerializeField] private Sprite perfect;
+    [SerializeField] private Sprite nice;
+    [SerializeField] private Sprite failed;
     
-    private Color32 _green = new Color32(102,187,106, 255);
-    private Color32 _yellow = new Color32(198, 255, 0, 255);
-    private Color32 _red = new Color32(216, 67, 21, 255);
-    private Transform textReference;
+    private Transform spriteReference;
 
     #endregion
 
     private void Awake()
     {
         player.ActionPerformed += PlayerOnActionPerformed;
-        textReference = GameObject.Find("TextScore").transform;
+        spriteReference = GameObject.Find("SpriteScore").transform;
     }
 
     private void OnDestroy()
@@ -28,25 +28,24 @@ public class ScoreController : MonoBehaviour
 
     private void PlayerOnActionPerformed(CharacterController2D sender, CharacterController2D.OnActionEventArgs action)
     {
-        TextMeshProUGUI text = Instantiate(uiScore, textReference.position, textReference.transform.rotation);
-        text.enabled = false;
-        text.transform.SetParent(transform);
-        text.transform.localScale = new Vector3(1,1,1);
+        var spriteRenderer = Instantiate(uiScore, spriteReference.transform.position, spriteReference.transform.rotation);
+        spriteRenderer.enabled = false;
+        spriteRenderer.transform.SetParent(transform);
+        spriteRenderer.transform.localScale = new Vector3(80f,80f,1);
 
         switch (action.Score)
         {
             case SongSynchronizer.EventScore.Perfect:
-                text.faceColor = _green;
+                spriteRenderer.sprite = perfect;
                 break;
             case SongSynchronizer.EventScore.Nice:
-                text.faceColor = _yellow;
+                spriteRenderer.sprite = nice;
                 break;
             case SongSynchronizer.EventScore.Failed:
-                text.faceColor = _red;
+                spriteRenderer.sprite = failed;
                 break;
         }
 
-        text.SetText(action.Score.ToString());
-        text.enabled = true;
+        spriteRenderer.enabled = true;
     }
 }

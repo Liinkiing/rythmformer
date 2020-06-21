@@ -234,6 +234,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void UpdateLastUnlockedLevel()
     {
+        if (Levels == null || Levels.Count == 0) return;
         LevelData localLastUnlockedLevel = Levels[0];
 
         foreach (var levelData in Levels)
