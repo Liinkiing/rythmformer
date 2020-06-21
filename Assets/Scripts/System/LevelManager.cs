@@ -17,6 +17,9 @@ public class LevelManager : MonoBehaviour
         public World World;
         public Level Level;
         public FloorType Floor;
+
+        public World NextWorld;
+        public Level NextLevel;
     }
 
     public LevelConfig Config = new LevelConfig()

@@ -26,7 +26,7 @@ public class LevelEndUI : MonoBehaviour
     private void Start()
     {
         _levelManager.FinishLevel();
-        GameManager.instance.UnlockLevel(_levelManager.Config.World, _levelManager.Config.Level);
+        GameManager.instance.UnlockLevel(_levelManager.Config.NextWorld, _levelManager.Config.NextLevel);
         var localScore = GameManager.instance.GetLocalScore(_levelManager.Config.World, _levelManager.Config.Level);
         var hasBestTimer = (Math.Abs(localScore.Timer) < 0.1 || _levelManager.TimeElapsed < localScore.Timer) &&
                            GameManager.instance.Difficulty == Difficulty.ProGamer;
@@ -51,7 +51,9 @@ public class LevelEndUI : MonoBehaviour
         UIManager.instance.SetEventSystemsTarget(_continueButton);
         
         var index = Array.IndexOf(Enum.GetValues(typeof(Level)), _levelManager.Config.Level);
+        Debug.Log($"Choosing stamp {index}");
         stamp.sprite = UIManager.instance.stampList[index];
+        Debug.Log(UIManager.instance.stampList[index]);
         stamp.gameObject.SetActive(true);
     }
 }

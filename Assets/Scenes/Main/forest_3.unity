@@ -1277,6 +1277,16 @@ PrefabInstance:
       propertyPath: Config.Floor
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -13142228004113059, guid: b2765cb4178464745acfdfceb0aeb5aa,
+        type: 3}
+      propertyPath: Config.NextWorld
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -13142228004113059, guid: b2765cb4178464745acfdfceb0aeb5aa,
+        type: 3}
+      propertyPath: Config.NextLevel
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5290843127891230754, guid: b2765cb4178464745acfdfceb0aeb5aa,
         type: 3}
       propertyPath: m_Name
