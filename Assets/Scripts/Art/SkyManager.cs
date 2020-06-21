@@ -19,6 +19,8 @@ public class SkyManager : MonoBehaviour
     [SerializeField] private Color32 _gradientColorTopBlue;
     [SerializeField] private Color32 _gradientColorBottomBlue;
     
+    private Material _cloneMaterial;
+    
     #endregion
     
     #region ShaderProertiesIDs
@@ -32,10 +34,13 @@ public class SkyManager : MonoBehaviour
 
     void Awake()
     {
-        _skyMaterial.SetColor(GradientColorTop, _gradientColorTop);
-        _skyMaterial.SetColor(GradientColorBottom, _gradientColorBottom);
+        _cloneMaterial = new Material(_skyMaterial);
+        GetComponent<SpriteRenderer>().material = _cloneMaterial;
+        
+        _cloneMaterial.SetColor(GradientColorTop, _gradientColorTop);
+        _cloneMaterial.SetColor(GradientColorBottom, _gradientColorBottom);
 
-        _skyMaterial.SetFloat(RadialScale, gradientRadius);
-        _skyMaterial.SetVector(Position, gradientPosition);
+        _cloneMaterial.SetFloat(RadialScale, gradientRadius);
+        _cloneMaterial.SetVector(Position, gradientPosition);
     }
 }

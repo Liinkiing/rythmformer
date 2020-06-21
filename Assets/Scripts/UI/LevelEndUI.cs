@@ -35,14 +35,14 @@ public class LevelEndUI : MonoBehaviour
                 new LevelScoreData() {Score = 0, Timer = _levelManager.TimeElapsed});
         }
 
-        _localTimeText.text = _localTimeText.text.Replace("{TIME}", _levelManager.TimeElapsed.ToString("0.000"));
+        _localTimeText.text = _localTimeText.text.Replace("{TIME}", UIManager.instance.FormatTimer(_levelManager.TimeElapsed));
         LeaderboardManager.instance.FetchBestTimerForLevel(_levelManager.Config.World, _levelManager.Config.Level)
             .OnError(response => Debug.LogError(response.Text))
             .OnSuccess(
                 response =>
                 {
                     var entry = JsonUtility.FromJson<ScoreEntry>(response.Text);
-                    _worldTimeText.text = _worldTimeText.text.Replace("{TIME}", entry.timer.ToString("0.000"));
+                    _worldTimeText.text = _worldTimeText.text.Replace("{TIME}", UIManager.instance.FormatTimer(entry.timer));
                 })
             .Send();
 
