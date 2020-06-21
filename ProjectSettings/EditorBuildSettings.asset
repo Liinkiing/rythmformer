@@ -18,20 +18,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Main/LevelSelector.unity
     guid: b60bad62e529e43ed8e534dd9589e3c1
   - enabled: 1
-    path: Assets/Scenes/Omar/Prototype Omar.unity
-    guid: 2b616a033679b174aabaa3f72c189f00
-  - enabled: 1
-    path: Assets/Scenes/robin/Prototype Robin.unity
-    guid: 21731142e41a444e69f7597f1e7a4e24
-  - enabled: 1
-    path: Assets/Scenes/Omar/forest_noon.unity
-    guid: 757fa29f62951f24b864b241b633c439
-  - enabled: 1
-    path: Assets/Scenes/Omar/forest_evening.unity
-    guid: 0448e4a596f295042b851282c33c1e69
-  - enabled: 1
     path: Assets/Scenes/Omar/castle_tutorial.unity
     guid: a5dfc6c5199803148925e986c65cc6d3
+  - enabled: 1
+    path: Assets/Scenes/Omar/forest_evening.unity
+    guid: fd8863fd7914209469bd483bc9dec7e0
+  - enabled: 1
+    path: Assets/Scenes/Omar/forest_noon.unity
+    guid: d8f99e8d14971684fb034d86a0576abe
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 490d09f96a57bf643840772a85a17873,
       type: 2}
