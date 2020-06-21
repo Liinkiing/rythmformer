@@ -12,6 +12,7 @@ public class LevelEndUI : MonoBehaviour
     [SerializeField] private GameObject _scoreBox;
     [SerializeField] private GameObject _highscoreContainer;
     [SerializeField] private VerticalLayoutGroup _verticalLayout;
+    [SerializeField] private Image stamp;
     private LevelManager _levelManager;
 
     private void Awake()
@@ -47,5 +48,9 @@ public class LevelEndUI : MonoBehaviour
             .Send();
 
         UIManager.instance.SetEventSystemsTarget(_continueButton);
+        
+        var index = Array.IndexOf(Enum.GetValues(typeof(Level)), _levelManager.Config.Level);
+        stamp.sprite = UIManager.instance.stampList[index];
+        stamp.gameObject.SetActive(true);
     }
 }
