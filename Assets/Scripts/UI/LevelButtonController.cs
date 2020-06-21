@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -15,7 +14,6 @@ public class LevelButtonController : MonoBehaviour, ISelectHandler, IDeselectHan
     [SerializeField] private CanvasGroup canvasContainerTimer;
     [SerializeField] private TextMeshProUGUI localTimerText;
     [SerializeField] private TextMeshProUGUI worldTimerText;
-    [SerializeField] private List<Sprite> stampList;
     [SerializeField] private Image stamp;
     
     private LevelSelector _levelSelectorController;
@@ -34,7 +32,7 @@ public class LevelButtonController : MonoBehaviour, ISelectHandler, IDeselectHan
         if (_bestLocalScore > 0)
         {
             var index = Array.IndexOf(Enum.GetValues(typeof(Level)), level);
-            stamp.sprite = stampList[index];
+            stamp.sprite = UIManager.instance.stampList[index];
 
             stamp.gameObject.SetActive(true);
         }

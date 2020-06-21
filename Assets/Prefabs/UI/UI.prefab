@@ -2939,6 +2939,7 @@ MonoBehaviour:
   _scoreBox: {fileID: 1470769394279996223}
   _highscoreContainer: {fileID: 3243438293871657439}
   _verticalLayout: {fileID: 1039761367341907580}
+  stamp: {fileID: 6925540314777539013}
 --- !u!1 &4672842217293696767
 GameObject:
   m_ObjectHideFlags: 0
@@ -5048,6 +5049,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionUIDuration: 0.8
+  stampList:
+  - {fileID: 21300000, guid: eaabdd3c61dd1c74db4a86ae6825ee9b, type: 3}
+  - {fileID: 21300000, guid: dc3ab262fef5fbc47a2d29948e5b140d, type: 3}
+  - {fileID: 21300000, guid: e464c14e3b6e30c46b2d12fade57a44c, type: 3}
+  - {fileID: 21300000, guid: 37846229f4daa4246b3b670930b1d263, type: 3}
+  - {fileID: 21300000, guid: c4f6aebafe030b14eb208ee4c3daebc3, type: 3}
   _sceneTransition: {fileID: 7676323303251287605}
   levelUI: {fileID: 434687983862030583}
   levelUICanvasGroup: {fileID: 7972385761628150428}

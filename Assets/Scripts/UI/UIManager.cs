@@ -24,6 +24,7 @@ public enum GameAction
 public class UIManager : MonoSingleton<UIManager>
 {
     public float transitionUIDuration = 0.8f;
+    public List<Sprite> stampList;
     [SerializeField] private GameObject _sceneTransition;
     private PlayerInput _input;
     private int _transitionSequenceID;
