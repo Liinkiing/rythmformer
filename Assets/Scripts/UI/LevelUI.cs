@@ -7,12 +7,7 @@ public class LevelUI : MonoBehaviour
 {
     [SerializeField] private GameObject _pauseContainer;
     [SerializeField] private Button _continueButton;
-    [SerializeField] private Button _scoreboardButton;
     [SerializeField] private TextMeshProUGUI _UITimer;
-    [SerializeField] private GameObject _levelUI;
-    [SerializeField] private CanvasGroup _levelUICanvasGroup;
-    [SerializeField] private GameObject _levelEndUI;
-    [SerializeField] private CanvasGroup _levelEndUICanvasGroup;
     private CanvasGroup _pauseCanvas;
     private LevelManager _levelManager;
 
@@ -26,15 +21,6 @@ public class LevelUI : MonoBehaviour
         _pauseCanvas.interactable = false;
 
         _continueButton.onClick.AddListener(() => { _levelManager.OnLevelPause?.Invoke(); });
-
-        _scoreboardButton.onClick.AddListener(() =>
-        {
-            UIManager.instance.SetUIContainerStateWithInternalNavigation(
-                _levelUI,
-                _levelUICanvasGroup,
-                _levelEndUI,
-                _levelEndUICanvasGroup);
-        });
     }
 
     private void Update()
