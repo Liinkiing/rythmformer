@@ -2165,6 +2165,16 @@ PrefabInstance:
       propertyPath: _parallaxFactor
       value: -0.08
       objectReference: {fileID: 0}
+    - target: {fileID: 7459964569827998932, guid: 0405917a43adc004b808015857a28c9b,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1782305431
+      objectReference: {fileID: 0}
+    - target: {fileID: 7459964569827998932, guid: 0405917a43adc004b808015857a28c9b,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7459964569827998933, guid: 0405917a43adc004b808015857a28c9b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2957,6 +2967,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: the_magic_forest_noon_foreground_bush_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6278398098491985509, guid: b143eff583bf4c941980d1417010bf32,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1782305431
+      objectReference: {fileID: 0}
+    - target: {fileID: 6278398098491985509, guid: b143eff583bf4c941980d1417010bf32,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b143eff583bf4c941980d1417010bf32, type: 3}
@@ -8274,6 +8294,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: the_magic_forest_noon_foreground_bush_2
       objectReference: {fileID: 0}
+    - target: {fileID: 4733771758688363892, guid: 0c79a90edebcb22488847cc29a3e00c4,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1782305431
+      objectReference: {fileID: 0}
+    - target: {fileID: 4733771758688363892, guid: 0c79a90edebcb22488847cc29a3e00c4,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4733771758688363893, guid: 0c79a90edebcb22488847cc29a3e00c4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12837,7 +12867,7 @@ PrefabInstance:
     - target: {fileID: 8972568772480668524, guid: a3e4a899474da4d21b6ab8f097036ec4,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Scenes/Omar/forest_2
+      value: Scenes/Main/forest_3
       objectReference: {fileID: 0}
     - target: {fileID: 8972568772480668531, guid: a3e4a899474da4d21b6ab8f097036ec4,
         type: 3}
