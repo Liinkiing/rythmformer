@@ -1174,7 +1174,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -762.51306}
+  m_AnchoredPosition: {x: 960, y: -762.4445}
   m_SizeDelta: {x: 1000, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &984337383658523430
@@ -2861,7 +2861,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 614, y: -493.70786}
+  m_AnchoredPosition: {x: 614, y: -493.6667}
   m_SizeDelta: {x: 692, y: 326}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &7113717179381906780
@@ -3221,7 +3221,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -201.40262}
+  m_AnchoredPosition: {x: 960, y: -201.3889}
   m_SizeDelta: {x: 747, y: 147}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5707537805025588981
@@ -6381,7 +6381,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 53310181fc59ed34e96e687b08f486d4,
+      objectReference: {fileID: 21300000, guid: 30f37e4950b4dc54596993775b07804f,
         type: 3}
     - target: {fileID: 5615069278094938328, guid: c2623fb2a92c4e0439a03c43338da21c,
         type: 3}
@@ -6448,6 +6448,21 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5615069278094938331, guid: c2623fb2a92c4e0439a03c43338da21c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3733450781409492684}
+    - target: {fileID: 5615069278094938331, guid: c2623fb2a92c4e0439a03c43338da21c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeDifficulty
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615069278094938331, guid: c2623fb2a92c4e0439a03c43338da21c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: ProGamer
+      objectReference: {fileID: 0}
     - target: {fileID: 5615069278094938332, guid: c2623fb2a92c4e0439a03c43338da21c,
         type: 3}
       propertyPath: m_Name
@@ -6502,13 +6517,13 @@ PrefabInstance:
         type: 3}
       propertyPath: _activatedSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 53310181fc59ed34e96e687b08f486d4,
+      objectReference: {fileID: 21300000, guid: 30f37e4950b4dc54596993775b07804f,
         type: 3}
     - target: {fileID: 7752584329136027273, guid: c2623fb2a92c4e0439a03c43338da21c,
         type: 3}
       propertyPath: _disabledSprite
       value: 
-      objectReference: {fileID: 21300000, guid: d6ebbfe453f43e94f9fbd11f976dfcee,
+      objectReference: {fileID: 21300000, guid: 241daf53d06a4e041a4d1e1f039b9368,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2623fb2a92c4e0439a03c43338da21c, type: 3}
@@ -6958,7 +6973,7 @@ PrefabInstance:
     - target: {fileID: 4403212501039469540, guid: 79279536bce6993498fdc81a7b4f317b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -910.31836
+      value: -910.2223
       objectReference: {fileID: 0}
     - target: {fileID: 4403212501039469540, guid: 79279536bce6993498fdc81a7b4f317b,
         type: 3}
@@ -7210,6 +7225,17 @@ PrefabInstance:
       propertyPath: m_text
       value: Play your own pace.
       objectReference: {fileID: 0}
+    - target: {fileID: 4908834657557231490, guid: c2623fb2a92c4e0439a03c43338da21c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4908834657557231490, guid: c2623fb2a92c4e0439a03c43338da21c,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2b8a652ba18cfd447b59a31f6a6c1c25,
+        type: 3}
     - target: {fileID: 5615069278094938328, guid: c2623fb2a92c4e0439a03c43338da21c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7275,6 +7301,16 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5615069278094938331, guid: c2623fb2a92c4e0439a03c43338da21c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3733450781409492684}
+    - target: {fileID: 5615069278094938331, guid: c2623fb2a92c4e0439a03c43338da21c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeDifficulty
+      objectReference: {fileID: 0}
     - target: {fileID: 5615069278094938332, guid: c2623fb2a92c4e0439a03c43338da21c,
         type: 3}
       propertyPath: m_Name
@@ -7310,6 +7346,18 @@ PrefabInstance:
       propertyPath: m_text
       value: Chill Princess
       objectReference: {fileID: 0}
+    - target: {fileID: 7752584329136027273, guid: c2623fb2a92c4e0439a03c43338da21c,
+        type: 3}
+      propertyPath: _activatedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2b8a652ba18cfd447b59a31f6a6c1c25,
+        type: 3}
+    - target: {fileID: 7752584329136027273, guid: c2623fb2a92c4e0439a03c43338da21c,
+        type: 3}
+      propertyPath: _disabledSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8124f9f5376b2c54bab1a782d0b2b6d9,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2623fb2a92c4e0439a03c43338da21c, type: 3}
 --- !u!1 &6541955058205973375 stripped
@@ -8462,7 +8510,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 53310181fc59ed34e96e687b08f486d4,
+      objectReference: {fileID: 21300000, guid: 30f37e4950b4dc54596993775b07804f,
         type: 3}
     - target: {fileID: 5549530900933844593, guid: c2623fb2a92c4e0439a03c43338da21c,
         type: 3}
@@ -8605,13 +8653,13 @@ PrefabInstance:
         type: 3}
       propertyPath: _activatedSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 53310181fc59ed34e96e687b08f486d4,
+      objectReference: {fileID: 21300000, guid: 30f37e4950b4dc54596993775b07804f,
         type: 3}
     - target: {fileID: 7752584329136027273, guid: c2623fb2a92c4e0439a03c43338da21c,
         type: 3}
       propertyPath: _disabledSprite
       value: 
-      objectReference: {fileID: 21300000, guid: d6ebbfe453f43e94f9fbd11f976dfcee,
+      objectReference: {fileID: 21300000, guid: 241daf53d06a4e041a4d1e1f039b9368,
         type: 3}
     - target: {fileID: 7752584329136027273, guid: c2623fb2a92c4e0439a03c43338da21c,
         type: 3}
@@ -9649,6 +9697,12 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4908834657557231490, guid: c2623fb2a92c4e0439a03c43338da21c,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2b8a652ba18cfd447b59a31f6a6c1c25,
+        type: 3}
     - target: {fileID: 5549530900933844593, guid: c2623fb2a92c4e0439a03c43338da21c,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -9739,6 +9793,18 @@ PrefabInstance:
       propertyPath: _container
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7752584329136027273, guid: c2623fb2a92c4e0439a03c43338da21c,
+        type: 3}
+      propertyPath: _activatedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2b8a652ba18cfd447b59a31f6a6c1c25,
+        type: 3}
+    - target: {fileID: 7752584329136027273, guid: c2623fb2a92c4e0439a03c43338da21c,
+        type: 3}
+      propertyPath: _disabledSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8124f9f5376b2c54bab1a782d0b2b6d9,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2623fb2a92c4e0439a03c43338da21c, type: 3}
 --- !u!224 &830727343 stripped
