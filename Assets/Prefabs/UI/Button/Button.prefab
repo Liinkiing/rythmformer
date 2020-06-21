@@ -93,8 +93,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -339,7 +339,6 @@ MonoBehaviour:
   _firstLetterTM: {fileID: 1173927921049452223}
   _textTM: {fileID: 4403212500361346829}
   _animatorClipFirstLetter: {fileID: 4957203253146854891}
-  _background: {fileID: 4403212501039469562}
 --- !u!114 &2990900261127546938
 MonoBehaviour:
   m_ObjectHideFlags: 0

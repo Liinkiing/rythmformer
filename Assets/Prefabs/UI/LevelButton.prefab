@@ -238,8 +238,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -255,7 +255,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -440,12 +440,6 @@ MonoBehaviour:
   canvasContainerTimer: {fileID: 4833861679356536112}
   localTimerText: {fileID: 6348675705205947796}
   worldTimerText: {fileID: 1716624444637474482}
-  stampList:
-  - {fileID: 21300000, guid: eaabdd3c61dd1c74db4a86ae6825ee9b, type: 3}
-  - {fileID: 21300000, guid: dc3ab262fef5fbc47a2d29948e5b140d, type: 3}
-  - {fileID: 21300000, guid: e464c14e3b6e30c46b2d12fade57a44c, type: 3}
-  - {fileID: 21300000, guid: 37846229f4daa4246b3b670930b1d263, type: 3}
-  - {fileID: 21300000, guid: c4f6aebafe030b14eb208ee4c3daebc3, type: 3}
   stamp: {fileID: 8418252864625216220}
 --- !u!1 &4336385448027060326
 GameObject:
