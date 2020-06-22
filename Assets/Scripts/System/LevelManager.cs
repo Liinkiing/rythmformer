@@ -45,6 +45,10 @@ public class LevelManager : MonoBehaviour
         _input.Player.Pause.performed += PauseOnPerformed;
 
         _levelUI = Utils.FindObjectOfTypeOrThrow<LevelUI>();
+        if (MusicManager.instance.Sources.SFX.isPlaying)
+        {
+            MusicManager.instance.Sources.SFX.Stop();
+        }
         GameManager.instance.state = GameManager.GameState.InGame;
         _songSynchronizer = Utils.FindObjectOfTypeOrThrow<SongSynchronizer>();
         TimeElapsed = -_songSynchronizer.delay;
