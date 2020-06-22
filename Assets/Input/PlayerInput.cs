@@ -251,6 +251,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""Skip Cutscene"",
+                    ""type"": ""Button"",
+                    ""id"": ""5a9f2572-16d0-4aed-bbb1-2065b6fc0a68"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""Switch mode"",
                     ""type"": ""Button"",
                     ""id"": ""e9cfc25d-e40f-4597-966d-3b3cb671298f"",
@@ -303,6 +311,28 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""action"": ""Switch mode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4ce9d85f-1f50-4424-8c52-66a92ecccbae"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Skip Cutscene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b4a7caf5-a405-41bd-96a0-40a6d40de44d"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Skip Cutscene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -342,6 +372,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         // Global
         m_Global = asset.FindActionMap("Global", throwIfNotFound: true);
         m_Global_Reset = m_Global.FindAction("Reset", throwIfNotFound: true);
+        m_Global_SkipCutscene = m_Global.FindAction("Skip Cutscene", throwIfNotFound: true);
         m_Global_Switchmode = m_Global.FindAction("Switch mode", throwIfNotFound: true);
     }
 
@@ -458,12 +489,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Global;
     private IGlobalActions m_GlobalActionsCallbackInterface;
     private readonly InputAction m_Global_Reset;
+    private readonly InputAction m_Global_SkipCutscene;
     private readonly InputAction m_Global_Switchmode;
     public struct GlobalActions
     {
         private @PlayerInput m_Wrapper;
         public GlobalActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Reset => m_Wrapper.m_Global_Reset;
+        public InputAction @SkipCutscene => m_Wrapper.m_Global_SkipCutscene;
         public InputAction @Switchmode => m_Wrapper.m_Global_Switchmode;
         public InputActionMap Get() { return m_Wrapper.m_Global; }
         public void Enable() { Get().Enable(); }
@@ -477,6 +510,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Reset.started -= m_Wrapper.m_GlobalActionsCallbackInterface.OnReset;
                 @Reset.performed -= m_Wrapper.m_GlobalActionsCallbackInterface.OnReset;
                 @Reset.canceled -= m_Wrapper.m_GlobalActionsCallbackInterface.OnReset;
+                @SkipCutscene.started -= m_Wrapper.m_GlobalActionsCallbackInterface.OnSkipCutscene;
+                @SkipCutscene.performed -= m_Wrapper.m_GlobalActionsCallbackInterface.OnSkipCutscene;
+                @SkipCutscene.canceled -= m_Wrapper.m_GlobalActionsCallbackInterface.OnSkipCutscene;
                 @Switchmode.started -= m_Wrapper.m_GlobalActionsCallbackInterface.OnSwitchmode;
                 @Switchmode.performed -= m_Wrapper.m_GlobalActionsCallbackInterface.OnSwitchmode;
                 @Switchmode.canceled -= m_Wrapper.m_GlobalActionsCallbackInterface.OnSwitchmode;
@@ -487,6 +523,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Reset.started += instance.OnReset;
                 @Reset.performed += instance.OnReset;
                 @Reset.canceled += instance.OnReset;
+                @SkipCutscene.started += instance.OnSkipCutscene;
+                @SkipCutscene.performed += instance.OnSkipCutscene;
+                @SkipCutscene.canceled += instance.OnSkipCutscene;
                 @Switchmode.started += instance.OnSwitchmode;
                 @Switchmode.performed += instance.OnSwitchmode;
                 @Switchmode.canceled += instance.OnSwitchmode;
@@ -523,6 +562,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     public interface IGlobalActions
     {
         void OnReset(InputAction.CallbackContext context);
+        void OnSkipCutscene(InputAction.CallbackContext context);
         void OnSwitchmode(InputAction.CallbackContext context);
     }
 }

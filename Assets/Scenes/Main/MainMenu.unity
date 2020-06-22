@@ -1523,7 +1523,7 @@ PrefabInstance:
     - target: {fileID: 4368994575060308185, guid: a3e4a899474da4d21b6ab8f097036ec4,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4368994575060308185, guid: a3e4a899474da4d21b6ab8f097036ec4,
         type: 3}
@@ -1538,7 +1538,7 @@ PrefabInstance:
     - target: {fileID: 4368994575060308185, guid: a3e4a899474da4d21b6ab8f097036ec4,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: NavigateToScene
+      value: ContinueLastSave
       objectReference: {fileID: 0}
     - target: {fileID: 4368994575060308185, guid: a3e4a899474da4d21b6ab8f097036ec4,
         type: 3}
@@ -2034,13 +2034,13 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: a3e4a899474da4d21b6ab8f097036ec4, type: 3}
 --- !u!114 &5408292947121017869 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5272078974633606229, guid: a3e4a899474da4d21b6ab8f097036ec4,
+  m_CorrespondingSourceObject: {fileID: 7052622304399194264, guid: a3e4a899474da4d21b6ab8f097036ec4,
     type: 3}
   m_PrefabInstance: {fileID: 5408292947121017868}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84f452456e81b4a978b53216a477e0e4, type: 3}
+  m_Script: {fileID: 11500000, guid: 555b10b2c4f7c6d4a9fdc86e0feddb75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

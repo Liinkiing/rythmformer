@@ -172,7 +172,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void OnSwitchModeButtonPerformed(InputAction.CallbackContext obj)
     {
-        if (state == GameState.InGame || state == GameState.LevelEnd) return;
+        if (state == GameState.InGame || state == GameState.LevelEnd || state == GameState.Pause) return;
         ToggleDifficulty();
         OnDifficultyChanged(this, Difficulty);
     }

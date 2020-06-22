@@ -14,6 +14,7 @@ public class BindingIcons : MonoBehaviour
     public BindingIcon Dash;
     public BindingIcon Retry;
     public BindingIcon SwitchMode;
+    public BindingIcon SkipCutscene;
 
     public Sprite GetSprite(BindingScheme scheme, GameAction action)
     {
@@ -27,6 +28,8 @@ public class BindingIcons : MonoBehaviour
                 return scheme == BindingScheme.Gamepad ? Jump.Gamepad : Jump.Keyboard;
             case GameAction.SwitchMode:
                 return scheme == BindingScheme.Gamepad ? SwitchMode.Gamepad : SwitchMode.Keyboard;
+            case GameAction.SkipCutscene:
+                return scheme == BindingScheme.Gamepad ? SkipCutscene.Gamepad : SkipCutscene.Keyboard;
         }
 
         Debug.LogWarning(

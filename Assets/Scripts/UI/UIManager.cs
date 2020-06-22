@@ -18,6 +18,7 @@ public enum GameAction
     Dash,
     Retry,
     SwitchMode,
+    SkipCutscene,
 }
 
 [RequireComponent(typeof(BindingIcons))]

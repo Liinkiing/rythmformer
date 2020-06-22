@@ -167,7 +167,7 @@ public class SongSynchronizer : MonoBehaviour
         {
             AudioLowPassFilter sourceFilter = source.GetComponent<AudioLowPassFilter>();
             int normalCutoffFrequency = 22000;
-            int pauseCutoffFrequency = 1500;
+            int pauseCutoffFrequency = 200;
 
             float normalResonance = 1;
             float pauseResonance = 1.5f;
