@@ -40,7 +40,7 @@ public class LevelEndUI : MonoBehaviour
     private void Start()
     {
         _levelManager.FinishLevel();
-        MusicManager.instance.PlaySFX(endSfx, volume: 1.2f, delay: 0.6f);
+        MusicManager.instance.PlaySFX(endSfx, volume: 1.2f, delay: 0.45f);
         GameManager.instance.UnlockLevel(_levelManager.Config.NextWorld, _levelManager.Config.NextLevel);
         var localScore = GameManager.instance.GetLocalScore(_levelManager.Config.World, _levelManager.Config.Level);
         var hasBestTimer = (Math.Abs(localScore.Timer) < 0.1 || _levelManager.TimeElapsed < localScore.Timer) &&
