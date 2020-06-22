@@ -877,12 +877,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pauseContainer: {fileID: 9129599794306010793}
   _continueButton: {fileID: 1761300812480833160}
-  _scoreboardButton: {fileID: 0}
   _UITimer: {fileID: 4042800835370613865}
-  _levelUI: {fileID: 434687983862030583}
-  _levelUICanvasGroup: {fileID: 7972385761628150428}
-  _levelEndUI: {fileID: 4576626225154852109}
-  _levelEndUICanvasGroup: {fileID: 4346076881122639162}
 --- !u!1 &837892216576460142
 GameObject:
   m_ObjectHideFlags: 0
@@ -7409,6 +7404,16 @@ PrefabInstance:
       propertyPath: m_textInfo.lineCount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4403212500361346829, guid: 79279536bce6993498fdc81a7b4f317b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 4403212500361346829, guid: 79279536bce6993498fdc81a7b4f317b,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 4403212500361346830, guid: 79279536bce6993498fdc81a7b4f317b,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -7422,7 +7427,7 @@ PrefabInstance:
     - target: {fileID: 4403212500361346830, guid: 79279536bce6993498fdc81a7b4f317b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 247.43
+      value: 232.335
       objectReference: {fileID: 0}
     - target: {fileID: 4403212500361346830, guid: 79279536bce6993498fdc81a7b4f317b,
         type: 3}
@@ -7432,7 +7437,7 @@ PrefabInstance:
     - target: {fileID: 4403212500361346830, guid: 79279536bce6993498fdc81a7b4f317b,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 306.86
+      value: 276.67
       objectReference: {fileID: 0}
     - target: {fileID: 4403212500361346830, guid: 79279536bce6993498fdc81a7b4f317b,
         type: 3}

@@ -12274,8 +12274,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 8018688871446336655}
   uiScore: {fileID: 4955189785842016620}
-  perfect: {fileID: 21300000, guid: 34f43cc631e6c194a9cdc07272a59268, type: 3}
-  nice: {fileID: 21300000, guid: 7832c0383a900814aaf785103c766e9f, type: 3}
+  perfect: {fileID: 21300000, guid: 3ade34f716a2c4c4bba2f38c40fa4064, type: 3}
+  nice: {fileID: 21300000, guid: 32864314c511238479a0a3de1c18a541, type: 3}
   failed: {fileID: 21300000, guid: 846f3fb1c84f0fc47b142852c78d4c29, type: 3}
 --- !u!1 &8018688872337939063
 GameObject:

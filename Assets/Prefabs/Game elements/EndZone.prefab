@@ -28,7 +28,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.9870858, y: 7.5577464, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 5258990072728487561}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -310,6 +311,209 @@ MonoBehaviour:
     mParameters: []
     mCached: 0
     oneShot: 0
+  - mEventName: 
+    mShowGroup: 1
+    mUpdateEntryList: 0
+    mEntryList:
+    - target: {fileID: 7502699669817097331}
+      name: active
+    - target: {fileID: 379496852205918815}
+      name: adaptiveModeThreshold
+    - target: {fileID: 379496852205918815}
+      name: allowOcclusionWhenDynamic
+    - target: {fileID: 379496852205918815}
+      name: castShadows
+    - target: {fileID: 379496852205918815}
+      name: color
+    - target: {fileID: 379496852205918815}
+      name: drawMode
+    - target: {fileID: 379496852205918815}
+      name: enabled
+    - target: {fileID: 5258990072728487561}
+      name: eulerAngles
+    - target: {fileID: 379496852205918815}
+      name: flipX
+    - target: {fileID: 379496852205918815}
+      name: flipY
+    - target: {fileID: 379496852205918815}
+      name: forceRenderingOff
+    - target: {fileID: 5258990072728487561}
+      name: forward
+    - target: {fileID: 5258990072728487561}
+      name: hasChanged
+    - target: {fileID: 379496852205918815}
+      name: hideFlags
+    - target: {fileID: 5258990072728487561}
+      name: hideFlags
+    - target: {fileID: 7502699669817097331}
+      name: hideFlags
+    - target: {fileID: 5258990072728487561}
+      name: hierarchyCapacity
+    - target: {fileID: 7502699669817097331}
+      name: isStatic
+    - target: {fileID: 7502699669817097331}
+      name: layer
+    - target: {fileID: 379496852205918815}
+      name: lightmapIndex
+    - target: {fileID: 379496852205918815}
+      name: lightmapScaleOffset
+    - target: {fileID: 379496852205918815}
+      name: lightmapTilingOffset
+    - target: {fileID: 379496852205918815}
+      name: lightProbeAnchor
+    - target: {fileID: 379496852205918815}
+      name: lightProbeProxyVolumeOverride
+    - target: {fileID: 379496852205918815}
+      name: lightProbeUsage
+    - target: {fileID: 5258990072728487561}
+      name: localEulerAngles
+    - target: {fileID: 5258990072728487561}
+      name: localPosition
+    - target: {fileID: 5258990072728487561}
+      name: localRotation
+    - target: {fileID: 5258990072728487561}
+      name: localScale
+    - target: {fileID: 379496852205918815}
+      name: maskInteraction
+    - target: {fileID: 379496852205918815}
+      name: material
+    - target: {fileID: 379496852205918815}
+      name: materials
+    - target: {fileID: 379496852205918815}
+      name: motionVectorGenerationMode
+    - target: {fileID: 379496852205918815}
+      name: motionVectors
+    - target: {fileID: 7502699669817097331}
+      name: name
+    - target: {fileID: 379496852205918815}
+      name: name
+    - target: {fileID: 5258990072728487561}
+      name: name
+    - target: {fileID: 5258990072728487561}
+      name: parent
+    - target: {fileID: 5258990072728487561}
+      name: position
+    - target: {fileID: 379496852205918815}
+      name: probeAnchor
+    - target: {fileID: 379496852205918815}
+      name: rayTracingMode
+    - target: {fileID: 379496852205918815}
+      name: realtimeLightmapIndex
+    - target: {fileID: 379496852205918815}
+      name: realtimeLightmapScaleOffset
+    - target: {fileID: 379496852205918815}
+      name: receiveShadows
+    - target: {fileID: 379496852205918815}
+      name: reflectionProbeUsage
+    - target: {fileID: 379496852205918815}
+      name: rendererPriority
+    - target: {fileID: 379496852205918815}
+      name: renderingLayerMask
+    - target: {fileID: 5258990072728487561}
+      name: right
+    - target: {fileID: 5258990072728487561}
+      name: rotation
+    - target: {fileID: 379496852205918815}
+      name: shadowCastingMode
+    - target: {fileID: 379496852205918815}
+      name: sharedMaterial
+    - target: {fileID: 379496852205918815}
+      name: sharedMaterials
+    - target: {fileID: 379496852205918815}
+      name: size
+    - target: {fileID: 379496852205918815}
+      name: sortingLayerID
+    - target: {fileID: 379496852205918815}
+      name: sortingLayerName
+    - target: {fileID: 379496852205918815}
+      name: sortingOrder
+    - target: {fileID: 379496852205918815}
+      name: sprite
+    - target: {fileID: 379496852205918815}
+      name: spriteSortPoint
+    - target: {fileID: 5258990072728487561}
+      name: tag
+    - target: {fileID: 7502699669817097331}
+      name: tag
+    - target: {fileID: 379496852205918815}
+      name: tag
+    - target: {fileID: 379496852205918815}
+      name: tileMode
+    - target: {fileID: 5258990072728487561}
+      name: up
+    - target: {fileID: 379496852205918815}
+      name: useLightProbes
+    - target: {fileID: 7502699669817097331}
+      name: CreatePrimitive (PrimitiveType type)
+    - target: {fileID: 5258990072728487561}
+      name: DetachChildren ()
+    - target: {fileID: 5258990072728487561}
+      name: Find (String n)
+    - target: {fileID: 7502699669817097331}
+      name: Find (String name)
+    - target: {fileID: 5258990072728487561}
+      name: FindChild (String n)
+    - target: {fileID: 7502699669817097331}
+      name: FindGameObjectsWithTag (String tag)
+    - target: {fileID: 7502699669817097331}
+      name: FindGameObjectWithTag (String tag)
+    - target: {fileID: 7502699669817097331}
+      name: FindWithTag (String tag)
+    - target: {fileID: 5258990072728487561}
+      name: GetChild (Int32 index)
+    - target: {fileID: 5258990072728487561}
+      name: GetChildCount ()
+    - target: {fileID: 379496852205918815}
+      name: GetClosestReflectionProbes (ReflectionProbeBlendInfo] result)
+    - target: {fileID: 5258990072728487561}
+      name: GetEnumerator ()
+    - target: {fileID: 379496852205918815}
+      name: GetMaterials (Material] m)
+    - target: {fileID: 379496852205918815}
+      name: GetSharedMaterials (Material] m)
+    - target: {fileID: 5258990072728487561}
+      name: GetSiblingIndex ()
+    - target: {fileID: 379496852205918815}
+      name: HasPropertyBlock ()
+    - target: {fileID: 5258990072728487561}
+      name: IsChildOf (Transform parent)
+    - target: {fileID: 7502699669817097331}
+      name: PlayAnimation (Object animation)
+    - target: {fileID: 5258990072728487561}
+      name: RotateAroundLocal (Vector3 axis, Single angle)
+    - target: {fileID: 7502699669817097331}
+      name: SampleAnimation (Object clip, Single time)
+    - target: {fileID: 7502699669817097331}
+      name: SetActive (Boolean value)
+    - target: {fileID: 7502699669817097331}
+      name: SetActiveRecursively (Boolean state)
+    - target: {fileID: 5258990072728487561}
+      name: SetAsFirstSibling ()
+    - target: {fileID: 5258990072728487561}
+      name: SetAsLastSibling ()
+    - target: {fileID: 5258990072728487561}
+      name: SetPositionAndRotation (Vector3 position, Quaternion rotation)
+    - target: {fileID: 5258990072728487561}
+      name: SetSiblingIndex (Int32 index)
+    - target: {fileID: 7502699669817097331}
+      name: StopAnimation ()
+    mTarget: {fileID: 7502699669817097331}
+    mMethodName: SetActive
+    mParameters:
+    - obj: {fileID: 0}
+      field: 
+      paramRefType: 0
+      argStringValue: 
+      argIntValue: 0
+      argFloatValue: 0
+      argDoubleValue: 0
+      argBoolValue: 0
+      argColor: {r: 0, g: 0, b: 0, a: 0}
+      argVector2: {x: 0, y: 0}
+      argVector3: {x: 0, y: 0, z: 0}
+      argVector4: {x: 0, y: 0, z: 0, w: 0}
+    mCached: 0
+    oneShot: 0
   onExit: []
   onStay: []
   enterSpecificTriggers:
@@ -322,3 +526,104 @@ MonoBehaviour:
     onExitRight: []
     onExitTop: []
     onExitBottom: []
+--- !u!1 &7502699669817097331
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5258990072728487561}
+  - component: {fileID: 379496852205918815}
+  - component: {fileID: 4600516695916575831}
+  m_Layer: 0
+  m_Name: note_musique
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5258990072728487561
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7502699669817097331}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.33477446, y: 0.13231458, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5277956836494088873}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &379496852205918815
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7502699669817097331}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 396963491
+  m_SortingLayer: 4
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: 30629d424b62ba54e8f235dcca91b4f0, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 3.05, y: 5.37}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!95 &4600516695916575831
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7502699669817097331}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 189e487bd521b6543bda3a8a7a4c747a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
