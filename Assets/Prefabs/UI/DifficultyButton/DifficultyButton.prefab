@@ -130,8 +130,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 27
-  m_fontSizeBase: 27
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -330,7 +330,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c9771d2a3c56b734ba171b0148c45da8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8124f9f5376b2c54bab1a782d0b2b6d9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -460,18 +460,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5615069278094938330}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: ChangeDifficulty
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Chill
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &4705362885716699560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -499,11 +488,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cf777908f8792f4c875eea519a6b0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activatedSprite: {fileID: 21300000, guid: c9771d2a3c56b734ba171b0148c45da8, type: 3}
-  _disabledSprite: {fileID: 21300000, guid: 63fa653631dcd9746a8730c7bbcb5fb8, type: 3}
+  _activatedSprite: {fileID: 21300000, guid: 2b8a652ba18cfd447b59a31f6a6c1c25, type: 3}
+  _disabledSprite: {fileID: 21300000, guid: 8124f9f5376b2c54bab1a782d0b2b6d9, type: 3}
   _imageDifficulty: {fileID: 4908834657557231490}
-  _container: {fileID: 0}
   _gradientMaterial: {fileID: 2100000, guid: a207fcb1248807344975db2cecaeaf53, type: 2}
+  _difficulty: 0
 --- !u!1 &5615069279167342830
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,8 +585,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 34
-  m_fontSizeBase: 34
+  m_fontSize: 31
+  m_fontSizeBase: 31
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

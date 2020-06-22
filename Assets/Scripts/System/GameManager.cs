@@ -229,6 +229,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         SaveManager.instance.Data.Difficulty = difficulty;
         SaveManager.instance.Save();
+        OnDifficultyChanged(this, Difficulty);
         Debug.Log($"Changed difficulty to : {difficulty}");
     }
 
