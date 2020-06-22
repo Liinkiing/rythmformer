@@ -3,6 +3,7 @@ using HttpModel;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class LevelEndUI : MonoBehaviour
 {
@@ -13,14 +14,26 @@ public class LevelEndUI : MonoBehaviour
     [SerializeField] private GameObject _highscoreContainer;
     [SerializeField] private VerticalLayoutGroup _verticalLayout;
     [SerializeField] private Image stamp;
+    [SerializeField] private GameObject rays;
     private LevelManager _levelManager;
+    private SongSynchronizer _synchronizer;
+    private Image _raysImage;
 
+    private float _stepRaysAnimationDuration;
+    private Vector3 _inScale = new Vector3(1.5f, 1.5f, 1);
+    private Vector3 _outScale = new Vector3(1.7f, 1.7f, 1);
+    private float _inAlpha = 0.6f;
+    private float _outAlpha = 1f;
     private void Awake()
     {
         _levelManager = Utils.FindObjectOfTypeOrThrow<LevelManager>();
+        _synchronizer = Utils.FindObjectOfTypeOrThrow<SongSynchronizer>();
+        _raysImage = rays.GetComponent<Image>();
         var isPro = GameManager.instance.Difficulty == Difficulty.ProGamer;
         _scoreBox.SetActive(isPro);
         _verticalLayout.padding.top = isPro ? 0 : 120;
+        
+        _stepRaysAnimationDuration = (_synchronizer.song.Informations.bpm / 60f) / (_synchronizer.song.Informations.signature.denominator*2);
     }
 
     private void Start()
@@ -52,5 +65,26 @@ public class LevelEndUI : MonoBehaviour
         var index = Array.IndexOf(Enum.GetValues(typeof(Level)), _levelManager.Config.Level);
         stamp.sprite = UIManager.instance.stampList[index];
         stamp.gameObject.SetActive(true);
+    }
+    
+    
+    private void OnEnable()
+    {
+        _synchronizer.Step += OnEveryTwoStep;
+    }
+
+    private void OnDisable()
+    {
+        _synchronizer.Step -= OnEveryTwoStep;
+    }
+
+    private void OnEveryTwoStep(SongSynchronizer sender, EventArgs evt)
+    {
+        Sequence sequence = DOTween.Sequence();
+
+        sequence.Append(rays.transform.DOScale(_inScale, _stepRaysAnimationDuration));
+        sequence.Join(_raysImage.DOFade(_inAlpha, _stepRaysAnimationDuration));
+        sequence.Append(rays.transform.DOScale(_outScale, _stepRaysAnimationDuration));
+        sequence.Join(_raysImage.DOFade(_outAlpha, _stepRaysAnimationDuration));
     }
 }
