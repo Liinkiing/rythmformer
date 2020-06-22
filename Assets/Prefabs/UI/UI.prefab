@@ -5302,6 +5302,9 @@ MonoBehaviour:
   SwitchMode:
     Keyboard: {fileID: 21300000, guid: fccd816cf6836e3498db8e3bd4354aa3, type: 3}
     Gamepad: {fileID: 21300000, guid: 7f97832bce156bf49a426f886cad1ead, type: 3}
+  SkipCutscene:
+    Keyboard: {fileID: 21300000, guid: e51405ae724b94d4b8784558533d7f16, type: 3}
+    Gamepad: {fileID: 21300000, guid: 2c3fa3b379a1fab43b27e3772e161703, type: 3}
 --- !u!1 &8145689260054491542
 GameObject:
   m_ObjectHideFlags: 0

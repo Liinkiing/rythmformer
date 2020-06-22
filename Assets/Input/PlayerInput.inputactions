@@ -238,6 +238,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "Skip Cutscene",
+                    "type": "Button",
+                    "id": "5a9f2572-16d0-4aed-bbb1-2065b6fc0a68",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Switch mode",
                     "type": "Button",
                     "id": "e9cfc25d-e40f-4597-966d-3b3cb671298f",
@@ -288,6 +296,28 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Switch mode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4ce9d85f-1f50-4424-8c52-66a92ecccbae",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Skip Cutscene",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b4a7caf5-a405-41bd-96a0-40a6d40de44d",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Skip Cutscene",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

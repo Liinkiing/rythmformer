@@ -1,9 +1,11 @@
 ﻿using System;
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour
 {
+    public const string FirstCutsceneSceneName = "Scenes/Main/cutscene_1";
     [SerializeField] private GameObject _sceneTransition;
     [SerializeField] private GameObject _mainMenuUI;
     [SerializeField] private GameObject _settingsUI;
@@ -60,9 +62,7 @@ public class MainMenuUI : MonoBehaviour
         GameManager.instance.LockAllLevels();
         GameManager.instance.UnlockLevel(World.Castle, Level.Tutorial);
 
-        GameManager.LevelData firstLevel = GameManager.instance.Levels[0];
-        
-        _startNewGameButton.GetComponent<LevelButtonData>().FillFromLevelData(firstLevel);
-        StartCoroutine(_sceneTransition.GetComponent<SceneLoader>().LoadLevel(firstLevel.Scene));
+        StartCoroutine(_sceneTransition.GetComponent<SceneLoader>().LoadLevel(FirstCutsceneSceneName));
     }
+
 }
