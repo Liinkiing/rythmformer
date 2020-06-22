@@ -34,4 +34,16 @@ public class MusicManager : MonoSingleton<MusicManager>
         Sources.SFX.pitch = pitch;
         Sources.SFX.PlayOneShot(clip, volume);
     }
+
+    public void PlaySFX(AudioClip clip, float volume = 1.2f, float pitch = 1f, float delay = 0f)
+    {
+        StartCoroutine(DoPlay(clip, volume, pitch, delay));
+    }
+
+    private IEnumerator DoPlay(AudioClip clip, float volume = 1.2f, float pitch = 1f, float delay = 0f)
+    {
+        yield return new WaitForSeconds(delay);
+        Sources.SFX.pitch = pitch;
+        Sources.SFX.PlayOneShot(clip, volume);
+    }
 }
