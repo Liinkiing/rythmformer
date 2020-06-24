@@ -21,7 +21,6 @@ public enum GameAction
     SkipCutscene,
 }
 
-[RequireComponent(typeof(BindingIcons))]
 public class UIManager : MonoSingleton<UIManager>
 {
     public float transitionUIDuration = 0.8f;

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4369307536219692084}
   - component: {fileID: -343343927089040311}
+  - component: {fileID: 2618775524999802671}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -43,3 +44,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0c6fa4e569f45f7a0462b246857d06f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 1
+  Levels: []
+  CurrentBindingScheme: 1
+--- !u!114 &2618775524999802671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4369307536219692085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5aec7d75f78f8b47bbc7137d8b58e01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Jump:
+    Keyboard: {fileID: 21300000, guid: b679fe2681745a9498e3eb36e361c02f, type: 3}
+    Gamepad: {fileID: 21300000, guid: ee5ebef1c0525a84d8d2fb1fdcbd0251, type: 3}
+  Dash:
+    Keyboard: {fileID: 21300000, guid: 254c47f0f4dd899499dd688fdd226ae6, type: 3}
+    Gamepad: {fileID: 21300000, guid: 9a0bdd99fd20abd42a09091cb02cb8c6, type: 3}
+  Retry:
+    Keyboard: {fileID: 21300000, guid: 29b508627852c564b99ef4a48eaf8d72, type: 3}
+    Gamepad: {fileID: 21300000, guid: 2c3fa3b379a1fab43b27e3772e161703, type: 3}
+  SwitchMode:
+    Keyboard: {fileID: 21300000, guid: fccd816cf6836e3498db8e3bd4354aa3, type: 3}
+    Gamepad: {fileID: 21300000, guid: 7f97832bce156bf49a426f886cad1ead, type: 3}
+  SkipCutscene:
+    Keyboard: {fileID: 21300000, guid: e51405ae724b94d4b8784558533d7f16, type: 3}
+    Gamepad: {fileID: 21300000, guid: 2c3fa3b379a1fab43b27e3772e161703, type: 3}

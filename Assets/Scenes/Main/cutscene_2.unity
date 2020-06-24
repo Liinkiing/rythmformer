@@ -232,6 +232,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84f452456e81b4a978b53216a477e0e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &569940847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 569940849}
+  - component: {fileID: 569940848}
+  m_Layer: 0
+  m_Name: Temp Instance of SaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &569940848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569940847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8987ad3e529efe542994ba2918133eef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  filename: save.dat
+--- !u!4 &569940849
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569940847}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1737311848
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,7 +303,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1737311848}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 2742f7a4b2179f246ab9f6525d75601a, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: baf1cd88aa2330444a958acca1fb238c, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 1767018877}
@@ -297,7 +341,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1737311851
 MonoBehaviour:
@@ -335,7 +379,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Scenes/Main/castle_tutorial
+          m_StringArgument: Scenes/Main/forest_1
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &1767018875
@@ -420,7 +464,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1767018879
 MonoBehaviour:
@@ -553,7 +597,7 @@ PrefabInstance:
     - target: {fileID: 3257260114825982070, guid: 6defa330a5bd64b4d91a17366861c27b,
         type: 3}
       propertyPath: OnCutsceneSkip.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Scenes/Main/castle_tutorial
+      value: Scenes/Main/forest_1
       objectReference: {fileID: 0}
     - target: {fileID: 3257260114998676910, guid: 6defa330a5bd64b4d91a17366861c27b,
         type: 3}

@@ -9,11 +9,11 @@ public class BindingIconButton : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private BindingIcons _bindingIcons;
 
-    private void Awake()
+    private void Start()
     {
         _image = GetComponent<Image>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _bindingIcons = UIManager.instance.GetComponent<BindingIcons>();
+        _bindingIcons = GameManager.instance.GetComponent<BindingIcons>();
         ChangeSprite(GameManager.instance.CurrentBindingScheme);
     }
 

@@ -13,6 +13,10 @@ public class Cutscene : MonoBehaviour
     private void Awake()
     {
         _player = GetComponent<VideoPlayer>();
+        if (MusicManager.instance.Sources.SFX.isPlaying)
+        {
+            MusicManager.instance.Sources.SFX.Stop();
+        }
     }
 
     private void OnEnable()

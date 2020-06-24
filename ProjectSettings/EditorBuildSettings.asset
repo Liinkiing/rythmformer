@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Main/castle_tutorial.unity
     guid: 698e1c0115284eb4a8b3f03ab7d85256
   - enabled: 1
+    path: Assets/Scenes/Main/cutscene_2.unity
+    guid: 440afa8ab2c77994190b44ccffd489b3
+  - enabled: 1
     path: Assets/Scenes/Main/forest_1.unity
     guid: 327455d03257184449c99499c1aae121
   - enabled: 1
