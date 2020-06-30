@@ -34,5 +34,5 @@ public class SaveData
 {
     public Dictionary<World, Dictionary<Level, bool>> LevelProgression;
     public Dictionary<World, Dictionary<Level, LevelScoreData>> LevelScores;
-    public Difficulty Difficulty;
+    public Difficulty Difficulty = Difficulty.ProGamer;
 }
