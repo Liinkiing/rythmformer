@@ -2765,7 +2765,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '{TIME}sc'
+  m_text: ...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 80e1c6fa8cc7a2c41b3b72eacb1c41b7, type: 2}
   m_sharedMaterial: {fileID: -4073894304815318109, guid: 80e1c6fa8cc7a2c41b3b72eacb1c41b7,
@@ -2835,10 +2835,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 3192141923920139363}
-    characterCount: 8
+    characterCount: 3
     spriteCount: 0
     spaceCount: 0
-    wordCount: 2
+    wordCount: 1
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -6653,7 +6653,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 241daf53d06a4e041a4d1e1f039b9368,
+      objectReference: {fileID: 21300000, guid: 30f37e4950b4dc54596993775b07804f,
         type: 3}
     - target: {fileID: 5615069278094938328, guid: c2623fb2a92c4e0439a03c43338da21c,
         type: 3}
@@ -7229,7 +7229,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 2b8a652ba18cfd447b59a31f6a6c1c25,
+      objectReference: {fileID: 21300000, guid: 8124f9f5376b2c54bab1a782d0b2b6d9,
         type: 3}
     - target: {fileID: 5615069278094938328, guid: c2623fb2a92c4e0439a03c43338da21c,
         type: 3}
@@ -8515,7 +8515,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 241daf53d06a4e041a4d1e1f039b9368,
+      objectReference: {fileID: 21300000, guid: 30f37e4950b4dc54596993775b07804f,
         type: 3}
     - target: {fileID: 5549530900933844593, guid: c2623fb2a92c4e0439a03c43338da21c,
         type: 3}
@@ -9656,7 +9656,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 2b8a652ba18cfd447b59a31f6a6c1c25,
+      objectReference: {fileID: 21300000, guid: 8124f9f5376b2c54bab1a782d0b2b6d9,
         type: 3}
     - target: {fileID: 5549530900933844593, guid: c2623fb2a92c4e0439a03c43338da21c,
         type: 3}

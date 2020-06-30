@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using Duck.Http.Service;
 
 public class LevelEndUI : MonoBehaviour
 {
@@ -53,13 +54,17 @@ public class LevelEndUI : MonoBehaviour
         }
 
         _localTimeText.text = _localTimeText.text.Replace("{TIME}", UIManager.instance.FormatTimer(_levelManager.TimeElapsed));
-        LeaderboardManager.instance.FetchBestTimerForLevel(_levelManager.Config.World, _levelManager.Config.Level)
-            .OnError(response => Debug.LogError(response.Text))
+        LeaderboardManager.instance.PostTimerForLevel(_levelManager.Config.World, _levelManager.Config.Level, _levelManager.TimeElapsed)
+            .OnError(response =>
+            {
+                Debug.LogError(response.Text);
+                FetchBestTimer(response);
+            })
             .OnSuccess(
                 response =>
                 {
-                    var entry = JsonUtility.FromJson<ScoreEntry>(response.Text);
-                    _worldTimeText.text = _worldTimeText.text.Replace("{TIME}", UIManager.instance.FormatTimer(entry.timer));
+                    Debug.Log("Successfully persisted your score... Fetching latest data");
+                    FetchBestTimer(response);
                 })
             .Send();
 
@@ -71,8 +76,21 @@ public class LevelEndUI : MonoBehaviour
         Debug.Log(UIManager.instance.stampList[index]);
         stamp.gameObject.SetActive(true);
     }
-    
-    
+
+    private void FetchBestTimer(HttpResponse response)
+    {
+        LeaderboardManager.instance.FetchBestTimerForLevel(_levelManager.Config.World, _levelManager.Config.Level)
+            .OnError(r => Debug.LogError(r.Text))
+            .OnSuccess(
+                r =>
+                {
+                    var entry = JsonUtility.FromJson<ScoreEntry>(r.Text);
+                    _worldTimeText.text = _worldTimeText.text = $"{UIManager.instance.FormatTimer(entry.timer)}sc";
+                })
+            .Send();
+    }
+
+
     private void OnEnable()
     {
         _synchronizer.Step += OnEveryTwoStep;

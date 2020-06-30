@@ -38,6 +38,23 @@ public class LeaderboardManager : MonoSingleton<LeaderboardManager>
         return Http.Get(_config.ApiRoot + $"/score/{world}/{level}/best?type=timer");
     }
 
+    public IHttpRequest PostTimerForLevel(World world, Level level, float timer)
+    {
+        Debug.Log($"[LEADERBOARD] - Posting timer for {world} - {level}");
+        var entry = new NewScoreEntry()
+        {
+            identifier = SystemInfo.deviceUniqueIdentifier,
+            timer = timer,
+            score = 0,
+            world = world,
+            level = level,
+        };
+        var postData = JSONSerializer.Serialize(typeof(NewScoreEntry), entry);
+        return Http
+            .Put(_config.ApiRoot + $"/score/new", postData)
+            .SetHeader("Content-Type", "application/json");
+    }
+
     public IHttpRequest WakeServer()
     {
         Debug.Log("[LEADERBOARD] - Waking up backend...");
