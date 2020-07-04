@@ -25,8 +25,17 @@ public class MainMenuUI : MonoBehaviour
 
     private void Start()
     {
-        UIManager.instance.SetEventSystemsTarget(_continueLastSaveButton);
-        
+        if (!GameManager.instance.HasUnlockedLevel(World.Castle, Level.Tutorial))
+        {
+            _continueLastSaveButton.GetComponent<Button>().interactable = false;
+            UIManager.instance.SetEventSystemsTarget(_startNewGameButton);
+        }
+        else
+        {
+            _continueLastSaveButton.GetComponent<Button>().interactable = true;
+            UIManager.instance.SetEventSystemsTarget(_continueLastSaveButton);
+        }
+
         _settingsButton.GetComponent<Button>().onClick.AddListener(() =>
         {
             UIManager.instance.SetUIContainerStateWithInternalNavigation(
