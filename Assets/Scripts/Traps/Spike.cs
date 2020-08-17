@@ -16,6 +16,7 @@ public class Spike : Trap {
 
     private void Start()
     {
+        //
         OnKick = false;
         OnTouch = true;
         TrapRecovery = false;
