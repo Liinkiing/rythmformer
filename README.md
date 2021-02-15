@@ -1,5 +1,4 @@
-# Rythmformer
-> Un super jeu sans nom actuellement
+# Rebellina
 
 ## Installation
 
